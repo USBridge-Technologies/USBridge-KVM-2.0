@@ -42,7 +42,7 @@ Universal hardware emulation allows you to mount virtual images directly from yo
 ### Hardware Ransomware Protection & Snapshots
 During any modification, the system never overwrites the source files; instead, it saves only the "delta" of changes, instantly freezing the new copy in a read-only state. Thanks to strict hardware isolation, even if ransomware or an attacker gains full root privileges on the compromised server, they have no physical path to reach the KVM storage. All data is stored using the standard Btrfs file system.
 
-<img width="763" height="382" alt="Storage_preview_mobil" src="https://github.com/user-attachments/assets/2704487d-ac1e-4c66-a061-8bd23642512f" />
+<img width="2553" height="690" alt="Immutable_Snapshots" src="https://github.com/user-attachments/assets/6b51ed4a-f1ac-4fd3-9c9b-8cbe02e01540" />
 
 ---
 
@@ -79,14 +79,13 @@ The application will be released under an Open Source license as soon as the fin
 
 ### Hardware Architecture
 *   **SoC:** Radxa Zero 3W (Rockchip RK3566, Quad-Core Cortex-A55).
-*   **Memory (RAM):** 2 GB LPDDR4X (partially allocated for high-speed Virtual Media caching).
 *   **Cooling:** Custom CNC-milled aluminum heatsinks with an active cooling fan to prevent thermal throttling.
 *   **Display:** Integrated IPS screen (240x240) for instant POST status monitoring via the built-in display mode.
 *   **Power Management:** Dedicated **Power Management Module** board for hardware-level server power control.
 *   **Enclosure:** Premium 3D-printed SLS Nylon PA12 case.
 
 ### Interfaces & Ports
-*   **Video Capture:** Hardware-level UVC capture supporting 1080p@45fps / 720p@60fps via an external USB dongle, natively integrated with Moonlight.
+*   **Video Capture:** Hardware-level UVC capture supporting 1080p@30fps / 720p@60fps via an external USB dongle, natively integrated with Moonlight.
 *   **USB Type-C (2 ports):**
     *   *Port 1 (OTG):* Keyboard/mouse emulation, image mounting (Mass Storage), and power delivery input.
     *   *Port 2 (Host):* Dedicated port for connecting the external USB video capture dongle.
