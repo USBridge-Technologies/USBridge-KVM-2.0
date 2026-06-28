@@ -8,7 +8,7 @@
 
 **USBridge-KVM 2.0** is a compact, professional-grade stack for system debugging and direct infrastructure control at the most fundamental level (Layer 0). It gives administrators absolute control over the hardware, bypassing the operating system while ensuring strict hardware isolation. The device provides instant, out-of-the-box server access with ultra-low latency streaming and the ability to deploy scripts or AI agents to automate routine, low-level tasks.
 
-![USBridge Banner](Front_panel.png) 
+<img width="1948" height="663" alt="Front_panel2" src="https://github.com/user-attachments/assets/7068be13-eaa4-4073-ad24-a5fcf0f6d919" />
 
 ---
 
