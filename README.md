@@ -8,7 +8,7 @@
 
 **USBridge-KVM 2.0** is a compact, professional-grade stack for system debugging and direct infrastructure control at the most fundamental level (Layer 0). It gives administrators absolute control over the hardware, bypassing the operating system while ensuring strict hardware isolation. The device provides instant, out-of-the-box server access with ultra-low latency streaming and the ability to deploy scripts or AI agents to automate routine, low-level tasks.
 
-<img width="2912" height="1440" alt="Front_panel3" src="https://github.com/user-attachments/assets/be3f7fd6-0714-46e7-aa48-4aa85d973fce" />
+<img width="1600" height="791" alt="Front_panel4" src="https://github.com/user-attachments/assets/4647b9a7-83b7-49ab-a51d-4b8f76e8eeca" />
 
 ---
 
@@ -42,7 +42,7 @@ Universal hardware emulation allows you to mount virtual images directly from yo
 ### Hardware Ransomware Protection & Snapshots
 During any modification, the system never overwrites the source files; instead, it saves only the "delta" of changes, instantly freezing the new copy in a read-only state. Thanks to strict hardware isolation, even if ransomware or an attacker gains full root privileges on the compromised server, they have no physical path to reach the KVM storage. All data is stored using the standard Btrfs file system.
 
-<img width="2553" height="690" alt="Immutable_Snapshots" src="https://github.com/user-attachments/assets/6b51ed4a-f1ac-4fd3-9c9b-8cbe02e01540" />
+<img width="1200" height="324" alt="Immutable_Snapshots2" src="https://github.com/user-attachments/assets/a501cb97-93e6-4c02-a29a-9e3fb8f58d0a" />
 
 ---
 
@@ -58,6 +58,17 @@ During any modification, the system never overwrites the source files; instead, 
 | **Power Management** | **Yes (Module included)** | Yes | No (Requires external PDU) |
 | **Virtual Media** | **Yes (Out-of-the-box + Cache)** | Yes (Often requires license) | Model dependent |
 
+
+---
+
+## Client Download Matrix
+
+The Client is the control interface installed on your workstation, laptop, or mobile device. It manages active hardware connections, live remote desktop streaming, virtual device passthrough, and your snapshot registry.
+
+| Architecture | Windows | macOS | Linux | Android | iOS (iPhone) |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **x86_64** | [Download](#) | — | [Download](#) | — | — |
+| **ARM64** | — | [Download](#) | — | [Download](#) | `🛠 In Progress` |
 
 ---
 
