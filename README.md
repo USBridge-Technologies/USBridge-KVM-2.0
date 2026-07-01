@@ -8,7 +8,7 @@
 
 **USBridge-KVM 2.0** is a compact, professional-grade stack for system debugging and direct infrastructure control at the most fundamental level (Layer 0). It gives administrators absolute control over the hardware, bypassing the operating system while ensuring strict hardware isolation. The device provides instant, out-of-the-box server access with ultra-low latency streaming and the ability to deploy scripts or AI agents to automate routine, low-level tasks.
 
-<img width="1948" height="663" alt="Front_panel2" src="https://github.com/user-attachments/assets/7068be13-eaa4-4073-ad24-a5fcf0f6d919" />
+<img width="2912" height="1440" alt="Front_panel3" src="https://github.com/user-attachments/assets/be3f7fd6-0714-46e7-aa48-4aa85d973fce" />
 
 ---
 
@@ -16,7 +16,7 @@
 
 Forget about "jelly" cursors, video stutters, and input desync. USBridge-KVM 2.0 is the first hardware KVM-over-IP featuring native, on-board integration of the **Moonlight protocol**.
 
-The hardware video capture and transmission pipeline is optimized to reduce latency to an imperceptible level[cite: 1]. You get the absolute responsiveness of a direct connection: crystal-smooth mouse movement and instantaneous text input response. The latency is so low that the bandwidth and reaction speed are enough even for comfortable gameplay in dynamic platformers — let alone flawless server administration[cite: 1].
+The hardware video capture and transmission pipeline is optimized to reduce latency to an imperceptible level[cite: 1]. You get the absolute responsiveness of a direct connection: crystal-smooth mouse movement and instantaneous text input response. The latency is so low that the bandwidth and reaction speed are enough even for comfortable gameplay in dynamic platformers — let alone flawless server administration.
 
 https://github.com/user-attachments/assets/d3a0cbbd-419b-434d-9d0d-b19d049d3041
 
@@ -48,34 +48,34 @@ During any modification, the system never overwrites the source files; instead, 
 
 ## Solution Comparison
 
-| Feature | Embedded BMC (iDRAC / iLO) | Traditional IP-KVM | USBridge 2.0 (Our Solution) |
+| Feature | USBridge 2.0 (Our Solution) | Embedded BMC (iDRAC / iLO) | Traditional IP-KVM |
 | :--- | :--- | :--- | :--- |
-| **Hardware Independence** | No (Vendor lock-in) | Yes | **Yes (Any hardware)** |
-| **Screen OCR & SSH Terminal** | No | No | **Yes (On-device offline OCR)** |
-| **AI Agents & Starlark Scripts**| No | No | **Yes (Built-in engine)** |
-| **Immutable Snapshots** | No | No | **Yes (Btrfs, isolated)** |
-| **Video Latency** | High (Web GUI) | Medium (WebRTC / MJPEG) | **Ultra-Low (Moonlight)** |
-| **Power Management** | Yes | No (Requires external PDU)| **Yes (Module included)** |
-| **Virtual Media** | Yes (Often requires license)| Model dependent | **Yes (Out-of-the-box + Cache)** |
+| **Hardware Independence** | **Yes (Any hardware)** | No (Vendor lock-in) | Yes |
+| **Screen OCR & SSH Terminal** | **Yes (On-device offline OCR)** | No | No |
+| **AI Agents & Starlark Scripts**| **Yes (Built-in engine)** | No | No |
+| **Immutable Snapshots** | **Yes (Btrfs, isolated)** | No | No |
+| **Video Latency** | **Ultra-Low (Moonlight)** | High (Web GUI) | Medium (WebRTC / MJPEG) |
+| **Power Management** | **Yes (Module included)** | Yes | No (Requires external PDU) |
+| **Virtual Media** | **Yes (Out-of-the-box + Cache)** | Yes (Often requires license) | Model dependent |
 
 
 ---
 
 ## Unified Ecosystem: USBridge-Remote
 
-Control your entire infrastructure from a single point using **USBridge-Remote** — a cross-platform agent application that provides a hybrid access approach within a single interface[cite: 1]:
+Control your entire infrastructure from a single point using **USBridge-Remote** — a cross-platform agent application designed to provide a hybrid access approach within a single interface:
 
-*   **Hardware Level (Layer 0):** Add USBridge-KVM devices for direct BIOS access, media mounting, and bare-metal recovery of "dead" machines.
-*   **Software Level (OS-level):** Add lightweight software agents for quick desktop management inside an already booted operating system.
+* **Hardware Level (Layer 0):** **[Available Now]** Add USBridge-KVM devices for direct BIOS access, media mounting, and bare-metal recovery of "dead" machines.
+* **Software Level (OS-level):** **[In Active Development / Coming Soon]** Integration for lightweight software agents to enable quick desktop management inside an already booted operating system. 
 
-<img width="1992" height="1385" alt="Remote" src="https://github.com/user-attachments/assets/f9075029-e597-46c8-a532-a89395e351b6" />
-
-
-The application will be released under an Open Source license as soon as the final code polishing is finished on [GitHub](https://github.com/USBridge-Technologies/USBridge-Remote).
+> [!NOTE]
+> The core application ecosystem is currently being finalized. The desktop application will be officially released under an Open Source license as soon as the final code polishing and agent integration are complete on [GitHub](https://github.com/USBridge-Technologies/USBridge-Remote).
 
 ---
 
 ## Technical Specifications
+
+<img width="1497" height="741" alt="6" src="https://github.com/user-attachments/assets/47bfbbcd-cda0-4b17-b3a1-a7ab7ad03fd9" />
 
 ### Hardware Architecture
 *   **SoC:** Radxa Zero 3W (Rockchip RK3566, Quad-Core Cortex-A55).
@@ -89,11 +89,70 @@ The application will be released under an Open Source license as soon as the fin
 *   **USB Type-C (2 ports):**
     *   *Port 1 (OTG):* Keyboard/mouse emulation, image mounting (Mass Storage), and power delivery input.
     *   *Port 2 (Host):* Dedicated port for connecting the external USB video capture dongle.
-*   **Server Power Control (ATX):** 8-pin GPIO interface with external Power/Reset adapter board.
+*   **Power Management Module:** 8-pin GPIO interface with external Power/Reset adapter board.
 *   **Network:** Built-in Wi-Fi 6 module.
 *   **Snapshots:** Dedicated MicroSD card slot.
 *   **HDMI Passthrough:** Micro HDMI port for local video output at the server rack.
 
 ---
+
+# Quick Start Guide
+
+## 1. Hardware Connection & Cables
+
+<img width="2553" height="690" alt="Ports2" src="https://github.com/user-attachments/assets/761ffe47-70c7-44d6-9d2f-a1aba24df787" />
+
+* **Port 1 (OTG):** Connect this port to the target server/PC. It delivers power to the KVM, emulates the mouse/keyboard, and handles virtual media mounting.
+* **Port 2 (Host):** Connect the external video capture dongle here. Link the dongle to your server's video output using an HDMI cable.
+
+> [!IMPORTANT]
+> **Critical: Video Capture Dongle Modes**
+> The USB Type-C capture dongle operates in two different modes depending on its orientation when plugged into the port. Please verify its status in the app:
+> * **`[5G]` Mode (USB 3.0):** Standard high-performance mode. It provides maximum bandwidth (5 Gbps), rich image quality, and ultra-low input lag. **This is your target mode.**
+> * **`[480M]` Mode (USB 2.0):** Slow compatibility mode (480 Mbps). The video stream may suffer from compression artifacts or noticeable latency.
+> 
+> **The Fix:** If you see the `[480M]` status, simply unplug the Type-C cable from the KVM, flip it 180°, and plug it back in to lock onto the `[5G]` mode.
+
+---
+
+## 2. Network & Application Setup
+
+1. **Network Configuration:** The device comes with built-in Wi-Fi 6 and native Tailscale integration for instant remote access without messy router/firewall configurations. For initial Wi-Fi setup, use the integrated on-board IPS display or the local web panel.
+2. **Firmware Update:** Once connected to the internet, navigate to the settings and update the device to the latest firmware version. Please allow a couple of minutes for the initial server synchronization.
+3. **Launch:** Open the **USBridge-Client** application, add your new device using its IP address, and you are ready to go.
+4. **Snapshot Setup (Data Protection):** Insert a MicroSD card into the KVM slot, open the device settings in the client app, and format the card. Once formatted, a backup drive will appear under the "Snapshots" tab, running a Btrfs-based Read-Write Overlay mode to protect your data.
+
+### Connecting to BIOS-in-Terminal via SSH:
+1. In the app interface, go to **Settings** -> **Authentication** -> **User Control** -> **Create User**.
+2. Set up a username and password for authorization.
+3. Open your favorite terminal emulator and run:
+   ```bash
+   ssh user@<kvm_ip_address> 
+4. When prompted, enter the password you created in Step 2.
+
+** Ready for Action!**
+Once authorized, your terminal will instantly clear and start rendering the BIOS/Pre-OS video signal directly into your console as a live, interactive text stream. You can now select error codes, copy serial numbers, or pass automated Starlark scripts straight through the terminal session.
+
+> [!WARNING]
+> At this stage, the BIOS-in-Terminal feature exclusively supports text-based BIOS screens. Graphical UEFI interfaces are not yet recognized. You may notice minor character artifacts due to the OCR engine—the processing logic is being actively optimized, and accuracy will be perfected by the final release.
+
+---
+
+## 3. Power Management Module
+
+To enable direct hardware-level power management (power on, power off, hard reset), use the included expansion board:
+
+<img width="2553" height="690" alt="Power Management Module" src="https://github.com/user-attachments/assets/640567b0-d75c-4a44-93db-6e8fdcb19661" />
+
+
+* **Input:** A pre-wired ribbon cable is already connected to the expansion module. Plug its other end into the **8-pin GPIO header** on the USBridge-KVM chassis.
+* **Output (to the server's motherboard):** Connect the individual pins on the opposite side of the module to the **Front Panel** headers of your motherboard. Follow the white silk-screen labels on the PCB:
+
+| Expansion Board Pin | Target Motherboard Header | Description |
+| :--- | :--- | :--- |
+| **`\|PWR\|`** | **Power Switch** (PWR_SW / PW_SW) | Powers the server on or off |
+| **`\|RST\|`** | **Reset Switch** (RESET / RST) | Triggers a hard hardware reset |
+| **`\|LED1\|`** | **Power LED** (P_LED) | Reports the server's power status to the client, even if there is no video signal |
+| **`\|LED2\|`** | **HDD LED** (H_LED) | Displays storage drive activity inside the client UI |
 
 *Control. Protect. Recover.*
