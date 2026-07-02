@@ -63,6 +63,8 @@ During any modification, the system never overwrites the source files; instead, 
 
 ## Client Download Matrix
 
+<img width="6272" height="2588" alt="USBridge_ap4p" src="https://github.com/user-attachments/assets/7d377a53-9e13-41fb-b31d-bc1f94378126" />
+
 The Client is the control interface installed on your workstation, laptop, or mobile device. It manages active hardware connections, live remote desktop streaming, virtual device passthrough, and your snapshot registry.
 
 | Architecture | Windows | macOS | Linux | Android | iOS (iPhone) |
@@ -72,15 +74,32 @@ The Client is the control interface installed on your workstation, laptop, or mo
 
 ---
 
-## Unified Ecosystem: USBridge-Remote
+## Unified Ecosystem: [USBridge-Remote](https://github.com/USBridge-Technologies/USBridge-Remote)
 
-Control your entire infrastructure from a single point using **USBridge-Remote** — a cross-platform agent application designed to provide a hybrid access approach within a single interface:
+<details>
+<summary>📸 Click to preview USBridge-Remote Agent Interface</summary>
+<br>
 
-* **Hardware Level (Layer 0):** **[Available Now]** Add USBridge-KVM devices for direct BIOS access, media mounting, and bare-metal recovery of "dead" machines.
-* **Software Level (OS-level):** **[In Active Development / Coming Soon]** Integration for lightweight software agents to enable quick desktop management inside an already booted operating system. 
+<img width="4960" height="1644" alt="Screenshot 2026-05-03 20112н0" src="https://github.com/user-attachments/assets/9f72f6fa-aad0-4d09-b886-22a4d9ba1538" />
 
-> [!NOTE]
-> The core application ecosystem is currently being finalized. The desktop application will be officially released under an Open Source license as soon as the final code polishing and agent integration are complete on [GitHub](https://github.com/USBridge-Technologies/USBridge-Remote).
+</details>
+
+Control your entire infrastructure from a single point using **[USBridge-Remote](https://github.com/USBridge-Technologies/USBridge-Remote)** — our dedicated cross-platform agent application. It enables a hybrid access approach within a single interface, combining hardware and software-level management:
+
+* **Hardware Level (Layer 0):** Add USBridge-KVM devices for direct BIOS access, media mounting, and bare-metal recovery of "dead" machines.
+* **Software Level (OS-level):** Deploy this lightweight software agent inside an already booted operating system for instant desktop management without KVM hardware dependency.
+
+### Agent Download Matrix
+
+The agent runs as a background service on your target OS (servers, remote workstations, or headless nodes) to stream the desktop and execute system-level commands.
+
+| Architecture | Windows | macOS | Linux |
+| :--- | :--- | :--- | :--- |
+| **x86_64** | [Download](https://github.com/USBridge-Technologies/USBridge-Remote/releases/download/v2.0.0/USBridge_agent_windows_amd64-2.0.1.zip) | — | [Download](https://github.com/USBridge-Technologies/USBridge-Remote/releases/download/v2.0.0/USBridge_agent_linux_amd64-2.0.1.tar.gz) |
+| **ARM64** | — | `🛠 In Progress (signing)` | — |
+
+> [!TIP]
+> **Open Source Roadmap:** The USBridge-Remote agent application is slated to be fully Open Source. I am currently polishing the codebase and refactoring the core logic. Pre-compiled binaries and the official source code repository will be published incrementally in the near future. Stay tuned for updates!
 
 ---
 
@@ -141,7 +160,7 @@ Control your entire infrastructure from a single point using **USBridge-Remote**
    ssh user@<kvm_ip_address> 
 4. When prompted, enter the password you created in Step 2.
 
-** Ready for Action!**
+**Ready for Action!**
 Once authorized, your terminal will instantly clear and start rendering the BIOS/Pre-OS video signal directly into your console as a live, interactive text stream. You can now select error codes, copy serial numbers, or pass automated Starlark scripts straight through the terminal session.
 
 > [!WARNING]
