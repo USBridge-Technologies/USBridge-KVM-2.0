@@ -16,7 +16,7 @@
 
 Forget about "jelly" cursors, video stutters, and input desync. USBridge-KVM 2.0 is the first hardware KVM-over-IP featuring native, on-board integration of the **Moonlight protocol**.
 
-The hardware video capture and transmission pipeline is optimized to reduce latency to an imperceptible level[cite: 1]. You get the absolute responsiveness of a direct connection: crystal-smooth mouse movement and instantaneous text input response. The latency is so low that the bandwidth and reaction speed are enough even for comfortable gameplay in dynamic platformers — let alone flawless server administration.
+The hardware video capture and transmission pipeline is optimized to reduce latency to an imperceptible level. You get the absolute responsiveness of a direct connection: crystal-smooth mouse movement and instantaneous text input response. The latency is so low that the bandwidth and reaction speed are enough even for comfortable gameplay in dynamic platformers — let alone flawless server administration.
 
 https://github.com/user-attachments/assets/d3a0cbbd-419b-434d-9d0d-b19d049d3041
 
@@ -24,7 +24,7 @@ https://github.com/user-attachments/assets/d3a0cbbd-419b-434d-9d0d-b19d049d3041
 
 ## BIOS-in-Terminal: Offline OCR & Hardware-Level AI Automation
 
-USBridge-KVM 2.0 doesn't just stream video — it understands it[cite: 1]. Our unique BIOS-in-Terminal technology intercepts the raw video signal at the hardware level, using an onboard chip with real-time offline OCR to convert BIOS interfaces and pre-boot environments (Pre-OS) into an interactive, selectable text stream.
+USBridge-KVM 2.0 doesn't just stream video — it understands it. Our unique BIOS-in-Terminal technology intercepts the raw video signal at the hardware level, using an onboard chip with real-time offline OCR to convert BIOS interfaces and pre-boot environments (Pre-OS) into an interactive, selectable text stream.
 
 *   **Interactive Text-Based BIOS via SSH:** Connect to the KVM using a standard SSH session to view and configure the BIOS directly inside your favorite terminal. Because the information is displayed as pure text, you can easily select and copy error codes, BIOS versions, or serial numbers straight from the console.
 *   **In-Client Scripting Without "Pixel-Hunting":** Write, edit, and run robust Starlark (Python syntax) scripts directly from the app interface. The automation manager operates on recognized text: the script reliably waits for the string `"Aptio Setup Utility"` to appear, and then sends the exact scan-code (e.g., Escape) to navigate the menu.
