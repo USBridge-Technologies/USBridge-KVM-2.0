@@ -1,4 +1,4 @@
-# What's in the Box (Package Contents)
+# What's in the Box 
 
 Every USBridge-KVM 2.0 kit is shipped with a complete set of hardware, interface modules, and interconnect cables required for an immediate out-of-the-box deployment.
 
@@ -6,7 +6,8 @@ Every USBridge-KVM 2.0 kit is shipped with a complete set of hardware, interface
 
 ## Hardware Kit Breakdown
 
-Below is the detailed manifest of all components included in the standard retail package:
+![USBridge Box](https://raw.githubusercontent.com/USBridge-Technologies/USBridge-KVM-2.0/main/docs/assets/Box.png)
+
 
 1. **USBridge-KVM 2.0 Base Unit**
    * High-performance IP-KVM enclosed in a durable, premium 3D-printed SLS Nylon PA12 case. 
@@ -22,7 +23,7 @@ Below is the detailed manifest of all components included in the standard retail
 
 ---
 
-## 🔌 What You Need to Provide
+## What You Need to Provide
 
 To complete the setup, ensuring zero external dependencies, you only need to supply one standard item:
 
