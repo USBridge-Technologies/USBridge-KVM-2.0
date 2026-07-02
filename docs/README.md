@@ -1,4 +1,4 @@
-# 📚 USBridge-KVM 2.0 Technical Documentation
+# USBridge-KVM 2.0 Technical Documentation
 
 Welcome to the official documentation repository. Use the categorized hub below to step through our core technical specs, deployment guides, and hardware blueprints.
 
