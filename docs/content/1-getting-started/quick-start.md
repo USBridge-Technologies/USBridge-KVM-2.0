@@ -42,6 +42,6 @@ To get your out-of-band session up and running, follow these four basic deployme
 1. **USB-C: Power & HID:** Connect the primary USB-C port to the target computer to enable immediate power delivery and peripheral emulation.
 2. **Video Capture:** Establish the video signal path: `Target HDMI Output` -> `HDMI Cable` -> `Capture Dongle` -> `USBridge Host USB Port`.
 3. **Network Setup:** Access the onboard interface, navigate to **Settings** -> **Internet**, select your network, and enter the password. Once connected, the device will display its assigned IP address on the screen.
-4. **Client Authorization:** Open the **USBridge App** to start the session. You can sync credentials instantly by scanning the QR code via the app, or manually enter the IP address and Access Token.
+4. **Establish Connection:** With the hardware and network fully initialized, you are ready to launch your remote session. Open the cross-platform client application and enter the displayed IP address along with the Access Token (or sync instantly by scanning the onscreen QR code). For a step-by-step walkthrough of the software connection process, proceed to the [Initial Setup & Client Pairing](https://github.com/USBridge-Technologies/USBridge-KVM-2.0/blob/main/docs/content/1-getting-started/initial-setup.md).
 
 
