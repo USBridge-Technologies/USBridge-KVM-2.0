@@ -8,10 +8,12 @@ This guide covers the physical connections, initial network setup, onboard inter
 
 The side panels of the USBridge device provide the physical interfaces required for power, data transfer, and peripheral emulation.
 
+![USBridge Physical Ports Reference](https://raw.githubusercontent.com/USBridge-Technologies/USBridge-KVM-2.0/main/docs/assets/Ports.png)
+
 * **USB-C (Power & Emulation):** Powers the device and provides hardware-level keyboard and mouse HID emulation for the target host.
 * **USB-C (HDMI Connectivity):** Connects to the target HDMI video source via a compatible capture dongle.
 * **8-pin Connector:** Reserved for specialized functionality, including external **Power Management Module** control.
-* **Micro HDMI:** Unused during standard operation. Reserved exclusively for direct low-level diagnostics of the USBridge hardware.
+* **Micro HDMI (Video Passthrough):** Functions as a local video output to mirror the target server's display. This allows you to connect a physical monitor directly at the rack when the host's primary video port is occupied by the KVM capture hardware.
 * **SD Card Slot:** Hosts the MicroSD card required for storing immutable data snapshots and local system data.
 
 
