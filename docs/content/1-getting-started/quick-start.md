@@ -16,21 +16,9 @@ The side panels of the USBridge device provide the physical interfaces required 
 * **Micro HDMI (Video Passthrough):** Functions as a local video output to mirror the target server's display. This allows you to connect a physical monitor directly at the rack when the host's primary video port is occupied by the KVM capture hardware.
 * **SD Card Slot:** Hosts the MicroSD card required for storing immutable data snapshots and local system data.
 
-
 ---
 
-## 2. Installation & First Launch
-
-To get your out-of-band session up and running, follow these four basic deployment steps:
-
-1. **USB-C: Power & HID:** Connect the primary USB-C port to the target computer to enable immediate power delivery and peripheral emulation.
-2. **Video Capture:** Establish the video signal path: `Target HDMI Output` -> `HDMI Cable` -> `Capture Dongle` -> `USBridge Host USB Port`.
-3. **Network Setup:** Access the onboard interface, navigate to **Settings** -> **Internet**, select your network, and enter the password. Once connected, the device will display its assigned IP address on the screen.
-4. **Client Authorization:** Open the **USBridge App** to start the session. You can sync credentials instantly by scanning the QR code via the app, or manually enter the IP address and Access Token.
-
----
-
-## 3. Onboard Interface Navigation
+## 2. Onboard Interface Navigation
 
 ![USBridge Front panel](https://raw.githubusercontent.com/USBridge-Technologies/USBridge-KVM-2.0/main/docs/assets/Front_panel.png)
 
@@ -44,3 +32,16 @@ The main screen provides quick access to the device's core functions. Use the lo
 | **Settings** | The central hub for device configuration, including Wi-Fi/Internet connectivity, System Info, Auth Token management, SD Card Settings, Display adjustments, and Language selection. |
 | **Monitor** | A dedicated diagnostic mode used to observe the real-time behavior of the target host and perform quick troubleshooting. |
 | **Scripts** | A repository of available automation scripts, enabling the direct execution of predefined provisioning or recovery workflows straight from the KVM appliance. |
+
+---
+
+## 3. Installation & First Launch
+
+To get your out-of-band session up and running, follow these four basic deployment steps:
+
+1. **USB-C: Power & HID:** Connect the primary USB-C port to the target computer to enable immediate power delivery and peripheral emulation.
+2. **Video Capture:** Establish the video signal path: `Target HDMI Output` -> `HDMI Cable` -> `Capture Dongle` -> `USBridge Host USB Port`.
+3. **Network Setup:** Access the onboard interface, navigate to **Settings** -> **Internet**, select your network, and enter the password. Once connected, the device will display its assigned IP address on the screen.
+4. **Client Authorization:** Open the **USBridge App** to start the session. You can sync credentials instantly by scanning the QR code via the app, or manually enter the IP address and Access Token.
+
+
