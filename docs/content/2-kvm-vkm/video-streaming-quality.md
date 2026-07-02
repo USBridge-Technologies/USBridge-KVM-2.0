@@ -11,6 +11,13 @@ The video signal path is engineered for hardware-level isolation to prevent any 
 * **Primary Interface:** The USBridge appliance utilizes its dedicated **USB-C (Host)** port to receive the raw video stream from the integrated or external HDMI-to-USB UVC capture module.
 * **Complex Deployments (USB Hub):** If your target infrastructure topology requires simultaneous hardware video capture and wired USB-LAN emulation (via the KVM), both the capture module and the network adapter must be routed through an external USB hub connected to the appliance.
 
+> ⚠️ **Critical Operational Note: Video Capture Dongle Modes**
+> The USB Type-C capture dongle operates in two different bus modes depending on its physical orientation when plugged into the port. Please verify its current connection status via the client application:
+> * **[5G] Mode (USB 3.0):** Standard high-performance mode. It provides maximum bandwidth (5 Gbps), rich image quality, and ultra-low input lag. **This is your target operational mode.**
+> * **[480M] Mode (USB 2.0):** Legacy compatibility mode (480 Mbps). The video stream may suffer from visible compression artifacts, dropped frames, or noticeable interaction latency.
+> 
+> **The Fix:** If the application reports a **[480M]** status link, simply unplug the Type-C cable from the KVM appliance, **flip the connector 180°**, and plug it back into the port to force the internal hardware multiplexer to lock onto the high-speed **[5G]** lines.
+
 ---
 
 ## 2. Resolution & Signal Parameters
