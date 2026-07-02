@@ -93,7 +93,7 @@ The interface is divided into six core functional submenus:
   </tr>
 </table>
 
-### Settings 
+### Settings
 
 <table border="0" cellpadding="0" cellspacing="0">
   <tr>
@@ -105,13 +105,21 @@ The interface is divided into six core functional submenus:
         <li><b>Functional Purpose:</b> Global hardware, network, and protocol tuning.</li>
         <li><b>Capabilities:</b> The primary engine for adjusting system parameters and device states. Includes:
           <ul>
-            <li><b>Network:</b> Wi-Fi/Internet configuration and Tailscale orchestration.</li>
-            <li><b>System Info:</b> Real-time device metrics, hardware revision data, and uptime tracking.</li>
-            <li><b>Authentication:</b> Generating secure pairing keys, tokens, and QR codes (Show Master Key).</li>
-            <li><b>SD Card:</b> Storage allocation, partition checking, and local media space management.</li>
-            <li><b>Display & Language:</b> Panel brightness configuration and localization settings.</li>
-            <li><b>Updates & Maintenance:</b> OTA firmware flashing, Factory Reset routines, and safe hardware Poweroff orchestration.</li>
+            <li><b>Network:</b> Manage local Wi-Fi connections, review network interface information, and verify global Internet connectivity status.</li>
+            <li><b>System Info:</b> Read-time telemetry dashboard showing core operating temperatures, firmware versions, and system resource load metrics.</li>
+            <li><b>Authentication:</b> Central key authority managing the Master Key, User Control provisioning, Tailscale routing, Moonlight streaming configs, KVM SSH access, and MCP configurations.</li>
+            <li><b>SD Card:</b> Storage maintenance console containing SD card formatting tools and specific Snapshot settings.</li>
+            <li><b>Display:</b> Controls panel brightness parameters, HDMI Passthrough toggles, and HDMI Vsync synchronization options.</li>
+            <li><b>Language:</b> System-level UI localization adjustments.</li>
+            <li><b>Updates:</b> Displays the current running version with an explicit check action (though background checks run automatically) to verify and output update parity status.</li>
+            <li><b>Factory Reset:</b> Erases all user environments and restores the appliance to its original factory defaults.</li>
+            <li><b>Poweroff:</b> Orchestrates a safe software shutdown sequence before disconnecting physical power.</li>
           </ul>
+        </li>
+        <li><b>Supported Operations:</b>
+          <ul>
+            <li><b>Button 1 (Enter):</b> Opens the selected configuration submenu or confirms the parameter adjustment.</li>
+            <li><b>Joystick Left (Back):</b> Exits the current settings tier and returns to the primary menu.</li>
           </ul>
         </li>
       </ul>
@@ -119,6 +127,41 @@ The interface is divided into six core functional submenus:
   </tr>
 </table>
 
-### 📺 Monitor (Direct Video Diagnostic)
-* **Functional Purpose:** Raw out-of-band video mirror.
-* **Capabilities:** Bypasses all menu layers to engage a direct diagnostic loop. This streams the target host's raw GPU output (including low-level BIOS screens and boot sequences) directly onto the built-in LCD screen, making local crash troubleshooting instant.
+### Monitor
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="35%" valign="top" style="border: none;">
+      <img src="https://raw.githubusercontent.com/USBridge-Technologies/USBridge-KVM-2.0/main/docs/assets/Monitor.png" alt="USBridge Monitor" width="100%"/>
+    </td>
+    <td width="65%" valign="top" style="border: none; padding-left: 20px;">
+      <ul>
+        <li><b>Functional Purpose:</b> Raw out-of-band video mirror for rapid on-site troubleshooting.</li>
+        <li><b>Capabilities:</b> Bypasses all system menus to provide immediate local diagnostics directly at the server rack without requiring a dedicated crash cart or remote client connection. It streams the target host's raw video output in real time—including low-level BIOS configurations, initialization stages, boot sequences, and active operating system environments.</li>
+          </ul>
+        </li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+### Scripts
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="35%" valign="top" style="border: none;">
+      <img src="https://raw.githubusercontent.com/USBridge-Technologies/USBridge-KVM-2.0/main/docs/assets/Scripts.png" alt="USBridge Scripts" width="100%"/>
+    </td>
+    <td width="65%" valign="top" style="border: none; padding-left: 20px;">
+      <ul>
+        <li><b>Functional Purpose:</b> Local hardware-level execution engine for automation tasks.</li>
+        <li><b>Capabilities:</b> Displays the library of pre-loaded automation macros and Starlark routines (e.g., automated <code>Enter BIOS</code> macros, <code>Boot Selection</code> keys, or custom <code>.star</code> scripts). This allows administrators to deploy provisioning operations or recovery workflows straight from the KVM appliance without accessing a web console or client interface.</li>
+        <li><b>Supported Operations:</b>
+          <ul>
+            <li><b>Run:</b> Instantly executes the selected automation script or macro on the connected target host.</li>
+          </ul>
+        </li>
+      </ul>
+    </td>
+  </tr>
+</table>
