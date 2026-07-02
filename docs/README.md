@@ -16,6 +16,7 @@ Welcome to the official documentation repository. Use the index below to navigat
 * [Audio Redirection](./content/2-kvm-vkm/audio-redirection.md)
 * [Network](./content/2-kvm-vkm/network.md)
 * [Display Mode](./content/2-kvm-vkm/display-mode.md)
+* [Gamepad Emulation](./content/2-kvm-vkm/gamepad.md)
 
 ### 📟 BIOS-in-Terminal
 * [Technology Overview](./content/3-bios-in-terminal/technology-overview.md)
