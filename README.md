@@ -185,4 +185,21 @@ To enable direct hardware-level power management (power on, power off, hard rese
 | **`\|LED1\|`** | **Power LED** (P_LED) | Reports the server's power status to the client, even if there is no video signal |
 | **`\|LED2\|`** | **HDD LED** (H_LED) | Displays storage drive activity inside the client UI |
 
+---
+
+## What's in the Box (Package Contents)
+
+<img width="1800" height="964" alt="3" src="https://github.com/user-attachments/assets/db8e946e-7e39-486a-8058-10f6d511dedd" />
+
+Every USBridge-KVM 2.0 kit comes with all the essential hardware and cables required for an out-of-the-box deployment:
+
+1. **Premium SLS Case:** The main USBridge-KVM 2.0 unit enclosed in a durable, 3D-printed SLS Nylon PA12 housing with an integrated post-status IPS display.
+2. **HDMI Video Capture Dongle:** High-performance external hardware-level UVC capture stick (supporting 1080p@30fps / 720p@60fps).
+3. **USB Type-C to Type-C Cable:** High-speed data cable used to interconnect the host port of the KVM and the capture dongle.
+4. **Power Management Module Board:** Dedicated adapter PCB for hardware-level server power control (Power/Reset/LEDs), complete with a pre-wired ribbon cable.
+5. **Female-to-Female Dupont Jumper Wires:** Colorful 8-pin jumper wire set to easily bridge the Power Module board directly to your server's motherboard front panel headers.
+
+> [!NOTE]
+> **What else you might need:** To connect the setup to your server, you will only need a standard HDMI cable to link your server's GPU output directly to the included video capture dongle. Everything else is already in the box!
+
 *Control. Protect. Recover.*
