@@ -71,17 +71,53 @@ The interface is divided into six core functional submenus:
 </table>
 </table>
 
-### 📑 Event Log (Diagnostic Audit)
-* **Functional Purpose:** Real-time chronological system telemetry.
-* **Capabilities:** Outputs a raw text stream of device activities, authentication sequences, and system errors. Essential for local diagnostic auditing, verifying successful network handshakes, or tracking connected client logins directly from the hardware.
+### Event Log
 
-### ⚙️ Settings (Central Configuration Hub)
-* **Functional Purpose:** Global hardware and protocol tuning.
-* **Capabilities:** The primary engine for adjusting system parameters. Includes:
-  * **Wi-Fi / Internet:** Local network provisioning and Tailscale connectivity status.
-  * **Auth Tokens:** Generation and display of client pairing keys and QR codes.
-  * **Hardware Control:** Display brightness calibration, fan curve tuning, and storage maintenance.
-  * **Localization:** System language selection.
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="35%" valign="top" style="border: none;">
+      <img src="https://raw.githubusercontent.com/USBridge-Technologies/USBridge-KVM-2.0/main/docs/assets/Log.png" alt="USBridge Event Log" width="100%"/>
+    </td>
+    <td width="65%" valign="top" style="border: none; padding-left: 20px;">
+      <ul>
+        <li><b>Functional Purpose:</b> Real-time chronological system telemetry.</li>
+        <li><b>Capabilities:</b> Outputs a raw text stream of device activities, authentication sequences, and system errors. Essential for local diagnostic auditing, verifying successful network handshakes, or tracking connected client logins directly from the hardware.</li>
+        <li><b>Supported Operations:</b>
+          <ul>
+            <li><b>Details:</b> Opens an expanded, detailed view for the currently selected log entry to inspect deep metadata or error stacks.</li>
+            <li><b>Filter:</b> Toggles log filters to quickly sort events by severity level or operational category (e.g., Disk, Video, System).</li>
+          </ul>
+        </li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+### Settings 
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="35%" valign="top" style="border: none;">
+      <img src="https://raw.githubusercontent.com/USBridge-Technologies/USBridge-KVM-2.0/main/docs/assets/Settings.png" alt="USBridge Settings" width="100%"/>
+    </td>
+    <td width="65%" valign="top" style="border: none; padding-left: 20px;">
+      <ul>
+        <li><b>Functional Purpose:</b> Global hardware, network, and protocol tuning.</li>
+        <li><b>Capabilities:</b> The primary engine for adjusting system parameters and device states. Includes:
+          <ul>
+            <li><b>Network:</b> Wi-Fi/Internet configuration and Tailscale orchestration.</li>
+            <li><b>System Info:</b> Real-time device metrics, hardware revision data, and uptime tracking.</li>
+            <li><b>Authentication:</b> Generating secure pairing keys, tokens, and QR codes (Show Master Key).</li>
+            <li><b>SD Card:</b> Storage allocation, partition checking, and local media space management.</li>
+            <li><b>Display & Language:</b> Panel brightness configuration and localization settings.</li>
+            <li><b>Updates & Maintenance:</b> OTA firmware flashing, Factory Reset routines, and safe hardware Poweroff orchestration.</li>
+          </ul>
+          </ul>
+        </li>
+      </ul>
+    </td>
+  </tr>
+</table>
 
 ### 📺 Monitor (Direct Video Diagnostic)
 * **Functional Purpose:** Raw out-of-band video mirror.
