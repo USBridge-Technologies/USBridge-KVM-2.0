@@ -32,6 +32,8 @@ To get your out-of-band session up and running, follow these four basic deployme
 
 ## 3. Onboard Interface Navigation
 
+![USBridge Front panel](https://raw.githubusercontent.com/USBridge-Technologies/USBridge-KVM-2.0/main/docs/assets/Front_panel.png)
+
 The main screen provides quick access to the device's core functions. Use the local display or web interface to browse the sections below:
 
 | Menu Section | Functional Purpose |
@@ -41,3 +43,4 @@ The main screen provides quick access to the device's core functions. Use the lo
 | **Event Log** | A complete history of system logs to track device activity, verify successful operations, or audit recent sequences. |
 | **Settings** | The central hub for device configuration, including Wi-Fi/Internet connectivity, System Info, Auth Token management, SD Card Settings, Display adjustments, and Language selection. |
 | **Monitor** | A dedicated diagnostic mode used to observe the real-time behavior of the target host and perform quick troubleshooting. |
+| **Scripts** | A repository of available automation scripts, enabling the direct execution of predefined provisioning or recovery workflows straight from the KVM appliance. |
