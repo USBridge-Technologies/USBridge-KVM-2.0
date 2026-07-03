@@ -95,7 +95,7 @@ The agent runs as a background service on your target OS (servers, remote workst
 
 | Architecture | Windows | macOS | Linux |
 | :--- | :---: | :---: | :---: |
-| **x86_64** | [Download](https://github.com/USBridge-Technologies/USBridge-Remote/releases/download/v2.0.1/USBridge_agent_windows_amd64-2.0.1.zip) | — | [Download](https://github.com/USBridge-Technologies/USBridge-Remote/releases/download/v2.0.1/USBridge_agent_linux_amd64-2.0.1.tar.gz) |
+| **x86_64** | [Download](https://github.com/USBridge-Technologies/USBridge-Remote/releases/download/v2.0.2/USBridge_agent_windows_amd64-2.0.2.zip) | — | 🚧 |
 | **ARM64** | — | [Download](https://github.com/USBridge-Technologies/USBridge-Remote/releases/download/v2.0.1/USBridge_agent_macOS_amd64-2.0.1.zip) | `🛠 In Progress (signing)` |
 
 > [!TIP]
