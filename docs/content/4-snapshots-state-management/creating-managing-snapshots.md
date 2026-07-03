@@ -6,60 +6,45 @@ The USBridge-KVM 2.0 snapshot workflow is architected to capture, seal, and pres
 
 ## 1. Media Preparation & Hardware Initialization
 
-Before initiating block-level data operations, you must prepare the physical storage layer and establish the hardware link:
+Before initiating any block-level data operations, you must physically prepare the storage media and initialize the file system on the device.
 
-* [cite_start]**Media Installation:** Insert a high-endurance, write-intensive MicroSD card (industrial-grade pSLC media is strongly recommended) into the dedicated on-board slot[cite: 58]. *Alternative:* Connect an external enterprise SSD to the appliance via the primary USB-C expansion port.
-* [cite_start]**Host Interconnect:** Connect the USBridge appliance to the target machine using the primary USB-C control line[cite: 55].
-* **Initialization & Health Verification:** Power on the appliance. [cite_start]Navigate to **Settings** -> **SD Card** via the built-in LCD screen and rotary encoder to verify media mounting status, file-system health, and available block capacity[cite: 51, 52].
+### Step-by-Step Initialization
 
----
-
-## 2. Volume Mounting & Host Access Provisioning
-
-[cite_start]Storage provisioning and virtual block exposure are executed out-of-band through the native USBridge Client application[cite: 60]:
-
-1. Launch the **USBridge Client** and navigate to the **Storage Module** panel.
-2. Select **Mount Drive** to expose the storage block allocation.
-3. Choose the appropriate hardware emulation protocol:
-   * **Mass Storage Device Mode (Default):** Exposes the volume as a standard raw block device (USB Hard Drive/Flash). [cite_start]Ideal for direct OS provisioning and raw partitions[cite: 25, 26, 55].
-   * **MTP Mode:** Emulates the Media Transfer Protocol for high cross-platform file compatibility without locking the block layer.
-4. [cite_start]Once activated, the isolated storage volume mounts directly within the target host's operating system as a native local drive, requiring zero custom host drivers[cite: 25, 26].
+1. Safely shut down or unplug the USBridge-KVM appliance before modifying any physical hardware components.
+2. Insert your storage card into the dedicated onboard MicroSD slot. 
+3. Power on the appliance. Using the built-in LCD screen and rotary encoder, navigate to **Settings** -> **SD Card** -> **Format SD**. This process initializes the required Btrfs file-system layout on the card.
+4. Navigate to **Settings** -> **SD Card** -> **Snapshot Settings** to define how frequently the system should automatically freeze new read-only data states.
+5. After formatting is complete, remain in the **Settings** -> **SD Card** menu and verify that the green **Ready** indicator is displayed at the top of the screen.
 
 ---
 
-## 3. Automated Snapshot Generation Pipeline
+## 2. Volume Mounting & Data Provisioning
 
-Data state capture is an autonomous, event-driven background process that eliminates the need for manual command execution:
+To upload your ISO images, virtual drives, or scripts to the appliance, you must provision access to the KVM's internal storage layer via the client application:
 
-```text
-[Target Host Write Activity] ──> [USBridge Storage Layer]
-                                           │
-                                           ▼ (inotify / Write Completion)
-[Read-Only Btrfs Subvolume] <─── [Automated Snapshot Trigger]
-```
-### 3. Automated Snapshot Generation Pipeline
+### Step-by-Step Data Upload
 
-Data state capture is an autonomous, event-driven background process that eliminates the need for manual command execution:
-
-* **Data Staging:** Transfer your critical files, deployment images, or configuration backups onto the mounted USBridge drive layer.
-* **Automated Trigger:** The internal KVM engine monitors file-system actions using kernel-level `inotify` routines. Upon detecting write completions followed by a programmable quiet period, the system autonomously triggers a block-level snapshot.
-* **Immutability Enforcement:** The newly generated state is instantaneously registered in the client database and locked as a strictly read-only Btrfs subvolume.
-* **Hierarchy Audit:** Administrators can traverse the directory tree via the client registry at any time to inspect historical states and extract pristine data sets for clean bare-metal recoveries.
+1. **Connect to the Appliance:** Launch your native USBridge-Remote client application and ensure your KVM device is actively linked. For first-time deployment, see the [Initial Setup Guide](../1-getting-started/initial-setup.md).
+2. **Open Storage Settings:** Click on the **Snapshots** tab in the main application navigation menu.
+3. **Mount the Storage:** Locate and click the **Mount Backup Flash** button. 
+4. **Access the Drive:** The isolated storage volume will instantly expose itself to your local workstation using hardware emulation. The system will detect it natively as an **MTP Composite Device** without requiring any custom host drivers.
+5. **Transfer Your Files:** Open your operating system's file manager, locate the mounted **Main storage** volume, and copy your required deployment images or automation files directly onto this disk.
+6. **Automatic Snapshot Generation:** Once your data transfer is complete, you can unmount the drive or simply wait. The underlying Btrfs subsystem will detect the file-system events and automatically freeze your new files into a read-only snapshot layer within 30 seconds (or according to the custom interval defined in your appliance settings).
 
 ---
 
-### 4. Delta Change Analysis & Auditing
+## 3. Snapshot Auditing & Data Recovery
 
-Beyond static storage archival, the subsystem provides granular tracking of data modifications between captured states:
+Once a snapshot is generated and appears in the client application interface, you can audit its contents and use it to recover your data states:
 
-* **Telemetry Access:** Within the client interface, every snapshot entry features a detailed information toggle `(i)`. Clicking this element requests the underlying Btrfs engine to compute block differences.
-* **Modification Inspection:** The interface renders a comprehensive structural diff log, explicitly listing all file additions, modifications, and deletions encompassed within that specific snapshot delta. This allows for instant auditing of what exactly changed on the drive during staging.
+### Auditing Snapshot Information
+1. Navigate to the **Snapshots** tab in the client interface.
+2. Locate your desired snapshot entry and click the **Info (i)** icon.
+3. The interface will render a detailed metadata breakdown and structural diff log, explicitly listing all file additions, modifications, and deletions encompassed within that specific snapshot delta.
 
----
+### Recovering and Extracting Data
+1. To return to a previous data state, locate the historical snapshot in the list and click its **Mount** button.
+2. The selected snapshot will instantly mount natively on your local workstation as a read-only **MTP device**.
+3. Since the mounted snapshot is strictly immutable to ensure data integrity, you can safely browse its directory tree, copy the required historical files or ISO images, and export them back to your main storage or an external drive.
 
-### 5. Security & Access Governance
 
-All recorded state changes are secured via strict hardware and file-system level isolation protocols:
-
-* **Hardware-Enforced Write Protection:** Once a state is committed to a snapshot, the subvolume is structurally restricted to Read-Only access at the kernel layer of the KVM.
-* **Total Host Isolation:** The target server's operating system completely lacks the bus routing, permissions, or drivers required to modify, overwrite, or purge the snapshot repository. This establishes a reliable, non-volatile recovery vector even following catastrophic operating system failures or deep ransomware encryption events on the host machine.
