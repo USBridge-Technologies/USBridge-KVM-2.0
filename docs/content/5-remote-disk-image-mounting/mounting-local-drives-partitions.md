@@ -1,50 +1,30 @@
-# Mounting Local Drives & Partitions
+# Virtual Media: Mounting ISO Images
 
-The **Local Drive Mounting** feature is engineered to completely bypass the need for complex, heavy PXE server infrastructures. It allows administrators to attach physical disks, individual partitions, or virtual machine images from a local workstation directly to the target server out-of-band. Through hardware-level network encapsulation, the remote motherboard detects these resources instantly as standard, physically connected USB mass storage devices.
-
----
-
-## 1. Architectural Pipeline & How It Works
-
-The workflow relies on the transparent network encapsulation of storage I/O routing directly to the KVM's emulation layer:
-
-1. **Network Forwarding:** The administrator selects any local disk, partition, or virtual drive on their workstation via the native USBridge Client application interface.
-2. **Hardware Emulation:** The USBridge appliance intercepts and relays block-level read/write commands directly to the target host over the physical USB OTG line.
-3. **OS Transparency:** The remote server's operating system, bootloader, and BIOS/UEFI interact with the media exactly as if it were a local, bare-metal flash drive or external hard disk.
+[cite_start]The **Virtual Media** subsystem enables the remote, out-of-band attachment of standard optical disc images (`.iso`) directly to the target server[cite: 25]. [cite_start]By emulating a physical USB CD/DVD-ROM drive at the hardware level [cite: 25, 26][cite_start], this architecture provides seamless pre-OS media access without requiring a complex, dependency-heavy PXE network boot infrastructure[cite: 24].
 
 ---
 
-## 2. Target Use Cases: The True PXE Alternative
+## 1. Core Capabilities & Workflows
 
-This block-level encapsulation architecture fundamentally accelerates deployment, troubleshooting, and bare-metal recovery scenarios:
+The system supports streamlined media workflows specifically engineered for bare-metal operating system installations, automated staging, and remote disaster recovery scenarios:
 
-* **Diskless Bare-Metal Booting:** Attach a local workstation partition containing a pre-configured operating system image and boot a completely diskless remote server instantly for emergency triage.
-* **Live Diagnostic Environments:** Expose heavy forensic, rescue, or custom live installer environments directly from your administration laptop without wasting time flashing physical USB thumb drives.
-* **Zero-Infrastructure OS Deployment:** Install an operating system on the remote machine using a local disk asset as the primary distribution repository, eliminating the need to configure network-boot (PXE) servers, DHCP helpers, or TFTP daemons.
-
----
-
-## 3. Performance Characteristics & Caching Matrix
-
-The current transport architecture utilizes a highly stable USB 2.0-compatible Hi-Speed physical path, heavily buffered by onboard memory caches.
-
-| Feature / Metric | Technical Specification & Behavior |
-| :--- | :--- |
-| **Transport Protocol** | USB 2.0-compatible Hi-Speed emulation layer |
-| **Theoretical Throughput** | Roughly `35–40 MB/s` sustained block delivery |
-| **Internal Network Latency** | Approximately `80–150 ms` (when operating over a wired LAN connection) |
-| **Effective User Experience** | Performance is comparable to a high-end physical HDD or an entry-level SATA SSD |
-
-### Latency Mitigation
-[cite_start]To smooth out network propagation latency and accelerate repeated read operations during OS installations, an internal **LPDDR4X RAM cache** is dynamically integrated between the physical USB interface and the network transport layer. 
-
-*Note: A future hardware revision upgrading the transport interface to USB 3.0/3.1, combined with this active caching model, will bring the effective remote throughput much closer to native local NVMe/SSD speeds.*
+* [cite_start]**Bare-Metal ISO Mounting:** Attach bootable installer disk images directly to execute zero-touch operating system installations or deploy low-level, isolated diagnostic utilities[cite: 25].
+* **Flexible Source Selection:** Provision image files directly from the appliance's local storage repository (MicroSD card) or stream them dynamically from a remote administrative workstation via the native client application.
+* [cite_start]**Universal Hardware Emulation:** The target host's USB controller recognizes the attached virtual media as a standard, physically connected USB optical drive[cite: 25, 26]. [cite_start]This ensures universal plug-and-play compatibility across both legacy text-based BIOS and modern UEFI environments without requiring any custom host-level drivers[cite: 26].
 
 ---
 
-## 4. Virtual Machines & Read-Write Overlay Modes
+## 2. Media Provisioning & Staging Workflow
 
-To provide a comprehensive out-of-the-box staging solution, support extends beyond standard `.iso` containers to include ready-to-use virtual machine environments and non-destructive write modes:
+[cite_start]From the perspective of the target server, the virtual mounting process is completely transparent and perfectly mimics the physical insertion of an external optical drive[cite: 26]. 
 
-* [cite_start]**Native Format Support:** Mount `.vdi` (VirtualBox), `.vmdk` (VMware), and other standard virtual-disk formats directly from the client application without any mandatory pre-conversion or staging delays[cite: 25].
-* [cite_start]**Read-Write Overlay Mode (Non-Destructive):** When the target server boots and writes data to the mounted image, all write operations are safely redirected and stored in a separate overlay file on the local workstation[cite: 27]. [cite_start]The original source baseline image remains completely unmodified and pristine, enabling infinite reuse of the baseline "Golden Image" environment while retaining individual session results[cite: 27].
+To mount an ISO image, execute the following three-step workflow:
+
+1. **Image Staging:** Transfer your required `.iso` file onto the isolated USBridge local storage or select it directly via the client application stream.
+2. **Media Activation:** Mount the staged image utilizing the native **USBridge Client** application interface (under the *Devices* or *Virtual Media* controls) or trigger the mount directly through the appliance's front panel LCD and rotary encoder.
+3. [cite_start]**Host Optimization:** The target server's hardware subsystem immediately enumerates a new USB optical device line[cite: 26]. [cite_start]This makes the bootable media instantly available within the native BIOS/UEFI Boot Menu for direct OS deployment[cite: 26].
+
+---
+
+> [!TIP]
+> If you need to boot a server directly from a pre-configured Virtual Machine image (`.vdi`/`.vmdk`) or local partition instead of an installation disc, please see our guide on [Bare-Metal OS Booting: Local Drives & VM Emulation](./local-drives-vm-emulation.md).
