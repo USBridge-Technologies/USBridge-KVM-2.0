@@ -50,11 +50,11 @@ Btrfs-driven immutable file storage and read-only data snapshots.
 </tr>
 <tr>
 <td valign="top">
-<div align="center"><img src="https://raw.githubusercontent.com/USBridge-Technologies/USBridge-KVM-2.0/main/docs/assets/path_to_media_icon.png" width="80" height="80" style="background: transparent !important; border: none !important;" /><br><strong>Image Mounting</strong></div><br>
-High-speed bare-metal OS provisioning via virtual block-devices.
+<div align="center"><img src="https://raw.githubusercontent.com/USBridge-Technologies/USBridge-KVM-2.0/main/docs/assets/path_to_media_icon.png" width="80" height="80" style="background: transparent !important; border: none !important;" /><br><strong>Virtual Media & Drive Emulation</strong></div><br>
+High-speed bare-metal OS provisioning and diskless booting via virtual block devices.
 <ul>
-<li><a href="./content/5-remote-disk-image-mounting/virtual-media-overview.md">Virtual Media Engine Overview</a></li>
-<li><a href="./content/5-remote-disk-image-mounting/mounting-local-drives-partitions.md">Mounting ISO & Local Drives</a></li>
+<li><a href="./content/5-remote-disk-image-mounting/mounting-iso-images.md">Mounting ISO Images</a></li>
+<li><a href="./content/5-remote-disk-image-mounting/booting-from-virtual-disks.md">Booting Server from Workstation Drives & VMs</a></li>
 </ul>
 </td>
 <td valign="top">
