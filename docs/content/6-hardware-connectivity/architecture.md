@@ -4,7 +4,7 @@ The USBridge appliance is engineered as a modular hardware platform, balancing h
 
 ---
 
-## 1. Core Processing Module (Radxa Zero 3W)
+## Core Processing Module (Radxa Zero 3W)
 
 The primary compute engine driving the appliance is based on the Radxa Zero 3W single-board computer platform:
 
