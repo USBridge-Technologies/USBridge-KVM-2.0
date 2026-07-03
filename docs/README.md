@@ -40,7 +40,7 @@ Low-level raw terminal redirection and headless control text streams.
 </td>
 <td valign="top">
 <div align="center"><img src="https://raw.githubusercontent.com/USBridge-Technologies/USBridge-KVM-2.0/main/docs/assets/path_to_snapshots_icon.png" width="80" height="80" style="background: transparent !important; border: none !important;" /><br><strong>Snapshots & States</strong></div><br>
-Btrfs-driven immutable system states, capture trees, and rollbacks.
+Btrfs-driven immutable file storage and read-only data snapshots.
 <ul>
 <li><a href="./content/4-snapshots-state-management/snapshots-overview.md">Snapshots Architecture Overview</a></li>
 <li><a href="./content/4-snapshots-state-management/creating-managing-snapshots.md">Creating & Managing State Files</a></li>
