@@ -6,10 +6,10 @@ The **BIOS-in-Terminal** engine is explicitly optimized for parsing text-based p
 
 | Pre-OS Interface Type | BIOS-in-Terminal Support | Recommended Management Protocol |
 | :--- | :---: | :--- |
-| **Legacy Text BIOS** (AMI, Phoenix, Award, Insyde) | **Full Support** | SSH Terminal Session (ANSI/VT100) |
-| **Text-Mode UEFI Utilities** | **Full Support** | SSH Terminal Session (ANSI/VT100) |
-| **GRUB / Bootloaders** (rEFInd, Syslinux) | **Full Support** | SSH Terminal Session (ANSI/VT100) |
-| **Text OS Installers** (Ubuntu Server, Debian, Arch) | **Full Support** | SSH Terminal Session (ANSI/VT100) |
+| **Legacy Text BIOS** (AMI, Phoenix, Award, Insyde) | **Full Support** | SSH Terminal  |
+| **Text-Mode UEFI Utilities** | **Full Support** | SSH Terminal  |
+| **GRUB / Bootloaders** (rEFInd, Syslinux) | **Full Support** | SSH Terminal  |
+| **Text OS Installers** (Ubuntu Server, Debian, Arch) | **Full Support** | SSH Terminal  |
 | **Graphical UEFI Shells** (Vendor-branded dashboards) | *Unsupported* | Native Client App (Moonlight Video Stream) |
 | **Graphical OS Installers / Desktop GUI**| *Unsupported* | Native Client App (Moonlight Video Stream) |
 
