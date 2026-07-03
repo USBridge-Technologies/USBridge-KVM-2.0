@@ -70,7 +70,7 @@ The Client is the control interface installed on your workstation, laptop, or mo
 | Architecture | Windows | macOS | Linux | Android | iOS (iPhone) |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **x86_64** | [Download](https://github.com/USBridge-Technologies/USBridge-Remote/releases/download/v2.0.1/USBridge_client_windows_amd64-2.0.1.zip) | — | [Download](https://github.com/USBridge-Technologies/USBridge-Remote/releases/download/v2.0.1/USBridge_client_linux_amd64-2.0.1.tar.gz) | — | — |
-| **ARM64** | — | [Download](https://github.com/USBridge-Technologies/USBridge-Remote/releases/download/v2.0.1/USBridge_client_macOS_arm64-2.0.1.zip) | — | [Download](https://github.com/USBridge-Technologies/USBridge-Remote/releases/download/v2.0.1/USBridge_client_android_arm64-2.0.1.apk) | `🛠 In Progress` |
+| **ARM64** | — | [Download](https://github.com/USBridge-Technologies/USBridge-Remote/releases/download/v2.0.1/USBridge_client_macOS_arm64-2.0.1.zip) | — | [Download](https://github.com/USBridge-Technologies/USBridge-Remote/releases/download/v2.0.1/USBridge_client_android_arm64-2.0.1.apk) | 🚧 |
 
 ---
 
@@ -96,7 +96,7 @@ The agent runs as a background service on your target OS (servers, remote workst
 | Architecture | Windows | macOS | Linux |
 | :--- | :---: | :---: | :---: |
 | **x86_64** | [Download](https://github.com/USBridge-Technologies/USBridge-Remote/releases/download/v2.0.2/USBridge_agent_windows_amd64-2.0.2.zip) | — | 🚧 |
-| **ARM64** | — | [Download](https://github.com/USBridge-Technologies/USBridge-Remote/releases/download/v2.0.1/USBridge_agent_macOS_amd64-2.0.1.zip) | `🛠 In Progress (signing)` |
+| **ARM64** | — | [Download](https://github.com/USBridge-Technologies/USBridge-Remote/releases/download/v2.0.1/USBridge_agent_macOS_amd64-2.0.1.zip) | 🚧 |
 
 > [!TIP]
 > **Open Source Roadmap:** The USBridge-Remote agent application is slated to be fully Open Source. I am currently polishing the codebase and refactoring the core logic. Pre-compiled binaries and the official source code repository will be published incrementally in the near future. Stay tuned for updates!
