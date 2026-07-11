@@ -67,7 +67,7 @@ During any modification, the system never overwrites the source files; instead, 
 
 The Client is the control interface installed on your workstation, laptop, or mobile device. It manages active hardware connections, live remote desktop streaming, virtual device passthrough, and your snapshot registry.
 
-| Architecture | Windows | macOS | Linux | Android | iOS (iPhone) |
+| Architecture | Windows | macOS | Linux | Android | iOS |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **x86_64** | [Download](https://github.com/USBridge-Technologies/USBridge-Remote/releases/download/v2.0.1/USBridge_client_windows_amd64-2.0.1.zip) | — | [Download](https://github.com/USBridge-Technologies/USBridge-Remote/releases/download/v2.0.1/USBridge_client_linux_amd64-2.0.1.tar.gz) | — | — |
 | **ARM64** | — | [Download](https://github.com/USBridge-Technologies/USBridge-Remote/releases/download/v2.0.1/USBridge_client_macOS_arm64-2.0.1.zip) | — | [Download](https://github.com/USBridge-Technologies/USBridge-Remote/releases/download/v2.0.1/USBridge_client_android_arm64-2.0.1.apk) | [App Store](https://apps.apple.com/us/app/usbridge-client/id6787665935) |
