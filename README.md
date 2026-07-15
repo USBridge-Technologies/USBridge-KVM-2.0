@@ -69,8 +69,8 @@ The Client is the control interface installed on your workstation, laptop, or mo
 
 | Architecture | Windows | macOS | Linux | Android | iOS |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **x86_64** | [Download](https://github.com/USBridge-Technologies/USBridge-Remote/releases/download/v2.0.4/USBridge_client_windows_amd64-2.0.4.zip) | — | [Download](https://github.com/USBridge-Technologies/USBridge-Remote/releases/download/v2.0.4/USBridge_client_linux_amd64-2.0.4.tar.gz) | — | — |
-| **ARM64** | — | [Download](https://github.com/USBridge-Technologies/USBridge-Remote/releases/download/v2.0.4/USBridge_client_macOS_arm64-2.0.4.zip) | — | [Download](https://github.com/USBridge-Technologies/USBridge-Remote/releases/download/v2.0.4/USBridge_client_android_arm64-2.0.4.apk) | [App Store](https://apps.apple.com/us/app/usbridge-client/id6787665935) |
+| **x86_64** | [Download](https://github.com/USBridge-Technologies/USBridge-Remote/releases/latest/download/USBridgeClient-Windows-x86_64.zip) | — | [Download](https://github.com/USBridge-Technologies/USBridge-Remote/releases/latest/download/USBridgeClient-Linux-x86_64.zip) | — | — |
+| **ARM64** | — | [Download](https://github.com/USBridge-Technologies/USBridge-Remote/releases/latest/download/USBridgeClient-macOS-arm64.dmg) | — | [Download](https://github.com/USBridge-Technologies/USBridge-Remote/releases/latest/download/USBridgeClient-Android-arm64.apk) | [App Store](https://apps.apple.com/us/app/usbridge-client/id6787665935) |
 
 ---
 
@@ -95,11 +95,8 @@ The agent runs as a background service on your target OS (servers, remote workst
 
 | Architecture | Windows | macOS | Linux |
 | :--- | :---: | :---: | :---: |
-| **x86_64** | [Download](https://github.com/USBridge-Technologies/USBridge-Remote/releases/download/agent-v2.0.5/USBridgeAgent-Windows-amd64-2.0.5.zip) | — | [Download](https://github.com/USBridge-Technologies/USBridge-Remote/releases/download/agent-v2.0.5/USBridgeAgent-Linux-x86_64-2.0.5.AppImage) |
-| **ARM64** | — | [Download](https://github.com/USBridge-Technologies/USBridge-Remote/releases/download/agent-v2.0.5/USBridgeAgent-macOS-2.0.5.zip) | — |
-
-> [!TIP]
-> **Open Source Roadmap:** The USBridge-Remote agent application is slated to be fully Open Source. I am currently polishing the codebase and refactoring the core logic. Pre-compiled binaries and the official source code repository will be published incrementally in the near future. Stay tuned for updates!
+| **x86_64** | [Download](https://github.com/USBridge-Technologies/USBridge-Remote/releases/latest/download/USBridgeAgent-Windows-x86_64.zip) | — | [Download](https://github.com/USBridge-Technologies/USBridge-Remote/releases/latest/download/USBridgeAgent-Linux-x86_64.AppImage) |
+| **ARM64** | — | [Download](https://github.com/USBridge-Technologies/USBridge-Remote/releases/latest/download/USBridgeAgent-macOS-arm64.dmg) | — |
 
 ---
 
