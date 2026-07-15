@@ -63,7 +63,7 @@ During any modification, the system never overwrites the source files; instead, 
 
 ## Client Download Matrix
 
-<img width="6272" height="2588" alt="USBridge_ap4p" src="https://github.com/user-attachments/assets/7d377a53-9e13-41fb-b31d-bc1f94378126" />
+<img width="2000" height="1046" alt="USBridge_ap4p" src="https://github.com/user-attachments/assets/f453ac50-f710-4e80-b6ec-61ac1d7fb42c" />
 
 The Client is the control interface installed on your workstation, laptop, or mobile device. It manages active hardware connections, live remote desktop streaming, virtual device passthrough, and your snapshot registry.
 
