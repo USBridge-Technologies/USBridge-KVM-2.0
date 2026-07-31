@@ -12,6 +12,16 @@
 
 ---
 
+## Video Reviews & Media
+
+| Channel | Review / Video | Link |
+| :--- | :--- | :--- |
+| [**Barmine Tech**](https://www.youtube.com/@BarmineTech) | The Best KVM I've Used? USBridge KVM 2.0 (Independent Review) | [Watch on YouTube](https://www.youtube.com/watch?v=DA_hMD3T0Qg) |
+| [**USBridge**](https://www.youtube.com/@KVMUSBridge) | Official Overview & Feature Walkthrough | [Watch on YouTube](https://youtu.be/4h5Q8XpDzqI) |
+| [**USBridge**](https://www.youtube.com/@KVMUSBridge) | Full Assembly & Packaging of USBridge KVM 2.0 | [Watch on YouTube](https://youtu.be/l6QtajSYtwQ) |
+
+---
+
 ## Ultra-Low Latency Streaming: Powered by Moonlight
 
 Forget about "jelly" cursors, video stutters, and input desync. USBridge-KVM 2.0 is the first hardware KVM-over-IP featuring native, on-board integration of the **Moonlight protocol**.
