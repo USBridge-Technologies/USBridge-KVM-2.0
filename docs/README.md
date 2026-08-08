@@ -95,6 +95,4 @@ General troubleshooting routines and emergency system recoveries.
 
 ### 🔄 Updates, Blueprints & Changelogs
 * 📦 [Firmware Update Guide](./content/9-updates-changelog/firmware-update-guide.md) — Step-by-step flashing procedures and OTA requirements.
-* 💻 [Desktop App Updates](./content/9-updates-changelog/desktop-app-updates.md) — Client software revision tracking.
-* 📝 [Version History](./content/9-updates-changelog/version-history.md) — Comprehensive technical system changelogs.
 * 📐 [3D Models & PCB Files](./content/9-updates-changelog/3d-models-pcb-files.md) — CAD drawings, casing files, and schematic print layouts.
