@@ -8,7 +8,7 @@
 
 **USBridge-KVM 2.0** is a compact, professional-grade stack for system debugging and direct infrastructure control at the most fundamental level (Layer 0). It gives administrators absolute control over the hardware, bypassing the operating system while ensuring strict hardware isolation. The device provides instant, out-of-the-box server access with ultra-low latency streaming and the ability to deploy scripts or AI agents to automate routine, low-level tasks.
 
-<img width="1600" height="791" alt="Front_panel4" src="https://github.com/user-attachments/assets/4647b9a7-83b7-49ab-a51d-4b8f76e8eeca" />
+<img width="1200" height="436" alt="Front_panel" src="https://github.com/user-attachments/assets/31aca852-0322-4923-a1be-1cba2049686d" />
 
 ---
 
@@ -28,7 +28,8 @@ Forget about "jelly" cursors, video stutters, and input desync. USBridge-KVM 2.0
 
 The hardware video capture and transmission pipeline is optimized to reduce latency to an imperceptible level. You get the absolute responsiveness of a direct connection: crystal-smooth mouse movement and instantaneous text input response. The latency is so low that the bandwidth and reaction speed are enough even for comfortable gameplay in dynamic platformers — let alone flawless server administration.
 
-https://github.com/user-attachments/assets/d3a0cbbd-419b-434d-9d0d-b19d049d3041
+[![Watch Moonlight Streaming Demo](https://img.youtube.com/vi/-5_oHFUAUN4/maxresdefault.jpg)](https://youtu.be/-5_oHFUAUN4)
+*Watch the demo: Ultra-low latency streaming, Hollow Knight gameplay, and side-by-side latency testing.* 
 
 ---
 
@@ -40,7 +41,8 @@ USBridge-KVM 2.0 doesn't just stream video — it understands it. Our unique BIO
 *   **In-Client Scripting Without "Pixel-Hunting":** Write, edit, and run robust Starlark (Python syntax) scripts directly from the app interface. The automation manager operates on recognized text: the script reliably waits for the string `"Aptio Setup Utility"` to appear, and then sends the exact scan-code (e.g., Escape) to navigate the menu.
 *   **AI Agent Integration (MCP Protocol):** Through the Model Context Protocol (MCP), you can connect AI agents (like Claude) directly to the KVM. The neural network can independently "read" the terminal screen, navigate through tabs, perform system audits, and detect hardware faults (for instance, identifying a dead CMOS battery by analyzing the reset system date).
 
-https://github.com/user-attachments/assets/2e276809-1e02-40ef-9bf8-3731e67ff98a
+[![Watch BIOS-in-Terminal & AI Demo](https://img.youtube.com/vi/7IJhaAAuNvY/maxresdefault.jpg)](https://youtu.be/7IJhaAAuNvY)
+*Watch the demo: BIOS-in-Terminal, MCP AI Agents, and Starlark Script Automation.*
 
 ---
 
