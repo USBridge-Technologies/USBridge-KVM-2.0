@@ -18,9 +18,9 @@
 | :--- | :--- | :--- |
 | [**Learn To HomeLab**](https://www.youtube.com/@learntohomelab) | Is This The Best KVM On The Market? | [Watch on YouTube](https://www.youtube.com/watch?v=U3GhuyD-gzw) |
 | [**Barmine Tech**](https://www.youtube.com/@BarmineTech) | The Best KVM I've Used? USBridge KVM 2.0 (Independent Review) | [Watch on YouTube](https://www.youtube.com/watch?v=DA_hMD3T0Qg) |
+| [**Jonatan Castro**](https://www.youtube.com/@JonatanCastro) | Unboxing & What's in the box (Spanish) | [Watch on YouTube](https://youtu.be/7YJS81rl3U8) |
 | [**USBridge**](https://www.youtube.com/@KVMUSBridge) | Official Overview & Feature Walkthrough | [Watch on YouTube](https://youtu.be/4h5Q8XpDzqI) |
 | [**USBridge**](https://www.youtube.com/@KVMUSBridge) | Full Assembly & Packaging of USBridge KVM 2.0 | [Watch on YouTube](https://youtu.be/l6QtajSYtwQ) |
-| [**Jonatan Castro**](https://www.youtube.com/@JonatanCastro) | Unboxing & What's in the box (Spanish) | [Watch on YouTube](https://youtu.be/7YJS81rl3U8) |
 
 ---
 
