@@ -9,7 +9,7 @@ Before starting the software configuration, ensure that the USBridge device is c
 
 To securely connect the client application to the physical KVM hardware, you must retrieve the authorization token from the device.
 
-1. On the appliance front panel, navigate to **Settings** -> **Auth** -> **Show Master Key**.
+1. On the appliance front panel, navigate to **Settings** -> **Authentication** -> **Show Master Key**.
 2. Upon selection, the KVM will automatically generate a secure pairing QR Code alongside an alphanumeric Access Token.
 3. If scanning the QR code is difficult or impossible, press **Button 1** to display the token in a full plaintext format.
 

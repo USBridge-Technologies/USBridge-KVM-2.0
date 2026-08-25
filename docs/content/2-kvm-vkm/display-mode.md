@@ -1,33 +1,25 @@
-# Local Display Mode Specification
+# Local Display Mode
 
-**Display Mode** is a hardware-level feature that routes the target host's incoming video signal directly to the USBridge appliance's built-in LCD screen. This diagnostic loop is engineered for rapid, on-site diagnostics at the server rack without requiring a network uplink, a remote desktop workspace, or a mobile client connection.
-
----
-
-## 1. Hardware Implementation & Scaling Architecture
-
-The local monitoring pipeline is built completely on-device to ensure zero external dependencies:
-
-* **Physical Panel:** The USBridge unit utilizes its integrated, high-contrast **IPS LCD display (240x240 native resolution)** mounted on the front panel.
-* **Signal Path:** The hardware receives the raw digital frames via the standard driverless **USB Video Class (UVC)** pipeline from the attached HDMI capture module.
-* **On-Board Processing:** The internal Rockchip RK3566 graphics layer intercept processor captures, processes, and scales the incoming video feed down to the native 240x240 layout in real-time with zero human-perceptible processing lag.
+**Monitor** — the front-panel menu item — routes the target host's live video straight to the appliance's own screen. It's for on-site diagnostics at the rack: no network, no client app, no remote session, just look at the screen.
 
 ---
 
-## 2. On-Site Diagnostic Scenarios
+## 1. How It Works
 
-This mode is engaged directly via the physical rotary encoder interface. It is explicitly optimized to assist infrastructure engineers with immediate, rack-level decision-making during physical deployment or hardware triage:
-
-* **Pre-OS State Verification:** Fast visual confirmation of the target server's initialization status before the primary operating system or corporate hypervisor boots up.
-* **POST & Bootloader Monitoring:** Real-time tracking of Power-On Self-Test (POST) progression, motherboard logo rendering, UEFI configuration entry states, and low-level GRUB/Systemd-boot or Windows Boot Manager activity.
-* **Hardware Halt Detection:** Immediate on-site identification of critical boot interruptions, missing storage arrays, broken RAID degradation warnings, CMOS battery failures, or blocking `"Press F1 to Continue"` firmware prompts.
+* **Panel:** The appliance's integrated IPS LCD, 240×240.
+* **Signal path:** The same UVC capture feed used for streaming, scaled down and rendered locally in real time — no perceptible lag.
+* **Navigation:** Selected from the main menu and driven with the [5-way directional joystick](../1-getting-started/device-status-menu.md#1-front-panel-hardware-interface) — the same input used everywhere else on the front panel.
 
 ---
 
-## 3. Operational Constraints & Semantic Recognition
+## 2. What It's For
 
-> [!NOTE]
-> **Resolution & Readability Limits**
-> Due to the ultra-compact physical footprint of the 240x240 pixel IPS panel, Display Mode is **not designed or intended** for the prolonged parsing of high-density terminal text, micro-font configurations, or detailed log analysis.
+* **Pre-OS state at a glance:** confirm the target is initializing before its OS or hypervisor comes up.
+* **POST & bootloader tracking:** motherboard logo, UEFI entry, GRUB/Systemd-boot/Windows Boot Manager activity.
+* **Spotting a stuck host:** a frozen BIOS screen, a RAID degradation warning, a CMOS battery failure, or a blocking `"Press F1 to Continue"` prompt — distinguishable at a glance without hooking up a full remote session first.
 
-The primary engineering function of this mode is **semantic host-state recognition**. It allows an onsite administrator to instantly distinguish between a frozen BIOS utility, an active GRUB menu awaiting user input, or a kernel panic screen layout. This instant visualization facilitates a rapid decision on whether to hook up a full out-of-band remote KVM client console session or perform a hard hardware reset.
+---
+
+## 3. Limits
+
+At 240×240, this isn't for reading dense terminal text or scrolling through logs — it's for recognizing *what kind* of screen the target is on (BIOS vs. GRUB vs. kernel panic vs. a normal desktop), so you can decide whether to open a full [KVM client session](../7-software-access/desktop-app.md) or just hit reset, without needing either for that first look.
