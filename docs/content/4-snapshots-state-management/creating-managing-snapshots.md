@@ -26,7 +26,7 @@ To upload your ISO images, virtual drives, or scripts to the appliance, you must
 
 1. **Connect to the Appliance:** Launch your native USBridge-Remote client application and ensure your KVM device is actively linked. For first-time deployment, see the [Initial Setup Guide](../1-getting-started/initial-setup.md).
 2. **Open Storage Settings:** Click on the **Snapshots** tab in the main application navigation menu.
-3. **Mount the Storage:** Locate and click the **Mount Backup Flash** button. 
+3. **Mount the Storage:** Locate the **Backup Flash** entry (the live storage volume, listed alongside your individual snapshots) and click its **Mount** button. 
 4. **Access the Drive:** The isolated storage volume will instantly expose itself to your local workstation using hardware emulation. The system will detect it natively as an **MTP Composite Device** without requiring any custom host drivers.
 5. **Transfer Your Files:** Open your operating system's file manager, locate the mounted **Main storage** volume, and copy your required deployment images or automation files directly onto this disk.
 6. **Automatic Snapshot Generation:** Once your data transfer is complete, you can unmount the drive or simply wait. The snapshot daemon watches the storage volume for file-system events and freezes a new read-only snapshot after a **quiet period** — 30 seconds with no further writes by default (configurable in **Settings → SD Card → Snapshot Settings**). If you're actively writing continuously (e.g. a large, ongoing file copy that never lets the quiet period elapse), the daemon won't wait forever: it forces a snapshot at least every 30 minutes so you're never left with an unbounded gap between snapshots.
@@ -39,8 +39,8 @@ Once a snapshot is generated and appears in the client application interface, yo
 
 ### Auditing Snapshot Information
 1. Navigate to the **Snapshots** tab in the client interface.
-2. Locate your desired snapshot entry and click the **Info (i)** icon.
-3. The interface will render a detailed metadata breakdown and structural diff log, explicitly listing all file additions, modifications, and deletions encompassed within that specific snapshot delta.
+2. Locate your desired snapshot entry and click its **Info** icon.
+3. The interface shows the snapshot's date and size, plus a **changelog** — the actual file-level operations captured in that snapshot (file creation, rename, truncation, time updates, and more), not just a generic "something changed" summary.
 
 ### Recovering and Extracting Data
 1. To return to a previous data state, locate the historical snapshot in the list and click its **Mount** button.

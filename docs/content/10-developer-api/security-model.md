@@ -50,7 +50,7 @@ This applies to the API (§1–2) and Moonlight (§3) sessions routed through a 
 
 ## 6. Practical Recommendations
 
-* **Treat the pairing QR/secret like a root credential.** Anyone who scans it can pair a new client with full API access.
+* **Treat the pairing QR/secret like a root credential.** Anyone who scans it can pair a new client with full API access — but even full API access doesn't put your snapshot history at risk: there's no API or screen path that deletes or formats existing snapshots, only physical access to the device or the card itself. See [Security & Data Protection](../4-snapshots-state-management/security-storage.md#3-no-automated-deletion-and-no-remote-way-to-erase-snapshots).
 * **Give each administrator their own login** via [Users Control](../3-bios-in-terminal/technology-overview.md) instead of sharing one account.
 * **Prefer Tailscale** for API/Moonlight sessions outside a network you fully control.
 * **Periodically review Paired Clients** and unpair anything you don't recognize or no longer use.

@@ -27,19 +27,17 @@ The appliance combines strict hardware-level domain isolation with open-source f
 
 ---
 
-## 3. Fail-Safe Capacity Management Policy
-
-To guarantee the structural integrity of historical archives, the USBridge firmware enforces a strict, deterministic capacity boundary policy:
+## 3. No Automated Deletion, and No Remote Way to Erase Snapshots
 
 > [!WARNING]
 > **No Automated Block Deletion**
-> The architecture intentionally omits automated block rotation, background deletion, or garbage-collection aging algorithms. This prevents the system from ever executing an accidental or automated purge of critical historical recovery states.
+> There is no background rotation, aging, or garbage-collection logic anywhere in the snapshot pipeline — nothing on the appliance ever deletes or overwrites a completed snapshot on its own. Existing snapshots are read-only Btrfs subvolumes; nothing in the running system writes to them again after they're sealed.
 
-### Exhaustion Behavior
-When the physical storage capacity of the MicroSD card is completely exhausted, the system automatically executes the following fail-safe routine:
-1. Natively halts the generation of all new event-driven snapshots.
-2. Transitions the active storage volume layout into a permanent, protected **Read-Only Archive Mode**.
-3. Keeps all existing historical snapshots intact, uncorrupted, and fully readable.
+### What Happens When the Card Fills Up
+There's no special "archive mode" the appliance switches into — it's simpler than that, and follows directly from the point above: since nothing ever deletes an existing snapshot, a full card just means new snapshot creation starts failing (logged, not silent) once there's no space left for the next one. Every snapshot already on the card remains exactly as readable and intact as it always was, because nothing about how it's stored changes when the disk fills up — there's no deletion logic to disable, no mode to fall back from.
 
-### Capacity Reclamation Workflow
-To safely reclaim block space on a full medium, administrators must physically detach the MicroSD card and manually prune or manage the Btrfs subvolumes on an external administrative Linux workstation outside of the active USBridge operational environment.
+### There Is No API or Screen Path to Delete a Snapshot
+This isn't just policy — it's an absence: no REST/MCP endpoint, and no front-panel screen, ever deletes or formats existing snapshot data. **[Formatting the storage volume is a physical, front-panel-only action](../8-maintenance-support/factory-reset.md)** with its own on-device confirmation step, or otherwise requires physically removing the card and reformatting it on another machine. This means [pairing credential compromise](../10-developer-api/security-model.md#1-physical-pairing--the-root-of-trust-for-the-api) — even full API access from a stolen master secret — cannot be used to erase your snapshot history; that requires physical access to the device or the card itself.
+
+### Reclaiming Space
+To free up space on a full card, physically detach it and manage the Btrfs subvolumes directly from an external Linux workstation — there's no in-appliance way to selectively delete old snapshots while keeping others.
