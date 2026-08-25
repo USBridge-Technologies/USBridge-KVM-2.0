@@ -41,6 +41,9 @@ You're not locked to the bundled dongle. The capture pipeline auto-negotiates wh
 * **Default format is picked automatically by USB link speed:** MJPEG on a `[480M]`/USB 2.0 link (keeps bandwidth within budget), YUYV on `[5G]`/USB 3.0 or MIPI (uncompressed, no JPEG artifacts, bandwidth isn't the constraint there). See the speed-mode note above.
 * **Confirmed working in practice:** MacroSilicon MS2130-based capture cards (USB 3.0/NV12-YUYV class chips), and MacroSilicon MS2109-based cards (the common USB 2.0, MJPEG-only capture dongles) — both third-party, not the bundled unit. Any UVC or CSI-MIPI device reporting one of the formats above should work the same way; these are just two concretely verified examples, not an exhaustive allowlist.
 
+> [!TIP]
+> **MS2130 dongles often have the same orientation quirk as the bundled unit.** Many MS2130-based Type-C capture dongles only wire the SuperSpeed lanes on one physical orientation of the plug — the other orientation still connects and works, just falls back to `[480M]`/USB 2.0. If a third-party MS2130 dongle looks stuck at `[480M]`, try flipping the Type-C cable 180° before assuming the dongle itself is faulty — see the [Capture Dongle Speed Mode](#1-hardware-pipeline--signal-routing) note above.
+
 > [!NOTE]
 > **Third-party capture cards don't have the 576p EDID trick.** The bundled dongle's pre-flashed EDID (see [EDID & Headless Targets](#5-display-emulation--signal-constraints) below) is specific to that unit — a non-bundled capture card reports its own generic EDID instead. It'll still capture video fine, but for [BIOS-in-Terminal](../3-bios-in-terminal/technology-overview.md)/SSH-KVM to get the same compact, readable character grid instead of an overly dense one, pair a third-party capture card with a separate **HDMI EDID-lock/dummy-plug adapter** set to a similar low resolution.
 
