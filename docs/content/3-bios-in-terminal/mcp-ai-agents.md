@@ -38,7 +38,7 @@ Reaching the endpoint over the LAN or a tailnet requires signing each request wi
 The desktop/mobile client can run a small local HTTP server on your own workstation (`http://127.0.0.1:8765/api/mcp` by default) that signs and forwards every request to the device on your behalf — point your agent at that local address instead of the device's own IP, and you never have to implement the signing scheme yourself. This works over LAN or Tailscale, since the client (not the loopback exemption) is what's doing the authenticating.
 
 ### Option B: SSH Local Port Forwarding
-The same [BIOS-in-Terminal SSH account](./technology-overview.md) also supports `ssh -L`, restricted specifically to forwarding into the device's own loopback:
+The same [BIOS-in-Terminal SSH account](./technology-overview.md#quick-start-accessing-bios-via-ssh) also supports `ssh -L`, restricted specifically to forwarding into the device's own loopback:
 
 ```bash
 ssh -L 127.0.0.1:8080:127.0.0.1:8080 <your_username>@<your_usbridge_ip_address>
