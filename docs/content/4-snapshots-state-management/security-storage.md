@@ -6,7 +6,10 @@
 
 **MicroSD** is the baseline medium, supported on every unit. Because snapshots ride on Btrfs Copy-on-Write, use a high-endurance card — industrial/surveillance-grade cards are built for exactly this kind of sustained, small-block write pattern; cheap consumer cards wear out faster under it.
 
-**Board revisions with an NVMe slot** can use an NVMe drive instead, for higher capacity and endurance than a MicroSD card.
+**NVMe** is supported on board revisions with an NVMe slot, for higher capacity and endurance than a MicroSD card.
+
+> [!NOTE]
+> NVMe firmware support is still pending — the hardware capability is there on NVMe-equipped boards, but the firmware release that enables it hasn't shipped yet.
 
 > [!NOTE]
 > External USB flash drives and SSDs as storage media are in active development — not available yet. The intent is for USBridge to sit inline as a protected storage controller: the external drive plugs into the appliance rather than directly into the target, so the same write-isolation and immutable-snapshot model in this document applies to it too.
