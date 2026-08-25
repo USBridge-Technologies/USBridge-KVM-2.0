@@ -2,6 +2,8 @@
 
 The **BIOS-in-Terminal** feature converts the graphical interface of pre-OS environments (BIOS/UEFI) into an interactive, real-time text stream. By intercepting the raw HDMI video signal at the hardware level, the onboard chip processes the visual data using localized, offline OCR algorithms. Instead of traditional, bandwidth-heavy video streaming, operators gain access to a pure text console exposed via a standard SSH session that supports native, bidirectional keyboard navigation.
 
+This depends on the target's text console rendering at a resolution the OCR grid can work with cleanly — the bundled capture dongle's pre-flashed EDID is tuned for exactly this, keeping the character grid readable instead of overly dense. See [EDID & Headless Targets](../2-kvm-vkm/video-streaming-quality.md#4-display-emulation--signal-constraints) for why.
+
 https://github.com/user-attachments/assets/fa2abbf4-3526-480b-b062-484498e28779
 
 ---

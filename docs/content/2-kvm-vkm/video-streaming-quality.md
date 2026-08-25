@@ -46,7 +46,11 @@ Glass-to-glass latency (physical frame change on the target → pixels rendered 
 ## 4. Display Emulation & Signal Constraints
 
 ### EDID & Headless Targets
-If the target's motherboard/GPU disables its video output when it detects no physical monitor, insert an **HDMI dummy plug (EDID emulator)** inline so the target always sees a display and keeps generating a signal.
+The bundled capture dongle ships with its **own EDID pre-flashed**, advertising a fixed preferred mode (576p) to whatever it's plugged into — it already looks like "a monitor is attached" to the target, and most GPUs/BIOSes will pick that preferred mode by default. This is deliberate, not just a side effect of being a generic capture device: it means most setups **don't need a separate EDID emulator/dummy plug** just to get a display signal or to pin a sane resolution.
+
+That fixed resolution also keeps the target's text console at a manageable character grid. A Linux framebuffer console (and most BIOS/UEFI text modes) size their character grid off the active video mode — at a high resolution like 1080p that can mean a dense grid (e.g. ~250×67 characters), which doesn't render usefully in [BIOS-in-Terminal](../3-bios-in-terminal/technology-overview.md)'s SSH view or OCR pipeline. At 576p it comes out around 100×31, which fits cleanly.
+
+If your target's GPU still disables output entirely regardless of EDID (some do, on certain BIOS/driver combinations, when they can't get a satisfactory handshake), that's the case an external **HDMI dummy plug (EDID emulator)** is for — inline between the target and the capture dongle.
 
 ### Local Monitor Passthrough
 The onboard **Mini HDMI** port mirrors the captured signal in real time to a local monitor or crash cart — useful for on-site work alongside a remote session, no active HDMI splitter needed.
