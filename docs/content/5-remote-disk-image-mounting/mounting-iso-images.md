@@ -23,10 +23,7 @@ Because NBD-streamed sources depend on the network round-trip to your workstatio
 * **Up to 1 GB of RAM** is used as a `dm-cache` layer for hot blocks — the kernel promotes/evicts blocks automatically as they're re-read, so frequently-accessed regions stay fast without you managing anything.
 * Everything else is read from the NBD stream on demand, populating the cache as it goes.
 
-This is enabled by default; disable it per-mount with `use_nbd_cache: false` if you'd rather not spend the RAM (e.g. on a very memory-constrained session). Local-storage sources don't need this — they're already reading from the appliance's own storage.
-
-> [!NOTE]
-> The 1 GB hot-block cache needs `dm_cache`/`thin-provisioning-tools` support on the appliance; without it, streaming still works but falls back to just the 8 MB instant-boot prefetch, no hot-block caching on top.
+Both layers are part of the stock appliance firmware — the `dm_cache` kernel module and `thin-provisioning-tools` ship built-in, so the full 1 GB hot-block cache is always available, not something that depends on optional packages being present. It's enabled by default; disable it per-mount with `use_nbd_cache: false` if you'd rather not spend the RAM (e.g. on a very memory-constrained session). Local-storage sources don't need this — they're already reading from the appliance's own storage.
 
 ---
 
