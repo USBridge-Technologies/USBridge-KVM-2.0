@@ -67,5 +67,5 @@ For unresolved architectural inquiries, assistance with SSH automation scripts, 
 
 ### Community Channels
 
-* **Discord:** [Join the Discord](https://discord.gg/XwNpCrGfsB) — Engage with the engineering community, discuss bare-metal automation workflows, and access direct technical support.
+* **Discord:** [Join the Discord](https://discord.com/invite/xqQ6ybkfWS) — Engage with the engineering community, discuss bare-metal automation workflows, and access direct technical support.
 * **GitHub Issues:** [USBridge-KVM-2.0 Issues](https://github.com/USBridge-Technologies/USBridge-KVM-2.0/issues) — Report documentation/hardware issues; [USBridge-Remote Issues](https://github.com/USBridge-Technologies/USBridge-Remote/issues) for the client apps.
