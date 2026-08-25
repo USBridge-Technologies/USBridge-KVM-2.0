@@ -5,7 +5,7 @@ The USBridge mobile application provides full out-of-band KVM access and storage
 ## Client Downloads
 
 * **iOS:** [App Store](https://apps.apple.com/us/app/usbridge-client/id6787665935)
-* **Android:** APK direct from the [latest release](https://github.com/USBridge-Technologies/USBridge-Remote/releases/latest) (a self-updating ARM64 build is also published there — no Play Store account or F-Droid required).
+* **Android:** [Google Play](https://play.google.com/store/apps/details?id=io.usbridge.client) — a self-updating APK is also published on the [latest release](https://github.com/USBridge-Technologies/USBridge-Remote/releases/latest) if you'd rather install without a Play Store account.
 
 No mobile client on hand? The [Web Client](./web-client.md) also runs in a mobile browser, no install required.
 
