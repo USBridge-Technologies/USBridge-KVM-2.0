@@ -1,6 +1,6 @@
 # Storage & Media Snapshots: Overview
 
-USBridge protects the files you copy onto its **Backup Flash** volume — independently of the host you're managing. That storage lives on the appliance's own hardware-isolated media, and every change to it is captured as an immutable, read-only Btrfs snapshot — the target server never has a path back to alter or delete something that's already been captured. This is separate from ISO/image staging for [virtual media mounting](../5-remote-disk-image-mounting/mounting-iso-images.md), which lives on its own, unsnapshotted storage area — snapshots only cover what's on Backup Flash.
+USBridge protects the files you copy onto its **Backup Flash** volume — independently of the host you're managing. That storage lives on the appliance's own hardware-isolated media, and every change to it is captured as an immutable, read-only Btrfs snapshot — the target server never has a path back to alter or delete something that's already been captured.
 
 ![USBridge snapshots](https://raw.githubusercontent.com/USBridge-Technologies/USBridge-KVM-2.0/main/docs/assets/snapshots.png)
 
