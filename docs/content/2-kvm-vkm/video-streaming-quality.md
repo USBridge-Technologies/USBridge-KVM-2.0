@@ -41,6 +41,9 @@ You're not locked to the bundled dongle. The capture pipeline talks plain V4L2/U
 * **Default format is picked automatically by USB link speed:** MJPEG on a `[480M]`/USB 2.0 link (keeps bandwidth within budget), YUYV on `[5G]`/USB 3.0 or MIPI (uncompressed, no JPEG artifacts, bandwidth isn't the constraint there). See the speed-mode note above.
 * **Confirmed working in practice:** MacroSilicon MS2130-based capture cards (USB 3.0/NV12-YUYV class chips), and MacroSilicon MS2109-based cards (the common USB 2.0, MJPEG-only capture dongles) — both third-party, not the bundled unit. Any UVC or CSI-MIPI device reporting one of the formats above should work the same way; these are just two concretely verified examples, not an exhaustive allowlist.
 
+> [!NOTE]
+> **Third-party capture cards don't have the 576p EDID trick.** The bundled dongle's pre-flashed EDID (see [EDID & Headless Targets](#5-display-emulation--signal-constraints) below) is specific to that unit — a non-bundled capture card reports its own generic EDID instead. It'll still capture video fine, but for [BIOS-in-Terminal](../3-bios-in-terminal/technology-overview.md)/SSH-KVM to get the same compact, readable character grid instead of an overly dense one, pair a third-party capture card with a separate **HDMI EDID-lock/dummy-plug adapter** set to a similar low resolution.
+
 ---
 
 ## 4. Latency
@@ -61,6 +64,9 @@ The bundled capture dongle ships with its **own EDID pre-flashed**, advertising 
 That fixed resolution also keeps the target's text console at a manageable character grid. A Linux framebuffer console (and most BIOS/UEFI text modes) size their character grid off the active video mode — at a high resolution like 1080p that can mean a dense grid (e.g. ~250×67 characters), which doesn't render usefully in [BIOS-in-Terminal](../3-bios-in-terminal/technology-overview.md)'s SSH view or OCR pipeline. At 576p it comes out around 100×31, which fits cleanly.
 
 If your target's GPU still disables output entirely regardless of EDID (some do, on certain BIOS/driver combinations, when they can't get a satisfactory handshake), that's the case an external **HDMI dummy plug (EDID emulator)** is for — inline between the target and the capture dongle.
+
+> [!IMPORTANT]
+> This pre-flashed 576p EDID is a property of the **bundled dongle specifically** — see [Capture Device Compatibility](#3-capture-device-compatibility) above. Swap in a third-party UVC/CSI-MIPI capture card and you lose it: the card reports its own generic EDID, the target will likely negotiate a much higher resolution, and BIOS-in-Terminal/SSH-KVM's text grid comes out far denser than the ~100×31 the pipeline is tuned for. Add an external **HDMI EDID-lock/dummy-plug adapter** set to a similarly low resolution to get the same behavior with a non-bundled capture card.
 
 ### Local Monitor Passthrough
 The onboard **Mini HDMI** port mirrors the captured signal in real time to a local monitor or crash cart — useful for on-site work alongside a remote session, no active HDMI splitter needed.
