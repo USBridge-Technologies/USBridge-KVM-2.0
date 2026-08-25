@@ -29,7 +29,7 @@ To upload your ISO images, virtual drives, or scripts to the appliance, you must
 3. **Mount the Storage:** Locate and click the **Mount Backup Flash** button. 
 4. **Access the Drive:** The isolated storage volume will instantly expose itself to your local workstation using hardware emulation. The system will detect it natively as an **MTP Composite Device** without requiring any custom host drivers.
 5. **Transfer Your Files:** Open your operating system's file manager, locate the mounted **Main storage** volume, and copy your required deployment images or automation files directly onto this disk.
-6. **Automatic Snapshot Generation:** Once your data transfer is complete, you can unmount the drive or simply wait. The underlying Btrfs subsystem will detect the file-system events and automatically freeze your new files into a read-only snapshot layer within 30 seconds (or according to the custom interval defined in your appliance settings).
+6. **Automatic Snapshot Generation:** Once your data transfer is complete, you can unmount the drive or simply wait. The snapshot daemon watches the storage volume for file-system events and freezes a new read-only snapshot after a **quiet period** — 30 seconds with no further writes by default (configurable in **Settings → SD Card → Snapshot Settings**). If you're actively writing continuously (e.g. a large, ongoing file copy that never lets the quiet period elapse), the daemon won't wait forever: it forces a snapshot at least every 30 minutes so you're never left with an unbounded gap between snapshots.
 
 ---
 

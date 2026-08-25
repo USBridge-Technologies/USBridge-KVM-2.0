@@ -1,21 +1,19 @@
 # Mobile App
 
-The USBridge mobile application provides full out-of-band KVM access and storage workflow management from mobile devices, maintaining feature parity with the desktop client architecture.
+The USBridge mobile application provides full out-of-band KVM access and storage workflow management from mobile devices, maintaining feature parity with the desktop client architecture. It's the same open-source **USBridge-Remote** codebase as the [desktop client](./desktop-app.md): [github.com/USBridge-Technologies/USBridge-Remote](https://github.com/USBridge-Technologies/USBridge-Remote).
 
 ## Client Downloads
 
-Native mobile binaries for iOS and Android platforms are currently undergoing validation and will be published shortly.
+* **iOS:** [App Store](https://apps.apple.com/us/app/usbridge-client/id6787665935)
+* **Android:** APK direct from the [latest release](https://github.com/USBridge-Technologies/USBridge-Remote/releases/latest) (a self-updating ARM64 build is also published there — no Play Store account or F-Droid required).
 
-### Planned Releases
-
-* **iOS:** App Store link *(Coming soon)*
-* **Android:** Google Play link *(Coming soon)*
+No mobile client on hand? The [Web Client](./web-client.md) also runs in a mobile browser, no install required.
 
 ---
 
 ## Connection Initialization
 
-As with the desktop architecture, session initialization requires inputting the target appliance's assigned IP address.
+As with the desktop architecture, session initialization requires inputting the target appliance's assigned IP address, or scanning the pairing QR code from the front panel.
 
 Upon successful authentication, the mobile interface provisions access to three primary operational modules: **Device**, **Control**, and **Snapshots**.
 
@@ -31,7 +29,6 @@ The Device tab governs the configuration of virtual peripherals and external med
 The Control tab functions as a mobile KVM console for live monitoring and direct terminal interaction with the remote server.
 
 * **Video Ingestion Path:** Host video is routed through the standard USB Video Class (UVC) pipeline. The mobile client rendering engine is optimized for the stable capture of text-heavy pre-OS screens and terminal interfaces.
-* **Latency Profile:** Typical glass-to-glass latency operates between 80–150 ms over a local area network (LAN). When accessing the mobile client via a standard Wi-Fi network, expected latency typically scales to 120–250 ms.
 
 ### 3. Snapshots Module
 

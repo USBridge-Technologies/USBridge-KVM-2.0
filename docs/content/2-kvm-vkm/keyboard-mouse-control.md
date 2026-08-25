@@ -12,6 +12,7 @@ To ensure precise interaction with both graphical operating systems and legacy i
 * **Technical Mechanism:** The appliance transmits exact, fixed $X/Y$ coordinate matrices to the target host's USB controller.
 * **User Experience:** Replicates precision touch-panel or digitizer behavior. The remote cursor maps perfectly `1:1` with your local workstation's mouse pointer, eliminating cursor drift or tracking desynchronization.
 * **Recommended For:** Modern operating systems (Windows, Linux desktop distributions, macOS) and advanced graphical UEFI environments.
+* **Multi-Monitor Targets:** If the target host drives more than one physical display, absolute mode can be pointed at a specific one (0-based display index + total display count) so coordinates map correctly onto that screen instead of assuming a single-monitor layout.
 
 ### Relative Mode
 * **Technical Mechanism:** The appliance transmits only motion vectors (directional delta shifts: $+\Delta X, -\Delta Y$) relative to the pointer's last known position.

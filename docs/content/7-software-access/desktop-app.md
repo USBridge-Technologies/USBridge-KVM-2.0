@@ -1,22 +1,22 @@
 # Desktop Client (Win/Mac/Linux)
 
-The USBridge desktop application serves as the primary administrative interface for out-of-band KVM control, virtual media provisioning, and hardware-level snapshot management.
+The USBridge desktop application (**USBridge-Remote**) is the primary administrative interface for out-of-band KVM control, virtual media provisioning, and hardware-level snapshot management. It's open source (GPLv3): [github.com/USBridge-Technologies/USBridge-Remote](https://github.com/USBridge-Technologies/USBridge-Remote).
 
 ## Client Downloads
 
-Native binaries for Windows, macOS, and Linux architectures are currently undergoing final validation and will be published to this repository shortly.
+Native binaries are published on the [Releases page](https://github.com/USBridge-Technologies/USBridge-Remote/releases/latest):
 
-### Planned Releases
+* **Windows:** `.zip`
+* **macOS:** `.dmg` (Apple Silicon)
+* **Linux:** `.AppImage` (x86_64)
 
-* **Windows:** Download `.exe` *(Coming soon)*
-* **macOS:** Download `.dmg` *(Coming soon)*
-* **Linux:** Download package *(Coming soon)*
+Prefer a zero-install option? See the [Web Client](./web-client.md) — no download required, runs in the browser with some feature/performance trade-offs.
 
 ---
 
 ## Connection Initialization
 
-To initiate a remote session, input the appliance's assigned IP address into the client's connection manager (e.g., `192.168.1.110`).
+To initiate a remote session, input the appliance's assigned IP address into the client's connection manager (e.g., `192.168.1.110`), or scan the pairing QR code from the front panel — see [Initial Setup & Client Pairing](../1-getting-started/initial-setup.md).
 
 Upon successful authentication, the interface provisions access to three primary operational modules: **Device**, **Control**, and **Snapshots**.
 

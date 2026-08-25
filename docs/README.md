@@ -79,6 +79,7 @@ Cross-platform management clients and mobile application runtimes.
 <ul>
 <li><a href="./content/7-software-access/desktop-app.md">Desktop Client (Win / Mac / Linux)</a></li>
 <li><a href="./content/7-software-access/mobile-app.md">Mobile Companion App</a></li>
+<li><a href="./content/7-software-access/web-client.md">Web Client (Browser, Zero-Install)</a></li>
 </ul>
 </td>
 <td valign="top">

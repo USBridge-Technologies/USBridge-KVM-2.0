@@ -13,7 +13,7 @@ The system is optimized for classic, text-oriented BIOS and UEFI environments. F
 The appliance is built on the Rockchip RK3566 SoC featuring a Quad-Core ARM Cortex-A55 architecture. It operates on a hardened Linux foundation, with the core software stack and internal system routing logic implemented entirely in Go.
 
 #### Is USBridge an open-source project?
-The baseline software stack and base device firmware are planned for open-source publication. However, core intellectual property—specifically the BIOS-to-Text deterministic conversion engine—will remain closed source.
+Partially, today. The client — **USBridge-Remote** (desktop/mobile/web) — is already public under GPLv3: [github.com/USBridge-Technologies/USBridge-Remote](https://github.com/USBridge-Technologies/USBridge-Remote). The mechanical/PCB assets are public too: [github.com/USBridge-Technologies/Hardware](https://github.com/USBridge-Technologies/Hardware). The on-device firmware/service — including the BIOS-to-Text deterministic conversion engine — remains closed source.
 
 #### How does USBridge differ from traditional PiKVM solutions?
 While sharing a similar single-board hardware class, USBridge utilizes an RK3566 ARM64 platform for additional compute overhead. Unlike traditional video-oriented solutions, USBridge emphasizes deterministic text interaction (BIOS-to-Text), deep infrastructure automation, and immutable hardware-isolated Btrfs snapshot workflows.
@@ -52,5 +52,5 @@ For unresolved architectural inquiries, assistance with SSH automation scripts, 
 
 ### Community Channels
 
-* **Discord:** [Join the Discord](https://discord.gg/) — Engage with the engineering community, discuss bare-metal automation workflows, and access direct technical support.
-* **Reddit:** [Follow on Reddit](https://reddit.com/r/USBridge) — Access r/USBridge for architectural deep dives, firmware release notes, and extended technical discourse.
+* **Discord:** [Join the Discord](https://discord.gg/XwNpCrGfsB) — Engage with the engineering community, discuss bare-metal automation workflows, and access direct technical support.
+* **GitHub Issues:** [USBridge-KVM-2.0 Issues](https://github.com/USBridge-Technologies/USBridge-KVM-2.0/issues) — Report documentation/hardware issues; [USBridge-Remote Issues](https://github.com/USBridge-Technologies/USBridge-Remote/issues) for the client apps.

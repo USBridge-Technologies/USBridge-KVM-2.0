@@ -12,11 +12,14 @@ Deploying a low-level text session takes only a few straightforward steps:
 
 1. **Verify the Hardware Pipeline:** Ensure the external HDMI capture dongle is physically bridged between the target server's video output and the USBridge Host USB-C port.
 2. **Retrieve the IP Address:** Check the physical onboard IPS display or the USBridge-Remote client interface to get the appliance's currently assigned IP.
-3. **Initialize the Connection:** Open a local terminal emulator and execute the standard SSH command:
-   
+3. **Create a login account:** SSH authenticates against real Linux accounts on the appliance (via PAM), not a fixed default username — there is no out-of-the-box `admin` account. On the front panel, go to **Settings → Authentication → Users Control → Create User**, enter a username, and the appliance generates a random password and shows both once on-screen. Write it down; it isn't shown again.
+4. **Initialize the Connection:** Open a local terminal emulator and execute the standard SSH command with the account you just created:
+
    ```bash
-   ssh admin@<your_usbridge_ip_address>
- Once the cryptographic handshake completes, the terminal window clears and begins rendering the live text representation of the target host's active BIOS/UEFI interface.  
+   ssh <your_username>@<your_usbridge_ip_address>
+   ```
+
+   Once the cryptographic handshake completes, the terminal window clears and begins rendering the live text representation of the target host's active BIOS/UEFI interface.
 
 ---
 
