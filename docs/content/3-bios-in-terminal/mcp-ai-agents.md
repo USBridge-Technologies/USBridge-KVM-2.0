@@ -77,6 +77,9 @@ Before hand-writing tool calls, have the agent call `resources/read` on `usbridg
 
 Full request/response shapes for each tool live in the appliance's own `tools/list` response (`inputSchema` per tool) and in `docs/SCRIPTING_API.md` in the service repository.
 
+> [!NOTE]
+> **MCP can run scripts, not write them.** The tool catalog only covers *listing/running/monitoring* Starlark scripts (`scripts.list`/`run`/`status`/`log`/`stop`) — there is no `scripts.write` or `scripts.read` MCP tool. Creating or editing a script's code is a human/client-app action (or a direct, HMAC-signed call to `POST /api/scripts/write` — see [Writing Reliable Scripts](./scripting-automation.md)), not something an MCP agent can do on its own out of the box.
+
 ---
 
 ## 5. Prefer Scripts Over a Raw Tool-Call Loop
