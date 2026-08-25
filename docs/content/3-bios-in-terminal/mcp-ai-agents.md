@@ -32,7 +32,19 @@ MCP requests follow the same rule as every other endpoint on the appliance, spli
 | `127.0.0.1` (loopback — an agent running on the device itself, or reached through an SSH tunnel) | **No** | Local-process-only by design; still rate-limited. |
 | LAN IP / Tailscale IP | **Yes** | Same `X-Auth-Timestamp` + `X-Auth-Signature` HMAC-SHA256 scheme as the rest of the API — see the [REST API Reference](../10-developer-api/rest-api-reference.md). |
 
-This means the simplest way to hand an agent full access is to run it on-device or tunnel `127.0.0.1:8080` over SSH; reaching the endpoint over the LAN or a tailnet requires signing each request with the appliance's API secret, exactly like a script driving `/api/scripts/run` would.
+Reaching the endpoint over the LAN or a tailnet requires signing each request with the appliance's API secret, exactly like a script driving `/api/scripts/run` would. To skip that and get an unsigned local connection instead, you have two options:
+
+### Option A: The Client App's MCP Proxy
+The desktop/mobile client can run a small local HTTP server on your own workstation (`http://127.0.0.1:8765/api/mcp` by default) that signs and forwards every request to the device on your behalf — point your agent at that local address instead of the device's own IP, and you never have to implement the signing scheme yourself. This works over LAN or Tailscale, since the client (not the loopback exemption) is what's doing the authenticating.
+
+### Option B: SSH Local Port Forwarding
+The same [BIOS-in-Terminal SSH account](./technology-overview.md) also supports `ssh -L`, restricted specifically to forwarding into the device's own loopback:
+
+```bash
+ssh -L 127.0.0.1:8080:127.0.0.1:8080 <your_username>@<your_usbridge_ip_address>
+```
+
+With that tunnel open, `http://127.0.0.1:8080/api/mcp` on your machine lands on the device's loopback interface — the same no-signature fast path a locally-running agent gets. The SSH server only allows forwarding to `127.0.0.1`/`localhost`/`::1` on the device side, so this can't be used to reach anything else on the device's network.
 
 MCP tooling can also be switched off entirely from the front panel: **Settings → Authentication → MCP**.
 
