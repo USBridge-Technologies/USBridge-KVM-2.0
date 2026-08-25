@@ -28,7 +28,7 @@ Every request **except** `GET /api/healthz`, `POST /api/auth/sync`, and `POST /a
 | `X-Auth-Timestamp` | Unix timestamp (seconds); rejected if more than 60s off from the appliance's clock. |
 | `X-Auth-Signature` | `hex(HMAC_SHA256(SHA256(api_secret), METHOD + REQUEST_URI + TIMESTAMP + BODY))` |
 
-`api_secret` is the appliance's master key (`/etc/usbridge_api_secret`, generated on first boot and shown as the pairing QR/token — see [Initial Setup & Client Pairing](../1-getting-started/initial-setup.md)). `POST`/`PUT`/`PATCH` requests must declare `Content-Type: application/json` or `multipart/form-data`.
+`api_secret` is the appliance's master key — generated on first boot and shown as the pairing QR code/token on the front panel (**Settings → Authentication → Show Master Key**; see [Initial Setup & Client Pairing](../1-getting-started/initial-setup.md)). `POST`/`PUT`/`PATCH` requests must declare `Content-Type: application/json` or `multipart/form-data`.
 
 > [!NOTE]
 > **The MCP endpoint is the one exception.** `POST /api/mcp` skips signature verification entirely when the caller connects on `127.0.0.1` — meant for a local AI agent or an SSH-tunneled one. Reached over a LAN or Tailscale IP, it's signed exactly like every other endpoint. See [AI Agent Integration (MCP)](../3-bios-in-terminal/mcp-ai-agents.md#2-authentication-model) for the full breakdown.

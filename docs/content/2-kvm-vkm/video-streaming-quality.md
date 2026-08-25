@@ -35,7 +35,7 @@ The appliance probes the connected capture dongle's actual reported UVC modes at
 
 ## 3. Capture Device Compatibility
 
-You're not locked to the bundled dongle. The capture pipeline talks plain V4L2/UVC and auto-negotiates whatever the connected device reports — in practice, that covers **most UVC and CSI-MIPI capture cards**, not just one specific chipset.
+You're not locked to the bundled dongle. The capture pipeline auto-negotiates whatever the connected device reports — in practice, that covers **most UVC and CSI-MIPI capture cards**, not just one specific chipset.
 
 * **Supported pixel formats:** MJPEG, NV12, YUYV, UYVY — probed live from the device, in that priority order.
 * **Default format is picked automatically by USB link speed:** MJPEG on a `[480M]`/USB 2.0 link (keeps bandwidth within budget), YUYV on `[5G]`/USB 3.0 or MIPI (uncompressed, no JPEG artifacts, bandwidth isn't the constraint there). See the speed-mode note above.
