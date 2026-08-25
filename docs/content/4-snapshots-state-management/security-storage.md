@@ -1,29 +1,23 @@
-# Storage Security & Data Protection Specification
-
-The USBridge storage security architecture is predicated on three core engineering pillars: strict hardware data isolation, immutable Btrfs snapshots, and adherence to open file-system standards.
+# Storage Security & Immutability
 
 ---
 
-## 1. Supported Storage Media & Requirements
+## 1. Supported Storage Media
 
-Because the underlying snapshot architecture utilizes Copy-on-Write (CoW) file-system layers, the choice of storage media directly impacts long-term reliability and physical cell endurance:
-
-* **Primary MicroSD Interface:** Requires high-endurance, industrial-grade, or surveillance-grade MicroSD cards. These classes of media are specifically engineered to handle continuous block-level delta operations without premature flash controller failure.
+**MicroSD** is the supported medium today. Because snapshots ride on Btrfs Copy-on-Write, use a high-endurance card — industrial/surveillance-grade cards are built for exactly this kind of sustained, small-block write pattern; cheap consumer cards wear out faster under it.
 
 > [!NOTE]
-> Native support for external USB-C flash drives and high-speed Solid-State Drives (SSDs) is under active development. This capability will be released in a future firmware update to allow larger mass storage mapping during heavy OS provisioning sequences.
+> Native support for external USB-C flash drives and SSDs is in active development, for larger capacity during heavy OS provisioning. Not available yet.
 
 ---
 
-## 2. Security Vector & Storage Format Semantics
+## 2. What Actually Protects the Data
 
-The appliance combines strict hardware-level domain isolation with open-source file-system layers to guarantee data integrity against logical or network-based target compromises.
+* **It's entirely on-device.** Snapshot creation and volume management run locally on the appliance — the target host has no network path into any of it. Nothing about snapshotting depends on or is reachable from the machine being managed.
+* **Snapshots are read-only Btrfs subvolumes.** Once sealed, a snapshot is never written to again. A compromised target — even with full root — can only generate new writes on top of the current state; it has no way to reach back and alter or delete a snapshot that already exists.
+* **Standard Btrfs, no proprietary format.** No vendor lock-in: pull the card and mount it on any Linux machine to read your data directly, no USBridge software required.
 
-| Security Vector | Architectural Implementation & Enforcement |
-| :--- | :--- |
-| **Offline Execution Loop** | The snapshot orchestration engine operates completely offline. Block creation and volume management are executed locally via the KVM hardware, removing network-based attack vectors from the target host side. |
-| **Ransomware Overwrite Resistance** | Completed snapshots are structurally locked as read-only Btrfs subvolumes. Malicious encryption subroutines or mass deletion payloads executing on a compromised target host merely generate a new write delta state, leaving all historical block matrices completely untouched and verifiable. |
-| **Open Standards (Zero Vendor Lock-in)** | All data structures are written using standard Btrfs layout semantics without proprietary hardware encryption wrappers. In an emergency, the storage medium can be physically pulled from the KVM and natively mounted on any standard Linux workstation for immediate data recovery. |
+For what specifically can't touch a snapshot (including a compromised API credential) and why, see [§3 below](#3-no-automated-deletion-and-no-remote-way-to-erase-snapshots).
 
 ---
 
