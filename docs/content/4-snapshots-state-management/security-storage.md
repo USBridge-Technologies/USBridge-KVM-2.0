@@ -14,6 +14,14 @@
 > [!NOTE]
 > External USB flash drives and SSDs as storage media are in active development — not available yet. The intent is for USBridge to sit inline as a protected storage controller: the external drive plugs into the appliance rather than directly into the target, so the same write-isolation and immutable-snapshot model in this document applies to it too.
 
+### Real-World Endurance: Why This Workload Is Easy on the Card
+
+Constant in-place rewrites of the same blocks — a database, a journaling filesystem, a VM disk — are what burn through flash endurance fastest, because the same physical cells get hit over and over. Snapshotting doesn't have that problem: once a snapshot is sealed, its blocks are never rewritten (see [§3](#3-no-automated-deletion-and-no-remote-way-to-erase-snapshots)), so each backed-up byte is physically written to the card essentially once, not repeatedly.
+
+That means a card's rated endurance converts almost directly into total lifetime archival capacity, instead of being eaten down by rewrite amplification. A typical industrial/surveillance-grade microSD card — the same class used in dashcams and security DVRs — is commonly rated in the tens of terabytes written (TBW) by its manufacturer; for a write-once workload like this, that's close to the actual total volume of unique backup data you could accumulate over the card's life, not a number a rewrite-heavy workload would divide down fast.
+
+The one exception is the live **Backup Flash** volume itself, before it's captured into its next snapshot: if you repeatedly rewrite the same file within a single quiet period, that region does see genuine repeated physical writes. Once it's sealed into a snapshot, though, it's never touched again — which is exactly why this storage layer isn't meant for a high-frequency transactional workload (see [Scope & Limitations](./snapshots-overview.md#3-scope--limitations)) — that pattern would defeat the write-once advantage entirely.
+
 ---
 
 ## 2. What Actually Protects the Data
