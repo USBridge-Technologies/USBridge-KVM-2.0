@@ -41,7 +41,7 @@ Metadata is declared with two comment lines at the top of the file; both are opt
 | `POST /api/scripts/stop` `{"path": "..."}` | Cancel a run — it stops at its next `key_press`/`sleep`/`wait_text` checkpoint, not instantly. |
 | `DELETE/POST /api/scripts/delete` `{"path": "..."}` | Delete a script file. |
 
-Every one of these endpoints requires the standard HMAC-signed request headers (`X-Auth-Timestamp` + `X-Auth-Signature`) described in `API_DOCUMENTATION.md`, including when called from `localhost` — that exemption only applies to the [MCP endpoint](./mcp-ai-agents.md).
+Every one of these endpoints requires the standard HMAC-signed request headers (`X-Auth-Timestamp` + `X-Auth-Signature`) described in the [REST API Reference](../10-developer-api/rest-api-reference.md), including when called from `localhost` — that exemption only applies to the [MCP endpoint](./mcp-ai-agents.md).
 
 ### Via MCP (AI agents)
 The same run/stop/status/log/list surface is exposed as MCP tools (`scripts.list`, `scripts.run`, `scripts.status`, `scripts.log`, `scripts.stop`) so an LLM agent can launch and monitor a script the same way a human would from the app. See [AI Agent Integration (MCP)](./mcp-ai-agents.md).

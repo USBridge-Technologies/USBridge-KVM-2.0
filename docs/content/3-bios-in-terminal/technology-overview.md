@@ -23,6 +23,9 @@ Deploying a low-level text session takes only a few straightforward steps:
 
    Once the cryptographic handshake completes, the terminal window clears and begins rendering the live text representation of the target host's active BIOS/UEFI interface.
 
+> [!TIP]
+> **Default Resolution.** With KVM SSH enabled, **Settings → Authentication → KVM SSH → Default Resolution** lets you set the capture resolution this session renders at. Most setups won't need to touch it — see [EDID & Headless Targets](../2-kvm-vkm/video-streaming-quality.md#5-display-emulation--signal-constraints) for why the default already keeps the console readable — but it's there if you need to match a specific target's behavior.
+
 ---
 
 ## Post-Connection Capabilities

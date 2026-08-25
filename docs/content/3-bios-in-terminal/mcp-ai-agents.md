@@ -6,7 +6,7 @@ USBridge exposes a built-in **[Model Context Protocol](https://modelcontextproto
 
 ## 1. Endpoint & Protocol
 
-* **Endpoint:** `POST http://<device-ip>:8080/api/mcp` (port `8080` is the appliance's default HTTP port; see `API_DOCUMENTATION.md`).
+* **Endpoint:** `POST http://<device-ip>:8080/api/mcp` (port `8080` is the appliance's default HTTP port; see the [REST API Reference](../10-developer-api/rest-api-reference.md)).
 * **Wire format:** JSON-RPC 2.0 over plain HTTP POST — not the stdio or SSE transports some MCP clients expect by default. Clients that only speak stdio/SSE need a small local bridge; anything that can POST JSON and read a JSON response (including a short Python/curl loop) works directly.
 * **Methods supported:** `initialize`, `tools/list`, `tools/call`, `resources/list`, `resources/read`.
 
@@ -30,7 +30,7 @@ MCP requests follow the same rule as every other endpoint on the appliance, spli
 | Connecting to | Signature required? | Notes |
 | :--- | :---: | :--- |
 | `127.0.0.1` (loopback — an agent running on the device itself, or reached through an SSH tunnel) | **No** | Local-process-only by design; still rate-limited. |
-| LAN IP / Tailscale IP | **Yes** | Same `X-Auth-Timestamp` + `X-Auth-Signature` HMAC-SHA256 scheme as the rest of the API — see `API_DOCUMENTATION.md`. |
+| LAN IP / Tailscale IP | **Yes** | Same `X-Auth-Timestamp` + `X-Auth-Signature` HMAC-SHA256 scheme as the rest of the API — see the [REST API Reference](../10-developer-api/rest-api-reference.md). |
 
 This means the simplest way to hand an agent full access is to run it on-device or tunnel `127.0.0.1:8080` over SSH; reaching the endpoint over the LAN or a tailnet requires signing each request with the appliance's API secret, exactly like a script driving `/api/scripts/run` would.
 
@@ -76,7 +76,7 @@ Before hand-writing tool calls, have the agent call `resources/read` on `usbridg
 | `scripts.log` | A run's `print()` output from an offset — poll this while `running: true` to watch progress instead of guessing timings. |
 | `scripts.stop` | Cancel a run; it stops at its next `key_press`/`sleep`/`wait_text` checkpoint. |
 
-Full request/response shapes for each tool live in the appliance's own `tools/list` response (`inputSchema` per tool) and in `docs/SCRIPTING_API.md` in the service repository.
+Full request/response shapes for each tool live in the appliance's own `tools/list` response (`inputSchema` per tool). For the scripting-related tools specifically, see the [Starlark Scripting Reference](./scripting-automation.md).
 
 > [!TIP]
 > **When to reach for `screen.get_image` instead of `screen.get`/`screen.text`.** The OCR text tools only describe text-mode content — a boot splash/logo, a graphical desktop, a game, BIOS vendor art, or a progress bar/spinner with no readable text is invisible to them. `screen.get_image` returns the actual pixels instead, for that case or whenever the agent needs to visually confirm something the OCR text can't describe. Prefer `screen.get`/`screen.text` when the screen genuinely is text — they're cheaper and skip image decoding on the agent's side.

@@ -47,4 +47,7 @@ Once a snapshot is generated and appears in the client application interface, yo
 2. The selected snapshot will instantly mount natively on your local workstation as a read-only **MTP device**.
 3. Since the mounted snapshot is strictly immutable to ensure data integrity, you can safely browse its directory tree, copy the required historical files or ISO images, and export them back to your main storage or an external drive.
 
+### Finding One File's History Without Mounting Every Snapshot
+If you just need to know how a specific file changed over time — not browse a whole snapshot — the [REST API](../10-developer-api/rest-api-reference.md#9-backup--snapshots-btrfs) can look it up directly by path: which snapshots contain that file, its size and timestamps in each, without you having to mount and search through snapshots one at a time.
+
 

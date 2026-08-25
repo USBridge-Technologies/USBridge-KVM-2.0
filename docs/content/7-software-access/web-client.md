@@ -10,4 +10,6 @@
 1. Open [web.usbridge.io](https://web.usbridge.io) in any modern browser.
 2. Connect using the appliance's IP address or by scanning the front-panel pairing QR code — same pairing flow as the native clients; see [Initial Setup & Client Pairing](../1-getting-started/initial-setup.md).
 
+The appliance needs **WebRTC enabled** to accept this kind of session — it's on by default (**Settings → Authentication → WebRTC** on the front panel). If the web client can't connect but the desktop/mobile clients work fine, that toggle is the first thing to check.
+
 Once connected, the web client provisions the same **Device**, **Control**, and **Snapshots** modules described in the [Desktop Client](./desktop-app.md) page.
