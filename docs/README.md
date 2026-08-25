@@ -1,6 +1,6 @@
 # USBridge-KVM 2.0 Technical Documentation
 
-Welcome to the official documentation repository. Use the categorized hub below to step through our core technical specs, deployment guides, and hardware blueprints.
+USBridge-KVM 2.0 is a hardware **IP-KVM** for out-of-band server access — BIOS-level remote control, ultra-low-latency Moonlight video streaming, virtual media mounting, and ransomware-resistant immutable Btrfs snapshots, all with no agent on the managed machine. This is the full technical documentation: setup, the KVM/video pipeline, [BIOS-in-Terminal](./content/3-bios-in-terminal/technology-overview.md) (SSH + OCR access to real BIOS/UEFI screens), [Starlark scripting and MCP AI-agent integration](./content/3-bios-in-terminal/mcp-ai-agents.md), snapshot/backup storage, hardware reference, and the [REST API](./content/10-developer-api/rest-api-reference.md). Use the categorized hub below to get to any of it.
 
 ---
 

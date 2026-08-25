@@ -1,31 +1,29 @@
 # Power & Thermal Specifications
 
-The USBridge-KVM 2.0 appliance is designed for stable 24/7 continuous operation under intense out-of-band workloads. To ensure hardware stability, the device must operate within specified power and temperature thresholds.
+USBridge is built for stable 24/7 operation, not intermittent desk use — worth knowing the power and thermal envelope before you rack-mount it.
 
 ---
 
-## 1. Technical Specification Matrix
+## 1. Specifications
 
-| Parameter | Operational Threshold / Requirement |
+| Parameter | Value |
 | :--- | :--- |
-| **Power Input Interface** | USB-C (OTG / Power) |
-| **Input Voltage** | 5V DC ($\pm$ 5%) |
-| **Recommended Current** | **3A** (Required for stable storage caching and peak I/O loads) |
-| **Cooling Type** | Active cooling fan + Aluminum heatsink |
+| **Power Input** | USB-C (OTG / Power) |
+| **Input Voltage** | 5V DC (±5%) |
+| **Recommended Current** | 3A — needed for stable [storage caching](../5-remote-disk-image-mounting/mounting-iso-images.md#2-ram-cache-on-streamed-sources) and peak I/O |
+| **Cooling** | Active fan + aluminum heatsink |
 | **Ambient Operating Temperature** | 0°C to 50°C |
 | **Maximum Safe SoC Temperature** | Up to 80°C |
 
 ---
 
-## 2. Thermal Management & Safety Features
+## 2. Thermal Behavior
 
-The hardware relies on a high-performance, compact ARM core module. To guarantee peak performance without thermal throttling during real-time video encoding or script execution, the cooling pipeline has been explicitly optimized.
-
-* **Active Fan Integration:** The updated chassis revision incorporates a dedicated active cooling fan embedded directly into the aluminum cooling block to handle continuous high-load scenarios.
-* **Warm Enclosure Behavior:** The external case is designed to actively transfer internal heat away from the processor. During heavy workloads, the enclosure will feel warm to the touch—this is normal, intended hardware behavior.
-* **Hardware Watchdog Protection:** In extreme thermal conditions exceeding safe environmental limits, the internal hardware watchdog timer automatically triggers defensive scaling routines or an emergency safety shutdown to protect the components and flash memory from degradation.
-
----
+* **Active cooling is built in.** A dedicated fan sits directly on the aluminum heatsink block, sized for continuous real-time video encoding and OCR load — not just brief bursts.
+* **A warm case is normal.** The enclosure is designed to actively shed heat outward; under sustained load it'll feel warm to the touch. That's the cooling working as intended, not a fault.
+* **Watchdog protection.** If temperatures push past safe limits, the hardware watchdog steps in with defensive throttling or an emergency shutdown, before anything gets damaged.
 
 > [!IMPORTANT]
-> When mounting the appliance inside dense server racks or enclosed telecom cabinets, ensure there is sufficient spatial clearance around the active fan vents to allow proper airflow and heat dissipation].
+> Mounting inside a dense rack or an enclosed telecom cabinet? Leave clearance around the fan vents — restricting airflow is the one thing that can push this outside its designed operating envelope.
+
+See [Ports & Connectors Reference](./ports-connectors-reference.md) for the physical I/O, and [Power Management Module Control](./power-management-module-control.md) for controlling the *target's* power, not the appliance's own.

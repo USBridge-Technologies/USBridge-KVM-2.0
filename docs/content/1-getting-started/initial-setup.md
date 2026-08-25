@@ -1,7 +1,7 @@
 # Initial Setup & Client Pairing
 
 This guide covers the network configuration and secure client pairing required to establish encrypted out-of-band connectivity with your USBridge-KVM 2.0 appliance.
-Before starting the software configuration, ensure that the USBridge device is correctly wired to the target host according to the [Quick Start Guide](https://github.com/USBridge-Technologies/USBridge-KVM-2.0/blob/main/docs/content/1-getting-started/quick-start.md).
+Before starting the software configuration, ensure that the USBridge device is correctly wired to the target host according to the [Quick Start Guide](./quick-start.md).
 
 ---
 

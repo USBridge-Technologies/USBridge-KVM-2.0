@@ -59,7 +59,7 @@ Once you're ready to keep the device, it's confirmed (**Accept**) on the vendor'
 
 #### Does resetting the device reset my trial or license?
 Depends on which kind of reset:
-- **Factory Reset** (Settings → Factory Reset) — No. It's specifically designed to preserve trial/license state; see [Factory Reset](./factory-reset.md#what's-deliberately-preserved).
+- **Factory Reset** (Settings → Factory Reset) — No. It's specifically designed to preserve trial/license state; see [Factory Reset](./factory-reset.md#whats-deliberately-preserved).
 - **A full reflash** (writing a fresh image to the device's storage from scratch, e.g. for the DIY route on your own SBC) — Yes. That wipes the device's persistent storage entirely, trial state included, so the device comes back up on a brand-new 24-hour trial. This is inherent to reflashing being a genuine clean slate, not a workaround to route around.
 
 ---

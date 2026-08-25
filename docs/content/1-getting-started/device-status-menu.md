@@ -34,7 +34,7 @@ The interface is divided into six core functional submenus:
     <td width="65%" valign="top" style="border: none; padding-left: 20px;">
       <ul>
         <li><b>Functional Purpose:</b> High-speed storage mapping interface.</li>
-        <li><b>Capabilities:</b> Provides local access to your stored library of ISO installation discs and raw virtual bootable images (<code>.vdi</code>, <code>.vmdk</code>). Administrators can browse, select, and mount virtual storage media directly to the target host for bare-metal OS provisioning and automated infrastructure deployment.</li>
+        <li><b>Capabilities:</b> Provides local access to your stored library of ISO installation discs and raw virtual bootable images (<code>.vdi</code>, <code>.vmdk</code>). Administrators can browse, select, and mount virtual storage media directly to the target host for bare-metal OS provisioning and automated infrastructure deployment — see <a href="../5-remote-disk-image-mounting/mounting-iso-images.md">Mounting ISO Images</a> and <a href="../5-remote-disk-image-mounting/booting-from-virtual-disks.md">Booting from Virtual Disks</a> for the full workflow.</li>
         <li><b>Supported Operations:</b>
           <ul>
             <li><b>Mount:</b> Instantly maps the selected image file to the target host as a virtual drive.</li>
@@ -111,7 +111,7 @@ The interface is divided into six core functional submenus:
             <li><b>SD Card:</b> Storage maintenance console containing SD card formatting tools and specific Snapshot settings.</li>
             <li><b>Display:</b> Controls panel brightness parameters, HDMI Passthrough toggles, and HDMI Vsync synchronization options.</li>
             <li><b>Language:</b> System-level UI localization adjustments.</li>
-            <li><b>Updates:</b> Displays the current running version with an explicit check action (though background checks run automatically) to verify and output update parity status.</li>
+            <li><b>Updates:</b> Displays the current firmware version, with a manual Check-for-updates action and a Commit step to finalize an applied update — see <a href="../9-updates-changelog/firmware-update-guide.md">Firmware Update Guide</a> for the full A/B update flow.</li>
             <li><b>Factory Reset:</b> Erases all user environments and restores the appliance to its original factory defaults.</li>
             <li><b>Poweroff:</b> Orchestrates a safe software shutdown sequence before disconnecting physical power.</li>
           </ul>

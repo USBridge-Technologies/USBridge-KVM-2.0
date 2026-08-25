@@ -1,6 +1,6 @@
 # Video Streaming & Quality Specification
 
-USBridge captures video through a driverless **UVC (USB Video Class)** HDMI capture dongle and streams it over **Moonlight/Sunshine**. Because capture happens at the hardware level, it works identically during BIOS/UEFI, pre-OS boot stages, and even a kernel panic — there's no OS driver on the target host to depend on.
+USBridge captures video through a driverless **UVC (USB Video Class)** HDMI capture dongle and streams it over **Moonlight/Sunshine**. Because capture happens at the hardware level, it works identically during BIOS/UEFI, pre-OS boot stages, and even a kernel panic — there's no OS driver on the target host to depend on. The same pipeline carries [audio](./audio-redirection.md) alongside the video.
 
 ---
 

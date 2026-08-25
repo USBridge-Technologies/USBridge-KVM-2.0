@@ -8,7 +8,7 @@ USBridge attaches a `.iso` image to the target as a standard, physically-present
 
 | Source | How it works | Best for |
 | :--- | :--- | :--- |
-| **Local storage (SD/eMMC)** | Upload the `.iso` onto the appliance ahead of time (client app, or the [REST API](../10-developer-api/rest-api-reference.md#7-storage--virtual-media)); it's mounted straight from the device's own storage. | Images you'll reuse repeatedly, or a fully offline/air-gapped session — nothing needs to stay reachable on your workstation once uploaded. |
+| **Local storage (SD/eMMC)** | Upload the `.iso` onto the appliance ahead of time (client app, or the [REST API](../10-developer-api/rest-api-reference.md#8-storage--virtual-media)); it's mounted straight from the device's own storage. | Images you'll reuse repeatedly, or a fully offline/air-gapped session — nothing needs to stay reachable on your workstation once uploaded. |
 | **Direct client streaming (NBD)** | Point the client app at an `.iso` file on your own workstation and mount it *without uploading it anywhere first*. The client spins up a local NBD server for that file, and the appliance connects to it as an NBD client over the network — the file itself never leaves your machine. | One-off installs, large images you don't want to duplicate onto the appliance's storage, or anything you don't intend to keep around after the session. |
 
 Both end up presented to the target identically — as a mounted optical drive. Which one to use is purely about where the bytes live, not a difference in target-side behavior.

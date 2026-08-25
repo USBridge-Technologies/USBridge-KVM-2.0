@@ -1,28 +1,26 @@
 # Power Management Module Control
 
-Remote power and reset control extension for desktop motherboards and cold-boot recovery operations.
+The Power Management Module is what turns USBridge from "watch and type" into full out-of-band control: it wires into the target's own front-panel headers, so you can power-cycle or hard-reset a machine that's completely unresponsive — no OS, no BMC, no one physically at the rack required.
 
-## Overview
+---
 
-The Power Management Module is a dedicated hardware extension designed for out-of-band power management. It bridges the gap between the USBridge controller and the physical motherboard interface, enabling reliable Remote Power and Reset operations for headless servers and workstations.
+## What It Does
 
-* **Galvanic Isolation:** Features high-quality dual optocouplers to ensure complete electrical isolation. This protects your infrastructure from ground loops, voltage spikes, and electromagnetic interference.
-* **Cold-Boot Recovery:** Provides a robust path for hard-reset and cold-boot scenarios when the host operating system is completely unresponsive or frozen.
-* **Full Signal Monitoring:** Supports standard motherboard headers including Power SW, Reset SW, Power LED, and HDD LED, allowing for both control and real-time status feedback.
-* **Plug-and-Play Integration:** Designed for seamless 1-to-1 connection with the USBridge 8-pin GPIO interface, requiring no complex wiring or external power sources.
+* **Cold-boot recovery.** Power/Reset control that works even when the target is fully frozen — this is the path for hosts a graceful OS-level reboot can't reach.
+* **Galvanic isolation.** Dual optocouplers keep the appliance's control circuit electrically separate from the target's — ground loops, voltage spikes, and EMI from the managed machine don't reach USBridge.
+* **Full signal monitoring, not just control.** Wires into Power SW, Reset SW, Power LED, and HDD LED — so beyond pressing the button, you can read the target's actual LED state back. See [`pcpanel.leds`/`pcpanel.button`](../10-developer-api/rest-api-reference.md#11-hardware-rndis-powerreset-panel) in the REST API, or the equivalent [MCP tools](../3-bios-in-terminal/mcp-ai-agents.md#4-tool-catalog) for driving it from a script or an AI agent.
+* **One connector, no wiring puzzle.** Plugs straight into the appliance's [8-pin GPIO port](./ports-connectors-reference.md) with the included ribbon cable.
 
-## Technical Specifications
+---
 
-The following table outlines the electrical and physical specifications of the control module.
+## Specifications
 
 | Parameter | Specification |
 | :--- | :--- |
-| **Output Type** | Dual-Channel Optoisolated (MOSFET/SSR) |
+| **Output Type** | Dual-channel optoisolated (MOSFET/SSR) |
 | **Signal Lines** | Power SW, Reset SW, Power LED, HDD LED |
-| **Interface** | 8-pin 2.54mm GPIO Header (Ribbon cable included) |
-| **Protection** | Galvanic Isolation (up to 3.75kV) |
-| **Mounting** | Direct-to-Case or PCB Standalone |
+| **Interface** | 8-pin 2.54mm GPIO header (ribbon cable included) |
+| **Protection** | Galvanic isolation, up to 3.75kV |
+| **Mounting** | Direct-to-case or standalone PCB |
 
-## Accessories & Support
-
-*Information regarding specific accessories, mounting options, and dedicated troubleshooting steps will be available in upcoming documentation releases.*
+Manufacturing files (Gerbers, schematics) are public: see [3D Models & PCB Files](../9-updates-changelog/3d-models-pcb-files.md).

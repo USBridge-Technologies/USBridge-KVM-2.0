@@ -10,14 +10,14 @@ Every USBridge-KVM 2.0 kit is shipped with a complete set of hardware, interface
 
 
 1. **USBridge-KVM 2.0 Base Unit**
-   * High-performance IP-KVM enclosed in a durable, premium 3D-printed SLS Nylon PA12 case. 
-   * Features an integrated on-board IPS status display (240x240) for direct POST monitoring.
+   * High-performance IP-KVM enclosed in a durable, premium 3D-printed SLS Nylon PA12 case — see [Core Hardware Architecture](../6-hardware-connectivity/architecture.md) and [3D Models & PCB Files](../9-updates-changelog/3d-models-pcb-files.md) if you ever want to print or modify one yourself.
+   * Features an integrated on-board IPS status display (240x240) for direct POST monitoring — see [Onboard Device Status & Menu Navigation](./device-status-menu.md).
 2. **HDMI Video Capture Dongle**
-   * External hardware-level UVC capture stick capable of handling up to 1080p@30fps / 720p@60fps video processing.
+   * External hardware-level UVC capture stick capable of handling up to 1080p@30fps / 720p@60fps video processing — see [Video Streaming & Quality](../2-kvm-vkm/video-streaming-quality.md).
 3. **USB Type-C to Type-C Cable**
    * Specialized high-speed data interconnect cable used to link the KVM host port with the UVC capture dongle.
 4. **Power Management Module Board**
-   * An expansion adapter PCB designed for physical server power rail control (handles Power/Reset triggers and hardware LED lines). Comes with a pre-soldered ribbon cable interface.
+   * An expansion adapter PCB designed for physical server power rail control (handles Power/Reset triggers and hardware LED lines). Comes with a pre-soldered ribbon cable interface — see [Power Management Module Control](../6-hardware-connectivity/power-management-module-control.md).
 5. **Female-to-Female Dupont Jumper Wires**
    * An 8-pin colorful jumper cable bundle to bridge the Power Management board directly to the target motherboard's front panel pin headers.
 
@@ -30,4 +30,6 @@ To complete the setup, ensuring zero external dependencies, you only need to sup
 * **HDMI Cable:** A standard HDMI male-to-male cable to route the display output from your server's GPU/motherboard directly into the included input capture dongle.
 
 > [!NOTE]
-> **Storage Information:** The high-speed MicroSD card required for the Btrfs **Hardware Snapshots** data layer is already pre-installed inside the dedicated SD slot on the base unit. You do not need to purchase additional external storage media.
+> **Storage Information:** The high-speed MicroSD card required for the Btrfs [immutable snapshot](../4-snapshots-state-management/snapshots-overview.md) data layer is already pre-installed inside the dedicated SD slot on the base unit. You do not need to purchase additional external storage media.
+
+Ready to wire it up? Continue to the [Quick Start Guide](./quick-start.md).

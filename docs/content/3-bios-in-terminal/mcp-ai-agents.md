@@ -77,7 +77,7 @@ Before hand-writing tool calls, have the agent call `resources/read` on `usbridg
 | `rndis.set` | Enable/disable the USB-Ethernet (RNDIS) network bridge to the target. |
 | `mountdrive.start` | Attach drives and/or HID (keyboard/mouse/RNDIS). Required before `keyboard.send`/`mouse.action` will work. |
 | `mountdrive.stop` | Stop all mounted devices. |
-| `media.insert` | Attach one more disk/ISO source on top of whatever's already configured, without needing to know or repeat the current device set. |
+| `media.insert` | Attach one more [disk/ISO source](../5-remote-disk-image-mounting/mounting-iso-images.md) on top of whatever's already configured, without needing to know or repeat the current device set. |
 | `media.eject` | Detach disk/ISO/MTP sources while leaving keyboard/mouse/RNDIS/gamepad untouched — use before rebooting a host you just installed via a CD-ROM gadget, so boot order doesn't loop back into the installer. |
 | `device.info` | Current device/gadget info. |
 | `pcpanel.leds` | Power/HDD LED status read back from the target's front panel. |
