@@ -76,14 +76,14 @@ Not supported by the capture hardware. Protected content (DRM'd video playback, 
 
 ---
 
-## 6. Streaming Settings (Front Panel)
+## 6. Streaming Settings
 
-**Settings → Authentication → Moonlight** covers pairing and stream tuning:
+**Settings → Authentication → Moonlight** on the front panel covers pairing and stream tuning:
 
-| Option | What it does |
-| :--- | :--- |
-| **Enter PIN** | Completes Moonlight pairing when a client requests it — the usual first-connection handshake. |
-| **Paired Clients** | Lists every client currently paired to this appliance; select one and **Unpair** to revoke its access immediately. Use this if a client device is lost, retired, or you just want to audit who's paired. |
-| **FEC Percentage** | Forward error correction overhead for the video stream — higher tolerates more packet loss (lossy Wi-Fi, congested links) at the cost of extra bandwidth. Default 20%. |
-| **WebRTC** | Same toggle as [Settings → Authentication → WebRTC](../1-getting-started/device-status-menu.md) — required for the [Web Client](../7-software-access/web-client.md). |
-| **Pixel Converter** | Which pixel-format conversion path the streaming pipeline uses (`auto` / hardware-accelerated / software). Leave on `auto` unless you're troubleshooting a specific rendering issue. |
+| Option | What it does | Also settable from |
+| :--- | :--- | :--- |
+| **Enter PIN** | Completes Moonlight pairing when a client requests it. | The client app normally handles this automatically during its own pairing flow — you only need to type it manually on the front panel if you're pairing a standalone Moonlight client instead of the USBridge-Remote app. The REST API also accepts a PIN directly (`POST /api/moonlight/pin`) — see the [REST API Reference](../10-developer-api/rest-api-reference.md#3-pairing-sync--moonlight). |
+| **Paired Clients** | Lists every client currently paired to this appliance; select one and **Unpair** to revoke its access immediately. Use this if a client device is lost, retired, or you just want to audit who's paired. | Front panel only. |
+| **FEC Percentage** | Forward error correction overhead for the video stream — higher tolerates more packet loss (lossy Wi-Fi, congested links) at the cost of extra bandwidth. Default 20%. | Front panel only. |
+| **WebRTC** | Same toggle as [Settings → Authentication → WebRTC](../1-getting-started/device-status-menu.md) — required for the [Web Client](../7-software-access/web-client.md). | Front panel only (two menu locations, same setting). |
+| **Pixel Converter** | Which pixel-format conversion path the streaming pipeline uses (`auto` / hardware-accelerated / software). Leave on `auto` unless you're troubleshooting a specific rendering issue. | Front panel only. |

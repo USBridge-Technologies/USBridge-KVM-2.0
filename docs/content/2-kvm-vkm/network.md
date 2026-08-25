@@ -12,9 +12,20 @@ USBridge can present itself to the target host as a **USB-to-LAN network adapter
 
 ---
 
-## 2. Bridge vs. Router — and Why Wi-Fi Only Gets One of Them
+## 2. Turning It On
 
-Set from the client app (device card → network adapter → mode menu): **Auto**, **Ether Bridge**, **Ether Router**, **Wi-Fi Router**.
+| Where | What you can do |
+| :--- | :--- |
+| **Client app** | Toggle the network adapter on/off, and pick the bridge/router mode (see below) — device card → network adapter. |
+| **Front panel** | Not currently exposed as its own toggle. |
+| **REST API** | `POST /api/device/start` with `{"device": "rndis"}` (add to your existing devices with `merge: true`); `POST /api/device/stop` to tear everything down. See the [REST API Reference](../10-developer-api/rest-api-reference.md#4-usb-gadget--device-management). |
+| **MCP** | `rndis.set` tool (`{"enabled": true}`) — see [AI Agent Integration (MCP)](../3-bios-in-terminal/mcp-ai-agents.md#4-tool-catalog). |
+
+---
+
+## 3. Bridge vs. Router — and Why Wi-Fi Only Gets One of Them
+
+Mode is currently a **client-app-only** setting: device card → network adapter → mode menu — **Auto**, **Ether Bridge**, **Ether Router**, **Wi-Fi Router**.
 
 | Mode | Uplink | What the target sees |
 | :--- | :--- | :--- |
@@ -27,7 +38,7 @@ If you specifically need the target to appear as a first-class device on your LA
 
 ---
 
-## 3. Performance Notes
+## 4. Performance Notes
 
 * The bridge/NAT relay itself adds negligible overhead — it's simple packet forwarding, not a factor worth budgeting latency for on its own. Whatever latency the target experiences to the rest of the network/internet is essentially your own uplink's latency (Wi-Fi vs. wired, and whatever's beyond your gateway) — not something specific to routing it through USBridge.
 * This is a separate USB function from the [video/KVM streaming path](./video-streaming-quality.md) — it doesn't share the streaming pipeline's latency characteristics.
@@ -35,6 +46,6 @@ If you specifically need the target to appear as a first-class device on your LA
 
 ---
 
-## 4. Scope
+## 5. Scope
 
 This is a temporary, diagnostic-oriented network path for system initialization, staging, and recovery — not intended as a permanent production gateway or router replacement.

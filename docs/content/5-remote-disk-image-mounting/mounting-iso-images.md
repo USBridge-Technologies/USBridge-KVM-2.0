@@ -26,7 +26,7 @@ It's on by default. Turn it off per-mount with the API's `use_nbd_cache: false` 
 ## 3. Mounting Workflow
 
 1. **Pick a source:** upload to local storage, or point the client at a file on your workstation for direct streaming — see the table above.
-2. **Mount:** trigger the mount from the client app's *Devices*/*Virtual Media* controls, or from the appliance's front panel for an already-staged local file.
+2. **Mount:** trigger it from the client app's *Devices*/*Virtual Media* controls, from the appliance's front panel **Drives** menu for an already-staged local file, or directly via the [REST API](../10-developer-api/rest-api-reference.md#4-usb-gadget--device-management) (`POST /api/device/start`) or [MCP](../3-bios-in-terminal/mcp-ai-agents.md#4-tool-catalog) (`mountdrive.start`/`media.insert`) if you're scripting the session. Direct client streaming can only be started from the client, since the client itself is the source.
 3. **Enumeration:** the target's USB controller enumerates a new optical drive immediately — it shows up in the BIOS/UEFI boot menu like any physically inserted disc.
 
 ---

@@ -13,6 +13,9 @@ The hardware emulation layer bypasses the need for host-side virtualization driv
 
 There is no PlayStation-specific (DualShock/DualSense) controller identity — a physical PlayStation controller connected on the client side is translated into one of the two USB HID formats above, the same as any other input source.
 
+### Configuring the Mode
+Selectable per-device in the **client app** (and via the [REST API](../10-developer-api/rest-api-reference.md#4-usb-gadget--device-management)'s gamepad device-attach call) — there's no front-panel equivalent. XInput mode also starts automatically the moment a gamepad is connected through Moonlight/Sunshine, without you having to select anything.
+
 ---
 
 > [!NOTE]

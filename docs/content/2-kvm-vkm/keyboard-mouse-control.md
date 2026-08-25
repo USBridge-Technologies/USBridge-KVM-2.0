@@ -19,6 +19,9 @@ To ensure precise interaction with both graphical operating systems and legacy i
 * **User Experience:** Replicates a classic, physical wired mouse. This tracking method is strictly required when absolute coordinate positioning is rejected by the host.
 * **Recommended For:** Legacy operating system installers, older text-based BIOS menus, industrial hypervisor consoles, or specialized bare-metal recovery environments.
 
+### Configuring the Mode
+Mode (and the multi-monitor display index/count above) is a **client-app and API** setting — there's no dedicated front-panel screen for it. Via the REST API, it's part of the same device-attach call that brings up the mouse in the first place: see [USB Gadget / Device Management](../10-developer-api/rest-api-reference.md#4-usb-gadget--device-management) and [Input Control](../10-developer-api/rest-api-reference.md#5-input-control).
+
 ---
 
 ##  Keyboard Virtualization & Protocol Stability
