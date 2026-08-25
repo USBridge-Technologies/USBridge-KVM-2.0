@@ -2,6 +2,9 @@
 
 USBridge ships an embedded automation engine that runs **[Starlark](https://github.com/google/starlark-go)** (a deterministic, sandboxed dialect of Python) directly on the appliance. Scripts drive the same keyboard/mouse HID emulation and OCR screen-reading used everywhere else in the product, so a script can walk a BIOS menu, drive an unattended OS installer, or self-heal a stuck boot sequence without a host-side agent, and without "pixel-hunting" screenshot macros — it reads and matches actual recognized text.
 
+> [!NOTE]
+> This engine runs on the **hardware KVM appliance itself**, not in the [client app](https://github.com/USBridge-Technologies/USBridge-Remote) and not on a [software-only Agent](https://github.com/USBridge-Technologies/USBridge-Remote/blob/main/agent/docs/README.md#agent-vs-hardware-kvm) — an Agent target has no HID gadget or OCR pipeline to drive.
+
 ---
 
 ## 1. Where Scripts Live

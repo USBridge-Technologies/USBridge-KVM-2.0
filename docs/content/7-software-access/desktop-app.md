@@ -1,6 +1,8 @@
 # Desktop Client (Win/Mac/Linux)
 
-The USBridge desktop application (**USBridge-Remote**) is the primary administrative interface for out-of-band KVM control, virtual media provisioning, and hardware-level snapshot management. It's open source (GPLv3): [github.com/USBridge-Technologies/USBridge-Remote](https://github.com/USBridge-Technologies/USBridge-Remote).
+The USBridge desktop application (**USBridge-Remote**) is the primary administrative interface for out-of-band KVM control, virtual media provisioning, and hardware-level snapshot management. It's open source (GPLv3): [github.com/USBridge-Technologies/USBridge-Remote](https://github.com/USBridge-Technologies/USBridge-Remote) — see its own [client documentation](https://github.com/USBridge-Technologies/USBridge-Remote/blob/main/client/docs/README.md) for build instructions and platform-specific notes.
+
+The same client also connects to a [software-only Agent](https://github.com/USBridge-Technologies/USBridge-Remote/blob/main/agent/docs/README.md) instead of a hardware KVM, when you just need software remote desktop rather than BIOS-level access — see [Agent vs. Hardware KVM](https://github.com/USBridge-Technologies/USBridge-Remote/blob/main/agent/docs/README.md#agent-vs-hardware-kvm) for exactly what that trades off.
 
 ## Client Downloads
 

@@ -2,6 +2,9 @@
 
 USBridge exposes a built-in **[Model Context Protocol](https://modelcontextprotocol.io)** server directly from the appliance's own web service — there is no separate proxy process to install. Because BIOS-in-Terminal already turns the target's screen into structured, machine-readable text, an LLM agent gets the same full-machine access a human gets over SSH: it can read the console, navigate BIOS/UEFI menus, mount installation media, and run diagnostics entirely out-of-band, on real hardware, before any OS is even installed.
 
+> [!NOTE]
+> This is a **hardware KVM feature** — a [software-only Agent](https://github.com/USBridge-Technologies/USBridge-Remote/blob/main/agent/docs/README.md#agent-vs-hardware-kvm) has no MCP server or scripting engine to expose, since it isn't sitting below the target's OS the way the hardware unit does.
+
 ---
 
 ## 1. Endpoint & Protocol
