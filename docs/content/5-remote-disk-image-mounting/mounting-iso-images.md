@@ -15,15 +15,11 @@ Both end up presented to the target identically — as a mounted optical drive. 
 
 ---
 
-## 2. RAM Cache on Streamed (NBD) Sources
+## 2. RAM Cache on Streamed Sources
 
-Because NBD-streamed sources depend on the network round-trip to your workstation for every uncached read, the appliance fronts them with a RAM cache so repeated/random access (an installer re-reading the same boot sectors, browsing the same directory) doesn't re-hit the network every time:
+Direct client streaming backs the image with a RAM cache, so repeated/random access (an installer re-reading the same boot sectors, browsing the same directory) stays fast instead of re-hitting the network on every read — boot sectors in particular are available instantly. Local-storage sources don't need this; they're already reading from the appliance's own storage.
 
-* **First ~8 MB** are prefetched straight into RAM (`tmpfs`) — boot sectors are available instantly, before the rest of the image has even been touched.
-* **Up to 1 GB of RAM** is used as a `dm-cache` layer for hot blocks — the kernel promotes/evicts blocks automatically as they're re-read, so frequently-accessed regions stay fast without you managing anything.
-* Everything else is read from the NBD stream on demand, populating the cache as it goes.
-
-Both layers are part of the stock appliance firmware — the `dm_cache` kernel module and `thin-provisioning-tools` ship built-in, so the full 1 GB hot-block cache is always available, not something that depends on optional packages being present. It's enabled by default; disable it per-mount with `use_nbd_cache: false` if you'd rather not spend the RAM (e.g. on a very memory-constrained session). Local-storage sources don't need this — they're already reading from the appliance's own storage.
+It's on by default. Turn it off per-mount with the API's `use_nbd_cache: false` if you'd rather not use the RAM for it.
 
 ---
 
