@@ -10,7 +10,7 @@ USBridge is built for stable 24/7 operation, not intermittent desk use — worth
 | :--- | :--- |
 | **Power Input** | USB-C (OTG / Power) |
 | **Input Voltage** | 5V DC (±5%) |
-| **Power Draw** | ~1–2W typical, up to ~3W peak (at 5V, roughly 0.2–0.6A) |
+| **Power Draw** | ~1–2W typical, up to ~3W peak (at 5V, roughly 0.2–0.6A) — the [Radxa Zero 3W](./architecture.md) compute module itself; the capture dongle, fan, and display add to total appliance draw on top of this |
 | **Cooling** | Active fan + aluminum heatsink |
 | **Ambient Operating Temperature** | 0°C to 50°C |
 | **Maximum Safe SoC Temperature** | Up to 80°C |
