@@ -1,56 +1,55 @@
 # Video Streaming & Quality Specification
 
-Video capture and low-latency streaming in the USBridge-KVM 2.0 ecosystem rely on the driverless **UVC (USB Video Class)** protocol paired with the high-performance **Moonlight** streaming architecture. This ensures absolute hardware independence from the target host's operating system, allowing video capture to function seamlessly during pre-OS boot stages, BIOS/UEFI configuration, and kernel panic events where standard drivers are not yet loaded.
+USBridge captures video through a driverless **UVC (USB Video Class)** HDMI capture dongle and streams it over **Moonlight/Sunshine**. Because capture happens at the hardware level, it works identically during BIOS/UEFI, pre-OS boot stages, and even a kernel panic — there's no OS driver on the target host to depend on.
 
 ---
 
 ## 1. Hardware Pipeline & Signal Routing
 
-The video signal path is engineered for hardware-level isolation to prevent any electrical or logical interference with the target host:
-
-* **Primary Interface:** The USBridge appliance utilizes its dedicated **USB-C (Host)** port to receive the raw video stream from the integrated or external HDMI-to-USB UVC capture module.
-* **Complex Deployments (USB Hub):** If your target infrastructure topology requires simultaneous hardware video capture and wired USB-LAN emulation (via the KVM), both the capture module and the network adapter must be routed through an external USB hub connected to the appliance.
+* **Primary Interface:** The HDMI capture dongle connects to the appliance's **USB-C (Host)** port.
+* **Combining Capture + RNDIS:** If you also need the [USB-LAN network bridge](./network.md) running at the same time as video capture, route both the capture dongle and a USB-Ethernet adapter through an external USB hub — the appliance's own ports can't carry both simultaneously.
 
 > [!IMPORTANT]
-> **Critical: Video Capture Dongle Modes**
-> The USB Type-C capture dongle operates in two different modes depending on its orientation when plugged into the port. Please verify its status in the app:
-> * **`[5G]` Mode (USB 3.0):** Standard high-performance mode. It provides maximum bandwidth (5 Gbps), rich image quality, and ultra-low input lag. **This is your target mode.**
-> * **`[480M]` Mode (USB 2.0):** Slow compatibility mode (480 Mbps). The video stream may suffer from compression artifacts or noticeable latency.
-> 
-> **The Fix:** If you see the `[480M]` status, simply unplug the Type-C cable from the KVM, flip it 180°, and plug it back in to lock onto the `[5G]` mode.
+> **Capture Dongle Speed Mode**
+> The USB Type-C capture dongle can enumerate in either of two USB modes depending on cable orientation — check its status in the app:
+> * **`[5G]` (USB 3.0, target mode):** Full bandwidth, no compression artifacts, lowest input lag.
+> * **`[480M]` (USB 2.0, fallback):** Works, but with visibly more compression and latency.
+>
+> **Fix:** unplug the Type-C cable, flip it 180°, and reconnect — this is enough to force renegotiation into `[5G]` mode.
 
 ---
 
 ## 2. Resolution & Signal Parameters
 
-The video pipeline is explicitly optimized for rock-solid stability across both legacy text-mode terminals and modern high-resolution desktop environments.
+The appliance probes the connected capture dongle's actual reported UVC modes at runtime rather than assuming a fixed set — what's available depends on the specific dongle. The bundled dongle (see [What's in the Box](../1-getting-started/whats-in-the-box.md)) reports:
 
-| Parameter | Specification | Behavioral Context |
-| :--- | :--- | :--- |
-| **High-Framerate Mode** | **1280x720 (720p) @ 60 FPS** | Optimized for fluid mouse tracking, real-time diagnostic observation, and ultra-low interaction latency. |
-| **High-Resolution Mode** | **1920x1080 (1080p) @ 30 FPS** | Tailored for maximum crispness and text readability in dense CLI setups, remote IDEs, or detailed GUI configurations. |
-| **Guaranteed Baseline** | **800x600 @ 60 FPS** | Enforced fallback state to maintain predictable pixel mapping within text-based legacy BIOS or bootloader menus. |
-| **4K Topologies** | **Strictly Unsupported** | 4K input processing falls outside the architectural scope of out-of-band pre-OS diagnostics. |
+| Mode | Typical Use |
+| :--- | :--- |
+| **1280×720 @ 60 FPS** | Fluid mouse tracking and low interaction latency — the default for most sessions. |
+| **1920×1080 @ 30 FPS** | Maximum text/UI sharpness for dense CLI or GUI content, at half the frame rate. |
+| **640×480** (fallback) | Falls back here if the dongle can't negotiate a higher mode — still fully usable for text-mode BIOS/bootloader screens. |
+
+4K capture is not supported — out of scope for a pre-OS diagnostic/BIOS-focused capture pipeline.
 
 ---
 
-## 3. Latency Optimization Metrics
+## 3. Latency
 
-Glass-to-glass latency (the duration from a physical frame change on the target server to the pixel rendering on your client application screen via Moonlight) is directly tied to the network transport layer:
+Glass-to-glass latency (physical frame change on the target → pixels rendered on your client via Moonlight) is dominated by the network path, not the capture/encode pipeline:
 
-* **Wired LAN Connection:** `~40–100 ms` — Recommended for production server environments requiring instantaneous UI and mouse synchronization.
-* **Standard Wi-Fi 6 Connection:** `~80–180 ms` — Highly dependent on local RF environment conditions, signal degradation, and channel congestion.
+* **Wired LAN:** typically **under 50 ms**.
+* **Wi-Fi 6 (802.11ax):** also typically **under 50 ms** on a clean channel — close enough to wired that it isn't the bottleneck in practice on modern hardware.
+* **Older Wi-Fi (802.11n/ac) or a congested 2.4 GHz channel:** noticeably higher and less consistent — if you're seeing lag, this is the first thing to check before blaming the appliance.
 
 ---
 
 ## 4. Display Emulation & Signal Constraints
 
-### EDID Management & Headless Operations
-Extended Display Identification Data (EDID) behavior is governed by the connected UVC capture architecture. 
-> **Critical Infrastructure Note:** If the target host motherboard or discrete GPU completely disables its video outputs when it detects no physical monitor attached, you must introduce an **HDMI dummy plug (EDID emulator)** inline to force the server's graphics pipeline to continuously generate a video signal.
+### EDID & Headless Targets
+If the target's motherboard/GPU disables its video output when it detects no physical monitor, insert an **HDMI dummy plug (EDID emulator)** inline so the target always sees a display and keeps generating a signal.
 
-### Local Monitor Passthrough (Loop-Out)
-If you need to output video to a local server rack crash cart or local monitor simultaneously alongside the remote KVM stream, you can connect a physical display directly to the onboard **Mini HDMI** port. The hardware pipeline mirrors the server's video signal in real time without introducing extra latency or requiring external active HDMI splitters.
+### Local Monitor Passthrough
+The onboard **Mini HDMI** port mirrors the captured signal in real time to a local monitor or crash cart — useful for on-site work alongside a remote session, no active HDMI splitter needed.
 
-### Content Limitations & DRM
-* **HDCP / DRM:** High-bandwidth Digital Content Protection and Digital Rights Management are strictly unsupported by the capture hardware. Attempting to pass or stream protected media content through the KVM pipeline will result in a solid black screen layout on both the local display and remote clients.
+### HDCP / DRM
+Not supported by the capture hardware. Protected content (DRM'd video playback, some game launchers) shows as a black screen on both the local and remote display — this is a hardware capture limitation, not a bug.
