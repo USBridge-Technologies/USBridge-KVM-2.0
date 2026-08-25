@@ -12,7 +12,7 @@
 > NVMe firmware support is still pending — the hardware capability is there on NVMe-equipped boards, but the firmware release that enables it hasn't shipped yet.
 
 > [!NOTE]
-> External USB flash drives and SSDs as storage media are in active development — not available yet. The intent is for USBridge to sit inline as a protected storage controller: the external drive plugs into the appliance rather than directly into the target, so the same write-isolation and immutable-snapshot model in this document applies to it too.
+> External USB flash drives and SSDs as *snapshotted storage* are in active development — not available yet. You can physically connect one today (through an external hub, alongside the [capture dongle](../2-kvm-vkm/video-streaming-quality.md#1-hardware-pipeline--signal-routing) if needed — the appliance's own USB-C Host port doesn't have a second one free), the appliance just doesn't yet treat it as backup media the way it does the MicroSD/NVMe slot. The intent is for USBridge to sit inline as a protected storage controller: the external drive plugs into the appliance rather than directly into the target, so the same write-isolation and immutable-snapshot model in this document applies to it too.
 
 ### Real-World Endurance: Why This Workload Is Easy on the Card
 
