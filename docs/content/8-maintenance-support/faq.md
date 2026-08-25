@@ -46,6 +46,19 @@ The security model relies on attack-surface reduction and threat-boundary separa
 
 ---
 
+## Licensing & Trial
+
+#### Can I try USBridge before committing to it?
+Yes. Every device ships with a **24-hour, fully-featured trial** that starts the moment it's powered on — no network connection or account sign-in required to begin. Streaming, BIOS-in-Terminal, virtual media, and every other licensed capability work exactly as they would on a fully licensed unit for the full trial window, with no artificial feature restrictions or watermarks.
+
+#### How does the trial become a permanent license?
+Once you're ready to keep the device, it's confirmed (**Accept**) on the vendor's device console — after that, the license is permanent and no longer depends on network connectivity or the trial timer. See [Firmware Update Guide](../9-updates-changelog/firmware-update-guide.md) for how the appliance's device-management connection also delivers OTA updates.
+
+#### Does resetting the device reset my trial or license?
+No — not through the appliance's own **Factory Reset**. It's specifically designed to preserve trial/license state across a reset; see [Factory Reset](./factory-reset.md#what's-deliberately-preserved).
+
+---
+
 ## Additional Support
 
 For unresolved architectural inquiries, assistance with SSH automation scripts, or advanced deployment discussions, the following community resources are available.
