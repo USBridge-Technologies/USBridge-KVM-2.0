@@ -10,7 +10,7 @@ USBridge is built for stable 24/7 operation, not intermittent desk use — worth
 | :--- | :--- |
 | **Power Input** | USB-C (OTG / Power) |
 | **Input Voltage** | 5V DC (±5%) |
-| **Recommended Current** | 3A — needed for stable [storage caching](../5-remote-disk-image-mounting/mounting-iso-images.md#2-ram-cache-on-streamed-sources) and peak I/O |
+| **Power Draw** | ~1–2W typical, up to ~3W peak (at 5V, roughly 0.2–0.6A) |
 | **Cooling** | Active fan + aluminum heatsink |
 | **Ambient Operating Temperature** | 0°C to 50°C |
 | **Maximum Safe SoC Temperature** | Up to 80°C |
