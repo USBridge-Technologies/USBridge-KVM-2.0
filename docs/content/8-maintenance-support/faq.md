@@ -1,7 +1,5 @@
 # Frequently Asked Questions
 
-This section provides strict technical clarification regarding USBridge operational capabilities, architectural limitations, and hardware-level security models.
-
 ---
 
 ## Core Platform & Capabilities
@@ -16,7 +14,7 @@ The appliance is built on the Rockchip RK3566 SoC featuring a Quad-Core ARM Cort
 Partially, today. The client — **USBridge-Remote** (desktop/mobile/web) — is already public under GPLv3: [github.com/USBridge-Technologies/USBridge-Remote](https://github.com/USBridge-Technologies/USBridge-Remote). The mechanical/PCB assets are public too: [github.com/USBridge-Technologies/Hardware](https://github.com/USBridge-Technologies/Hardware). The on-device firmware/service — including the BIOS-to-Text deterministic conversion engine — remains closed source.
 
 #### How does USBridge differ from traditional PiKVM solutions?
-While sharing a similar single-board hardware class, USBridge utilizes an RK3566 ARM64 platform for additional compute overhead. Unlike traditional video-oriented solutions, USBridge emphasizes deterministic text interaction (BIOS-to-Text), deep infrastructure automation, and immutable hardware-isolated Btrfs snapshot workflows.
+Both are small ARM single-board KVMs, but the emphasis is different. USBridge is built around [BIOS-in-Terminal](../3-bios-in-terminal/technology-overview.md) — turning the pre-OS screen into real OCR'd text instead of just video — plus [Starlark/MCP automation](../3-bios-in-terminal/mcp-ai-agents.md) and [immutable Btrfs snapshots](../4-snapshots-state-management/snapshots-overview.md), none of which a video-only KVM solution has an equivalent for.
 
 ---
 
@@ -26,7 +24,7 @@ While sharing a similar single-board hardware class, USBridge utilizes an RK3566
 Low-cost consumer SD cards are strongly discouraged. Snapshot storage utilizes Btrfs with Copy-on-Write (CoW), creating sustained write pressure that causes premature failure in cards lacking advanced wear-leveling. External SSDs or industrial-grade surveillance SD cards are required for continuous workloads.
 
 #### Are snapshots stored on the built-in eMMC, and does this cause wear?
-No. Data snapshots and file archives are strictly written to removable external media. The onboard eMMC is exclusively reserved for the Linux operating system and the bridge software stack, protecting the soldered memory from intense Btrfs journaling workloads and ensuring data portability.
+No. Snapshots go on the removable MicroSD card (or NVMe, on board revisions that have the slot) — the onboard eMMC only holds the OS and the bridge software itself, so it never sees the sustained write pressure of Btrfs Copy-on-Write snapshotting. That also means your snapshot history can be pulled out and read on any Linux machine without touching the appliance's own storage.
 
 ---
 
@@ -36,16 +34,16 @@ No. Data snapshots and file archives are strictly written to removable external 
 > This section covers data/snapshot immutability. For how pairing, API access, and streaming sessions are authenticated and encrypted, see [Security & Authentication Model](../10-developer-api/security-model.md).
 
 #### What differentiates the USBridge backup model from a standard NAS?
-The appliance intentionally omits standard network file-sharing protocols (such as SMB or NFS) to ensure strict lifecycle isolation. A compromised target operating system lacks the network path or permissions to delete or overwrite historical snapshots, providing absolute resilience during severe ransomware incidents.
+There's no SMB, NFS, or any other network file-sharing protocol exposed to the target at all — the appliance shows up as a USB storage device, nothing more. A compromised target OS, even with full root, has no network path or credential that reaches the snapshot data to delete or overwrite it; the only thing it can do is write new data, which becomes tomorrow's snapshot rather than an overwrite of today's.
 
 #### How is data immutability achieved using a standard Btrfs file system?
-Immutability is achieved through strict architectural isolation rather than proprietary file-system modifications. The target server perceives the appliance as generic block storage with no host-side management interfaces. When physical capacity is exhausted, new writes are halted, effectively transforming the medium into a read-only archive.
+It's simpler than it sounds: sealed snapshots are read-only Btrfs subvolumes, and nothing in the running system ever writes to one again once it's sealed — there's no special "protection mode" layered on top, the guarantee just falls out of never having deletion code in the first place. See [Storage Security & Immutability](../4-snapshots-state-management/security-storage.md) for the full breakdown, including what happens when the card fills up (short version: new snapshots stop, existing ones are untouched — not some read-only archive mode the appliance switches into).
 
 #### Does USBridge operate as a physical data diode?
-No. KVM operations are inherently bidirectional. Instead of physical one-way transport, the appliance enforces logical immutability of the backup history. Normal KVM traffic continues unimpeded, while the target host is denied any mechanism to roll back or administratively purge preserved snapshots.
+No — KVM traffic is bidirectional, you're actively controlling the target. What's one-directional is the backup history: nothing on the target side, however compromised, has a way to roll back or delete an existing snapshot. That's an access-control guarantee, not a one-way wire.
 
-#### Why utilize hardened Linux instead of proprietary cryptographic firmware?
-The security model relies on attack-surface reduction and threat-boundary separation. By blocking destructive commands on the USB-facing path and leveraging established Linux hardening practices, the architecture ensures that malware on the connected server cannot rewrite protected historical snapshots without direct out-of-band physical access.
+#### Why hardened Linux instead of proprietary firmware?
+Because it doesn't need to reinvent anything: the appliance never exposes destructive commands on the USB-facing side in the first place, so there's nothing for a compromised target to send even if it tried. Standard Linux hardening covers the rest — it's attack-surface reduction, not a custom crypto stack to trust.
 
 ---
 
