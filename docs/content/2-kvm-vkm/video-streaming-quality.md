@@ -33,7 +33,17 @@ The appliance probes the connected capture dongle's actual reported UVC modes at
 
 ---
 
-## 3. Latency
+## 3. Capture Device Compatibility
+
+You're not locked to the bundled dongle. The capture pipeline talks plain V4L2/UVC and auto-negotiates whatever the connected device reports — in practice, that covers **most UVC and CSI-MIPI capture cards**, not just one specific chipset.
+
+* **Supported pixel formats:** MJPEG, NV12, YUYV, UYVY — probed live from the device, in that priority order.
+* **Default format is picked automatically by USB link speed:** MJPEG on a `[480M]`/USB 2.0 link (keeps bandwidth within budget), YUYV on `[5G]`/USB 3.0 or MIPI (uncompressed, no JPEG artifacts, bandwidth isn't the constraint there). See the speed-mode note above.
+* **Confirmed working in practice:** MacroSilicon MS2130-based capture cards (USB 3.0/NV12-YUYV class chips), and MacroSilicon MS2109-based cards (the common USB 2.0, MJPEG-only capture dongles) — both third-party, not the bundled unit. Any UVC or CSI-MIPI device reporting one of the formats above should work the same way; these are just two concretely verified examples, not an exhaustive allowlist.
+
+---
+
+## 4. Latency
 
 Glass-to-glass latency (physical frame change on the target → pixels rendered on your client via Moonlight) is dominated by the network path, not the capture/encode pipeline:
 
@@ -43,7 +53,7 @@ Glass-to-glass latency (physical frame change on the target → pixels rendered 
 
 ---
 
-## 4. Display Emulation & Signal Constraints
+## 5. Display Emulation & Signal Constraints
 
 ### EDID & Headless Targets
 The bundled capture dongle ships with its **own EDID pre-flashed**, advertising a fixed preferred mode (576p) to whatever it's plugged into — it already looks like "a monitor is attached" to the target, and most GPUs/BIOSes will pick that preferred mode by default. This is deliberate, not just a side effect of being a generic capture device: it means most setups **don't need a separate EDID emulator/dummy plug** just to get a display signal or to pin a sane resolution.
