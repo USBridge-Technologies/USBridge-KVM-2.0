@@ -1,53 +1,38 @@
 # Creating & Managing Snapshots
 
-The USBridge-KVM 2.0 snapshot workflow is architected to capture, seal, and preserve historical data states on external, hardware-isolated storage media. For optimal reliability during bare-metal deployment and staging, follow this standardized provisioning and management procedure.
+---
+
+## 1. First-Time Media Setup
+
+1. Insert a MicroSD card into the appliance's card slot (power the appliance off first — don't hot-swap the card while it's actively mounted).
+2. Power on, then on the front panel go to **Settings → SD Card → Format SD** — this lays down the required Btrfs layout on the card. It's a destructive operation with its own on-device confirmation step.
+3. Once formatted, the **Settings → SD Card** screen header shows **READY** in green alongside filesystem type and free space (**OFFLINE** in red if the card isn't mounted — that's your at-a-glance status check).
+4. Optionally, **Settings → SD Card → Snapshot Settings** lets you adjust the quiet-period interval described below.
 
 ---
 
-## 1. Media Preparation & Hardware Initialization
+## 2. Getting Data Onto the Appliance
 
-Before initiating any block-level data operations, you must physically prepare the storage media and initialize the file system on the device.
+There's more than one path onto the appliance's storage — pick whichever fits what you're doing:
 
-### Step-by-Step Initialization
+| Method | How | Best for |
+| :--- | :--- | :--- |
+| **Client app, MTP mount** | **Snapshots** tab → **Backup Flash** entry → **Mount**. The volume exposes itself to your workstation as a standard **MTP** device (labeled **Main storage**) — no custom drivers. Copy files in with your OS's normal file manager. | Bulk transfers, arbitrary file types, anything you'd rather drag-and-drop. |
+| **REST API upload** | `POST /api/iso/upload` for ISO/IMG images, `POST/PUT /api/scripts/write` for Starlark scripts — see the [REST API Reference](../10-developer-api/rest-api-reference.md#8-storage--virtual-media). | Scripted/automated staging, uploading from a pipeline instead of a person. |
 
-1. Safely shut down or unplug the USBridge-KVM appliance before modifying any physical hardware components.
-2. Insert your storage card into the dedicated onboard MicroSD slot. 
-3. Power on the appliance. Using the built-in LCD screen and rotary encoder, navigate to **Settings** -> **SD Card** -> **Format SD**. This process initializes the required Btrfs file-system layout on the card.
-4. Navigate to **Settings** -> **SD Card** -> **Snapshot Settings** to define how frequently the system should automatically freeze new read-only data states.
-5. After formatting is complete, remain in the **Settings** -> **SD Card** menu and verify that the green **Ready** indicator is displayed at the top of the screen.
+Whichever way the files land on storage, the same snapshot daemon watches for it — see below.
 
----
-
-## 2. Volume Mounting & Data Provisioning
-
-To upload your ISO images, virtual drives, or scripts to the appliance, you must provision access to the KVM's internal storage layer via the client application:
-
-### Step-by-Step Data Upload
-
-1. **Connect to the Appliance:** Launch your native USBridge-Remote client application and ensure your KVM device is actively linked. For first-time deployment, see the [Initial Setup Guide](../1-getting-started/initial-setup.md).
-2. **Open Storage Settings:** Click on the **Snapshots** tab in the main application navigation menu.
-3. **Mount the Storage:** Locate the **Backup Flash** entry (the live storage volume, listed alongside your individual snapshots) and click its **Mount** button. 
-4. **Access the Drive:** The isolated storage volume will instantly expose itself to your local workstation using hardware emulation. The system will detect it natively as an **MTP Composite Device** without requiring any custom host drivers.
-5. **Transfer Your Files:** Open your operating system's file manager, locate the mounted **Main storage** volume, and copy your required deployment images or automation files directly onto this disk.
-6. **Automatic Snapshot Generation:** Once your data transfer is complete, you can unmount the drive or simply wait. The snapshot daemon watches the storage volume for file-system events and freezes a new read-only snapshot after a **quiet period** — 30 seconds with no further writes by default (configurable in **Settings → SD Card → Snapshot Settings**). If you're actively writing continuously (e.g. a large, ongoing file copy that never lets the quiet period elapse), the daemon won't wait forever: it forces a snapshot at least every 30 minutes so you're never left with an unbounded gap between snapshots.
+### Automatic Snapshot Generation
+The snapshot daemon watches the storage volume for file-system activity and freezes a new read-only snapshot after a **quiet period** — 30 seconds with no further writes by default (**Settings → SD Card → Snapshot Settings**). If you're writing continuously (a large, ongoing copy that never lets the quiet period elapse), it won't wait forever: a snapshot is forced at least every 30 minutes, so you're never left with an unbounded gap between snapshots.
 
 ---
 
-## 3. Snapshot Auditing & Data Recovery
+## 3. Auditing & Recovering From a Snapshot
 
-Once a snapshot is generated and appears in the client application interface, you can audit its contents and use it to recover your data states:
+### Client App
+1. **Snapshots** tab → select a snapshot entry → **Info** icon. This shows its date, size, and a **changelog**: the actual file-level operations captured in it (creation, rename, truncation, timestamp updates, and more) — not just a generic "something changed" summary.
+2. To recover data, click that snapshot's **Mount** button — it mounts read-only via MTP, same as the live volume. Browse it with your file manager and copy out whatever you need; being read-only, there's no risk of altering the historical state while you're in there.
 
-### Auditing Snapshot Information
-1. Navigate to the **Snapshots** tab in the client interface.
-2. Locate your desired snapshot entry and click its **Info** icon.
-3. The interface shows the snapshot's date and size, plus a **changelog** — the actual file-level operations captured in that snapshot (file creation, rename, truncation, time updates, and more), not just a generic "something changed" summary.
-
-### Recovering and Extracting Data
-1. To return to a previous data state, locate the historical snapshot in the list and click its **Mount** button.
-2. The selected snapshot will instantly mount natively on your local workstation as a read-only **MTP device**.
-3. Since the mounted snapshot is strictly immutable to ensure data integrity, you can safely browse its directory tree, copy the required historical files or ISO images, and export them back to your main storage or an external drive.
-
-### Finding One File's History Without Mounting Every Snapshot
-If you just need to know how a specific file changed over time — not browse a whole snapshot — the [REST API](../10-developer-api/rest-api-reference.md#9-backup--snapshots-btrfs) can look it up directly by path: which snapshots contain that file, its size and timestamps in each, without you having to mount and search through snapshots one at a time.
-
-
+### Without Mounting Anything
+* **One file's history across every snapshot:** the [REST API](../10-developer-api/rest-api-reference.md#9-backup--snapshots-btrfs) can look up a specific path directly — which snapshots contain it, its size and timestamps in each — without mounting and searching snapshots one at a time.
+* **From a Starlark script:** `list_backups()` returns the same snapshot list the client shows (name, size, timestamps, and an `mtp_source` you can pass straight to `insert_media()`/`reconnect_gadget()`) — useful for automating something like "mount last night's snapshot as media and boot from it" without any manual steps. See the [Starlark Scripting Reference](../3-bios-in-terminal/scripting-automation.md#3-built-in-functions).
