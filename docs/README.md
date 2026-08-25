@@ -25,7 +25,7 @@ Configure streaming parameters, peripheral overlays, and inputs.
 <li><a href="./content/2-kvm-vkm/keyboard-mouse-control.md">Keyboard & Mouse Emulation (HID)</a></li>
 <li><a href="./content/2-kvm-vkm/gamepad.md">Gamepad Emulation (HID)</a></li>
 <li><a href="./content/2-kvm-vkm/audio-redirection.md">Audio Redirection Specification</a></li>
-<li><a href="./content/2-kvm-vkm/network.md">Network Routing Environments</a></li>
+<li><a href="./content/2-kvm-vkm/network.md">USB-LAN Network Bridge (RNDIS)</a></li>
 <li><a href="./content/2-kvm-vkm/display-mode.md">Local Display Mode (On-Device Server Screen)</a></li>
 </ul>
 </td>
