@@ -35,7 +35,7 @@ MCP requests follow the same rule as every other endpoint on the appliance, spli
 Reaching the endpoint over the LAN or a tailnet requires signing each request with the appliance's API secret, exactly like a script driving `/api/scripts/run` would. To skip that and get an unsigned local connection instead, you have two options:
 
 ### Option A: The Client App's MCP Proxy
-The desktop/mobile client can run a small local HTTP server on your own workstation (`http://127.0.0.1:8765/api/mcp` by default) that signs and forwards every request to the device on your behalf — point your agent at that local address instead of the device's own IP, and you never have to implement the signing scheme yourself. This works over LAN or Tailscale, since the client (not the loopback exemption) is what's doing the authenticating.
+In the [desktop/mobile client](../7-software-access/desktop-app.md#4-scripts-tab), open the **Scripts** tab — it has its own MCP card with a **Start**/**Stop** toggle and a **Copy** button. Starting it runs a small local HTTP server on your own workstation (`http://127.0.0.1:8765/api/mcp` by default) that signs and forwards every request to the device on your behalf; hit Copy to grab that URL and point your agent at it instead of the device's own IP — you never have to implement the signing scheme yourself. This works over LAN or Tailscale, since the client (not the loopback exemption) is what's doing the authenticating.
 
 ### Option B: SSH Local Port Forwarding
 The same [BIOS-in-Terminal SSH account](./technology-overview.md#quick-start-accessing-bios-via-ssh) also supports `ssh -L`, restricted specifically to forwarding into the device's own loopback:

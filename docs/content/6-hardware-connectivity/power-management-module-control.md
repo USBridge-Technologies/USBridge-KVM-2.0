@@ -10,6 +10,7 @@ The Power Management Module is what turns USBridge from "watch and type" into fu
 * **Galvanic isolation.** Dual optocouplers keep the appliance's control circuit electrically separate from the target's — ground loops, voltage spikes, and EMI from the managed machine don't reach USBridge.
 * **Full signal monitoring, not just control.** Wires into Power SW, Reset SW, Power LED, and HDD LED — so beyond pressing the button, you can read the target's actual LED state back. See [`pcpanel.leds`/`pcpanel.button`](../10-developer-api/rest-api-reference.md#11-hardware-rndis-powerreset-panel) in the REST API, or the equivalent [MCP tools](../3-bios-in-terminal/mcp-ai-agents.md#4-tool-catalog) for driving it from a script or an AI agent.
 * **One connector, no wiring puzzle.** Plugs straight into the appliance's [8-pin GPIO port](./ports-connectors-reference.md) with the included ribbon cable.
+* **Confirmation before anything destructive.** The [client app](../7-software-access/desktop-app.md) requires you to type "power" or "reset" to confirm before it actually presses the button — power-cycling a live server isn't a misclick away.
 
 ---
 
