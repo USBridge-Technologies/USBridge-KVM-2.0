@@ -55,7 +55,9 @@ Yes. Every device ships with a **24-hour, fully-featured trial** that starts the
 Once you're ready to keep the device, it's confirmed (**Accept**) on the vendor's device console — after that, the license is permanent and no longer depends on network connectivity or the trial timer. See [Firmware Update Guide](../9-updates-changelog/firmware-update-guide.md) for how the appliance's device-management connection also delivers OTA updates.
 
 #### Does resetting the device reset my trial or license?
-No — not through the appliance's own **Factory Reset**. It's specifically designed to preserve trial/license state across a reset; see [Factory Reset](./factory-reset.md#what's-deliberately-preserved).
+Depends on which kind of reset:
+- **Factory Reset** (Settings → Factory Reset) — No. It's specifically designed to preserve trial/license state; see [Factory Reset](./factory-reset.md#what's-deliberately-preserved).
+- **A full reflash** (writing a fresh image to the device's storage from scratch, e.g. for the DIY route on your own SBC) — Yes. That wipes the device's persistent storage entirely, trial state included, so the device comes back up on a brand-new 24-hour trial. This is inherent to reflashing being a genuine clean slate, not a workaround to route around.
 
 ---
 
