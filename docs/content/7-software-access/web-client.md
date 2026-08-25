@@ -7,7 +7,7 @@
 
 ## Connecting
 
-1. Open [web.usbridge.io](https://web.usbridge.io) in any modern browser.
+1. Open [web.usbridge.io](https://web.usbridge.io) — **Google Chrome** is the only browser currently verified to work; other Chromium-based or WebRTC-capable browsers may work but haven't been tested.
 2. Connect using the appliance's IP address or by scanning the front-panel pairing QR code — same pairing flow as the native clients; see [Initial Setup & Client Pairing](../1-getting-started/initial-setup.md).
 
 The appliance needs **WebRTC enabled** to accept this kind of session — it's on by default (**Settings → Authentication → WebRTC** on the front panel). If the web client can't connect but the desktop/mobile clients work fine, that toggle is the first thing to check.
