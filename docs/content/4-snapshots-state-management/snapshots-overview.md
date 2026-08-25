@@ -1,6 +1,6 @@
 # Storage & Media Snapshots: Overview
 
-USBridge protects your virtual media, ISO images, and other user files independently of the host you're managing. Storage lives on the appliance's own hardware-isolated media, and every change is captured as an immutable, read-only Btrfs snapshot — the target server never has a path back to alter or delete something that's already been captured.
+USBridge protects the files you copy onto its **Backup Flash** volume — independently of the host you're managing. That storage lives on the appliance's own hardware-isolated media, and every change to it is captured as an immutable, read-only Btrfs snapshot — the target server never has a path back to alter or delete something that's already been captured. This is separate from ISO/image staging for [virtual media mounting](../5-remote-disk-image-mounting/mounting-iso-images.md), which lives on its own, unsnapshotted storage area — snapshots only cover what's on Backup Flash.
 
 ![USBridge snapshots](https://raw.githubusercontent.com/USBridge-Technologies/USBridge-KVM-2.0/main/docs/assets/snapshots.png)
 
@@ -12,7 +12,7 @@ USBridge protects your virtual media, ISO images, and other user files independe
 | :--- | :--- | :--- |
 | **Ransomware / malware on the target** | Bulk encryption or deletion across network shares. | The target has no bus-level path to the appliance's storage at all — it can't reach it to encrypt or delete anything, regardless of privilege level. |
 | **Root compromise on the target** | An attacker with full root wipes or overwrites your golden images. | New writes never overwrite existing data — they land in a fresh layer, and every sealed snapshot is frozen read-only. See [Storage Security & Immutability](./security-storage.md) for exactly what can and can't touch a snapshot. |
-| **Human error** | An admin accidentally deletes an important ISO or deployment file. | Every snapshot is a point-in-time copy — pull the file back out of whichever snapshot last had it. |
+| **Human error** | An admin accidentally deletes an important file from Backup Flash. | Every snapshot is a point-in-time copy — pull the file back out of whichever snapshot last had it. |
 | **Appliance failure / vendor lock-in** | Data unreadable without proprietary recovery software. | Standard Btrfs, nothing proprietary. Pull the card and mount it on any Linux box. |
 
 ---
