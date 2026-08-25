@@ -59,6 +59,7 @@ Before hand-writing tool calls, have the agent call `resources/read` on `usbridg
 | :--- | :--- |
 | `screen.get` | Current screen as structured `screen.v1` JSON (text runs + color segmentation). Rendering is async — wait ~150–300 ms after sending input before calling this. |
 | `screen.text` | Current screen as plain text lines only (no color data) — same snapshot as `screen.get`, lighter payload. |
+| `screen.get_image` | Current screen as a **lossless PNG screenshot** (base64-encoded MCP image content), plus a `{"width":...,"height":...}` text block. Same capture pipeline and timing rules as `screen.get` — no extra hardware needed. Optional `compression: 0-9` (default `3`) trades encode time for response size; the image itself is always lossless regardless of the setting. |
 | `keyboard.send` | `action: key\|combo\|text`. `key`/`combo` use USB HID codes (Enter=40, Left=80, Down=81, Up=82); `text` also accepts xterm escape sequences (`\x1b[C` etc.) for special keys. Requires `mountdrive.start` with `keyboard: true` first. |
 | `mouse.action` | Move/click/scroll. Requires `mountdrive.start` with `mouse: true` first. |
 | `rndis.set` | Enable/disable the USB-Ethernet (RNDIS) network bridge to the target. |
@@ -76,6 +77,13 @@ Before hand-writing tool calls, have the agent call `resources/read` on `usbridg
 | `scripts.stop` | Cancel a run; it stops at its next `key_press`/`sleep`/`wait_text` checkpoint. |
 
 Full request/response shapes for each tool live in the appliance's own `tools/list` response (`inputSchema` per tool) and in `docs/SCRIPTING_API.md` in the service repository.
+
+> [!TIP]
+> **When to reach for `screen.get_image` instead of `screen.get`/`screen.text`.** The OCR text tools only describe text-mode content — a boot splash/logo, a graphical desktop, a game, BIOS vendor art, or a progress bar/spinner with no readable text is invisible to them. `screen.get_image` returns the actual pixels instead, for that case or whenever the agent needs to visually confirm something the OCR text can't describe. Prefer `screen.get`/`screen.text` when the screen genuinely is text — they're cheaper and skip image decoding on the agent's side.
+>
+> ```json
+> {"jsonrpc":"2.0","id":6,"method":"tools/call","params":{"name":"screen.get_image","arguments":{}}}
+> ```
 
 > [!NOTE]
 > **MCP can run scripts, not write them.** The tool catalog only covers *listing/running/monitoring* Starlark scripts (`scripts.list`/`run`/`status`/`log`/`stop`) — there is no `scripts.write` or `scripts.read` MCP tool. Creating or editing a script's code is a human/client-app action (or a direct, HMAC-signed call to `POST /api/scripts/write` — see [Writing Reliable Scripts](./scripting-automation.md)), not something an MCP agent can do on its own out of the box.
