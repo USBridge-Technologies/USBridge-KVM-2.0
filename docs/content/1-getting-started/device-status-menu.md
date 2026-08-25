@@ -107,7 +107,7 @@ The interface is divided into six core functional submenus:
           <ul>
             <li><b>Network:</b> Manage local Wi-Fi connections, review network interface information, and verify global Internet connectivity status.</li>
             <li><b>System Info:</b> Read-time telemetry dashboard showing core operating temperatures, firmware versions, and system resource load metrics.</li>
-            <li><b>Authentication:</b> Central key authority managing the Master Key, User Control provisioning, Tailscale routing, Moonlight streaming configs, KVM SSH access, and MCP configurations.</li>
+            <li><b>Authentication:</b> Central key authority managing the Master Key, User Control provisioning, Tailscale routing, Moonlight streaming configs, KVM SSH access, and the <a href="../3-bios-in-terminal/mcp-ai-agents.md">MCP</a> AI-agent toggle.</li>
             <li><b>SD Card:</b> Storage maintenance console containing SD card formatting tools and specific Snapshot settings.</li>
             <li><b>Display:</b> Controls panel brightness parameters, HDMI Passthrough toggles, and HDMI Vsync synchronization options.</li>
             <li><b>Language:</b> System-level UI localization adjustments.</li>

@@ -16,7 +16,7 @@ The **BIOS-in-Terminal** engine is explicitly optimized for parsing text-based p
 ---
 
 > [!NOTE]
-> I am continuously working on improving the optical character recognition (OCR) engine. Since processing happens in real-time, minor character recognition or layout artifacts may occasionally occur. 
+> The optical character recognition (OCR) engine is under continuous improvement. Since processing happens in real-time, minor character recognition or layout artifacts may occasionally occur. 
 >
 > If you encounter a specific text-based installer or boot utility that does not parse correctly, please open an issue or contact our support team.
 > 

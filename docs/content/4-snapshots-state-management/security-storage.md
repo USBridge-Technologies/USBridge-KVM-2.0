@@ -11,7 +11,7 @@ Because the underlying snapshot architecture utilizes Copy-on-Write (CoW) file-s
 * **Primary MicroSD Interface:** Requires high-endurance, industrial-grade, or surveillance-grade MicroSD cards. These classes of media are specifically engineered to handle continuous block-level delta operations without premature flash controller failure.
 
 > [!NOTE]
-> I am currently testing and developing native support for external USB-C flash drives and high-speed Solid-State Drives (SSDs). This capability will be released in a future firmware update to allow larger mass storage mapping during heavy OS provisioning sequences.
+> Native support for external USB-C flash drives and high-speed Solid-State Drives (SSDs) is under active development. This capability will be released in a future firmware update to allow larger mass storage mapping during heavy OS provisioning sequences.
 
 ---
 

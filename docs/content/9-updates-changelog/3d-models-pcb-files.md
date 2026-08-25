@@ -15,7 +15,7 @@ The designated archive contains the complete `STL` and `STEP` package required f
 > **Mechanical Note:** Please note that the published 3D models are subject to iterative mechanical revisions and may exhibit minor dimensional variances from finalized injection-molded production samples.
 
 * **Current Hardware Revision:** `v1.0.step`
-* **Download:** [3D Models.7z](./3D%20Models.7z) *(Замените путь на фактический при наличии файла)*
+* **Download:** [3D Models.7z](./3D%20Models.7z)
 
 ---
 

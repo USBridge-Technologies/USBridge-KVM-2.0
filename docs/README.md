@@ -37,7 +37,9 @@ Low-level raw terminal redirection and headless control text streams.
 <ul>
 <li><a href="./content/3-bios-in-terminal/technology-overview.md">Technology Overview</a></li>
 <li><a href="./content/3-bios-in-terminal/supported-bios-uefi-types.md">Supported BIOS/UEFI Types</a></li>
-<li><a href="./content/3-bios-in-terminal/logging-automation.md">Logging & Boot Automation</a></li>
+<li><a href="./content/3-bios-in-terminal/logging-automation.md">Automation & AI Agents: Overview</a></li>
+<li><a href="./content/3-bios-in-terminal/scripting-automation.md">Starlark Scripting Reference</a></li>
+<li><a href="./content/3-bios-in-terminal/mcp-ai-agents.md">AI Agent Integration (MCP)</a></li>
 </ul>
 </td>
 <td valign="top">

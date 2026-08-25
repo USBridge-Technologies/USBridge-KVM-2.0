@@ -19,7 +19,7 @@ When the Factory Reset sequence is authorized via the local menu, the internal c
 | System Component | Post-Reset State |
 | :--- | :--- |
 | **Network Configuration** | Complete purge of static IP assignments, routing tables, and cached Wi-Fi credentials. The primary interface reverts to default DHCP discovery. |
-| **Authentication Material** | Cryptographic erasure of all access tokens, including QUIC session keys, custom SSH host keys, and local administrative passwords. |
+| **Authentication Material** | Cryptographic erasure of all access tokens, including the appliance's master API secret, custom SSH host keys, and Tailscale registration state. |
 | **Device Preferences** | Restores all local LCD menu settings, display parameters, and HID emulation toggles to absolute factory defaults. |
 
 ---
