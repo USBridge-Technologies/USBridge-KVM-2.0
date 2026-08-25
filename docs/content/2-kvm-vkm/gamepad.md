@@ -8,13 +8,13 @@ The USBridge-KVM 2.0 architecture includes a native hardware-level input emulati
 
 The hardware emulation layer bypasses the need for host-side virtualization drivers, presenting itself to the target system as a native USB Human Interface Device (HID). Two report formats are supported:
 
-* **DirectInput (default):** A generic 8-byte HID gamepad report with 8-bit axes. Recognized out-of-the-box by any OS or BIOS/UEFI setup utility that already supports generic HID game controllers, without a vendor-specific driver.
-* **XInput (Xbox 360-compatible):** Emulates a genuine Xbox 360 wired controller (USB VID:PID `045E:028E`) at the raw USB protocol level. Windows loads its native `xusb22.sys` driver and registers the device as a real XInput controller — indistinguishable from hardware to Steam and XInput-aware games, including rumble feedback. This mode starts automatically the moment a gamepad is connected through Moonlight/Sunshine.
+* **DirectInput (default):** A generic 8-byte HID gamepad report with 8-bit axes. Recognized out-of-the-box by any OS or BIOS/UEFI setup utility that already supports generic HID game controllers, without a vendor-specific driver. Coexists with keyboard, mouse, RNDIS, and mounted drives in the same USB gadget, same as any other HID function.
+* **XInput (Xbox 360-compatible):** Emulates a genuine Xbox 360 wired controller (USB VID:PID `045E:028E`) at the raw USB protocol level. Windows loads its native `xusb22.sys` driver and registers the device as a real XInput controller — indistinguishable from hardware to Steam and XInput-aware games, including rumble feedback. This mode starts automatically the moment a gamepad is connected through Moonlight/Sunshine. **Requires exclusive USB mode** — it cannot be combined with keyboard, mouse, RNDIS, or drives at the same time; attaching any of those while XInput is active (or vice versa) is rejected rather than silently combined.
 
 There is no PlayStation-specific (DualShock/DualSense) controller identity — a physical PlayStation controller connected on the client side is translated into one of the two USB HID formats above, the same as any other input source.
 
 ### Configuring the Mode
-Selectable per-device in the **client app** (and via the [REST API](../10-developer-api/rest-api-reference.md#4-usb-gadget--device-management)'s gamepad device-attach call) — there's no front-panel equivalent. XInput mode also starts automatically the moment a gamepad is connected through Moonlight/Sunshine, without you having to select anything.
+Selectable per-device in the **client app** (and via the [REST API](../10-developer-api/rest-api-reference.md#4-usb-gadget--device-management)'s gamepad device-attach call) — there's no front-panel equivalent.
 
 ---
 
