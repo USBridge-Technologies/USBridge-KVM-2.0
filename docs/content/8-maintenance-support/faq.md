@@ -32,6 +32,9 @@ No. Data snapshots and file archives are strictly written to removable external 
 
 ## Security & Immutability Models
 
+> [!NOTE]
+> This section covers data/snapshot immutability. For how pairing, API access, and streaming sessions are authenticated and encrypted, see [Security & Authentication Model](../10-developer-api/security-model.md).
+
 #### What differentiates the USBridge backup model from a standard NAS?
 The appliance intentionally omits standard network file-sharing protocols (such as SMB or NFS) to ensure strict lifecycle isolation. A compromised target operating system lacks the network path or permissions to delete or overwrite historical snapshots, providing absolute resilience during severe ransomware incidents.
 

@@ -43,3 +43,5 @@ By default, the client configuration menu pre-selects the **Register Device in T
 Once the Tailscale handshake or local authentication cycle completes, the client app will securely bind the session. 
 
 The primary interactive workspace will transition immediately to the **Control** tab, rendering the target server's real-time video pipeline. You now have complete, isolated, out-of-band command over the connected bare-metal infrastructure.
+
+For how this pairing step, API access, and streaming sessions are secured end-to-end, see [Security & Authentication Model](../10-developer-api/security-model.md).

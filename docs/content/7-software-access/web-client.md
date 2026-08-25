@@ -13,3 +13,5 @@
 The appliance needs **WebRTC enabled** to accept this kind of session — it's on by default (**Settings → Authentication → WebRTC** on the front panel). If the web client can't connect but the desktop/mobile clients work fine, that toggle is the first thing to check.
 
 Once connected, the web client provisions the same **Device**, **Control**, and **Snapshots** modules described in the [Desktop Client](./desktop-app.md) page.
+
+Browser sessions authenticate the same way as the REST API and are always encrypted in transit at the WebRTC layer — see [Security & Authentication Model](../10-developer-api/security-model.md).

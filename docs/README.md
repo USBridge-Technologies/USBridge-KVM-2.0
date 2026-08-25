@@ -97,6 +97,7 @@ General troubleshooting routines and emergency system recoveries.
 Direct HTTP access for custom integrations, scripts, and AI agents.
 <ul>
 <li><a href="./content/10-developer-api/rest-api-reference.md">REST API Reference</a></li>
+<li><a href="./content/10-developer-api/security-model.md">Security & Authentication Model</a></li>
 <li><a href="./content/3-bios-in-terminal/scripting-automation.md">Starlark Scripting Reference</a></li>
 <li><a href="./content/3-bios-in-terminal/mcp-ai-agents.md">AI Agent Integration (MCP)</a></li>
 </ul>
