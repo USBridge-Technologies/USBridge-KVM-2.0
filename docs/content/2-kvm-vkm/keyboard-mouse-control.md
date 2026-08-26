@@ -22,6 +22,9 @@ To ensure precise interaction with both graphical operating systems and legacy i
 ### Configuring the Mode
 Mode (and the multi-monitor display index/count above) is a **client-app and API** setting — there's no dedicated front-panel screen for it. Via the REST API, it's part of the same device-attach call that brings up the mouse in the first place: see [USB Gadget / Device Management](../10-developer-api/rest-api-reference.md#4-usb-gadget--device-management) and [Input Control](../10-developer-api/rest-api-reference.md#5-input-control).
 
+> [!NOTE]
+> The Android client adds two more touch-native modes on top of these two — a relative-drag **Cursor** mode (the mobile default) and a tilt-driven **GyroMouse** mode. See [Mouse Input Modes (Android)](../7-software-access/mobile-app.md#mouse-input-modes-android) in the Mobile App docs.
+
 ---
 
 ##  Keyboard Virtualization & Protocol Stability

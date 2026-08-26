@@ -24,6 +24,12 @@ Governs the configuration of virtual peripherals and external media exposed to t
 * **Input Emulation:** Configures composite USB HID injection for baseline keyboard and pointer emulation, retaining hardware-level compatibility for BIOS, text-based UEFI, and pre-OS environments.
 * **Virtual Media Staging:** Facilitates the remote mounting of `.iso` images or virtual drives directly from the cross-platform client, enabling bare-metal OS installation without physical media presence.
 
+#### Mouse Input Modes (Android)
+On top of the [Absolute and TouchPad (relative) modes](../2-kvm-vkm/keyboard-mouse-control.md#mouse-control--cursor-tracking-modes) shared with the desktop client, Android has two additional touch-native modes — pick between all four from the mouse device's **Mode** dropdown in the Devices tab list:
+
+* **Cursor** (default on Android) — a small pointer is rendered locally on top of the video. Drag a finger anywhere on the screen to move it *relative* to your finger's motion, the same way a laptop trackpad works — you're not tapping directly on a target, so overshoot/undershoot is easy to correct mid-drag. Tap to click, press-and-drag to click-and-drag. This is the mode that makes hitting small BIOS/UEFI menu targets from a phone screen actually practical.
+* **GyroMouse** — moves that same on-screen cursor by tilting the phone instead of dragging a finger, with the volume up/down buttons acting as left/right click. Useful one-handed, or when you want the touchscreen itself free for scrolling/zooming while still pointing.
+
 ### 2. Control Tab (Live KVM)
 
 A mobile KVM console for live monitoring and direct terminal interaction with the remote server.
