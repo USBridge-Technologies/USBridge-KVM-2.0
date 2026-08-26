@@ -36,6 +36,9 @@ By default, the client configuration menu pre-selects the **Register Device in T
 3. Authenticate using your organization's credentials to authorize the USBridge hardware as a trusted node within your secure tailnet mesh overlay.
 4. *Alternative Workflow:* If your infrastructure deployment dictates air-gapped local isolation, uncheck this option to restrict data routing strictly to the local subnet.
 
+> [!TIP]
+> **Locking access down to the tailnet only:** once you're registered, front panel → **Settings → Authentication → Tailscale → Tailscale-Only Access** closes off the REST/MCP API and the KVM SSH console to everything except `127.0.0.1` and your tailnet IP — LAN is kept reachable only as a bootstrap path until registration completes, then it's torn down automatically. Combine it with turning off **WebRTC** (same Authentication menu) for what we call **Paranoia Mode**: no LAN surface at all, and no unauthenticated local WebRTC signaling endpoint either — the appliance is reachable only through an authenticated tailnet session. See [Security & Authentication Model §5](../10-developer-api/security-model.md#5-tailscale--an-additional-layer-but-not-for-every-path).
+
 ---
 
 ## Setup Verification

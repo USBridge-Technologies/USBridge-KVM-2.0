@@ -46,6 +46,19 @@ This applies to the API (§1–2) and Moonlight (§3) sessions routed through a 
 > [!TIP]
 > For end-to-end encryption of the Moonlight video stream itself on an untrusted or shared network, connect over Tailscale (or your own VPN) rather than directly over a bare LAN — recommended for any session outside a network you fully trust. The Web Client is already encrypted in transit by WebRTC regardless.
 
+### 5.1 Tailscale-Only Access — Closing the LAN Surface Entirely
+
+Everything above still leaves the API and KVM SSH console reachable on the LAN, credential-gated but network-reachable. **Tailscale-Only Access** (front panel: **Settings → Authentication → Tailscale**) goes a step further and removes that surface instead of just gating it:
+
+* Once the appliance is **registered on a tailnet**, every LAN-facing listener for both the REST/MCP API and the KVM SSH console is torn down — only `127.0.0.1` (local/on-device access) and the appliance's tailnet IP stay reachable. There is no longer a LAN route to try a credential against in the first place.
+* It's **one switch** for both surfaces — the same toggle governs the API and SSH console together, so there's no way to lock down one and forget the other.
+* **Bootstrap safety:** if you turn this on *before* the device has finished registering (no tailnet IP yet), LAN is deliberately kept reachable — otherwise a device that already has this set (e.g. restored from a saved config) could have no way to be reached to register at all. The moment registration completes, the very next reconcile pass (a few seconds later) closes LAN on its own — no extra step, no restart, and no window where you have to remember to come back and lock it down yourself.
+* Turning the switch back off reopens LAN immediately, registered or not.
+
+### 5.2 Paranoia Mode
+
+**Tailscale-Only Access (§5.1) + WebRTC turned off** (same Authentication menu — see [Web Client](../7-software-access/web-client.md)) together are what we call **Paranoia Mode**: no LAN-facing API or SSH listener, and no local WebRTC signaling endpoint either — the entire appliance is reachable only through an already-authenticated tailnet session. The trade-off is the Web Client stops working (it depends on WebRTC and can't establish a Tailscale tunnel itself, per §4 above) — use the desktop/mobile client over Tailscale instead.
+
 ---
 
 ## 6. Practical Recommendations
@@ -53,4 +66,5 @@ This applies to the API (§1–2) and Moonlight (§3) sessions routed through a 
 * **Treat the pairing QR/secret like a root credential.** Anyone who scans it can pair a new client with full API access — but even full API access doesn't put your snapshot history at risk: there's no API or screen path that deletes or formats existing snapshots, only physical access to the device or the card itself. See [Security & Data Protection](../4-snapshots-state-management/security-storage.md#3-no-automated-deletion-and-no-remote-way-to-erase-snapshots).
 * **Give each administrator their own login** via [Users Control](../3-bios-in-terminal/technology-overview.md) instead of sharing one account.
 * **Prefer Tailscale** for API/Moonlight sessions outside a network you fully control.
+* **For the strictest lockdown, enable Paranoia Mode** (§5.2) — Tailscale-Only Access plus WebRTC off — so the appliance has no LAN-reachable API/SSH surface at all.
 * **Periodically review Paired Clients** and unpair anything you don't recognize or no longer use.
