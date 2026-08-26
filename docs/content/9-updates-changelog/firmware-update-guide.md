@@ -15,6 +15,12 @@ From the front panel: **Settings → Updates**.
 
 The screen also shows the appliance's current firmware version and its [license/trial status](../8-maintenance-support/faq.md).
 
+> [!TIP]
+> **Check right after first connecting to the network.** Run a manual **Check for update** here as a standard step of first-time setup (see [Quick Start Guide](../1-getting-started/quick-start.md)), not only when you suspect you're out of date.
+
+> [!NOTE]
+> The appliance has no battery-backed clock, so a **Check for update** run in the first minute or two after connecting to the network can fail with an error — it's waiting on an NTP time sync that hasn't finished yet, not an actual update failure. Give it a minute and try again if the very first check right after connecting errors out.
+
 > [!IMPORTANT]
 > **Why the separate Commit step matters.** An update installs to a second, inactive partition and boots into it — but it isn't made permanent until you explicitly **Commit** it. This is a safety net: if the new firmware fails to boot or misbehaves, the device can fall back to the previous, known-good partition instead of being stuck on a bad update. Don't skip the Commit step once you've confirmed the device is working normally on the new version.
 

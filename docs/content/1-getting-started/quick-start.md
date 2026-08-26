@@ -37,11 +37,16 @@ The main screen provides quick access to the device's core functions. Use the lo
 
 ## 3. Installation & First Launch
 
-To get your out-of-band session up and running, follow these four basic deployment steps:
+To get your out-of-band session up and running, follow these five basic deployment steps:
 
 1. **USB-C: Power & HID:** Connect the primary USB-C port to the target computer to enable immediate power delivery and peripheral emulation.
 2. **Video Capture:** Establish the video signal path: `Target HDMI Output` -> `HDMI Cable` -> `Capture Dongle` -> `USBridge Host USB Port`.
 3. **Network Setup:** Access the onboard interface and navigate to **Settings** -> **Network**. It lists every interface currently available — Wi-Fi networks to join, or **Ethernet: `<interface>`** if you'd rather use a wired connection (plug a USB-Ethernet adapter into the appliance; it appears in this list automatically). Once connected, the device displays its assigned IP address on the screen.
-4. **Establish Connection:** With the hardware and network fully initialized, you are ready to launch your remote session. Open the cross-platform client application and enter the displayed IP address along with the Access Token (or sync instantly by scanning the onscreen QR code). For a step-by-step walkthrough of the software connection process, proceed to the [Initial Setup & Client Pairing](./initial-setup.md).
+
+   > [!NOTE]
+   > **Give it a minute right after connecting.** The appliance has no battery-backed clock, so it only has a correct system time once it's reached the network and synced over NTP. For a minute or two right after connecting, **Check for update** (next step) can fail outright with an error instead of finding anything — that's the time sync still catching up, not a real failure. If it happens, just wait a minute and try again.
+
+4. **Check for Updates:** With the network now up, go to **Settings** -> **Updates** and run a manual **Check for update** — do this as a standard part of first-time setup, not only when you suspect you're out of date. See [Firmware Update Guide](../9-updates-changelog/firmware-update-guide.md).
+5. **Establish Connection:** With the hardware, network, and firmware fully up to date, you are ready to launch your remote session. Open the cross-platform client application and enter the displayed IP address along with the Access Token (or sync instantly by scanning the onscreen QR code). For a step-by-step walkthrough of the software connection process, proceed to the [Initial Setup & Client Pairing](./initial-setup.md).
 
 
