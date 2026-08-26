@@ -26,7 +26,10 @@ The snapshot daemon watches the storage volume for file-system activity and free
 
 ### Client App
 1. **Snapshots** tab → select a snapshot entry → **Info** icon. This shows its date, size, and a **changelog**: the actual file-level operations captured in it (creation, rename, truncation, timestamp updates, and more) — not just a generic "something changed" summary.
-2. To recover data, click that snapshot's **Mount** button — unlike the live **Backup Flash** volume, a historical snapshot always mounts **read-only** via MTP. Browse it with your file manager and copy out whatever you need; there's no risk of altering the historical state while you're in there, because the mount itself won't accept writes.
+2. To recover data, click that snapshot's connect icon — unlike the live **Backup Flash** volume, a historical snapshot always mounts **read-only** via MTP. Browse it with your file manager and copy out whatever you need; there's no risk of altering the historical state while you're in there, because the mount itself won't accept writes.
+3. The appliance exposes only **one** MTP storage slot at a time, so mounting a snapshot swaps out whatever was previously mounted there — the live **Backup Flash** or a different snapshot. Connecting the live flash works the same way: click its connect icon on the **Backup Flash** row (this is the same action described in [§2](#2-getting-data-onto-the-appliance) above); click it again to disconnect, which asks for confirmation since it stops all connected USB devices and restarts them without it.
+4. Once a snapshot is mounted, its row shows a solid dot instead of a button — there's no direct "unmount" action on the row itself. To disconnect it without swapping in something else, stop it from the **Devices** tab instead.
+5. Mounting the flash or a snapshot needs a free USB device slot. If all slots are already taken by other devices (keyboard, mouse, RNDIS, drives), free one on the **Devices** tab first — the app will tell you if it's blocked for this reason.
 
 ### Without Mounting Anything
 * **One file's history across every snapshot:** the [REST API](../10-developer-api/rest-api-reference.md#9-backup--snapshots-btrfs) can look up a specific path directly — which snapshots contain it, its size and timestamps in each — without mounting and searching snapshots one at a time.
