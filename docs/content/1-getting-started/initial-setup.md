@@ -32,9 +32,12 @@ Before proceeding, ensure you have downloaded the latest version of the Client f
 By default, the client configuration menu pre-selects the **Register Device in Tailscale** option. We highly recommend keeping this enabled to securely route out-of-band KVM traffic across untrusted networks without exposing open firewall ports.
 
 1. Leave the **Register Device in Tailscale** checkbox active and click **Save & Connect**.
-2. The client will automatically trigger a browser routing sequence to the official Tailscale authentication portal.
-3. Authenticate using your organization's credentials to authorize the USBridge hardware as a trusted node within your secure tailnet mesh overlay.
+2. The appliance isn't yet logged into a tailnet, so it generates a one-time **Tailscale login link** and hands it back to the client (it's the same `tailscale up` login flow Tailscale itself uses — nothing USBridge-specific about the link). The client polls the appliance for this link and, the moment it appears, **opens it automatically** in your workstation's default browser (or via an app-to-app link on Android) — you shouldn't need to copy anything by hand.
+3. Authenticate using your organization's credentials on that page to authorize the USBridge hardware as a trusted node within your secure tailnet mesh overlay.
 4. *Alternative Workflow:* If your infrastructure deployment dictates air-gapped local isolation, uncheck this option to restrict data routing strictly to the local subnet.
+
+> [!NOTE]
+> **If the browser doesn't open on its own** (no default browser set on that workstation, a popup blocker, or you're pairing from a headless/remote session), you can pull up the identical login link directly on the appliance instead: front panel → **Settings → Authentication → Tailscale → Manual registration**. The device requests the same one-time link and displays it on-screen — open it (or type it) into a browser on any machine to complete the same authorization step. Useful any time you need to (re-)register without going through the client's own connection flow at all.
 
 > [!TIP]
 > **Locking access down to the tailnet only:** once you're registered, front panel → **Settings → Authentication → Tailscale → Tailscale-Only Access** closes off the REST/MCP API and the KVM SSH console to everything except `127.0.0.1` and your tailnet IP — LAN is kept reachable only as a bootstrap path until registration completes, then it's torn down automatically. Combine it with turning off **WebRTC** (same Authentication menu) for what we call **Paranoia Mode**: no LAN surface at all, and no unauthenticated local WebRTC signaling endpoint either — the appliance is reachable only through an authenticated tailnet session. See [Security & Authentication Model §5](../10-developer-api/security-model.md#5-tailscale--an-additional-layer-but-not-for-every-path).
