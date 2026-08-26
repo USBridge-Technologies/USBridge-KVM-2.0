@@ -31,6 +31,15 @@ The snapshot daemon watches the storage volume for file-system activity and free
 4. Once a snapshot is mounted, its row shows a solid dot instead of a button — there's no direct "unmount" action on the row itself. To disconnect it without swapping in something else, stop it from the **Devices** tab instead.
 5. Mounting the flash or a snapshot needs a free USB device slot. If all slots are already taken by other devices (keyboard, mouse, RNDIS, drives), free one on the **Devices** tab first — the app will tell you if it's blocked for this reason.
 
+### Front Panel
+No client app or network access needed — the same **Snapshots** menu used to mount the live **Backup Flash** ([§2](#2-getting-data-onto-the-appliance)) lists every historical snapshot too, in one combined list. See [Onboard Device Status & Menu Navigation](../1-getting-started/device-status-menu.md#2-main-menu-reference-specification) for the physical controls; on that screen specifically:
+* Joystick **Up/Down** — move the selection between the live flash and each snapshot.
+* **Button 1** — mount the selected entry. As with the client app, only one thing can be mounted at a time — mounting a different entry swaps out whatever was mounted before.
+* **Button 2** — unmount the selected entry, if it's the one currently mounted. Unlike the client app's Snapshots tab (where a mounted snapshot has no direct unmount control and has to be stopped from the Devices tab), the front panel can unmount a snapshot directly.
+* **Button 3** — refresh the list.
+
+A confirmation prompt appears before either action actually takes effect, since it reconfigures the appliance's USB gadget.
+
 ### Without Mounting Anything
 * **One file's history across every snapshot:** the [REST API](../10-developer-api/rest-api-reference.md#9-backup--snapshots-btrfs) can look up a specific path directly — which snapshots contain it, its size and timestamps in each — without mounting and searching snapshots one at a time.
 * **From a Starlark script:** `list_backups()` returns the same snapshot list the client shows (name, size, timestamps, and an `mtp_source` you can pass straight to `insert_media()`/`reconnect_gadget()`) — useful for automating something like "mount last night's snapshot as media and boot from it" without any manual steps. See the [Starlark Scripting Reference](../3-bios-in-terminal/scripting-automation.md#3-built-in-functions).

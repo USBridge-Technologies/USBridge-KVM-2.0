@@ -57,18 +57,17 @@ The interface is divided into six core functional submenus:
     <td width="65%" valign="top" style="border: none; padding-left: 20px;">
       <ul>
         <li><b>Functional Purpose:</b> Btrfs-driven immutable data protection console.</li>
-        <li><b>Capabilities:</b> Displays a structured chronological list of your data snapshots. Allows you to review block-level deltas, trigger manual captures, or restore previously saved states. This creates an isolated, hardware-level immutable defense line against accidental deletion or ransomware payloads on the target machine.</li>
+        <li><b>Capabilities:</b> Displays a single chronological list combining the live <b>Backup Flash</b> volume and every historical snapshot — see <a href="../4-snapshots-state-management/creating-managing-snapshots.md">Creating &amp; Managing Snapshots</a> for the full read-write-vs-read-only distinction between them. This creates an isolated, hardware-level immutable defense line against accidental deletion or ransomware payloads on the target machine.</li>
         <li><b>Supported Operations:</b>
           <ul>
-            <li><b>Mount:</b> Mounts the selected snapshot directly to the host machine, making it appear instantly as a standard USB flash drive for data recovery.</li>
-            <li><b>(Unmount:</b> Safely disconnects the mounted snapshot drive from the host system.</li>
-            <li><b>(Refresh:</b> Re-indexes the storage directory to update the list of available snapshots.</li>
+            <li><b>Mount (Button 1):</b> Mounts the selected entry directly to the host machine, making it appear instantly as a standard USB flash drive for data recovery. Only one entry can be mounted at a time — mounting a different one swaps out whatever was mounted before.</li>
+            <li><b>Unmount (Button 2):</b> Safely disconnects the mounted entry from the host system, if it's the one currently selected.</li>
+            <li><b>Refresh (Button 3):</b> Re-indexes the storage directory to update the list.</li>
           </ul>
         </li>
       </ul>
     </td>
   </tr>
-</table>
 </table>
 
 ### Event Log
