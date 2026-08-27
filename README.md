@@ -164,10 +164,10 @@ The agent runs as a background service on your target OS (servers, remote workst
 4. **Snapshot Setup (Data Protection):** Insert a MicroSD card into the KVM slot, open the device settings in the client app, and format the card. Once formatted, a backup drive will appear under the "Snapshots" tab, running a Btrfs-based Read-Write Overlay mode to protect your data.
 
 ## Headless Provisioning (Offline Setup)
-If your USBridge-KVM 2.0 device is not connected to a display, or you want to automate the setup of multiple devices, you can configure it headlessly via an SD card:
-1. Format a MicroSD card to **FAT32** or **exFAT**.
+If your USBridge-KVM 2.0 device is not connected to a display, or you want to automate the setup of multiple devices, you can configure it headlessly via an SD card (or a plain USB flash drive in one of the KVM's USB ports — both are scanned the same way):
+1. Format a MicroSD card (or USB flash drive) to **FAT32** or **exFAT**.
 2. Create a file named `usbridge_provision.json` in the root directory.
-3. Use the following JSON syntax to configure network, static IPs, or initial SSH users:
+3. Use the following JSON syntax to configure network, static IPs, initial SSH users, and feature toggles:
 
 ```json
 {
@@ -190,10 +190,17 @@ If your USBridge-KVM 2.0 device is not connected to a display, or you want to au
       "username": "admin",
       "password": "securepassword123"
     }
-  ]
+  ],
+  "sshkvm_enabled": true,
+  "mcp_enabled": true,
+  "webrtc_enabled": true,
+  "moonlight_enabled": true,
+  "hdmi_passthrough": true
 }
 ```
-4. Insert the card into the KVM and turn it on. The device will automatically detect and apply the configuration.
+- The `ip` field's `/24` suffix is optional and sets the subnet mask (any prefix length works, e.g. `/16`) — omit it and the mask defaults to `/24`.
+- The five toggles at the bottom are all optional — omit any of them to leave that setting as it currently is on the device. `sshkvm_enabled`, `mcp_enabled`, and `hdmi_passthrough` take effect immediately; `webrtc_enabled` and `moonlight_enabled` are picked up on the device's next start.
+4. Insert the card/drive into the KVM and turn it on. The device will automatically detect and apply the configuration.
 > **Security:** Upon successful application, the `master_key` field will be automatically erased, and the file will be renamed to `usbridge_provision.applied.json`. This prevents unauthorized access if the card is removed, and stops the device from applying the same config on every reboot. If you want to configure the device again, simply create a new `usbridge_provision.json` file. **If a display is attached, you'll be prompted to physically confirm the configuration on-screen before it's applied. The device senses whether a display is attached via the front-panel buttons' pull-up resistors — without a display attached, there's no way to confirm on-screen, so the configuration is applied on its own.**
 
 ### Connecting to BIOS-in-Terminal via SSH:
