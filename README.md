@@ -163,6 +163,39 @@ The agent runs as a background service on your target OS (servers, remote workst
 3. **Launch:** Open the **USBridge-Client** application, add your new device using its IP address, and you are ready to go.
 4. **Snapshot Setup (Data Protection):** Insert a MicroSD card into the KVM slot, open the device settings in the client app, and format the card. Once formatted, a backup drive will appear under the "Snapshots" tab, running a Btrfs-based Read-Write Overlay mode to protect your data.
 
+## Headless Provisioning (Offline Setup)
+If your USBridge-KVM 2.0 device is not connected to a display, or you want to automate the setup of multiple devices, you can configure it headlessly via an SD card:
+1. Format a MicroSD card to **FAT32** or **exFAT**.
+2. Create a file named `usbridge_provision.json` in the root directory.
+3. Use the following JSON syntax to configure network, static IPs, or initial SSH users:
+
+```json
+{
+  "master_key": "my-secret-key-123",
+  "interfaces": {
+    "eth0": {
+      "mode": "static",
+      "ip": "192.168.1.100/24",
+      "gateway": "192.168.1.1",
+      "dns": "8.8.8.8"
+    },
+    "wlan0": {
+      "mode": "dhcp",
+      "ssid": "MyWiFi",
+      "password": "My WiFi P@ssw0rd!"
+    }
+  },
+  "users": [
+    {
+      "username": "admin",
+      "password": "securepassword123"
+    }
+  ]
+}
+```
+4. Insert the card into the KVM and turn it on. The device will automatically detect and apply the configuration.
+> **Security:** Upon successful application, the `master_key` field will be automatically erased, and the file will be renamed to `usbridge_provision.applied.json`. This prevents unauthorized access if the card is removed, and stops the device from applying the same config on every reboot. If you want to configure the device again, simply create a new `usbridge_provision.json` file. If the device has a display, you will be prompted to physically confirm the configuration.
+
 ### Connecting to BIOS-in-Terminal via SSH:
 1. In the app interface, go to **Settings** -> **Authentication** -> **User Control** -> **Create User**.
 2. Set up a username and password for authorization.
