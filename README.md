@@ -194,7 +194,7 @@ If your USBridge-KVM 2.0 device is not connected to a display, or you want to au
 }
 ```
 4. Insert the card into the KVM and turn it on. The device will automatically detect and apply the configuration.
-> **Security:** Upon successful application, the `master_key` field will be automatically erased, and the file will be renamed to `usbridge_provision.applied.json`. This prevents unauthorized access if the card is removed, and stops the device from applying the same config on every reboot. If you want to configure the device again, simply create a new `usbridge_provision.json` file. If the device has a display, you will be prompted to physically confirm the configuration.
+> **Security:** Upon successful application, the `master_key` field will be automatically erased, and the file will be renamed to `usbridge_provision.applied.json`. This prevents unauthorized access if the card is removed, and stops the device from applying the same config on every reboot. If you want to configure the device again, simply create a new `usbridge_provision.json` file. **If a display is attached, you'll be prompted to physically confirm the configuration on-screen before it's applied. The device senses whether a display is attached via the front-panel buttons' pull-up resistors — without a display attached, there's no way to confirm on-screen, so the configuration is applied on its own.**
 
 ### Connecting to BIOS-in-Terminal via SSH:
 1. In the app interface, go to **Settings** -> **Authentication** -> **User Control** -> **Create User**.
