@@ -114,7 +114,17 @@ The device is now in Maskrom mode and enumerates over USB as a Rockchip loader d
 
 ### 4.4 Flash the Image
 
-**Linux — recommended: `flash-tool/flash-device-fast.sh`** (this repo)
+**Linux — recommended: one-liner installer** (also covers steps 4.1 and 4.2 for you)
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/USBridge-Technologies/USBridge-KVM-2.0/main/flash-tool/install.sh | bash
+```
+Installs `rkdeveloptool`/`zstd`/`python3` if missing (Debian/Ubuntu via `apt`), downloads the flashing script + boot loader + the **latest** firmware image and block map, prompts you to enter Maskrom mode (step 4.3), and flashes — writing only the blocks that actually contain data (confirmed live: a 14.4 GiB image drops to writing 828.5 MiB actually used). `USBRIDGE_VERSION=<version>` pins a specific build instead of latest. Full details: [`flash-tool/README.md`](https://github.com/USBridge-Technologies/USBridge-KVM-2.0/tree/main/flash-tool).
+
+> [!NOTE]
+> **Running this from Windows?** See [4.5 Flashing from Windows via WSL](#45-flashing-from-windows-via-wsl) below — you can use this exact one-liner from inside WSL, no separate Linux machine needed.
+
+**Linux — manual: `flash-tool/flash-device-fast.sh`** (if you'd rather download the files yourself and inspect the script first)
 
 ```bash
 git clone https://github.com/USBridge-Technologies/USBridge-KVM-2.0.git
@@ -124,10 +134,7 @@ cd USBridge-KVM-2.0/flash-tool
 # no need to decompress the .zst yourself, the script does it on the fly
 ./flash-device-fast.sh
 ```
-It auto-detects the `.gptimg`/`.gptimg.zst` next to it, downloads the loader into RAM for you, decompresses on the fly if given the `.zst` directly (no multi-GB temporary file written to disk), and uses the `.bmap` to write only the blocks that actually contain data — confirmed live: a 14.4 GiB image drops to writing 828.5 MiB actually used. See [`flash-tool/README.md`](https://github.com/USBridge-Technologies/USBridge-KVM-2.0/tree/main/flash-tool) for details.
-
-> [!NOTE]
-> **Running this from Windows?** See [4.5 Flashing from Windows via WSL](#45-flashing-from-windows-via-wsl) below — you can use this exact fast Linux path without a separate Linux machine.
+Same underlying script the installer above uses. See [`flash-tool/README.md`](https://github.com/USBridge-Technologies/USBridge-KVM-2.0/tree/main/flash-tool) for details.
 
 **Linux — manual, plain `rkdeveloptool`** (no `.bmap` needed, but slower — writes the entire image including its empty space):
 ```bash
@@ -186,7 +193,7 @@ Yes — you can run the fast Linux path (`flash-tool/flash-device-fast.sh`, step
    usbipd attach --wsl --busid=<BUSID>
    ```
 3. Back in WSL, confirm it showed up: `lsusb` should now list a Rockchip device (`2207:350a`).
-4. Run `flash-device-fast.sh` exactly as in the Linux instructions above (step 4.4) — from WSL's point of view this is a normal Linux USB device now, nothing else is different.
+4. Run the one-liner installer (or `flash-device-fast.sh` manually) exactly as in the Linux instructions above (step 4.4) — from WSL's point of view this is a normal Linux USB device now, nothing else is different.
 
 > [!NOTE]
 > If the device isn't visible after `attach`, double check you ran `usbipd` from an **Administrator** PowerShell — both `bind` and `attach` need elevation. If you unplug and replug the device (e.g. between attempts), you'll need to `usbipd attach` again — Windows treats it as a new USB connection event.

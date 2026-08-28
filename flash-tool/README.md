@@ -10,42 +10,50 @@ New to USBridge-KVM 2.0? See the [product page](https://www.usbridge.io/) and th
 
 | File | What it is |
 | :--- | :--- |
-| `flash-device-fast.sh` | The flashing script. Uses a `.bmap` block map to write only the eMMC blocks that actually contain data — a 14.4 GiB image drops to ~830 MiB actually written. Accepts the downloaded `.gptimg.zst` directly and decompresses it on the fly (no multi-GB temporary file, no separate decompress step). |
+| `install.sh` | One-shot installer — installs prerequisites, downloads everything below plus the latest firmware, and runs the flash. This is the file the `curl \| bash` one-liner fetches. |
+| `flash-device-fast.sh` | The flashing script itself. Uses a `.bmap` block map to write only the eMMC blocks that actually contain data — a 14.4 GiB image drops to ~830 MiB actually written. Accepts the downloaded `.gptimg.zst` directly and decompresses it on the fly (no multi-GB temporary file, no separate decompress step). |
 | `rk356x_spl_loader_v1.23.114.bin` | The RK3566 boot loader binary `rkdeveloptool` needs to initialize DDR before it can write anything. Not the firmware itself — a small helper the script pushes into the chip's RAM automatically. |
 
-## Prerequisites
+## Quick start (recommended): one-liner installer
 
-1. **`rkdeveloptool`** — the Rockchip USB flashing CLI.
-   - Debian/Ubuntu Linux: `sudo apt install rkdeveloptool`
-   - Other Linux distros / macOS / Windows (via WSL): see [Install a Rockchip Flashing Tool](../docs/content/9-updates-changelog/firmware-update-guide.md#42-install-a-rockchip-flashing-tool) in the full guide.
-2. **`zstd`** (usually already installed on Linux; `sudo apt install zstd` if not).
-3. **`python3`** (used to parse the `.bmap` and stream the write).
-4. The firmware image + block map, matching versions, from **[ota.usbridge.io/flash-images/](https://ota.usbridge.io/flash-images/)**:
-   - `usbridge-rz3w-<version>.gptimg.zst`
-   - `usbridge-rz3w-<version>.gptimg.bmap`
-
-## Usage
+On Linux (or WSL on Windows — see [§ 4.5](../docs/content/9-updates-changelog/firmware-update-guide.md#45-flashing-from-windows-via-wsl) of the full guide first for the one-time USB-passthrough setup):
 
 ```bash
-git clone https://github.com/USBridge-Technologies/USBridge-KVM-2.0.git
-cd USBridge-KVM-2.0/flash-tool
-
-# put your downloaded usbridge-rz3w-<version>.gptimg.zst and matching
-# .gptimg.bmap in this directory (the loader binary already ships here)
-
-./flash-device-fast.sh
+curl -fsSL https://raw.githubusercontent.com/USBridge-Technologies/USBridge-KVM-2.0/main/flash-tool/install.sh | bash
 ```
 
-Or point it at an image anywhere else:
+This one command does everything: installs `rkdeveloptool`/`zstd`/`python3` if missing (Debian/Ubuntu via `apt`), downloads `flash-device-fast.sh` and the boot loader, fetches the **latest** firmware image + block map from [ota.usbridge.io](https://ota.usbridge.io/flash-images/), prompts you to put the device into Maskrom mode, and flashes it. Nothing to clone, nothing to match up by hand.
+
+Useful overrides:
 ```bash
-./flash-device-fast.sh /path/to/usbridge-rz3w-<version>.gptimg.zst
-```
-(An already-decompressed `.gptimg` works too, if you'd rather have one on disk — same command, just point it at that file instead.)
+# pin a specific firmware version instead of the latest
+USBRIDGE_VERSION=1.2.59 curl -fsSL .../install.sh | bash
 
-### Step by step
+# skip the "press Enter" pause -- have the device already in Maskrom mode
+USBRIDGE_NO_PROMPT=1 curl -fsSL .../install.sh | bash
+```
+
+Files land in `~/.usbridge-flash-tool/` by default (`USBRIDGE_WORKDIR` to change it) and are reused on a re-run instead of re-downloaded.
+
+## Manual usage
+
+Prefer to inspect what you're running first, or already have a git clone? Same tool, no auto-install/auto-download magic:
+
+1. **Prerequisites**: `rkdeveloptool` (`sudo apt install rkdeveloptool` on Debian/Ubuntu — see [§ 4.2](../docs/content/9-updates-changelog/firmware-update-guide.md#42-install-a-rockchip-flashing-tool) of the full guide for other distros/macOS/Windows), `zstd`, `python3`.
+2. Download the firmware image + block map, matching versions, from **[ota.usbridge.io/flash-images/](https://ota.usbridge.io/flash-images/)**: `usbridge-rz3w-<version>.gptimg.zst` and `usbridge-rz3w-<version>.gptimg.bmap`.
+3. ```bash
+   git clone https://github.com/USBridge-Technologies/USBridge-KVM-2.0.git
+   cd USBridge-KVM-2.0/flash-tool
+   # put your downloaded .gptimg.zst and .gptimg.bmap in this directory
+   # (the loader binary already ships here)
+   ./flash-device-fast.sh
+   ```
+   Or point it at an image anywhere else: `./flash-device-fast.sh /path/to/usbridge-rz3w-<version>.gptimg.zst` (an already-decompressed `.gptimg` works too).
+
+### Step by step (either method)
 
 1. **Enter Maskrom mode**: disconnect power, press and hold the **Maskrom button**, apply power while still holding it, keep holding ~5 seconds, then release. The device now enumerates over USB as a Rockchip loader device (Vendor ID `2207`), not a normal drive.
-2. **Run the script** (see Usage above). If your user account isn't in the `rkdeveloptool` group yet, the script tells you the one-time fix (`sudo usermod -aG rkdeveloptool $USER`, then re-login) — or just run it once via `pkexec bash flash-device-fast.sh ...` / `sudo` if you'd rather not wait for that to take effect.
+2. **Run the script.** If your user account isn't in the `rkdeveloptool` group yet, the manual path tells you the one-time fix (`sudo usermod -aG rkdeveloptool $USER`, then re-login) — the one-liner installer runs the flash step via `sudo` automatically instead, so you don't have to wait for that.
 3. It downloads the boot loader into the chip's RAM, decompresses the image on the fly, and writes only the blocks the `.bmap` marks as used — watch the per-region progress in the terminal.
 4. On success the device reboots on its own into the freshly-flashed firmware.
 
