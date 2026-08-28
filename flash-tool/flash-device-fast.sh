@@ -5,23 +5,29 @@
 # multi-GB image byte for byte, which is what makes this "fast" versus a
 # plain `rkdeveloptool wl 0 <image>`.
 #
+# Accepts either a decompressed .gptimg OR a .gptimg.zst directly -- for
+# the latter, decompression happens on the fly through a zstd pipe, so
+# there's no need to `zstd -d` a multi-GB file to disk first just to flash
+# it (saves both the wait and the disk space). This only works because
+# bmap ranges are sorted, non-overlapping, forward-only offsets.
+#
 # See the Firmware Update Guide for the full walkthrough (entering Maskrom
-# mode, installing rkdeveloptool, etc.):
+# mode, installing rkdeveloptool, WSL notes for Windows, etc.):
 #   docs/content/9-updates-changelog/firmware-update-guide.md
 #
-# Prerequisites (all three files must be in the same directory as this
-# script, or passed explicitly -- see usage below), downloaded from
-# https://ota.usbridge.io/flash-images/ and matching the SAME version:
-#   - usbridge-rz3w-<version>.gptimg        (decompress the .gptimg.zst
-#                                             download with `zstd -d` first)
+# Prerequisites, downloaded from https://ota.usbridge.io/flash-images/ and
+# matching the SAME version:
+#   - usbridge-rz3w-<version>.gptimg.zst    (or decompress it yourself first
+#                                             with `zstd -d` -- either works)
 #   - usbridge-rz3w-<version>.gptimg.bmap   (downloaded as-is, not compressed)
 #   - rk356x_spl_loader_v1.23.114.bin       (ships alongside this script --
 #                                             re-download only if this repo's
 #                                             copy goes stale)
 #
 # Usage:
-#   ./flash-device-fast.sh                       # looks for a *.gptimg next to this script
-#   ./flash-device-fast.sh path/to/image.gptimg   # explicit image path (its .bmap must sit next to it)
+#   ./flash-device-fast.sh                            # looks for a *.gptimg[.zst] next to this script
+#   ./flash-device-fast.sh path/to/image.gptimg        # explicit path, already decompressed
+#   ./flash-device-fast.sh path/to/image.gptimg.zst    # explicit path, decompressed on the fly
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -41,7 +47,7 @@ banner()  { echo -e "\n${BOLD}━━━  $*  ━━━${NC}\n"; }
 
 check_tools() {
     command -v rkdeveloptool >/dev/null 2>&1 || \
-        die "rkdeveloptool not found. Linux: sudo apt install rkdeveloptool\nSee the Firmware Update Guide for macOS/Windows."
+        die "rkdeveloptool not found. Linux: sudo apt install rkdeveloptool\nSee the Firmware Update Guide for macOS/Windows/WSL."
     command -v python3 >/dev/null 2>&1 || \
         die "python3 not found (needed to read the .bmap file and write chunks)."
     if ! id -nG 2>/dev/null | grep -qw "rkdeveloptool" && ! id -nG 2>/dev/null | grep -qw "root"; then
@@ -61,9 +67,14 @@ find_image() {
         return
     fi
     local img
+    # Prefer an already-decompressed image if one is sitting there, else
+    # fall back to the compressed download (flashed via the on-the-fly path).
     img="$(find "${SCRIPT_DIR}" -maxdepth 1 -iname '*.gptimg' | head -n1)"
     if [[ -z "${img}" ]]; then
-        die "No .gptimg found next to this script and none passed as an argument.\nDownload one from https://ota.usbridge.io/flash-images/ (it's the .gptimg.zst -- decompress with 'zstd -d' first), see the Firmware Update Guide."
+        img="$(find "${SCRIPT_DIR}" -maxdepth 1 -iname '*.gptimg.zst' | head -n1)"
+    fi
+    if [[ -z "${img}" ]]; then
+        die "No .gptimg or .gptimg.zst found next to this script and none passed as an argument.\nDownload one from https://ota.usbridge.io/flash-images/, see the Firmware Update Guide."
     fi
     readlink -f "${img}"
 }
@@ -101,7 +112,15 @@ banner "USBridge RZ3W — Fast BMAP Flash"
 check_tools
 
 IMAGE="$(find_image "$@")"
-BMAP="${IMAGE}.bmap"
+# The .bmap always matches the *decompressed* image's name -- for a .zst
+# input, that's the image path with the .zst suffix stripped, plus .bmap
+# (e.g. foo.gptimg.zst -> foo.gptimg.bmap). For an already-decompressed
+# .gptimg, stripping ".zst" is a no-op, so this is just IMAGE + ".bmap".
+BMAP="${IMAGE%.zst}.bmap"
+
+if [[ "$IMAGE" == *.zst ]]; then
+    command -v zstd >/dev/null 2>&1 || die "zstd not found (needed to decompress ${IMAGE} on the fly). Install it: sudo apt install zstd"
+fi
 
 if [[ ! -f "$BMAP" ]]; then
     die "BMAP file not found: $BMAP\nDownload usbridge-rz3w-<version>.gptimg.bmap from https://ota.usbridge.io/flash-images/ (same version as the image, uncompressed) and put it next to the image with the exact same base name."
@@ -140,6 +159,7 @@ else
 fi
 
 banner "Step 3 — Fast Write using BMAP"
+[[ "$IMAGE" == *.zst ]] && info "Decompressing on the fly -- no temporary decompressed .gptimg is written to disk."
 
 export IMAGE BMAP
 python3 - << 'EOF'
@@ -148,6 +168,7 @@ import sys, os, subprocess, tempfile
 
 img_path = os.environ['IMAGE']
 bmap_path = os.environ['BMAP']
+is_zst = img_path.endswith('.zst')
 
 try:
     tree = ET.parse(bmap_path)
@@ -157,47 +178,91 @@ except Exception as e:
 
 root = tree.getroot()
 block_size = int(root.find('BlockSize').text.strip())
-ranges = root.find('BlockMap').findall('Range')
+ranges = []
+for r in root.find('BlockMap').findall('Range'):
+    parts = r.text.strip().split('-')
+    start = int(parts[0])
+    end = int(parts[1]) if len(parts) > 1 else start
+    ranges.append((start, end))
+# bmaptool always emits ranges sorted and non-overlapping -- sort defensively
+# anyway since the streaming-zst path below can only read forward.
+ranges.sort()
 
 print(f"Found {len(ranges)} mapped regions in BMAP. Flashing only these blocks...")
 
 total_size_mb = 0
+CHUNK = 16 * 1024 * 1024
 
-with open(img_path, 'rb') as f_img:
-    for i, r in enumerate(ranges):
-        parts = r.text.strip().split('-')
-        start = int(parts[0])
-        end = int(parts[1]) if len(parts) > 1 else start
+zst_proc = None
+stream = None
+f_img = None
+pos = 0
 
-        num_blocks = end - start + 1
-        lba = (start * block_size) // 512
-        size_mb = (num_blocks * block_size) / (1024*1024)
-        total_size_mb += size_mb
+if is_zst:
+    zst_proc = subprocess.Popen(['zstd', '-d', '-c', '-q', img_path], stdout=subprocess.PIPE)
+    stream = zst_proc.stdout
+else:
+    f_img = open(img_path, 'rb')
 
-        print(f"[{i+1}/{len(ranges)}] Writing {size_mb:.1f} MiB at LBA {lba}...")
+def skip_forward(n):
+    """Discard n bytes from the sequential zstd stream."""
+    remaining = n
+    while remaining > 0:
+        chunk = stream.read(min(remaining, CHUNK))
+        if not chunk:
+            raise EOFError("unexpected end of decompressed stream while skipping ahead")
+        remaining -= len(chunk)
 
-        # Write chunk to temp file
-        f_img.seek(start * block_size)
-        fd, tmp_path = tempfile.mkstemp(suffix='.bin')
-        bytes_to_read = num_blocks * block_size
+def read_into(f_out, n):
+    """Read exactly n bytes (from the seekable file or the zst stream) into f_out."""
+    remaining = n
+    while remaining > 0:
+        to_read = min(remaining, CHUNK)
+        chunk = stream.read(to_read) if is_zst else f_img.read(to_read)
+        if not chunk:
+            raise EOFError("unexpected end of image data")
+        f_out.write(chunk)
+        remaining -= len(chunk)
 
-        try:
-            with os.fdopen(fd, 'wb') as f_tmp:
-                while bytes_to_read > 0:
-                    chunk = f_img.read(min(bytes_to_read, 16*1024*1024))
-                    if not chunk: break
-                    f_tmp.write(chunk)
-                    bytes_to_read -= len(chunk)
+for i, (start, end) in enumerate(ranges):
+    num_blocks = end - start + 1
+    byte_start = start * block_size
+    lba = byte_start // 512
+    length = num_blocks * block_size
+    size_mb = length / (1024 * 1024)
+    total_size_mb += size_mb
 
-            # Flash chunk
-            subprocess.run(['rkdeveloptool', 'wl', str(lba), tmp_path], check=True, stdout=subprocess.DEVNULL)
-        except Exception as e:
-            print(f"\n[FAIL] Failed during chunk write: {e}")
-            if os.path.exists(tmp_path):
-                os.remove(tmp_path)
+    print(f"[{i+1}/{len(ranges)}] Writing {size_mb:.1f} MiB at LBA {lba}...")
+
+    if is_zst:
+        gap = byte_start - pos
+        if gap < 0:
+            print("\n[FAIL] BMAP ranges are out of order -- can't seek backward while streaming through zstd.")
             sys.exit(1)
+        if gap:
+            skip_forward(gap)
+    else:
+        f_img.seek(byte_start)
 
-        os.remove(tmp_path)
+    fd, tmp_path = tempfile.mkstemp(suffix='.bin')
+    try:
+        with os.fdopen(fd, 'wb') as f_tmp:
+            read_into(f_tmp, length)
+        pos = byte_start + length
+        subprocess.run(['rkdeveloptool', 'wl', str(lba), tmp_path], check=True, stdout=subprocess.DEVNULL)
+    except Exception as e:
+        print(f"\n[FAIL] Failed during chunk write: {e}")
+        if os.path.exists(tmp_path):
+            os.remove(tmp_path)
+        sys.exit(1)
+
+    os.remove(tmp_path)
+
+if is_zst:
+    stream.close()
+    zst_proc.wait()
+else:
+    f_img.close()
 
 print(f"\n[ OK ] Wrote a total of {total_size_mb:.1f} MiB (skipping empty space).")
 EOF

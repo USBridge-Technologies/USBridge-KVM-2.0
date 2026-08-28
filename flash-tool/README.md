@@ -20,20 +20,24 @@ See the full walkthrough — including entering Maskrom mode and the Windows
 
 ## Quick usage
 
-1. Install `rkdeveloptool` (`sudo apt install rkdeveloptool` on
-   Debian/Ubuntu; see the Firmware Update Guide for other distros).
+1. Install `rkdeveloptool` and `zstd` (`sudo apt install rkdeveloptool zstd`
+   on Debian/Ubuntu; see the Firmware Update Guide for other distros,
+   including Windows via WSL).
 2. Download the latest `usbridge-rz3w-<version>.gptimg.zst` **and** the
    matching `usbridge-rz3w-<version>.gptimg.bmap` from
    [ota.usbridge.io/flash-images/](https://ota.usbridge.io/flash-images/) —
-   same version, both files. Decompress the image: `zstd -d usbridge-rz3w-<version>.gptimg.zst`.
-3. Put the decompressed `.gptimg` and its `.gptimg.bmap` in this directory
-   (next to `flash-device-fast.sh`), or anywhere else and pass the image
-   path as an argument.
+   same version, both files. **No need to decompress the `.zst` yourself** —
+   the script decompresses on the fly while flashing (confirmed live: no
+   temporary multi-GB `.gptimg` is ever written to disk).
+3. Put both downloaded files in this directory (next to
+   `flash-device-fast.sh`), or anywhere else and pass the image path as an
+   argument.
 4. Put the appliance into Maskrom mode (hold the Maskrom button, apply
    power, hold ~5s, release).
 5. Run it:
    ```bash
    ./flash-device-fast.sh
    # or explicitly:
-   ./flash-device-fast.sh /path/to/usbridge-rz3w-<version>.gptimg
+   ./flash-device-fast.sh /path/to/usbridge-rz3w-<version>.gptimg.zst
    ```
+   (An already-decompressed `.gptimg` works too, if you'd rather have one on disk.)

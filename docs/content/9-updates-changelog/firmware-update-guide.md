@@ -53,15 +53,18 @@ Every firmware build is published at:
 
 **[https://ota.usbridge.io/flash-images/](https://ota.usbridge.io/flash-images/)**
 
-The listing shows every retained version as `usbridge-rz3w-<version>.gptimg.zst`. Grab the newest one (or a specific version if you need to match a known-good build). The file is compressed with [Zstandard](https://facebook.github.io/zstd/) — decompress it before flashing:
+The listing shows every retained version as `usbridge-rz3w-<version>.gptimg.zst`. Grab the newest one (or a specific version if you need to match a known-good build). The file is compressed with [Zstandard](https://facebook.github.io/zstd/).
 
-| OS | Decompress command |
-| :--- | :--- |
-| **Linux** | `sudo apt install zstd` (or your distro's equivalent), then `zstd -d usbridge-rz3w-<version>.gptimg.zst` |
-| **macOS** | `brew install zstd`, then `zstd -d usbridge-rz3w-<version>.gptimg.zst` |
-| **Windows** | Install [7-Zip](https://www.7-zip.org/) (supports `.zst` out of the box) — right-click the file → **7-Zip → Extract Here** |
-
-This produces a `usbridge-rz3w-<version>.gptimg` file (several GB, raw disk image) — that's what you flash in step 4.4.
+> [!TIP]
+> **`flash-tool/flash-device-fast.sh` (the recommended Linux path, step 4.4) decompresses on the fly — you don't need to decompress anything by hand for it.** Only decompress yourself if you're using the Windows RKDevTool GUI or the plain manual `rkdeveloptool wl` path, both of which need a plain `.gptimg` on disk:
+>
+> | OS | Decompress command |
+> | :--- | :--- |
+> | **Linux** | `sudo apt install zstd` (or your distro's equivalent), then `zstd -d usbridge-rz3w-<version>.gptimg.zst` |
+> | **macOS** | `brew install zstd`, then `zstd -d usbridge-rz3w-<version>.gptimg.zst` |
+> | **Windows** | Install [7-Zip](https://www.7-zip.org/) (supports `.zst` out of the box) — right-click the file → **7-Zip → Extract Here** |
+>
+> This produces a `usbridge-rz3w-<version>.gptimg` file (several GB, raw disk image).
 
 You'll also need, from the same listing:
 
@@ -116,11 +119,15 @@ The device is now in Maskrom mode and enumerates over USB as a Rockchip loader d
 ```bash
 git clone https://github.com/USBridge-Technologies/USBridge-KVM-2.0.git
 cd USBridge-KVM-2.0/flash-tool
-# copy/move your downloaded usbridge-rz3w-<version>.gptimg and matching
-# .gptimg.bmap into this directory (the loader binary already ships here)
+# copy/move your downloaded usbridge-rz3w-<version>.gptimg.zst and matching
+# .gptimg.bmap into this directory (the loader binary already ships here) --
+# no need to decompress the .zst yourself, the script does it on the fly
 ./flash-device-fast.sh
 ```
-It auto-detects the `.gptimg` next to it, downloads the loader into RAM for you, and uses the `.bmap` to write only the blocks that actually contain data — a full multi-GB image write drops to writing the couple GB that are actually used. See [`flash-tool/README.md`](https://github.com/USBridge-Technologies/USBridge-KVM-2.0/tree/main/flash-tool) for details.
+It auto-detects the `.gptimg`/`.gptimg.zst` next to it, downloads the loader into RAM for you, decompresses on the fly if given the `.zst` directly (no multi-GB temporary file written to disk), and uses the `.bmap` to write only the blocks that actually contain data — confirmed live: a 14.4 GiB image drops to writing 828.5 MiB actually used. See [`flash-tool/README.md`](https://github.com/USBridge-Technologies/USBridge-KVM-2.0/tree/main/flash-tool) for details.
+
+> [!NOTE]
+> **Running this from Windows?** See [4.5 Flashing from Windows via WSL](#45-flashing-from-windows-via-wsl) below — you can use this exact fast Linux path without a separate Linux machine.
 
 **Linux — manual, plain `rkdeveloptool`** (no `.bmap` needed, but slower — writes the entire image including its empty space):
 ```bash
@@ -147,3 +154,39 @@ When it finishes, disconnect and reconnect power normally (Maskrom mode only app
 
 > [!NOTE]
 > A device flashed this way starts fresh, same as a brand-new unit: it boots into the [initial trial period](../8-maintenance-support/faq.md), and needs [network setup](../1-getting-started/initial-setup.md) again before it can check in for OTA updates or license activation.
+
+---
+
+### 4.5 Flashing from Windows via WSL
+
+Yes — you can run the fast Linux path (`flash-tool/flash-device-fast.sh`, step 4.4) from **WSL2** on Windows, without a separate Linux machine or a VM. The one thing WSL doesn't do automatically is USB passthrough — the Maskrom device needs to be explicitly attached to your WSL distro first, using Microsoft's official `usbipd-win` tool.
+
+**One-time setup:**
+
+1. If you don't already have WSL2 with a distro installed, open PowerShell as Administrator: `wsl --install` (installs Ubuntu by default). Reboot if prompted.
+2. Install `usbipd-win` on Windows (still in an Administrator PowerShell): `winget install usbipd`
+3. Inside your WSL distro, install the USB/IP client and the flashing tools:
+   ```bash
+   sudo apt update
+   sudo apt install -y linux-tools-virtual hwdata rkdeveloptool zstd python3
+   sudo update-alternatives --install /usr/local/bin/usbip usbip /usr/lib/linux-tools/*-generic/usbip 20
+   ```
+   (WSL2's kernel already has the USB/IP virtual host controller built in — this just installs the userspace `usbip` client binary that talks to it.)
+
+**Every time you want to flash:**
+
+1. Put the appliance into Maskrom mode (step 4.3) and connect it to a USB port on the Windows machine.
+2. In an Administrator PowerShell:
+   ```powershell
+   usbipd list
+   ```
+   Find the Rockchip device in the list (vendor ID `2207`) and note its `BUSID` (e.g. `2-3`).
+   ```powershell
+   usbipd bind --busid=<BUSID>      # one-time per device/port, persists across reboots
+   usbipd attach --wsl --busid=<BUSID>
+   ```
+3. Back in WSL, confirm it showed up: `lsusb` should now list a Rockchip device (`2207:350a`).
+4. Run `flash-device-fast.sh` exactly as in the Linux instructions above (step 4.4) — from WSL's point of view this is a normal Linux USB device now, nothing else is different.
+
+> [!NOTE]
+> If the device isn't visible after `attach`, double check you ran `usbipd` from an **Administrator** PowerShell — both `bind` and `attach` need elevation. If you unplug and replug the device (e.g. between attempts), you'll need to `usbipd attach` again — Windows treats it as a new USB connection event.
