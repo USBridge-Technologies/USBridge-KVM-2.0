@@ -14,6 +14,7 @@ Unbox, wire up, and initialize your physical KVM appliance.
 <li><a href="./content/1-getting-started/quick-start.md">Quick Start Guide</a></li>
 <li><a href="./content/1-getting-started/whats-in-the-box.md">What’s in the Box</a></li>
 <li><a href="./content/1-getting-started/initial-setup.md">Initial Client Setup</a></li>
+<li><a href="./content/1-getting-started/headless-provisioning.md">Headless & Bulk Provisioning (JSON)</a></li>
 <li><a href="./content/1-getting-started/device-status-menu.md">Onboard Status & Menu Layout</a></li>
 </ul>
 </td>

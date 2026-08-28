@@ -51,3 +51,6 @@ Once the Tailscale handshake or local authentication cycle completes, the client
 The primary interactive workspace will transition immediately to the **Control** tab, rendering the target server's real-time video pipeline. You now have complete, isolated, out-of-band command over the connected bare-metal infrastructure.
 
 For how this pairing step, API access, and streaming sessions are secured end-to-end, see [Security & Authentication Model](../10-developer-api/security-model.md).
+
+> [!TIP]
+> **No display, or configuring many appliances at once?** Skip client pairing entirely and drop a `usbridge_provision.json` file on a MicroSD card or USB flash drive instead — see [Headless & Bulk Provisioning](./headless-provisioning.md).
