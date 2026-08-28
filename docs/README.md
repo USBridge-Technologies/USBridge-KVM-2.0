@@ -111,4 +111,5 @@ Direct HTTP access for custom integrations, scripts, and AI agents.
 
 ### 🔄 Updates, Blueprints & Changelogs
 * 📦 [Firmware Update Guide](./content/9-updates-changelog/firmware-update-guide.md) — Step-by-step flashing procedures and OTA requirements.
+* 🛠️ [flash-tool](../flash-tool/) — Recovery/first-flash utility for a bricked or never-provisioned device (Linux, macOS, Windows/WSL).
 * 📐 [3D Models & PCB Files](./content/9-updates-changelog/3d-models-pcb-files.md) — CAD drawings, casing files, and schematic print layouts.

@@ -5,10 +5,21 @@
 [![Crowdsupply](https://img.shields.io/badge/USBridge-CROWDSUPPLY-blue)](https://www.crowdsupply.com/usbridge-technologies/usbridge-kvm-2-0)
 [![Roadmap](https://img.shields.io/badge/USBridge-ROADMAP-green)](https://github.com/orgs/USBridge-Technologies/projects/1)
 [![WEebsite](https://img.shields.io/badge/USBridge-WEBSITE-black)](https://www.usbridge.io/)
+[![Docs](https://img.shields.io/badge/USBridge-DOCUMENTATION-orange)](./docs/README.md)
 
 **USBridge-KVM 2.0** is a compact, professional-grade stack for system debugging and direct infrastructure control at the most fundamental level (Layer 0). It gives administrators absolute control over the hardware, bypassing the operating system while ensuring strict hardware isolation. The device provides instant, out-of-the-box server access with ultra-low latency streaming and the ability to deploy scripts or AI agents to automate routine, low-level tasks.
 
 <img width="1200" height="436" alt="Front_panel" src="https://github.com/user-attachments/assets/31aca852-0322-4923-a1be-1cba2049686d" />
+
+---
+
+## Documentation
+
+The [**full technical documentation**](./docs/README.md) covers setup, the KVM/video pipeline, [BIOS-in-Terminal](./docs/content/3-bios-in-terminal/technology-overview.md), Starlark/MCP AI-agent scripting, snapshot storage, hardware reference, and the [REST API](./docs/content/10-developer-api/rest-api-reference.md). A few of the pages people look for most:
+
+* [Firmware Update Guide](./docs/content/9-updates-changelog/firmware-update-guide.md) — OTA updates, plus a full eMMC recovery reflash over USB (Linux/macOS/Windows, including WSL) if a device won't boot.
+* [`flash-tool/`](./flash-tool/) — the recovery/first-flash script itself, ready to run.
+* [Quick Start Guide](./docs/content/1-getting-started/quick-start.md) and [Headless & Bulk Provisioning](./docs/content/1-getting-started/headless-provisioning.md) for initial setup.
 
 ---
 
