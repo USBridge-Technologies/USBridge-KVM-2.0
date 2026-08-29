@@ -117,10 +117,12 @@ The device is now in Maskrom mode and enumerates over USB as a Rockchip loader d
 **Linux — recommended: step-by-step installation** (also covers steps 4.1 and 4.2 for you)
 
 ```bash
-# Install prerequisites
+# 1. Put the device in Maskrom mode (hold Maskrom button, connect USB-C, release button after 5s)
+
+# 2. Install prerequisites
 sudo apt update && sudo apt install -y rkdeveloptool zstd python3 curl
 
-# Download helper script and latest firmware
+# 3. Download helper script and latest firmware
 curl -fsSL -O https://raw.githubusercontent.com/USBridge-Technologies/USBridge-KVM-2.0/main/flash-tool/flash-device-fast.sh
 curl -fsSL -O https://raw.githubusercontent.com/USBridge-Technologies/USBridge-KVM-2.0/main/flash-tool/rk356x_spl_loader_v1.23.114.bin
 chmod +x flash-device-fast.sh
@@ -128,7 +130,7 @@ VERSION=$(curl -fsSL https://ota.usbridge.io/flash-images/latest-rz3w.txt)
 curl -fsSL -O https://ota.usbridge.io/flash-images/usbridge-rz3w-${VERSION}.gptimg.zst
 curl -fsSL -O https://ota.usbridge.io/flash-images/usbridge-rz3w-${VERSION}.gptimg.bmap
 
-# Flash the device (requires Maskrom mode)
+# 4. Flash the device
 sudo ./flash-device-fast.sh usbridge-rz3w-${VERSION}.gptimg.zst
 ```
 Writing only the blocks that actually contain data (confirmed live: a 14.4 GiB image drops to writing 828.5 MiB actually used). Full details: [`flash-tool/README.md`](https://github.com/USBridge-Technologies/USBridge-KVM-2.0/tree/main/flash-tool).

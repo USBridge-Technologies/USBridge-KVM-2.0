@@ -19,10 +19,12 @@ New to USBridge-KVM 2.0? See the [product page](https://www.usbridge.io/) and th
 On Linux (or WSL on Windows — see [§ 4.5](../docs/content/9-updates-changelog/firmware-update-guide.md#45-flashing-from-windows-via-wsl) of the full guide first for the one-time USB-passthrough setup):
 
 ```bash
-# Install prerequisites
+# 1. Put the device in Maskrom mode (hold Maskrom button, connect USB-C, release button after 5s)
+
+# 2. Install prerequisites
 sudo apt update && sudo apt install -y rkdeveloptool zstd python3 curl
 
-# Download helper script and latest firmware
+# 3. Download helper script and latest firmware
 curl -fsSL -O https://raw.githubusercontent.com/USBridge-Technologies/USBridge-KVM-2.0/main/flash-tool/flash-device-fast.sh
 curl -fsSL -O https://raw.githubusercontent.com/USBridge-Technologies/USBridge-KVM-2.0/main/flash-tool/rk356x_spl_loader_v1.23.114.bin
 chmod +x flash-device-fast.sh
@@ -30,7 +32,7 @@ VERSION=$(curl -fsSL https://ota.usbridge.io/flash-images/latest-rz3w.txt)
 curl -fsSL -O https://ota.usbridge.io/flash-images/usbridge-rz3w-${VERSION}.gptimg.zst
 curl -fsSL -O https://ota.usbridge.io/flash-images/usbridge-rz3w-${VERSION}.gptimg.bmap
 
-# Flash the device (requires Maskrom mode)
+# 4. Flash the device
 sudo ./flash-device-fast.sh usbridge-rz3w-${VERSION}.gptimg.zst
 ```
 
