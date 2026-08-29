@@ -14,26 +14,29 @@ New to USBridge-KVM 2.0? See the [product page](https://www.usbridge.io/) and th
 | `flash-device-fast.sh` | The flashing script itself. Uses a `.bmap` block map to write only the eMMC blocks that actually contain data — a 14.4 GiB image drops to ~830 MiB actually written. Accepts the downloaded `.gptimg.zst` directly and decompresses it on the fly (no multi-GB temporary file, no separate decompress step). |
 | `rk356x_spl_loader_v1.23.114.bin` | The RK3566 boot loader binary `rkdeveloptool` needs to initialize DDR before it can write anything. Not the firmware itself — a small helper the script pushes into the chip's RAM automatically. |
 
-## Quick start (recommended): one-liner installer
+## Quick start (recommended): step-by-step installation
 
 On Linux (or WSL on Windows — see [§ 4.5](../docs/content/9-updates-changelog/firmware-update-guide.md#45-flashing-from-windows-via-wsl) of the full guide first for the one-time USB-passthrough setup):
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/USBridge-Technologies/USBridge-KVM-2.0/main/flash-tool/install.sh | bash
+# Install prerequisites
+sudo apt update && sudo apt install -y rkdeveloptool zstd python3 curl
+
+# Download helper script and latest firmware
+curl -fsSL -O https://raw.githubusercontent.com/USBridge-Technologies/USBridge-KVM-2.0/main/flash-tool/flash-device-fast.sh
+curl -fsSL -O https://raw.githubusercontent.com/USBridge-Technologies/USBridge-KVM-2.0/main/flash-tool/rk356x_spl_loader_v1.23.114.bin
+chmod +x flash-device-fast.sh
+VERSION=$(curl -fsSL https://ota.usbridge.io/flash-images/latest-rz3w.txt)
+curl -fsSL -O https://ota.usbridge.io/flash-images/usbridge-rz3w-${VERSION}.gptimg.zst
+curl -fsSL -O https://ota.usbridge.io/flash-images/usbridge-rz3w-${VERSION}.gptimg.bmap
+
+# Flash the device (requires Maskrom mode)
+sudo ./flash-device-fast.sh usbridge-rz3w-${VERSION}.gptimg.zst
 ```
 
-This one command does everything: installs `rkdeveloptool`/`zstd`/`python3` if missing (Debian/Ubuntu via `apt`), downloads `flash-device-fast.sh` and the boot loader, fetches the **latest** firmware image + block map from [ota.usbridge.io](https://ota.usbridge.io/flash-images/), prompts you to put the device into Maskrom mode, and flashes it. Nothing to clone, nothing to match up by hand.
+These commands do everything: install `rkdeveloptool`/`zstd`/`python3`/`curl` if missing (Debian/Ubuntu via `apt`), download `flash-device-fast.sh` and the boot loader, fetch the **latest** firmware image + block map from [ota.usbridge.io](https://ota.usbridge.io/flash-images/), and flash it. 
 
-Useful overrides:
-```bash
-# pin a specific firmware version instead of the latest
-USBRIDGE_VERSION=1.2.59 curl -fsSL .../install.sh | bash
-
-# skip the "press Enter" pause -- have the device already in Maskrom mode
-USBRIDGE_NO_PROMPT=1 curl -fsSL .../install.sh | bash
-```
-
-Files land in `~/.usbridge-flash-tool/` by default (`USBRIDGE_WORKDIR` to change it) and are reused on a re-run instead of re-downloaded.
+Files are downloaded locally to your current directory and can be reused on a re-run instead of re-downloaded.
 
 ## Manual usage
 

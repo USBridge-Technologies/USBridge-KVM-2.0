@@ -94,11 +94,11 @@ The package ships its own udev rule, so no manual driver setup is needed.
 
 There's no official Mac build; Homebrew doesn't package it either, so build it yourself:
 ```bash
-brew install libusb autoconf automake libtool pkg-config
+brew install libusb autoconf automake libtool pkg-config zstd
 git clone https://github.com/rockchip-linux/rkdeveloptool.git
 cd rkdeveloptool
 autoreconf -i
-./configure
+./configure CXXFLAGS="-g -O2 -Wno-error"
 make
 sudo make install
 ```
@@ -114,15 +114,27 @@ The device is now in Maskrom mode and enumerates over USB as a Rockchip loader d
 
 ### 4.4 Flash the Image
 
-**Linux — recommended: one-liner installer** (also covers steps 4.1 and 4.2 for you)
+**Linux — recommended: step-by-step installation** (also covers steps 4.1 and 4.2 for you)
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/USBridge-Technologies/USBridge-KVM-2.0/main/flash-tool/install.sh | bash
+# Install prerequisites
+sudo apt update && sudo apt install -y rkdeveloptool zstd python3 curl
+
+# Download helper script and latest firmware
+curl -fsSL -O https://raw.githubusercontent.com/USBridge-Technologies/USBridge-KVM-2.0/main/flash-tool/flash-device-fast.sh
+curl -fsSL -O https://raw.githubusercontent.com/USBridge-Technologies/USBridge-KVM-2.0/main/flash-tool/rk356x_spl_loader_v1.23.114.bin
+chmod +x flash-device-fast.sh
+VERSION=$(curl -fsSL https://ota.usbridge.io/flash-images/latest-rz3w.txt)
+curl -fsSL -O https://ota.usbridge.io/flash-images/usbridge-rz3w-${VERSION}.gptimg.zst
+curl -fsSL -O https://ota.usbridge.io/flash-images/usbridge-rz3w-${VERSION}.gptimg.bmap
+
+# Flash the device (requires Maskrom mode)
+sudo ./flash-device-fast.sh usbridge-rz3w-${VERSION}.gptimg.zst
 ```
-Installs `rkdeveloptool`/`zstd`/`python3` if missing (Debian/Ubuntu via `apt`), downloads the flashing script + boot loader + the **latest** firmware image and block map, prompts you to enter Maskrom mode (step 4.3), and flashes — writing only the blocks that actually contain data (confirmed live: a 14.4 GiB image drops to writing 828.5 MiB actually used). `USBRIDGE_VERSION=<version>` pins a specific build instead of latest. Full details: [`flash-tool/README.md`](https://github.com/USBridge-Technologies/USBridge-KVM-2.0/tree/main/flash-tool).
+Writing only the blocks that actually contain data (confirmed live: a 14.4 GiB image drops to writing 828.5 MiB actually used). Full details: [`flash-tool/README.md`](https://github.com/USBridge-Technologies/USBridge-KVM-2.0/tree/main/flash-tool).
 
 > [!NOTE]
-> **Running this from Windows?** See [4.5 Flashing from Windows via WSL](#45-flashing-from-windows-via-wsl) below — you can use this exact one-liner from inside WSL, no separate Linux machine needed.
+> **Running this from Windows?** See [4.5 Flashing from Windows via WSL](#45-flashing-from-windows-via-wsl) below — you can use these exact steps inside WSL, no separate Linux machine needed.
 
 **Linux — manual: `flash-tool/flash-device-fast.sh`** (if you'd rather download the files yourself and inspect the script first)
 
