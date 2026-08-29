@@ -9,9 +9,10 @@ This guide covers how to perform a full physical recovery reflash of the eMMC st
 
 ## 1. Download the Image
 
-Every firmware build is published at:
+Firmware builds and helper scripts are available through:
 
-**[https://ota.usbridge.io/flash-images/](https://ota.usbridge.io/flash-images/)**
+* **[https://www.usbridge.io/product/kvm-software](https://www.usbridge.io/product/kvm-software)** (Web portal downloads tab, with step-by-step instructions for Linux, macOS, and Windows)
+* **[https://ota.usbridge.io/flash-images/](https://ota.usbridge.io/flash-images/)** (Direct file server listing)
 
 The listing shows every retained version as `usbridge-rz3w-<version>.gptimg.zst`. Grab the newest one (or a specific version if you need to match a known-good build). The file is compressed with [Zstandard](https://facebook.github.io/zstd/).
 
