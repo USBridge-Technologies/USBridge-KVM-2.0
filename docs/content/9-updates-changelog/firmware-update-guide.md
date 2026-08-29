@@ -11,7 +11,6 @@ From the front panel: **Settings → Updates**.
 | Button | Action |
 | :--- | :--- |
 | **[1] / OK** | Check for an update. The screen shows live status: `Downloading...` → `Installing...` → result. |
-| **[2]** | Commit the currently-running update. |
 
 The screen also shows the appliance's current firmware version and its [license/trial status](../8-maintenance-support/faq.md).
 
@@ -21,17 +20,13 @@ The screen also shows the appliance's current firmware version and its [license/
 > [!NOTE]
 > The appliance has no battery-backed clock, so a **Check for update** run in the first minute or two after connecting to the network can fail with an error — it's waiting on an NTP time sync that hasn't finished yet, not an actual update failure. Give it a minute and try again if the very first check right after connecting errors out.
 
-> [!IMPORTANT]
-> **Why the separate Commit step matters.** An update installs to a second, inactive partition and boots into it — but it isn't made permanent until you explicitly **Commit** it. This is a safety net: if the new firmware fails to boot or misbehaves, the device can fall back to the previous, known-good partition instead of being stuck on a bad update. Don't skip the Commit step once you've confirmed the device is working normally on the new version.
-
 ---
 
 ## 2. What Happens During an Update
 
 1. The appliance checks in and downloads the new firmware if one is available.
 2. It's written to the inactive partition — the currently-running system keeps operating normally throughout.
-3. The device reboots into the new partition.
-4. You verify the device is healthy, then **Commit** from the Updates screen to make the switch permanent.
+3. The device reboots into the new partition and automatically commits the update upon a successful boot.
 
 Updates are cryptographically verified before being applied; a corrupted or unsigned update is rejected.
 
