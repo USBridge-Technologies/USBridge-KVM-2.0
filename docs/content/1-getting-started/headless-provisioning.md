@@ -85,4 +85,30 @@ Default is `false` (or the field omitted entirely) — normal single-use behavio
 
 ---
 
+## Reading Back License/Trial Status: `license_<serial>.json`
+
+Right after applying a provisioning config, the appliance also checks its own [license/trial status](../8-maintenance-support/faq.md#licensing--trial). If the device is **not yet fully licensed** (still on the trial, or trial-expired/locked), it writes a `license_<serial>.json` file back to the same drive, next to the provision file:
+
+```json
+{
+  "serial": "ecb50a6a22f3",
+  "status": "trial",
+  "started_at": "2026-08-30T09:12:04Z",
+  "checked_at": "2026-09-01T08:37:05Z",
+  "trial_remaining": "18h34m56s"
+}
+```
+
+- `serial` — the same device identity shown on the front-panel Info screen and used for licensing (Mender's devicetree serial, or a MAC-address fallback on hardware without one — colons in that fallback are replaced with `-` in the filename, e.g. `license_aa-bb-cc-dd-ee-ff.json`).
+- `status` — `"trial"` or `"locked"` (trial expired, no license token). Never `"licensed"` — see below.
+- `started_at` — when this device's current trial/state began.
+- `checked_at` — when this snapshot was written (i.e. this provisioning run).
+- `trial_remaining` — only present when `status` is `"trial"`; a Go duration string (`"18h34m56s"`).
+
+**A fully licensed device writes nothing.** This is deliberate: on a drive reused across a bulk-provisioning run (`no_change_config: true`), a `license_<serial>.json` left over from before a device converted to a full license would otherwise sit there looking current, even though it no longer reflects that device's real status — so licensed devices simply don't write one at all rather than risk a stale file.
+
+This exists for bulk-provisioning workflows: plug one drive into unit after unit on a bench, then read every unit's trial/lock state back off that single drive afterward instead of connecting to each appliance individually. It's purely informational — nothing on the device, or anywhere else, ever reads `license_<serial>.json` back in as a trust decision; the appliance's own signed license token (verified fresh against the vendor backend, see the FAQ link above) is the only thing that ever grants a license.
+
+---
+
 For how the master key and Tailscale pairing secure the client-facing API, see [Initial Setup & Client Pairing](./initial-setup.md) and [Security & Authentication Model](../10-developer-api/security-model.md).
