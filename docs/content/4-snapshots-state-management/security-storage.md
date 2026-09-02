@@ -62,3 +62,21 @@ The firmware image is built with a fixed minimum size for this partition, so the
 
 > [!NOTE]
 > This is separate from, and unrelated to, the removable MicroSD/snapshot volume in [§1](#1-supported-storage-media) — that one is sized to full capacity at format time instead (see the note there), so it doesn't need this kind of post-boot growth at all.
+
+---
+
+## 5. Reusing a Boot SD Card as a Backup Card
+
+If you [ran the appliance from an SD card and then used **Install to eMMC**](../9-updates-changelog/recovery-flashing-guide.md#6-writing-to-an-sd-card-instead) to move onto the onboard eMMC, that same SD card is left over afterward — but it is **not** safe to just plug it back in and use it as a backup/snapshot card the normal way.
+
+> [!WARNING]
+> **Do not reinsert a boot/install SD card as-is and format it from the front panel.** Install to eMMC copies the SD card onto the eMMC byte for byte, so the SD card still contains a full clone of the operating system — with the exact same partition labels, and the exact same filesystem identifiers, as the ones now active on the eMMC it was copied to. Plugging that card back into a running appliance risks the two colliding, with no guarantee which one the system actually uses for anything referencing those labels. This has not been hardened against yet — treat the card as still containing a live copy of the OS, not as blank storage.
+
+**To turn it into a normal backup card instead:**
+
+1. Make sure the card is physically **out of the appliance**.
+2. On a separate computer, **completely wipe it first** — any method that destroys the existing partitions and filesystem signatures works (e.g. Linux `wipefs -a /dev/sdX` followed by creating a fresh partition table, or your OS's normal "erase disk" / "format" function in a disk utility). The point is simply that nothing from the old OS clone survives on the card afterward.
+3. Only then insert the now-blank card into the appliance.
+4. Format it the normal way: **Settings → SD Card → Format SD Card** (see [§1](#1-supported-storage-media) above) — this prepares it as a proper backup/snapshot Btrfs volume, sized to the card's full capacity.
+
+A card that was never used to boot/install the appliance (a fresh card straight out of the packet, or one only ever used for backups before) doesn't need any of this — just format it from the front panel as usual.

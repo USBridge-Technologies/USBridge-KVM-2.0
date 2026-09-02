@@ -210,5 +210,8 @@ Either way:
 
 A card larger than the firmware's build baseline isn't wasted, either — the extra capacity automatically becomes usable `/mnt/emmc` storage on first boot, no manual resizing needed; see [Storage Security & Immutability §4](../4-snapshots-state-management/security-storage.md#4-onboard-storage-mntemmc--automatic-capacity-growth).
 
+> [!WARNING]
+> **Planning to reuse this SD card as a backup/snapshot card after moving to eMMC?** Don't just reinsert it and format it from the front panel — Install to eMMC clones it byte for byte, so it still contains a full copy of the OS. See [Storage Security & Immutability §5](../4-snapshots-state-management/security-storage.md#5-reusing-a-boot-sd-card-as-a-backup-card) for the safe way to repurpose it.
+
 > [!NOTE]
 > Same as an eMMC reflash: a device started this way boots into the initial trial period and needs [network setup](../1-getting-started/initial-setup.md) again.

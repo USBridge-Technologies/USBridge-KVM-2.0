@@ -147,6 +147,7 @@ On boards with both a SD card slot and an onboard eMMC (e.g. Radxa Zero 3W / RZ3
 - **What it does:** a raw block copy of the running SD card onto the eMMC — the SD card is only ever *read*, never modified. Because both media carry the exact same partition layout (boot / rootfsA / rootfsB / data / emmc), the clone also carries over the device's already-applied provisioning (network, users, feature toggles) and its enrolled Mender identity — nothing else needs to run twice.
 - **It is always the last step applied**, after every network/feature/user setting above — once the copy finishes, the appliance **powers itself off**.
 - After it powers off, physically remove the SD card, then power the board back on — it boots from the freshly-installed eMMC.
+- Want to reuse that same SD card afterward as a backup/snapshot card instead of a spare boot card? Don't just reinsert and format it as-is — see [Storage Security & Immutability §5](../4-snapshots-state-management/security-storage.md#5-reusing-a-boot-sd-card-as-a-backup-card) for why and the safe way to do it.
 - Pair this with `"no_change_config": true` for bulk fleet setup: prepare one SD card (network + users + `install_to_emmc: true`), then for each unit: insert card → power on → wait for shutdown → remove card → power on again to eMMC → repeat with the next unit.
 
 ---
