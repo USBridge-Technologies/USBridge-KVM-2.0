@@ -208,5 +208,7 @@ Either way:
 
 **On a board that also has a real eMMC**, the firmware detects whichever device it actually booted from at runtime (both the U-Boot env/bootcount and the `/uboot` + `/data` mounts follow the real boot device), so running from SD works correctly even with an eMMC present alongside it. Once booted from the card, the on-device **Settings** menu gains an **Install to eMMC** action — copies the running system onto the eMMC and powers the appliance off; remove the SD card and power back on to boot from eMMC, no computer needed for that step. The same thing can be triggered unattended via `install_to_emmc` in a [provisioning config](../1-getting-started/headless-provisioning.md#install-to-emmc-install_to_emmc).
 
+A card larger than the firmware's build baseline isn't wasted, either — the extra capacity automatically becomes usable `/mnt/emmc` storage on first boot, no manual resizing needed; see [Storage Security & Immutability §4](../4-snapshots-state-management/security-storage.md#4-onboard-storage-mntemmc--automatic-capacity-growth).
+
 > [!NOTE]
 > Same as an eMMC reflash: a device started this way boots into the initial trial period and needs [network setup](../1-getting-started/initial-setup.md) again.

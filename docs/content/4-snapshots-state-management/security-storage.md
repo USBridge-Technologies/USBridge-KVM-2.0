@@ -6,6 +6,9 @@
 
 **MicroSD** is the baseline medium, supported on every unit. Because snapshots ride on Btrfs Copy-on-Write, use a high-endurance card — industrial/surveillance-grade cards are built for exactly this kind of sustained, small-block write pattern; cheap consumer cards wear out faster under it.
 
+> [!NOTE]
+> **Formatting a card uses its full capacity immediately — no separate resize step.** **Settings → SD Card → Format SD Card** partitions and formats the entire card as one Btrfs volume sized to its real capacity at format time (not a fixed size copied from a smaller reference card), so there's no `growpart`/manual-resize step needed afterward, and no unallocated space left over regardless of how large the card is.
+
 **NVMe** is supported on board revisions with an NVMe slot, for higher capacity and endurance than a MicroSD card.
 
 > [!NOTE]
@@ -48,3 +51,14 @@ This isn't just policy — it's an absence: no REST/MCP endpoint, and no front-p
 
 ### Reclaiming Space
 To free up space on a full card, physically detach it and manage the Btrfs subvolumes directly from an external Linux workstation — there's no in-appliance way to selectively delete old snapshots while keeping others.
+
+---
+
+## 4. Onboard Storage (`/mnt/emmc`) & Automatic Capacity Growth
+
+Separately from the removable MicroSD card above, the appliance's own boot storage — its onboard eMMC, or the boot SD card itself on boards that [run from an SD slot instead](../9-updates-changelog/recovery-flashing-guide.md#6-writing-to-an-sd-card-instead) — carries an extra data partition of its own, mounted at `/mnt/emmc`. It's used the same way as the MicroSD slot for ISO images and automation scripts, and is present regardless of whether a MicroSD card is inserted at all.
+
+The firmware image is built with a fixed minimum size for this partition, so the exact same image works on any eMMC/SD card at or above that baseline. **On first boot, a one-shot service automatically expands `/mnt/emmc` to consume whatever capacity exists beyond that baseline on the real card/eMMC** — no `growpart`/`resize2fs`-equivalent step is needed by hand, and this happens whether the underlying medium is the onboard eMMC or a boot SD card. A much larger eMMC or SD card than the build baseline doesn't leave the difference unallocated; it becomes usable `/mnt/emmc` space automatically within the first boot.
+
+> [!NOTE]
+> This is separate from, and unrelated to, the removable MicroSD/snapshot volume in [§1](#1-supported-storage-media) — that one is sized to full capacity at format time instead (see the note there), so it doesn't need this kind of post-boot growth at all.
