@@ -49,9 +49,32 @@ If the appliance detects a physically connected front-panel display (via the but
 }
 ```
 
-- The `/24` suffix on `ip` is optional and sets the subnet mask (any prefix length works, e.g. `/16`); omit it and the mask defaults to `/24`.
-- All five feature toggles (`sshkvm_enabled`, `mcp_enabled`, `webrtc_enabled`, `moonlight_enabled`, `hdmi_passthrough`) are optional — an absent field leaves the appliance's current setting untouched. `sshkvm_enabled`, `mcp_enabled`, and `hdmi_passthrough` take effect immediately; `webrtc_enabled` and `moonlight_enabled` are picked up on the next boot.
-- `install_to_emmc` is also optional, off by default — see [Install to eMMC](#install-to-emmc-install_to_emmc) below.
+The example above shows both interface modes at once: `eth0` is `static` (fixed IP), `wlan0` is `dhcp` (address handed out by your router) — mix and match per interface as needed; a wired interface can just as easily be `dhcp`, and Wi-Fi can just as easily be `static`.
+
+---
+
+## Field Reference
+
+Every field is optional — an absent field leaves that part of the appliance's current configuration untouched (this is what makes `usbridge_provision.json` safe to trim down to just the one or two things a given deployment actually needs to set).
+
+| Field | Type | Notes |
+|---|---|---|
+| `master_key` | string | The appliance's API master key. Erased from the file after applying, unless `no_change_config` is set — see [Security](#security-one-shot-application-by-default) below. |
+| `interfaces` | object | Map of interface name (`eth0`, `wlan0`, or whatever the appliance shows under Settings → Network) → its config. See sub-fields below. |
+| `interfaces.<name>.mode` | string | `"dhcp"` or `"static"`. |
+| `interfaces.<name>.ip` | string | Static mode only. `"192.168.1.100"` or `"192.168.1.100/24"` — the `/24` prefix is optional and sets the subnet mask (any prefix length works, e.g. `/16`); omitted, it defaults to `/24`. |
+| `interfaces.<name>.gateway` | string | Static mode only, optional. Default gateway IP. |
+| `interfaces.<name>.dns` | string | Static mode only, optional. DNS server IP. |
+| `interfaces.<name>.ssid` | string | Wi-Fi interfaces only (any interface named `wifi`/`wlan0`, or with `ssid` set). Network to join. |
+| `interfaces.<name>.password` | string | Wi-Fi interfaces only. Network password; omit for an open network. |
+| `users` | array of `{username, password}` | Login accounts to create (for SSH / BIOS-in-Terminal). Each is created with `useradd -m` and the given password. |
+| `sshkvm_enabled` | bool | Enables the KVM SSH console. Takes effect immediately. |
+| `mcp_enabled` | bool | Enables the MCP AI-agent API. Takes effect immediately. |
+| `webrtc_enabled` | bool | Enables WebRTC (used by the Web Client). Takes effect on next boot. |
+| `moonlight_enabled` | bool | Enables Moonlight streaming. Takes effect on next boot. |
+| `hdmi_passthrough` | bool | Enables HDMI passthrough mode. Takes effect immediately. |
+| `install_to_emmc` | bool | Clones the running SD card onto the board's eMMC and powers off. See [Install to eMMC](#install-to-emmc-install_to_emmc) below. |
+| `no_change_config` | bool | Leaves the provisioning file untouched instead of erasing the key/renaming it — for reusing one drive across a fleet. See [Bulk Deployment](#bulk-deployment-no_change_config) below. |
 
 ---
 
@@ -95,8 +118,24 @@ On boards with both a SD card slot and an onboard eMMC (e.g. Radxa Zero 3W / RZ3
 {
   "master_key": "my-secret-key-123",
   "interfaces": {
-    "eth0": { "mode": "dhcp" }
+    "eth0": {
+      "mode": "static",
+      "ip": "192.168.1.100/24",
+      "gateway": "192.168.1.1",
+      "dns": "8.8.8.8"
+    },
+    "wlan0": {
+      "mode": "dhcp",
+      "ssid": "MyWiFi",
+      "password": "MyPassword"
+    }
   },
+  "users": [
+    {
+      "username": "admin",
+      "password": "securepassword123"
+    }
+  ],
   "sshkvm_enabled": true,
   "install_to_emmc": true,
   "no_change_config": true
