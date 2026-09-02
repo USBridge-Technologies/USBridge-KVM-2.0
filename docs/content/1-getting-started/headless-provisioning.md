@@ -44,12 +44,14 @@ If the appliance detects a physically connected front-panel display (via the but
   "webrtc_enabled": true,
   "moonlight_enabled": true,
   "hdmi_passthrough": true,
+  "install_to_emmc": false,
   "no_change_config": false
 }
 ```
 
 - The `/24` suffix on `ip` is optional and sets the subnet mask (any prefix length works, e.g. `/16`); omit it and the mask defaults to `/24`.
-- All five feature toggles at the bottom are optional — an absent field leaves the appliance's current setting untouched. `sshkvm_enabled`, `mcp_enabled`, and `hdmi_passthrough` take effect immediately; `webrtc_enabled` and `moonlight_enabled` are picked up on the next boot.
+- All five feature toggles (`sshkvm_enabled`, `mcp_enabled`, `webrtc_enabled`, `moonlight_enabled`, `hdmi_passthrough`) are optional — an absent field leaves the appliance's current setting untouched. `sshkvm_enabled`, `mcp_enabled`, and `hdmi_passthrough` take effect immediately; `webrtc_enabled` and `moonlight_enabled` are picked up on the next boot.
+- `install_to_emmc` is also optional, off by default — see [Install to eMMC](#install-to-emmc-install_to_emmc) below.
 
 ---
 
@@ -82,6 +84,31 @@ With `no_change_config: true`:
 This is intended for controlled, manual bulk-deployment workflows (e.g. initial fleet setup on a bench) where the same master key and config are deliberately reused across units. Since the master key is never erased in this mode, treat the drive itself as a credential and store it accordingly once the rollout is done.
 
 Default is `false` (or the field omitted entirely) — normal single-use behavior: erase the key and rename the file after applying.
+
+---
+
+## Install to eMMC: `install_to_emmc`
+
+On boards with both a SD card slot and an onboard eMMC (e.g. Radxa Zero 3W / RZ3W), a unit can be booted and configured from an SD card and then have that exact system installed onto the eMMC — same idea as the front-panel **Settings → Install to eMMC** menu action, just triggered unattended from the provisioning file instead of a physical button.
+
+```json
+{
+  "master_key": "my-secret-key-123",
+  "interfaces": {
+    "eth0": { "mode": "dhcp" }
+  },
+  "sshkvm_enabled": true,
+  "install_to_emmc": true,
+  "no_change_config": true
+}
+```
+
+- Set `"install_to_emmc": true` to trigger it. Default is `false` (or the field omitted) — normal provisioning with no install step.
+- **Requirements, checked at apply time:** the appliance must actually be running off the SD card, and a real eMMC must be physically present on the board. If either isn't true (e.g. the drive gets reused on a unit that's already running from eMMC, or a board with no eMMC at all), this step is skipped — every other part of the provisioning config still applies normally.
+- **What it does:** a raw block copy of the running SD card onto the eMMC — the SD card is only ever *read*, never modified. Because both media carry the exact same partition layout (boot / rootfsA / rootfsB / data / emmc), the clone also carries over the device's already-applied provisioning (network, users, feature toggles) and its enrolled Mender identity — nothing else needs to run twice.
+- **It is always the last step applied**, after every network/feature/user setting above — once the copy finishes, the appliance **powers itself off**.
+- After it powers off, physically remove the SD card, then power the board back on — it boots from the freshly-installed eMMC.
+- Pair this with `"no_change_config": true` for bulk fleet setup: prepare one SD card (network + users + `install_to_emmc: true`), then for each unit: insert card → power on → wait for shutdown → remove card → power on again to eMMC → repeat with the next unit.
 
 ---
 

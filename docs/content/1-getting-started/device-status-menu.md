@@ -111,6 +111,7 @@ The interface is divided into six core functional submenus:
             <li><b>Display:</b> Controls panel brightness parameters, HDMI Passthrough toggles, and HDMI Vsync synchronization options.</li>
             <li><b>Language:</b> System-level UI localization adjustments.</li>
             <li><b>Updates:</b> Displays the current firmware version, with a manual Check-for-updates action and a Commit step to finalize an applied update — see <a href="../9-updates-changelog/firmware-update-guide.md">Firmware Update Guide</a> for the full A/B update flow.</li>
+            <li><b>Install to eMMC:</b> Shown only on boards with an onboard eMMC (e.g. Radxa Zero 3W / RZ3W) while running from an SD card — copies the running system onto the eMMC and powers the appliance off. Remove the SD card and power back on to boot from eMMC. The SD card itself is only ever read, never modified. Can also be triggered unattended via <code>install_to_emmc</code> in a provisioning file — see <a href="./headless-provisioning.md#install-to-emmc-install_to_emmc">Headless &amp; Bulk Provisioning</a>.</li>
             <li><b>Factory Reset:</b> Erases all user environments and restores the appliance to its original factory defaults.</li>
             <li><b>Poweroff:</b> Orchestrates a safe software shutdown sequence before disconnecting physical power.</li>
           </ul>
