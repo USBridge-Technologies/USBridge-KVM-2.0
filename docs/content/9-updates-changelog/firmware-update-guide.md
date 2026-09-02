@@ -197,3 +197,34 @@ Yes — you can run the fast Linux path (`flash-tool/flash-device-fast.sh`, step
 
 > [!NOTE]
 > If the device isn't visible after `attach`, double check you ran `usbipd` from an **Administrator** PowerShell — both `bind` and `attach` need elevation. If you unplug and replug the device (e.g. between attempts), you'll need to `usbipd attach` again — Windows treats it as a new USB connection event.
+
+---
+
+### 4.6 Writing to an SD Card Instead
+
+Everything above writes to the appliance's onboard eMMC over USB, in Maskrom mode. If you'd rather run the appliance off an SD card — no separate build, same `.gptimg` — there's a simpler path that skips USB/`rkdeveloptool`/Maskrom entirely: write the image directly onto the card from a reader on your computer.
+
+**One-liner:**
+```bash
+USBRIDGE_SD_DEVICE=/dev/sdX curl -fsSL https://raw.githubusercontent.com/USBridge-Technologies/USBridge-KVM-2.0/main/flash-tool/install.sh | bash
+```
+Same installer as step 4.4, just pointed at a target device instead of Maskrom mode — installs `zstd`/`python3` if missing, downloads `flash-tool/flash-sd-card.sh` plus the latest firmware image and block map, and writes it. `USBRIDGE_VERSION=<version>` still works to pin a specific build. `rkdeveloptool` is not needed for this path at all.
+
+**Manual:**
+```bash
+git clone https://github.com/USBridge-Technologies/USBridge-KVM-2.0.git
+cd USBridge-KVM-2.0/flash-tool
+# copy/move your downloaded usbridge-rz3w-<version>.gptimg.zst and matching
+# .gptimg.bmap into this directory
+sudo ./flash-sd-card.sh /dev/sdX
+```
+
+Either way:
+- **Find `/dev/sdX` first** with `lsblk` before running this — it wipes the target device entirely. On Linux the target is usually your SD card reader, not the appliance (the appliance isn't connected to your computer for this path at all).
+- The script refuses to target the host's own system disk, and refuses any disk the kernel doesn't report as removable (protects against picking the wrong `/dev/sdX` by mistake) — pass `--force` (manual) or set `USBRIDGE_SD_FORCE=1` (one-liner) only if you're certain about the target and it's being wrongly refused.
+- Once written, move the card to the appliance's SD slot and power on — no Maskrom step, no USB cable to the appliance needed.
+
+**On a board that also has a real eMMC**, the firmware detects whichever device it actually booted from at runtime (both the U-Boot env/bootcount and the `/uboot` + `/data` mounts follow the real boot device), so running from SD works correctly even with an eMMC present alongside it. Once booted from the card, the on-device **Settings** menu gains an **Install to eMMC** action — copies the running system onto the eMMC and powers the appliance off; remove the SD card and power back on to boot from eMMC, no computer needed for that step. The same thing can be triggered unattended via `install_to_emmc` in a [provisioning config](../1-getting-started/headless-provisioning.md#install-to-emmc-install_to_emmc).
+
+> [!NOTE]
+> Same as an eMMC reflash: a device started this way boots into the initial trial period and needs [network setup](../1-getting-started/initial-setup.md) again.

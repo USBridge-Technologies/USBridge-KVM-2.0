@@ -10,9 +10,10 @@ New to USBridge-KVM 2.0? See the [product page](https://www.usbridge.io/) and th
 
 | File | What it is |
 | :--- | :--- |
-| `install.sh` | One-shot installer — installs prerequisites, downloads everything below plus the latest firmware, and runs the flash. This is the file the `curl \| bash` one-liner fetches. |
-| `flash-device-fast.sh` | The flashing script itself. Uses a `.bmap` block map to write only the eMMC blocks that actually contain data — a 14.4 GiB image drops to ~830 MiB actually written. Accepts the downloaded `.gptimg.zst` directly and decompresses it on the fly (no multi-GB temporary file, no separate decompress step). |
-| `rk356x_spl_loader_v1.23.114.bin` | The RK3566 boot loader binary `rkdeveloptool` needs to initialize DDR before it can write anything. Not the firmware itself — a small helper the script pushes into the chip's RAM automatically. |
+| `install.sh` | One-shot installer — installs prerequisites, downloads everything below plus the latest firmware, and runs the flash. This is the file the `curl \| bash` one-liner fetches. Flashes the onboard eMMC over USB by default; set `USBRIDGE_SD_DEVICE` to write to an SD card instead (see below). |
+| `flash-device-fast.sh` | eMMC flashing over USB (via `rkdeveloptool`, Maskrom mode). Uses a `.bmap` block map to write only the blocks that actually contain data — a 14.4 GiB image drops to ~830 MiB actually written. Accepts the downloaded `.gptimg.zst` directly and decompresses it on the fly (no multi-GB temporary file, no separate decompress step). |
+| `flash-sd-card.sh` | Writes the same image straight onto an SD card via a host card reader — no USB/`rkdeveloptool`/Maskrom involved. Use this to run the appliance off an SD card instead of (re)flashing the onboard eMMC. Same sparse `.bmap`-based writing as above. |
+| `rk356x_spl_loader_v1.23.114.bin` | The RK3566 boot loader binary `rkdeveloptool` needs to initialize DDR before it can write anything. Only needed for the eMMC/USB path — not used by `flash-sd-card.sh`. |
 
 ## Quick start (recommended): one-liner installer
 
@@ -31,9 +32,24 @@ USBRIDGE_VERSION=1.2.59 curl -fsSL .../install.sh | bash
 
 # skip the "press Enter" pause -- have the device already in Maskrom mode
 USBRIDGE_NO_PROMPT=1 curl -fsSL .../install.sh | bash
+
+# write to an SD card instead of the onboard eMMC over USB (no Maskrom needed)
+USBRIDGE_SD_DEVICE=/dev/sdX curl -fsSL .../install.sh | bash
 ```
 
 Files land in `~/.usbridge-flash-tool/` by default (`USBRIDGE_WORKDIR` to change it) and are reused on a re-run instead of re-downloaded.
+
+### SD card instead of eMMC
+
+The appliance boots and runs identically off an SD card — same firmware image, no separate build. Insert the card into a reader on your computer (not the appliance) and set `USBRIDGE_SD_DEVICE` to that reader's device node instead of going through Maskrom mode at all:
+
+```bash
+USBRIDGE_SD_DEVICE=/dev/sdX curl -fsSL https://raw.githubusercontent.com/USBridge-Technologies/USBridge-KVM-2.0/main/flash-tool/install.sh | bash
+```
+
+Find the right `/dev/sdX` with `lsblk` before running this — it wipes the target device entirely. The script refuses non-removable disks and the host's own system disk unless you also set `USBRIDGE_SD_FORCE=1`. Once written, move the card to the appliance's SD slot and power on.
+
+On a board that also has a real eMMC, the firmware detects whichever device it actually booted from at runtime, so this works correctly with both present at once — and the on-device Settings menu gains an **Install to eMMC** action once booted from the card, letting you copy the running system onto the eMMC later without touching a computer again.
 
 ## Manual usage
 
@@ -49,6 +65,14 @@ Prefer to inspect what you're running first, or already have a git clone? Same t
    ./flash-device-fast.sh
    ```
    Or point it at an image anywhere else: `./flash-device-fast.sh /path/to/usbridge-rz3w-<version>.gptimg.zst` (an already-decompressed `.gptimg` works too).
+
+   For an SD card instead, same image/bmap, no `rkdeveloptool`/Maskrom step:
+   ```bash
+   sudo ./flash-sd-card.sh /dev/sdX
+   # or an explicit image path:
+   sudo ./flash-sd-card.sh /dev/sdX /path/to/usbridge-rz3w-<version>.gptimg.zst
+   ```
+   Requires root (direct block-device access). Refuses to target the host's own system disk or a non-removable disk unless you pass `--force`.
 
 ### Step by step (either method)
 
