@@ -8,8 +8,12 @@
 # USBRIDGE_SD_DEVICE to instead write the image straight onto an SD card via
 # a host card reader (no USB/Maskrom involved) -- see flash-sd-card.sh.
 #
+# For the other supported board (Radxa Cubie A7Z / Allwinner A733), see
+# ../a7z/install.sh instead -- different SoC, different tooling, kept as its
+# own self-contained subdirectory rather than one script branching on board.
+#
 # Usage:
-#   curl -fsSL https://raw.githubusercontent.com/USBridge-Technologies/USBridge-KVM-2.0/main/flash-tool/install.sh | bash
+#   curl -fsSL https://raw.githubusercontent.com/USBridge-Technologies/USBridge-KVM-2.0/main/flash-tool/rz3w/install.sh | bash
 #
 #   # write to an SD card instead of the onboard eMMC over USB
 #   USBRIDGE_SD_DEVICE=/dev/sdX curl -fsSL .../install.sh | bash
@@ -25,7 +29,7 @@
 #   https://github.com/USBridge-Technologies/USBridge-KVM-2.0/blob/main/docs/content/9-updates-changelog/firmware-update-guide.md
 set -euo pipefail
 
-REPO_RAW_BASE="https://raw.githubusercontent.com/USBridge-Technologies/USBridge-KVM-2.0/main/flash-tool"
+REPO_RAW_BASE="https://raw.githubusercontent.com/USBridge-Technologies/USBridge-KVM-2.0/main/flash-tool/rz3w"
 OTA_BASE="https://ota.usbridge.io/flash-images"
 WORKDIR="${USBRIDGE_WORKDIR:-${HOME}/.usbridge-flash-tool}"
 SD_DEVICE="${USBRIDGE_SD_DEVICE:-}"

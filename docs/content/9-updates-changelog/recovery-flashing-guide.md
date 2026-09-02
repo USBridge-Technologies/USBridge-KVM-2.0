@@ -1,9 +1,11 @@
 # USB Recovery Flashing Guide
 
-This guide covers how to perform a full physical recovery reflash of the eMMC storage on a **USBridge-KVM 2.0** appliance over USB using a PC. 
+This guide covers how to perform a full physical recovery reflash of a **USBridge-KVM 2.0** appliance using a PC.
 
 > [!WARNING]
-> This is a **different procedure from routine network OTA updates** — use it only when the device won't boot at all, has no working OTA path yet (never connected to a network), or you specifically need to wipe and reinstall the eMMC from a blank state. A healthy device should always use the standard [OTA Firmware Update Guide](./firmware-update-guide.md) instead; it is faster, doesn't need a cable to a PC, and doesn't risk interrupting a working unit.
+> This is a **different procedure from routine network OTA updates** — use it only when the device won't boot at all, has no working OTA path yet (never connected to a network), or you specifically need to wipe and reinstall from a blank state. A healthy device should always use the standard [OTA Firmware Update Guide](./firmware-update-guide.md) instead; it is faster, doesn't need a cable to a PC, and doesn't risk interrupting a working unit.
+
+Sections 1–6 below cover the **Radxa Zero 3W (RK3566)** board — eMMC-over-USB (Maskrom) is its primary recovery path, with an SD-card alternative in §6. The **Radxa Cubie A7Z (Allwinner A733)** board works differently enough (different SoC, and SD-card-only for now) to get its own section — see [§7](#7-radxa-cubie-a7z-allwinner-a733). Not sure which you have? The front-panel **Settings → Info** screen names the board.
 
 ---
 
@@ -17,7 +19,7 @@ Firmware builds and helper scripts are available through:
 The listing shows every retained version as `usbridge-rz3w-<version>.gptimg.zst`. Grab the newest one (or a specific version if you need to match a known-good build). The file is compressed with [Zstandard](https://facebook.github.io/zstd/).
 
 > [!TIP]
-> **`flash-tool/flash-device-fast.sh` (the recommended Linux path, step 4) decompresses on the fly — you don't need to decompress anything by hand for it.** Only decompress yourself if you're using the Windows RKDevTool GUI or the plain manual `rkdeveloptool wl` path, both of which need a plain `.gptimg` on disk:
+> **`flash-tool/rz3w/flash-device-fast.sh` (the recommended Linux path, step 4) decompresses on the fly — you don't need to decompress anything by hand for it.** Only decompress yourself if you're using the Windows RKDevTool GUI or the plain manual `rkdeveloptool wl` path, both of which need a plain `.gptimg` on disk:
 >
 > | OS | Decompress command |
 > | :--- | :--- |
@@ -90,8 +92,8 @@ The device is now in Maskrom mode and enumerates over USB as a Rockchip loader d
 sudo apt update && sudo apt install -y rkdeveloptool zstd python3 curl
 
 # 3. Download helper script and latest firmware
-curl -fsSL -O https://raw.githubusercontent.com/USBridge-Technologies/USBridge-KVM-2.0/main/flash-tool/flash-device-fast.sh
-curl -fsSL -O https://raw.githubusercontent.com/USBridge-Technologies/USBridge-KVM-2.0/main/flash-tool/rk356x_spl_loader_v1.23.114.bin
+curl -fsSL -O https://raw.githubusercontent.com/USBridge-Technologies/USBridge-KVM-2.0/main/flash-tool/rz3w/flash-device-fast.sh
+curl -fsSL -O https://raw.githubusercontent.com/USBridge-Technologies/USBridge-KVM-2.0/main/flash-tool/rz3w/rk356x_spl_loader_v1.23.114.bin
 chmod +x flash-device-fast.sh
 VERSION=$(curl -fsSL https://ota.usbridge.io/flash-images/latest-rz3w.txt)
 curl -fsSL -O https://ota.usbridge.io/flash-images/usbridge-rz3w-${VERSION}.gptimg.zst
@@ -105,7 +107,7 @@ Writing only the blocks that actually contain data (confirmed live: a 14.4 GiB i
 > [!NOTE]
 > **Running this from Windows?** See [5. Flashing from Windows via WSL](#5-flashing-from-windows-via-wsl) below — you can use these exact steps inside WSL, no separate Linux machine needed.
 
-**Linux — manual: `flash-tool/flash-device-fast.sh`** (if you'd rather download the files yourself and inspect the script first)
+**Linux — manual: `flash-tool/rz3w/flash-device-fast.sh`** (if you'd rather download the files yourself and inspect the script first)
 
 ```bash
 git clone https://github.com/USBridge-Technologies/USBridge-KVM-2.0.git
@@ -147,7 +149,7 @@ When it finishes, disconnect and reconnect power normally (Maskrom mode only app
 
 ## 5. Flashing from Windows via WSL
 
-Yes — you can run the fast Linux path (`flash-tool/flash-device-fast.sh`, step 4) from **WSL2** on Windows, without a separate Linux machine or a VM. The one thing WSL doesn't do automatically is USB passthrough — the Maskrom device needs to be explicitly attached to your WSL distro first, using Microsoft's official `usbipd-win` tool.
+Yes — you can run the fast Linux path (`flash-tool/rz3w/flash-device-fast.sh`, step 4) from **WSL2** on Windows, without a separate Linux machine or a VM. The one thing WSL doesn't do automatically is USB passthrough — the Maskrom device needs to be explicitly attached to your WSL distro first, using Microsoft's official `usbipd-win` tool.
 
 **One-time setup:**
 
@@ -187,13 +189,13 @@ Everything above writes to the appliance's onboard eMMC over USB, in Maskrom mod
 
 **One command:**
 ```bash
-USBRIDGE_SD_DEVICE=/dev/sdX curl -fsSL https://raw.githubusercontent.com/USBridge-Technologies/USBridge-KVM-2.0/main/flash-tool/install.sh | bash
+USBRIDGE_SD_DEVICE=/dev/sdX curl -fsSL https://raw.githubusercontent.com/USBridge-Technologies/USBridge-KVM-2.0/main/flash-tool/rz3w/install.sh | bash
 ```
-Same installer as step 4, just pointed at a target device instead of Maskrom mode — installs `zstd`/`python3` if missing, downloads `flash-tool/flash-sd-card.sh` plus the latest firmware image and block map, and writes it. `USBRIDGE_VERSION=<version>` still works to pin a specific build. `rkdeveloptool` is not needed for this path at all.
+Same installer as step 4, just pointed at a target device instead of Maskrom mode — installs `zstd`/`python3` if missing, downloads `flash-tool/rz3w/flash-sd-card.sh` plus the latest firmware image and block map, and writes it. `USBRIDGE_VERSION=<version>` still works to pin a specific build. `rkdeveloptool` is not needed for this path at all.
 
 **Step by step:**
 ```bash
-curl -fsSL -O https://raw.githubusercontent.com/USBridge-Technologies/USBridge-KVM-2.0/main/flash-tool/flash-sd-card.sh
+curl -fsSL -O https://raw.githubusercontent.com/USBridge-Technologies/USBridge-KVM-2.0/main/flash-tool/rz3w/flash-sd-card.sh
 chmod +x flash-sd-card.sh
 VERSION=$(curl -fsSL https://ota.usbridge.io/flash-images/latest-rz3w.txt)
 curl -fsSL -O https://ota.usbridge.io/flash-images/usbridge-rz3w-${VERSION}.gptimg.zst
@@ -215,3 +217,36 @@ A card larger than the firmware's build baseline isn't wasted, either — the ex
 
 > [!NOTE]
 > Same as an eMMC reflash: a device started this way boots into the initial trial period and needs [network setup](../1-getting-started/initial-setup.md) again.
+
+---
+
+## 7. Radxa Cubie A7Z (Allwinner A733)
+
+This board is a different SoC family from the rest of this guide (Allwinner A733, not Rockchip RK3566) and currently only boots from an SD card — it ships with its eMMC controller disabled, so there's no Maskrom/`rkdeveloptool`-equivalent onboard-eMMC recovery path yet. Recovery is always the SD-card route, same underlying idea as [§6](#6-writing-to-an-sd-card-instead) above but its own tool (different board, different image naming) — see [`flash-tool/a7z/`](../../flash-tool/a7z/).
+
+**One command:**
+```bash
+USBRIDGE_SD_DEVICE=/dev/sdX curl -fsSL https://raw.githubusercontent.com/USBridge-Technologies/USBridge-KVM-2.0/main/flash-tool/a7z/install.sh | bash
+```
+Installs `zstd`/`python3` if missing, downloads `flash-tool/a7z/flash-sd-card.sh` plus the latest A7Z firmware image and block map, and writes it. `USBRIDGE_SD_DEVICE` is required here (not optional like RZ3W) — there's no eMMC/USB fallback to default to. `USBRIDGE_VERSION=<version>` still works to pin a specific build.
+
+**Step by step:**
+```bash
+curl -fsSL -O https://raw.githubusercontent.com/USBridge-Technologies/USBridge-KVM-2.0/main/flash-tool/a7z/flash-sd-card.sh
+chmod +x flash-sd-card.sh
+VERSION=$(curl -fsSL https://ota.usbridge.io/flash-images/latest-a7z.txt)
+curl -fsSL -O https://ota.usbridge.io/flash-images/usbridge-a7z-${VERSION}.gptimg.zst
+curl -fsSL -O https://ota.usbridge.io/flash-images/usbridge-a7z-${VERSION}.gptimg.bmap
+sudo ./flash-sd-card.sh /dev/sdX usbridge-a7z-${VERSION}.gptimg.zst
+```
+
+Either way:
+- **Find `/dev/sdX` first** with `lsblk` before running this — it wipes the target device entirely. The target is your SD card reader, not the appliance (the appliance isn't connected to your computer for this path at all).
+- The script refuses to target the host's own system disk, and refuses any disk the kernel doesn't report as removable — pass `--force` (manual) or set `USBRIDGE_SD_FORCE=1` (one-liner) only if you're certain about the target and it's being wrongly refused.
+- Once written, move the card to the appliance's SD slot and power on.
+- Unlike RZ3W, there's no **Install to eMMC** step to move to afterward — just leave the card in the appliance.
+
+A card larger than the firmware's build baseline isn't wasted either — same automatic `/mnt/emmc` capacity growth on first boot as RZ3W; see [Storage Security & Immutability §4](../4-snapshots-state-management/security-storage.md#4-onboard-storage-mntemmc--automatic-capacity-growth).
+
+> [!NOTE]
+> A device flashed this way starts fresh, same as a brand-new unit: it boots into the [initial trial period](../8-maintenance-support/faq.md) and needs [network setup](../1-getting-started/initial-setup.md) again.
