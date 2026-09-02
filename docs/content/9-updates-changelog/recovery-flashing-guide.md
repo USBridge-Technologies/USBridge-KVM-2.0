@@ -14,7 +14,7 @@ Sections 1–6 below cover the **Radxa Zero 3W (RK3566)** board — eMMC-over-US
 Firmware builds and helper scripts are available through:
 
 * **[https://www.usbridge.io/product/kvm-software](https://www.usbridge.io/product/kvm-software)** (Web portal downloads tab, with step-by-step instructions for Linux, macOS, and Windows)
-* **[https://ota.usbridge.io/flash-images/](https://ota.usbridge.io/flash-images/)** (Direct file server listing)
+* **[https://flash.usbridge.io/](https://flash.usbridge.io/)** (Direct file server listing)
 
 The listing shows every retained version as `usbridge-rz3w-<version>.gptimg.zst`. Grab the newest one (or a specific version if you need to match a known-good build). The file is compressed with [Zstandard](https://facebook.github.io/zstd/).
 
@@ -32,7 +32,7 @@ The listing shows every retained version as `usbridge-rz3w-<version>.gptimg.zst`
 You'll also need, from the same listing:
 
 * **`usbridge-rz3w-<version>.gptimg.bmap`** — same version as the image, downloaded as-is (not compressed). A small XML block map listing which parts of the `.gptimg` actually contain data — lets the fast Linux flashing path skip the image's mostly-empty regions instead of writing the whole multi-GB file byte for byte. Not needed for the Windows/RKDevTool or the plain `rkdeveloptool wl` path.
-* **[rk356x_spl_loader_v1.23.114.bin](https://ota.usbridge.io/flash-images/rk356x_spl_loader_v1.23.114.bin)** (481 KB, not compressed) — the RK3566 boot loader binary. Not the firmware itself, just a small program `rkdeveloptool` pushes into the chip's RAM first to initialize DDR before it can accept the actual image write. Required for the Linux CLI flow; RKDevTool on Windows handles the equivalent step internally with its own bundled loader. Also ships pre-included in the [`flash-tool/`](../../flash-tool/) directory of this repo.
+* **[rk356x_spl_loader_v1.23.114.bin](https://flash.usbridge.io/rk356x_spl_loader_v1.23.114.bin)** (481 KB, not compressed) — the RK3566 boot loader binary. Not the firmware itself, just a small program `rkdeveloptool` pushes into the chip's RAM first to initialize DDR before it can accept the actual image write. Required for the Linux CLI flow; RKDevTool on Windows handles the equivalent step internally with its own bundled loader. Also ships pre-included in the [`flash-tool/`](../../flash-tool/) directory of this repo.
 
 ---
 
@@ -95,9 +95,9 @@ sudo apt update && sudo apt install -y rkdeveloptool zstd python3 curl
 curl -fsSL -O https://raw.githubusercontent.com/USBridge-Technologies/USBridge-KVM-2.0/main/flash-tool/rz3w/flash-device-fast.sh
 curl -fsSL -O https://raw.githubusercontent.com/USBridge-Technologies/USBridge-KVM-2.0/main/flash-tool/rz3w/rk356x_spl_loader_v1.23.114.bin
 chmod +x flash-device-fast.sh
-VERSION=$(curl -fsSL https://ota.usbridge.io/flash-images/latest-rz3w.txt)
-curl -fsSL -O https://ota.usbridge.io/flash-images/usbridge-rz3w-${VERSION}.gptimg.zst
-curl -fsSL -O https://ota.usbridge.io/flash-images/usbridge-rz3w-${VERSION}.gptimg.bmap
+VERSION=$(curl -fsSL https://flash.usbridge.io/latest-rz3w.txt)
+curl -fsSL -O https://flash.usbridge.io/usbridge-rz3w-${VERSION}.gptimg.zst
+curl -fsSL -O https://flash.usbridge.io/usbridge-rz3w-${VERSION}.gptimg.bmap
 
 # 4. Flash the device
 sudo ./flash-device-fast.sh usbridge-rz3w-${VERSION}.gptimg.zst
@@ -197,9 +197,9 @@ Same installer as step 4, just pointed at a target device instead of Maskrom mod
 ```bash
 curl -fsSL -O https://raw.githubusercontent.com/USBridge-Technologies/USBridge-KVM-2.0/main/flash-tool/rz3w/flash-sd-card.sh
 chmod +x flash-sd-card.sh
-VERSION=$(curl -fsSL https://ota.usbridge.io/flash-images/latest-rz3w.txt)
-curl -fsSL -O https://ota.usbridge.io/flash-images/usbridge-rz3w-${VERSION}.gptimg.zst
-curl -fsSL -O https://ota.usbridge.io/flash-images/usbridge-rz3w-${VERSION}.gptimg.bmap
+VERSION=$(curl -fsSL https://flash.usbridge.io/latest-rz3w.txt)
+curl -fsSL -O https://flash.usbridge.io/usbridge-rz3w-${VERSION}.gptimg.zst
+curl -fsSL -O https://flash.usbridge.io/usbridge-rz3w-${VERSION}.gptimg.bmap
 sudo ./flash-sd-card.sh /dev/sdX usbridge-rz3w-${VERSION}.gptimg.zst
 ```
 
@@ -234,9 +234,9 @@ Installs `zstd`/`python3` if missing, downloads `flash-tool/a7z/flash-sd-card.sh
 ```bash
 curl -fsSL -O https://raw.githubusercontent.com/USBridge-Technologies/USBridge-KVM-2.0/main/flash-tool/a7z/flash-sd-card.sh
 chmod +x flash-sd-card.sh
-VERSION=$(curl -fsSL https://ota.usbridge.io/flash-images/latest-a7z.txt)
-curl -fsSL -O https://ota.usbridge.io/flash-images/usbridge-a7z-${VERSION}.gptimg.zst
-curl -fsSL -O https://ota.usbridge.io/flash-images/usbridge-a7z-${VERSION}.gptimg.bmap
+VERSION=$(curl -fsSL https://flash.usbridge.io/latest-a7z.txt)
+curl -fsSL -O https://flash.usbridge.io/usbridge-a7z-${VERSION}.gptimg.zst
+curl -fsSL -O https://flash.usbridge.io/usbridge-a7z-${VERSION}.gptimg.bmap
 sudo ./flash-sd-card.sh /dev/sdX usbridge-a7z-${VERSION}.gptimg.zst
 ```
 

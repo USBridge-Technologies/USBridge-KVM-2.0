@@ -25,7 +25,7 @@ On Linux (or WSL on Windows — see [§ 5](../../docs/content/9-updates-changelo
 USBRIDGE_SD_DEVICE=/dev/sdX curl -fsSL https://raw.githubusercontent.com/USBridge-Technologies/USBridge-KVM-2.0/main/flash-tool/a7z/install.sh | bash
 ```
 
-Find the right `/dev/sdX` first with `lsblk` — it wipes the target device entirely. This installs `zstd`/`python3` if missing (Debian/Ubuntu via `apt`), downloads `flash-sd-card.sh`, fetches the **latest** firmware image + block map from [ota.usbridge.io](https://ota.usbridge.io/flash-images/), and flashes it.
+Find the right `/dev/sdX` first with `lsblk` — it wipes the target device entirely. This installs `zstd`/`python3` if missing (Debian/Ubuntu via `apt`), downloads `flash-sd-card.sh`, fetches the **latest** firmware image + block map from [flash.usbridge.io](https://flash.usbridge.io/), and flashes it.
 
 Useful overrides:
 ```bash
@@ -45,7 +45,7 @@ Once written, move the card to the appliance's SD slot and power on — there's 
 Prefer to inspect what you're running first, or already have a git clone? Same tool, no auto-install/auto-download magic:
 
 1. **Prerequisites**: `zstd`, `python3`.
-2. Download the firmware image + block map, matching versions, from **[ota.usbridge.io/flash-images/](https://ota.usbridge.io/flash-images/)**: `usbridge-a7z-<version>.gptimg.zst` and `usbridge-a7z-<version>.gptimg.bmap`.
+2. Download the firmware image + block map, matching versions, from **[flash.usbridge.io](https://flash.usbridge.io/)**: `usbridge-a7z-<version>.gptimg.zst` and `usbridge-a7z-<version>.gptimg.bmap`.
 3. ```bash
    git clone https://github.com/USBridge-Technologies/USBridge-KVM-2.0.git
    cd USBridge-KVM-2.0/flash-tool/a7z

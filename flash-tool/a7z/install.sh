@@ -25,7 +25,7 @@
 set -euo pipefail
 
 REPO_RAW_BASE="https://raw.githubusercontent.com/USBridge-Technologies/USBridge-KVM-2.0/main/flash-tool/a7z"
-OTA_BASE="https://ota.usbridge.io/flash-images"
+OTA_BASE="https://flash.usbridge.io"
 WORKDIR="${USBRIDGE_WORKDIR:-${HOME}/.usbridge-flash-tool}"
 SD_DEVICE="${USBRIDGE_SD_DEVICE:-}"
 

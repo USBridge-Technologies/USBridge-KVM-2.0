@@ -15,7 +15,7 @@
 # mode, installing rkdeveloptool, WSL notes for Windows, etc.):
 #   docs/content/9-updates-changelog/firmware-update-guide.md
 #
-# Prerequisites, downloaded from https://ota.usbridge.io/flash-images/ and
+# Prerequisites, downloaded from https://flash.usbridge.io/ and
 # matching the SAME version:
 #   - usbridge-rz3w-<version>.gptimg.zst    (or decompress it yourself first
 #                                             with `zstd -d` -- either works)
@@ -74,7 +74,7 @@ find_image() {
         img="$(find "${SCRIPT_DIR}" -maxdepth 1 -iname '*.gptimg.zst' | head -n1)"
     fi
     if [[ -z "${img}" ]]; then
-        die "No .gptimg or .gptimg.zst found next to this script and none passed as an argument.\nDownload one from https://ota.usbridge.io/flash-images/, see the Firmware Update Guide."
+        die "No .gptimg or .gptimg.zst found next to this script and none passed as an argument.\nDownload one from https://flash.usbridge.io/, see the Firmware Update Guide."
     fi
     readlink -f "${img}"
 }
@@ -123,7 +123,7 @@ if [[ "$IMAGE" == *.zst ]]; then
 fi
 
 if [[ ! -f "$BMAP" ]]; then
-    die "BMAP file not found: $BMAP\nDownload usbridge-rz3w-<version>.gptimg.bmap from https://ota.usbridge.io/flash-images/ (same version as the image, uncompressed) and put it next to the image with the exact same base name."
+    die "BMAP file not found: $BMAP\nDownload usbridge-rz3w-<version>.gptimg.bmap from https://flash.usbridge.io/ (same version as the image, uncompressed) and put it next to the image with the exact same base name."
 fi
 
 info "Image : $(basename "$IMAGE")"

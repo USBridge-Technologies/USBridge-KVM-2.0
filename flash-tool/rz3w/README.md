@@ -31,15 +31,15 @@ sudo apt update && sudo apt install -y rkdeveloptool zstd python3 curl
 curl -fsSL -O https://raw.githubusercontent.com/USBridge-Technologies/USBridge-KVM-2.0/main/flash-tool/rz3w/flash-device-fast.sh
 curl -fsSL -O https://raw.githubusercontent.com/USBridge-Technologies/USBridge-KVM-2.0/main/flash-tool/rz3w/rk356x_spl_loader_v1.23.114.bin
 chmod +x flash-device-fast.sh
-VERSION=$(curl -fsSL https://ota.usbridge.io/flash-images/latest-rz3w.txt)
-curl -fsSL -O https://ota.usbridge.io/flash-images/usbridge-rz3w-${VERSION}.gptimg.zst
-curl -fsSL -O https://ota.usbridge.io/flash-images/usbridge-rz3w-${VERSION}.gptimg.bmap
+VERSION=$(curl -fsSL https://flash.usbridge.io/latest-rz3w.txt)
+curl -fsSL -O https://flash.usbridge.io/usbridge-rz3w-${VERSION}.gptimg.zst
+curl -fsSL -O https://flash.usbridge.io/usbridge-rz3w-${VERSION}.gptimg.bmap
 
 # 4. Flash the device
 sudo ./flash-device-fast.sh usbridge-rz3w-${VERSION}.gptimg.zst
 ```
 
-These commands do everything: install `rkdeveloptool`/`zstd`/`python3`/`curl` if missing (Debian/Ubuntu via `apt`), download `flash-device-fast.sh` and the boot loader, fetch the **latest** firmware image + block map from [ota.usbridge.io](https://ota.usbridge.io/flash-images/), and flash it.
+These commands do everything: install `rkdeveloptool`/`zstd`/`python3`/`curl` if missing (Debian/Ubuntu via `apt`), download `flash-device-fast.sh` and the boot loader, fetch the **latest** firmware image + block map from [flash.usbridge.io](https://flash.usbridge.io/), and flash it.
 
 Prefer a single command instead? `install.sh` does the same thing end to end:
 ```bash
@@ -69,9 +69,9 @@ or, step by step:
 ```bash
 curl -fsSL -O https://raw.githubusercontent.com/USBridge-Technologies/USBridge-KVM-2.0/main/flash-tool/rz3w/flash-sd-card.sh
 chmod +x flash-sd-card.sh
-VERSION=$(curl -fsSL https://ota.usbridge.io/flash-images/latest-rz3w.txt)
-curl -fsSL -O https://ota.usbridge.io/flash-images/usbridge-rz3w-${VERSION}.gptimg.zst
-curl -fsSL -O https://ota.usbridge.io/flash-images/usbridge-rz3w-${VERSION}.gptimg.bmap
+VERSION=$(curl -fsSL https://flash.usbridge.io/latest-rz3w.txt)
+curl -fsSL -O https://flash.usbridge.io/usbridge-rz3w-${VERSION}.gptimg.zst
+curl -fsSL -O https://flash.usbridge.io/usbridge-rz3w-${VERSION}.gptimg.bmap
 sudo ./flash-sd-card.sh /dev/sdX usbridge-rz3w-${VERSION}.gptimg.zst
 ```
 
@@ -84,7 +84,7 @@ On a board that also has a real eMMC, the firmware detects whichever device it a
 Prefer to inspect what you're running first, or already have a git clone? Same tool, no auto-install/auto-download magic:
 
 1. **Prerequisites**: `rkdeveloptool` (`sudo apt install rkdeveloptool` on Debian/Ubuntu — see [§ 2](../../docs/content/9-updates-changelog/recovery-flashing-guide.md#2-install-a-rockchip-flashing-tool) of the full guide for other distros/macOS/Windows; not needed for the SD card path), `zstd`, `python3`.
-2. Download the firmware image + block map, matching versions, from **[ota.usbridge.io/flash-images/](https://ota.usbridge.io/flash-images/)**: `usbridge-rz3w-<version>.gptimg.zst` and `usbridge-rz3w-<version>.gptimg.bmap`.
+2. Download the firmware image + block map, matching versions, from **[flash.usbridge.io](https://flash.usbridge.io/)**: `usbridge-rz3w-<version>.gptimg.zst` and `usbridge-rz3w-<version>.gptimg.bmap`.
 3. ```bash
    git clone https://github.com/USBridge-Technologies/USBridge-KVM-2.0.git
    cd USBridge-KVM-2.0/flash-tool/rz3w
