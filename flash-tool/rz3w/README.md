@@ -16,6 +16,19 @@ New to USBridge-KVM 2.0? See the [product page](https://www.usbridge.io/) and th
 | `flash-device-fast.sh` | eMMC flashing over USB (via `rkdeveloptool`, Maskrom mode). Uses a `.bmap` block map to write only the blocks that actually contain data — a 14.4 GiB image drops to ~830 MiB actually written. Accepts the downloaded `.gptimg.zst` directly and decompresses it on the fly (no multi-GB temporary file, no separate decompress step). |
 | `flash-sd-card.sh` | Writes the same image straight onto an SD card via a host card reader — no USB/`rkdeveloptool`/Maskrom involved. Use this to run the appliance off an SD card instead of (re)flashing the onboard eMMC. Same sparse `.bmap`-based writing as above. |
 | `rk356x_spl_loader_v1.23.114.bin` | The RK3566 boot loader binary `rkdeveloptool` needs to initialize DDR before it can write anything. Only needed for the eMMC/USB path — not used by `flash-sd-card.sh`. |
+| [`factory-reset/`](factory-reset/) | Wipes the onboard eMMC back to factory-blank (no OS, empty GPT) instead of installing firmware — use this to make the board fall through to booting from an SD card. Not a firmware install; see that directory's own notes. |
+
+## Restoring the eMMC to factory-blank (no firmware)
+
+If you want the board wiped back to how it shipped — no OS on the eMMC, just the idblock/preloader and an empty partition table, so it boots from an SD card instead — use `factory-reset/restore-factory-default.sh` rather than the full firmware flash above:
+
+```bash
+# 1. Put the device in Maskrom mode
+cd flash-tool/rz3w/factory-reset
+./restore-factory-default.sh
+```
+
+See [`factory-reset/README.md`](factory-reset/README.md) for details on what gets written.
 
 ## Quick start (recommended): step-by-step installation
 
