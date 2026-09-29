@@ -1,37 +1,65 @@
-# USBridge-KVM 2.0
+# USBridge: Ultra-Low Latency IP-KVM Firmware & KVM 2.0
+<div align="center">
+<img src="asset/hero.svg" width="1400" alt="USBridge Firmware">
 
-> **Ultra-Low Latency IP-KVM with AI-Ready BIOS-in-Terminal, Drive Emulation, and Immutable Snapshots.**
-
-[![Crowdsupply](https://img.shields.io/badge/USBridge-CROWDSUPPLY-blue)](https://www.crowdsupply.com/usbridge-technologies/usbridge-kvm-2-0)
-[![Roadmap](https://img.shields.io/badge/USBridge-ROADMAP-green)](https://github.com/orgs/USBridge-Technologies/projects/1)
-[![WEebsite](https://img.shields.io/badge/USBridge-WEBSITE-black)](https://www.usbridge.io/)
+[![WEebsite](https://img.shields.io/badge/USBridge-WEBSITE-black)](https://www.usbridge.io/hardware-agent)
 [![Docs](https://img.shields.io/badge/USBridge-DOCUMENTATION-orange)](./docs/README.md)
+</div>
 
-**USBridge-KVM 2.0** is a compact, professional-grade stack for system debugging and direct infrastructure control at the most fundamental level (Layer 0). It gives administrators absolute control over the hardware, bypassing the operating system while ensuring strict hardware isolation. The device provides instant, out-of-the-box server access with ultra-low latency streaming and the ability to deploy scripts or AI agents to automate routine, low-level tasks.
+**The USBridge Ecosystem** is a professional-grade solution for system debugging and infrastructure management at the fundamental hardware level (Layer 0). It provides administrators with absolute control over hardware, bypassing the operating system while ensuring strict hardware isolation. 
 
-<img width="1200" height="436" alt="Front_panel" src="https://github.com/user-attachments/assets/31aca852-0322-4923-a1be-1cba2049686d" />
+The solution is available in two deployment formats:
 
----
-
-## Documentation
-
-The [**full technical documentation**](./docs/README.md) covers setup, the KVM/video pipeline, [BIOS-in-Terminal](./docs/content/3-bios-in-terminal/technology-overview.md), Starlark/MCP AI-agent scripting, snapshot storage, hardware reference, and the [REST API](./docs/content/10-developer-api/rest-api-reference.md). A few of the pages people look for most:
-
-* [Firmware Update Guide](./docs/content/9-updates-changelog/firmware-update-guide.md) — OTA updates, plus a full eMMC recovery reflash over USB (Linux/macOS/Windows, including WSL) if a device won't boot.
-* [`flash-tool/`](./flash-tool/) — the recovery/first-flash script itself, ready to run.
-* [Quick Start Guide](./docs/content/1-getting-started/quick-start.md) and [Headless & Bulk Provisioning](./docs/content/1-getting-started/headless-provisioning.md) for initial setup.
-
----
-
-## Video Reviews & Media
-
-| Channel | Review / Video | Link |
+| Deployment Format | Description | Quick Links |
 | :--- | :--- | :--- |
-| [**Learn To HomeLab**](https://www.youtube.com/@learntohomelab) | Is This The Best KVM On The Market? | [Watch on YouTube](https://www.youtube.com/watch?v=U3GhuyD-gzw) |
-| [**Barmine Tech**](https://www.youtube.com/@BarmineTech) | The Best KVM I've Used? USBridge KVM 2.0 (Independent Review) | [Watch on YouTube](https://www.youtube.com/watch?v=DA_hMD3T0Qg) |
-| [**Jonatan Castro**](https://www.youtube.com/@JonatanCastro) | Unboxing & What's in the box (Spanish) | [Watch on YouTube](https://www.youtube.com/watch?v=7YJS81rI3U8&t) |
-| [**USBridge**](https://www.youtube.com/@KVMUSBridge) | Official Overview & Feature Walkthrough | [Watch on YouTube](https://youtu.be/4h5Q8XpDzqI) |
-| [**USBridge**](https://www.youtube.com/@KVMUSBridge) | Full Assembly & Packaging of USBridge KVM 2.0 | [Watch on YouTube](https://youtu.be/l6QtajSYtwQ) |
+| **1. USBridge Firmware** | Converts supported single-board computers (SBCs) into enterprise-grade IP-KVM appliances. | [Download for Radxa Zero 3W / 3E ➔](https://www.usbridge.io/hardware-agent)<br>[Download for Radxa Cubie A7Z ➔](https://www.usbridge.io/hardware-agent)<br>*Raspberry Pi, Banana Pi — In Development* |
+| **2. USBridge KVM 2.0** | A turnkey, plug-and-play hardware appliance requiring no manual assembly. | [Buy USBridge KVM 2.0 ➔](https://www.usbridge.io/hardware-agent#buy-usbridge-kvm-2-0) |
+
+---
+
+## Key Features
+
+<img src="asset/t1.svg" width="1400" alt="USBridge Firmware">
+
+| | |
+| :--- | :--- |
+| **Client Ecosystem**<br>Seamlessly integrate into the USBridge Client ecosystem as a unified point of control. Manage hardware KVMs, software agents, and remote desktops over an encrypted, peer-to-peer Tailscale mesh with zero port forwarding. | **BIOS-in-Terminal OCR Engine**<br>Real-time local OCR converts raw video into an interactive terminal stream directly on the device, bypassing cloud dependencies. Copy boot logs, search POST error codes, and administer machines over lightweight SSH. |
+
+<img src="asset/t2.svg" width="1400" alt="USBridge Firmware">
+
+| | |
+| :--- | :--- |
+| **Immutable Snapshots**<br>Built on a hardware-isolated Btrfs architecture. Deltas are recorded and instantly frozen as read-only states, providing unbreakable rollbacks against ransomware, corrupted updates, and failed boots. | **Virtual Storage ISO Media**<br>Hardware mass storage emulation enables remote mounting of ISO, IMG, VDI, or VMDK images in read-only or read-write modes. Install operating systems and execute bootable rescue utilities out-of-band utilizing high-speed RAM caching. |
+
+<img src="asset/t3.svg" width="1400" alt="USBridge Firmware">
+
+| | |
+| :--- | :--- |
+| **Automation MCP Protocol**<br>Integrate AI models via the Model Context Protocol (MCP) to automate BIOS configuration and execute hardware diagnostics. Utilize Starlark scripts to evaluate verifiable OCR text streams instead of fragile pixel matching. | **Turnkey KVM**<br>Deploy a ready-to-run hardware appliance engineered for instant integration. The pre-assembled USBridge KVM 2.0 features an OLED status display, active cooling, dual-band Wi-Fi, and pre-flashed firmware out of the box. |
+
+## DIY KVM Setup: Full BIOS Control in 3 Minutes
+
+Provision a supported SBC, flash the firmware image, and connect a standard USB capture interface to deploy your own IP-KVM.
+
+### 1. Hardware Checklist (Bill of Materials)
+
+| Component | Description |
+| :--- | :--- |
+| **Supported SBC** | Radxa Zero 3W / 3E, Radxa Cubie A7Z. |
+| **HDMI-to-USB Capture Card** | Generic MS2109 (7–12$), or standard UVC dongle. |
+| **MicroSD Card (2GB+)** | Standard 2GB+ capacity. Class 10 or higher recommended for fast boot times. |
+| **Optional: OLED Status Screen** | On-device IP dashboard. Fully optional—the system runs perfectly headless via a single config file. |
+
+### 2. 3-Minute Flashing Guide (Video Tutorial)
+
+Watch the complete guide on how to flash the firmware and perform the first boot.
+
+[![DIY IP-KVM Flashing Guide](https://img.youtube.com/vi/9FyPjEfH5Wg/maxresdefault.jpg)](https://youtu.be/9FyPjEfH5Wg)
+
+**Quick Links for Setup:**
+* [Step-by-step Flashing Guide](./docs/content/9-updates-changelog/recovery-flashing-guide.md)
+* [Headless Provisioning Guide](./docs/content/1-getting-started/headless-provisioning.md)
+* [Full Documentation](./docs/README.md)
 
 ---
 
@@ -41,23 +69,17 @@ Forget about "jelly" cursors, video stutters, and input desync. USBridge-KVM 2.0
 
 The hardware video capture and transmission pipeline is optimized to reduce latency to an imperceptible level. You get the absolute responsiveness of a direct connection: crystal-smooth mouse movement and instantaneous text input response. The latency is so low that the bandwidth and reaction speed are enough even for comfortable gameplay in dynamic platformers — let alone flawless server administration.
 
-[![Watch Moonlight Streaming Demo](https://img.youtube.com/vi/-5_oHFUAUN4/maxresdefault.jpg)](https://youtu.be/-5_oHFUAUN4)
-*Watch the demo: Ultra-low latency streaming, Hollow Knight gameplay, and side-by-side latency testing.* 
 
----
+## BIOS-in-Terminal & AI Vision: Offline OCR & Hardware-Level Automation
 
-## BIOS-in-Terminal: Offline OCR & Hardware-Level AI Automation
+The USBridge-KVM 2.0 goes beyond standard video streaming by analyzing the signal at the hardware level. The integrated compute module performs real-time, local Optical Character Recognition (OCR) and AI Vision, converting BIOS, Pre-OS, and graphical environments into an interactive data stream.
 
-USBridge-KVM 2.0 doesn't just stream video — it understands it. Our unique BIOS-in-Terminal technology intercepts the raw video signal at the hardware level, using an onboard chip with real-time offline OCR to convert BIOS interfaces and pre-boot environments (Pre-OS) into an interactive, selectable text stream.
+*   **AI Vision & Local Models:** A built-in MCP Proxy enables the activation of local AI models for autonomous visual analysis of graphical user interfaces. The system automatically recognizes interactive elements, text blocks, and on-screen buttons (highlighting them with bounding boxes), ensuring precise navigation without manual pixel hunting.
+*   **AI Agent Integration (MCP Protocol):** Connect external or local AI agents via a local endpoint (e.g., `http://127.0.0.1:8765/api/mcp`). The neural network independently analyzes the screen structure, navigates through tabs, conducts system audits, and detects hardware failures based on visual data.
+*   **Interactive Text-Based BIOS via SSH:** Configure the BIOS directly through a standard SSH session. The interface is rendered as plain text, allowing for immediate copying of error codes, BIOS versions, and serial numbers straight from the console.
+*   **In-Client Scripting (Starlark):** Create and execute Starlark (Python syntax) scripts directly from the client interface. Automation relies on recognized text and objects: scripts can reliably wait for a specific target string (e.g., `"Aptio Setup Utility"`) to appear and then send the exact scan-code for navigation.
 
-*   **Interactive Text-Based BIOS via SSH:** Connect to the KVM using a standard SSH session to view and configure the BIOS directly inside your favorite terminal. Because the information is displayed as pure text, you can easily select and copy error codes, BIOS versions, or serial numbers straight from the console.
-*   **In-Client Scripting Without "Pixel-Hunting":** Write, edit, and run robust Starlark (Python syntax) scripts directly from the app interface. The automation manager operates on recognized text: the script reliably waits for the string `"Aptio Setup Utility"` to appear, and then sends the exact scan-code (e.g., Escape) to navigate the menu.
-*   **AI Agent Integration (MCP Protocol):** Through the Model Context Protocol (MCP), you can connect AI agents (like Claude) directly to the KVM. The neural network can independently "read" the terminal screen, navigate through tabs, perform system audits, and detect hardware faults (for instance, identifying a dead CMOS battery by analyzing the reset system date).
-
-[![Watch BIOS-in-Terminal & AI Demo](https://img.youtube.com/vi/7IJhaAAuNvY/maxresdefault.jpg)](https://youtu.be/7IJhaAAuNvY)
-*Watch the demo: BIOS-in-Terminal, MCP AI Agents, and Starlark Script Automation.*
-
----
+<img src="asset/AI.svg" width="1400" alt="USBridge Firmware">
 
 ## Drive Emulation & Immutable Snapshots
 
@@ -66,8 +88,6 @@ Universal hardware emulation allows you to mount virtual images directly from yo
 
 ### Hardware Ransomware Protection & Snapshots
 During any modification, the system never overwrites the source files; instead, it saves only the "delta" of changes, instantly freezing the new copy in a read-only state. Thanks to strict hardware isolation, even if ransomware or an attacker gains full root privileges on the compromised server, they have no physical path to reach the KVM storage. All data is stored using the standard Btrfs file system.
-
-<img width="1200" height="324" alt="Immutable_Snapshots2" src="https://github.com/user-attachments/assets/a501cb97-93e6-4c02-a29a-9e3fb8f58d0a" />
 
 ---
 
@@ -88,7 +108,8 @@ During any modification, the system never overwrites the source files; instead, 
 
 ## Client Download Matrix
 
-<img width="2000" height="1046" alt="USBridge_ap4p" src="https://github.com/user-attachments/assets/f453ac50-f710-4e80-b6ec-61ac1d7fb42c" />
+
+<img src="asset/client.svg" width="1400" alt="USBridge Firmware">
 
 The Client is the control interface installed on your workstation, laptop, or mobile device. It manages active hardware connections, live remote desktop streaming, virtual device passthrough, and your snapshot registry.
 
@@ -101,14 +122,6 @@ The Client is the control interface installed on your workstation, laptop, or mo
 
 ## Unified Ecosystem: [USBridge-Remote](https://github.com/USBridge-Technologies/USBridge-Remote)
 
-<details>
-<summary>📸 Click to preview USBridge-Remote Agent Interface</summary>
-<br>
-
-<img width="4960" height="1644" alt="Screenshot 2026-05-03 20112н0" src="https://github.com/user-attachments/assets/9f72f6fa-aad0-4d09-b886-22a4d9ba1538" />
-
-</details>
-
 Control your entire infrastructure from a single point using **[USBridge-Remote](https://github.com/USBridge-Technologies/USBridge-Remote)** — our dedicated cross-platform agent application. It enables a hybrid access approach within a single interface, combining hardware and software-level management:
 
 * **Hardware Level (Layer 0):** Add USBridge-KVM devices for direct BIOS access, media mounting, and bare-metal recovery of "dead" machines.
@@ -118,16 +131,41 @@ Control your entire infrastructure from a single point using **[USBridge-Remote]
 
 The agent runs as a background service on your target OS (servers, remote workstations, or headless nodes) to stream the desktop and execute system-level commands.
 
-| Architecture | Windows | macOS | Linux |
-| :--- | :---: | :---: | :---: |
-| **x86_64** | [Download](https://github.com/USBridge-Technologies/USBridge-Remote/releases/latest/download/USBridgeAgent-Windows-x86_64.zip) | — | [Download](https://github.com/USBridge-Technologies/USBridge-Remote/releases/latest/download/USBridgeAgent-Linux-x86_64.AppImage) |
-| **ARM64** | — | [Download](https://github.com/USBridge-Technologies/USBridge-Remote/releases/latest/download/USBridgeAgent-macOS-arm64.dmg) | — |
+<table>
+  <tr>
+    <!-- Left Column: Downloads Table -->
+    <td valign="middle">
+      <table>
+        <tr>
+          <th>Architecture</th>
+          <th>Windows</th>
+          <th>macOS</th>
+          <th>Linux</th>
+        </tr>
+        <tr>
+          <td><b>x86_64</b></td>
+          <td><a href="https://github.com/USBridge-Technologies/USBridge-Remote/releases/latest/download/USBridgeAgent-Windows-x86_64.zip">Download</a></td>
+          <td>—</td>
+          <td><a href="https://github.com/USBridge-Technologies/USBridge-Remote/releases/latest/download/USBridgeAgent-Linux-x86_64.AppImage">Download</a></td>
+        </tr>
+        <tr>
+          <td><b>ARM64</b></td>
+          <td>—</td>
+          <td><a href="https://github.com/USBridge-Technologies/USBridge-Remote/releases/latest/download/USBridgeAgent-macOS-arm64.dmg">Download</a></td>
+          <td>—</td>
+        </tr>
+      </table>
+    </td>
+    <!-- Right Column: Image -->
+    <td valign="middle" width="450">
+      <img src="asset/agent.svg" alt="USBridge Agent Interface" width="100%">
+    </td>
+  </tr>
+</table>
 
 ---
 
 ## Technical Specifications
-
-<img width="1497" height="741" alt="6" src="https://github.com/user-attachments/assets/47bfbbcd-cda0-4b17-b3a1-a7ab7ad03fd9" />
 
 ### Hardware Architecture
 *   **SoC:** Radxa Zero 3W (Rockchip RK3566, Quad-Core Cortex-A55).
@@ -152,7 +190,7 @@ The agent runs as a background service on your target OS (servers, remote workst
 
 ## 1. Hardware Connection & Cables
 
-<img width="2553" height="690" alt="Ports2" src="https://github.com/user-attachments/assets/761ffe47-70c7-44d6-9d2f-a1aba24df787" />
+<img src="asset/Hardware Connection.svg" width="1400" alt="Hardware Connection">
 
 * **Port 1 (OTG):** Connect this port to the target server/PC. It delivers power to the KVM, emulates the mouse/keyboard, and handles virtual media mounting.
 * **Port 2 (Host):** Connect the external video capture dongle here. Link the dongle to your server's video output using an HDMI cable.
@@ -234,7 +272,7 @@ Once authorized, your terminal will instantly clear and start rendering the BIOS
 
 To enable direct hardware-level power management (power on, power off, hard reset), use the included expansion board:
 
-<img width="2553" height="690" alt="Power Management Module" src="https://github.com/user-attachments/assets/640567b0-d75c-4a44-93db-6e8fdcb19661" />
+<img src="asset/Power Management Module.svg" width="1400" alt="Hardware Connection">
 
 
 * **Input:** A pre-wired ribbon cable is already connected to the expansion module. Plug its other end into the **8-pin GPIO header** on the USBridge-KVM chassis.
@@ -264,4 +302,24 @@ Every USBridge-KVM 2.0 kit comes with all the essential hardware and cables requ
 > [!NOTE]
 > **What else you might need:** To connect the setup to your server, you will only need a standard HDMI cable to link your server's GPU output directly to the included video capture dongle. Everything else is already in the box!
 
-*Control. Protect. Recover.*
+## Documentation
+
+The [**full technical documentation**](./docs/README.md) covers setup, the KVM/video pipeline, [BIOS-in-Terminal](./docs/content/3-bios-in-terminal/technology-overview.md), Starlark/MCP AI-agent scripting, snapshot storage, hardware reference, and the [REST API](./docs/content/10-developer-api/rest-api-reference.md). A few of the pages people look for most:
+
+* [Firmware Update Guide](./docs/content/9-updates-changelog/firmware-update-guide.md) — OTA updates, plus a full eMMC recovery reflash over USB (Linux/macOS/Windows, including WSL) if a device won't boot.
+* [`flash-tool/`](./flash-tool/) — the recovery/first-flash script itself, ready to run.
+* [Quick Start Guide](./docs/content/1-getting-started/quick-start.md) and [Headless & Bulk Provisioning](./docs/content/1-getting-started/headless-provisioning.md) for initial setup.
+
+---
+## Video Reviews & Media
+
+| Channel | Review / Video | Link |
+| :--- | :--- | :--- |
+| [**Learn To HomeLab**](https://www.youtube.com/@learntohomelab) | Is This The Best KVM On The Market? | [Watch on YouTube](https://www.youtube.com/watch?v=U3GhuyD-gzw) |
+| [**Barmine Tech**](https://www.youtube.com/@BarmineTech) | The Best KVM I've Used? USBridge KVM 2.0 (Independent Review) | [Watch on YouTube](https://www.youtube.com/watch?v=DA_hMD3T0Qg) |
+| [**Jonatan Castro**](https://www.youtube.com/@JonatanCastro) | Unboxing & What's in the box (Spanish) | [Watch on YouTube](https://www.youtube.com/watch?v=7YJS81rI3U8&t) |
+| [**USBridge**](https://www.youtube.com/@KVMUSBridge) | Official Overview & Feature Walkthrough | [Watch on YouTube](https://youtu.be/4h5Q8XpDzqI) |
+| [**USBridge**](https://www.youtube.com/@KVMUSBridge) | Full Assembly & Packaging of USBridge KVM 2.0 | [Watch on YouTube](https://youtu.be/l6QtajSYtwQ) |
+
+
+
