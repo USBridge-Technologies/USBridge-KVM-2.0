@@ -1,0 +1,32 @@
+name: Bug Report
+description: Report a technical issue with Flip-HAT
+title: "[BUG]: "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the bug
+      description: A clear and concise description of what the bug is.
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: e.g. Raspberry Pi Zero 2W, Raspberry Pi OS (64-bit), Python 3.11
+      placeholder: OS version, Hardware model, etc.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: Tell us how you encountered the bug.
+      placeholder: 1. Install driver... 2. Run example.py... 3. Screen flickers.
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant log output
+      description: Please copy and paste any relevant log output or error messages.
+      render: shell
