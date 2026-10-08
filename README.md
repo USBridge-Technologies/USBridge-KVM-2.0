@@ -13,7 +13,7 @@ The solution is available in two deployment formats:
 | Deployment Format | Description | Quick Links |
 | :--- | :--- | :--- |
 | **1. USBridge Firmware** | Converts supported single-board computers (SBCs) into enterprise-grade IP-KVM appliances. | [Download for Radxa Zero 3W / 3E ➔](https://www.usbridge.io/hardware-agent)<br>[Download for Radxa Cubie A7Z ➔](https://www.usbridge.io/hardware-agent)<br>*Raspberry Pi, Banana Pi — In Development* |
-| **2. USBridge KVM 2.0** | A turnkey, plug-and-play hardware appliance requiring no manual assembly. | [Buy USBridge KVM 2.0 ➔](https://www.usbridge.io/hardware-agent#buy-usbridge-kvm-2-0) |
+| **2. USBridge KVM 2.0** | A turnkey, plug-and-play hardware appliance requiring no manual assembly. | [Buy USBridge KVM 2.0 ➔](https://www.usbridge.io/hardware-agent?utm_campaign=readme-kvm&utm_medium=readme&utm_source=github#buy-usbridge-kvm-2-0) |
 
 ---
 
