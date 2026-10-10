@@ -8,12 +8,13 @@ New to USBridge-KVM 2.0? See the [product page](https://www.usbridge.io/) and th
 
 ## Pick your board
 
-USBridge-KVM 2.0 ships on two different hardware platforms — pick the matching subdirectory. Not sure which you have? The front-panel **Settings → Info** screen names the board.
+USBridge-KVM 2.0 runs on three different hardware platforms — pick the matching subdirectory. Not sure which you have? The front-panel **Settings → Info** screen names the board (the NanoKVM is the small Sipeed box without a USBridge front panel).
 
 | Board | SoC | Directory | Recovery path |
 | :--- | :--- | :--- | :--- |
 | **Radxa Zero 3W** (the common one) | Rockchip RK3566 | [`rz3w/`](./rz3w/) | Onboard eMMC over USB (Maskrom + `rkdeveloptool`), or straight onto an SD card |
 | **Radxa Cubie A7Z** | Allwinner A733 | [`a7z/`](./a7z/) | SD card only for now (this board ships with its eMMC controller disabled) |
+| **Sipeed NanoKVM** | SOPHGO SG2002 | [`nanokvm/`](./nanokvm/) | microSD card only (the NanoKVM boots from its card) |
 
 Each subdirectory is self-contained — its own `install.sh`/flashing script(s) and its own README with the full quick-start and manual-usage instructions for that board. Files aren't duplicated across them by reference (even where the underlying script is nearly identical, e.g. both boards' `flash-sd-card.sh`) so each one can be downloaded and run on its own without pulling in the other board's tooling.
 

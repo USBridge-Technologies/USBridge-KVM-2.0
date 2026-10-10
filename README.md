@@ -12,7 +12,7 @@ The solution is available in two deployment formats:
 
 | Deployment Format | Description | Quick Links |
 | :--- | :--- | :--- |
-| **1. USBridge Firmware** | Converts supported single-board computers (SBCs) into enterprise-grade IP-KVM appliances. | [Download for Radxa Zero 3W / 3E ➔](https://www.usbridge.io/hardware-agent)<br>[Download for Radxa Cubie A7Z ➔](https://www.usbridge.io/hardware-agent)<br>*Raspberry Pi, Banana Pi — In Development* |
+| **1. USBridge Firmware** | Converts supported single-board computers (SBCs) into enterprise-grade IP-KVM appliances. | [Download for Radxa Zero 3W / 3E ➔](https://www.usbridge.io/hardware-agent)<br>[Download for Radxa Cubie A7Z ➔](https://www.usbridge.io/hardware-agent)<br>[Download for Sipeed NanoKVM ➔](https://flash.usbridge.io/)<br>*Raspberry Pi, Banana Pi — In Development* |
 | **2. USBridge KVM 2.0** | A turnkey, plug-and-play hardware appliance requiring no manual assembly. | [Buy USBridge KVM 2.0 ➔](https://www.usbridge.io/hardware-agent?utm_campaign=readme-kvm&utm_medium=readme&utm_source=github#buy-usbridge-kvm-2-0) |
 
 ---
@@ -45,7 +45,7 @@ Provision a supported SBC, flash the firmware image, and connect a standard USB 
 
 | Component | Description |
 | :--- | :--- |
-| **Supported SBC** | Radxa Zero 3W / 3E, Radxa Cubie A7Z. |
+| **Supported SBC** | Radxa Zero 3W / 3E, Radxa Cubie A7Z; also the off-the-shelf [Sipeed NanoKVM](./docs/content/6-hardware-connectivity/nanokvm.md) (HDMI capture built in). |
 | **HDMI-to-USB Capture Card** | Generic MS2109 (7–12$), or standard UVC dongle. |
 | **MicroSD Card (2GB+)** | Standard 2GB+ capacity. Class 10 or higher recommended for fast boot times. |
 | **Optional: OLED Status Screen** | On-device IP dashboard. Fully optional—the system runs perfectly headless via a single config file. |

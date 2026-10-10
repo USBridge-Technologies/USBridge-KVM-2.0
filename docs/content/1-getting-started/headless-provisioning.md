@@ -13,6 +13,35 @@ For appliances with no attached display, or when you need to configure many unit
 
 If the appliance detects a physically connected front-panel display (via the button pull-up resistors), it shows a confirmation prompt before applying the config. With no display detected, the config is applied unattended — there's no way to answer a confirmation prompt without physical buttons.
 
+On a **Sipeed NanoKVM** the file goes onto its own microSD card instead — see [below](#sipeed-nanokvm-the-boot-partition-of-its-microsd-card).
+
+---
+
+## Sipeed NanoKVM: the BOOT Partition of Its MicroSD Card
+
+The [NanoKVM](../6-hardware-connectivity/nanokvm.md) has no USB port for a separate flash drive, so `usbridge_provision.json` goes onto **its own microSD card**, into the root of the card's **BOOT** partition (FAT32, 32 MB — the first partition, the only one Windows and macOS can read; on the running NanoKVM it's `/uboot`). It's picked up on the next boot.
+
+1. Power the NanoKVM off and take its microSD card out (a freshly [flashed](../9-updates-changelog/recovery-flashing-guide.md#8-sipeed-nanokvm-sophgo-sg2002) card works too — no need to boot it first).
+2. Insert the card into a card reader on your computer.
+3. Copy `usbridge_provision.json` into the root of the **BOOT** drive (next to `fip.bin` — don't touch that file).
+4. Eject the card, put it back into the NanoKVM, power it on.
+
+**Windows: BOOT has no drive letter.** Windows sometimes mounts the BOOT partition without a letter (or not at all), so it doesn't show up in Explorer. Give it one in Disk Management:
+
+1. Press **Win + R**, type `diskmgmt.msc`, press Enter.
+2. Find the card (a *Removable* disk of the card's size). Its first partition is a **32 MB FAT32** partition labelled **BOOT**.
+3. Right-click that partition → **Change Drive Letter and Paths…** → **Add…** → pick a letter → **OK**.
+4. BOOT now appears in Explorer under that letter.
+
+> [!WARNING]
+> Windows can't read the card's other partitions (Linux ext4/btrfs) and may show them as *RAW* or offer to **format** them. Always answer **Cancel** — formatting any of them erases the NanoKVM's system or its backup storage. Only ever change the drive letter of the 32 MB BOOT partition.
+
+macOS mounts BOOT automatically (it appears in Finder as **BOOT**); Linux desktops do too, or mount the card's first partition (`/dev/sdX1`) by hand.
+
+After it's applied, the file is renamed to `usbridge_provision.applied.json` on the same BOOT partition (see [Security](#security-one-shot-application-by-default) below), and a not-yet-licensed unit writes its [`license_<serial>.json`](#reading-back-licensetrial-status-license_serialjson) there as well.
+
+On the NanoKVM only the wired interface `eth0` exists; `users`, `sshkvm_enabled` and `install_to_emmc` don't apply.
+
 ---
 
 ## Example `usbridge_provision.json`

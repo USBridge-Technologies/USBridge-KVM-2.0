@@ -5,7 +5,7 @@ This guide covers how to perform a full physical recovery reflash of a **USBridg
 > [!WARNING]
 > This is a **different procedure from routine network OTA updates** — use it only when the device won't boot at all, has no working OTA path yet (never connected to a network), or you specifically need to wipe and reinstall from a blank state. A healthy device should always use the standard [OTA Firmware Update Guide](./firmware-update-guide.md) instead; it is faster, doesn't need a cable to a PC, and doesn't risk interrupting a working unit.
 
-Sections 1–6 below cover the **Radxa Zero 3W (RK3566)** board — eMMC-over-USB (Maskrom) is its primary recovery path, with an SD-card alternative in §6. The **Radxa Cubie A7Z (Allwinner A733)** board works differently enough (different SoC, and SD-card-only for now) to get its own section — see [§7](#7-radxa-cubie-a7z-allwinner-a733). Not sure which you have? The front-panel **Settings → Info** screen names the board.
+Sections 1–6 below cover the **Radxa Zero 3W (RK3566)** board — eMMC-over-USB (Maskrom) is its primary recovery path, with an SD-card alternative in §6. The **Radxa Cubie A7Z (Allwinner A733)** board works differently enough (different SoC, and SD-card-only for now) to get its own section — see [§7](#7-radxa-cubie-a7z-allwinner-a733). The **Sipeed NanoKVM (SOPHGO SG2002)** is microSD-only too — see [§8](#8-sipeed-nanokvm-sophgo-sg2002). Not sure which you have? The front-panel **Settings → Info** screen names the board.
 
 ---
 
@@ -250,3 +250,36 @@ A card larger than the firmware's build baseline isn't wasted either — same au
 
 > [!NOTE]
 > A device flashed this way starts fresh, same as a brand-new unit: it boots into the [initial trial period](../8-maintenance-support/faq.md) and needs [network setup](../1-getting-started/initial-setup.md) again.
+
+---
+
+## 8. Sipeed NanoKVM (SOPHGO SG2002)
+
+The [NanoKVM](../6-hardware-connectivity/nanokvm.md) boots only from its microSD card — no eMMC, no USB recovery mode. Flashing (first install over Sipeed's software, or recovery) is always: take the card out, write the image from a card reader on your computer, put it back. The boot loader is in the image's FAT **BOOT** partition, where the SG2002 boot ROM loads it from, so the raw image carries the whole boot chain. Tool: [`flash-tool/nanokvm/`](../../flash-tool/nanokvm/).
+
+**One command (Linux, or WSL):**
+```bash
+USBRIDGE_SD_DEVICE=/dev/sdX curl -fsSL https://raw.githubusercontent.com/USBridge-Technologies/USBridge-KVM-2.0/main/flash-tool/nanokvm/install.sh | bash
+```
+Installs `zstd`/`python3` if missing, downloads `flash-tool/nanokvm/flash-sd-card.sh` plus the latest NanoKVM firmware image and block map, and writes it. `USBRIDGE_SD_DEVICE` is required. `USBRIDGE_VERSION=<version>` pins a specific build.
+
+**Step by step:**
+```bash
+curl -fsSL -O https://raw.githubusercontent.com/USBridge-Technologies/USBridge-KVM-2.0/main/flash-tool/nanokvm/flash-sd-card.sh
+chmod +x flash-sd-card.sh
+VERSION=$(curl -fsSL https://flash.usbridge.io/latest-nanokvm.txt)
+curl -fsSL -O https://flash.usbridge.io/usbridge-nanokvm-${VERSION}.gptimg.zst
+curl -fsSL -O https://flash.usbridge.io/usbridge-nanokvm-${VERSION}.gptimg.bmap
+sudo ./flash-sd-card.sh /dev/sdX usbridge-nanokvm-${VERSION}.gptimg.zst
+```
+
+**Windows without WSL:** extract `usbridge-nanokvm-<version>.gptimg.zst` with [7-Zip](https://www.7-zip.org/) (right-click → **7-Zip → Extract Here**), then write the resulting `.gptimg` to the card as a raw disk image with [balenaEtcher](https://etcher.balena.io/) (**Flash from file**) or [Rufus](https://rufus.ie/) (it's a whole-disk image — Rufus asks, pick *DD image mode*). Windows may afterwards offer to format partitions it can't read: always **Cancel**.
+
+Either way:
+- **Find `/dev/sdX` first** with `lsblk` — it wipes the target device entirely. The target is your card reader, not the NanoKVM.
+- The script refuses the host's own system disk and any disk the kernel doesn't report as removable — `--force` (manual) or `USBRIDGE_SD_FORCE=1` (one-liner) only if you're certain about the target.
+- Want the unit configured on its first boot (static IP, master key)? Put a [`usbridge_provision.json`](../1-getting-started/headless-provisioning.md#sipeed-nanokvm-the-boot-partition-of-its-microsd-card) into the card's **BOOT** partition before putting the card back.
+- Put the card back into the NanoKVM and power it on. On first boot the backup storage (`/mnt/emmc`, btrfs) grows to the rest of the card; see the [card layout](../6-hardware-connectivity/nanokvm.md#2-flashing-and-the-card-layout).
+
+> [!NOTE]
+> A device flashed this way starts fresh, same as a brand-new unit: it boots into the [initial trial period](../8-maintenance-support/faq.md) and needs [network setup](../1-getting-started/initial-setup.md) again (by DHCP it just appears on the network — the NanoKVM has no front-panel menu).
