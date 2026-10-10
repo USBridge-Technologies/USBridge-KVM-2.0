@@ -60,3 +60,17 @@ Manage and run [Starlark automation scripts](../3-bios-in-terminal/scripting-aut
 * **Edit:** a built-in syntax-highlighted editor, with **Save** and **Run** right in the toolbar — test a change immediately without switching to the Control tab.
 * **Delete:** removes a script (with a confirmation prompt first).
 * **MCP Proxy:** this tab is also where you [start the local MCP proxy](../3-bios-in-terminal/mcp-ai-agents.md#option-a-the-client-apps-mcp-proxy) for AI agent access — a Start/Stop toggle plus a Copy button for the local endpoint URL.
+
+### KVM Settings (Gear Menu)
+
+**Gear menu → KVM settings** opens the connected KVM's own settings — what its front-panel menu has, for KVMs without a screen (a [NanoKVM](../6-hardware-connectivity/nanokvm.md), or any board added [over the USB cable](../1-getting-started/initial-setup.md#a-no-screen-needed-over-the-usb-cable)):
+
+* **Ethernet:** link, address, gateway and MAC; switch between DHCP and a static address.
+* **Wi-Fi:** scan, connect (with password), disconnect or forget a network, and DHCP or a static address for it.
+* **Power & performance:** the board's CPU / NPU / video-encoder frequency caps (stock values are marked). Not on the NanoKVM.
+* **Updates:** installed firmware, **Check for updates** and **Commit update** — see [Firmware Update Guide](../9-updates-changelog/firmware-update-guide.md).
+* **SD card:** usage and snapshot timings. **Format SD card** appears only for a card the KVM agrees to format — never one that already holds btrfs (backup storage, snapshots); the KVM refuses it on its own side too.
+* **Event log:** the KVM's event log, newest first; select an entry for its details.
+
+If you change the address of the network you're connected through, reconnect to the KVM at its new address.
+

@@ -21,6 +21,8 @@ All of them require someone to be physically present at the device (or trusted w
 
 Once paired, the client doesn't hold a session cookie or bearer token that grants standing access on its own. Every request to the appliance's REST/MCP API is individually signed using the paired secret, with a short validity window — see [REST API Reference: Authentication](./rest-api-reference.md#2-authentication) for the exact scheme. A captured request can't simply be replayed indefinitely, and there's no long-lived token that could leak and keep working on its own.
 
+A board whose clock was never set (no battery-backed clock, no network for NTP yet — e.g. right after setup over USB) takes its clock from the first correctly signed request that is ahead of it, forward only; the check of the signature comes first, so nobody without the master key can move it.
+
 ---
 
 ## 3. Moonlight Video Streaming — a Completely Separate Protocol

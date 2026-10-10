@@ -16,12 +16,13 @@ USBridge firmware also runs on the **Sipeed NanoKVM**, an off-the-shelf HDMI KVM
 | **Backup storage & snapshots** | Yes — btrfs on the rest of the microSD card, automatic read-only snapshots, same as [Snapshots & States](../4-snapshots-state-management/snapshots-overview.md). |
 | **First-time setup** | Over the USB cable: plug the NanoKVM into your computer and click **Over USB** in the client (or open `http://10.55.0.1`) — see [Initial Setup §A](../1-getting-started/initial-setup.md#a-no-screen-needed-over-the-usb-cable). For many units: `usbridge_provision.json` on the card's **BOOT** partition, see [§3](#3-headless-setup-usbridge_provisionjson). |
 | **OTA updates** | Yes — A/B updates from the USBridge update server, with automatic rollback, same as the [Firmware Update Guide](../9-updates-changelog/firmware-update-guide.md). |
-| **Front-panel display & menu** | No — the NanoKVM's own small OLED isn't driven by this firmware; the device runs headless (network by DHCP, or set by provisioning; pairing over the USB cable). |
+| **Front-panel display & menu** | No — the NanoKVM's own small OLED isn't driven by this firmware; the device runs headless (network by DHCP, or set by provisioning; pairing over the USB cable). The menu's settings — network, updates, event log — are in the client: **gear menu → KVM settings**. |
+| **Power & performance** | No — the SG2002's kernel has no CPU frequency scaling, and the one clock control it has is unreliable, so the CPU always runs at its stock 850 MHz. |
 | **BIOS-in-Terminal (SSH KVM)** | Not on this board. |
 | **ATX power control** | Not yet. |
 | **Install to eMMC** | No — the NanoKVM has no eMMC; it always runs from its microSD card. |
 
-Networking is the NanoKVM's wired Ethernet (`eth0`): DHCP by default, or a static address from the provisioning file.
+Networking is the NanoKVM's wired Ethernet (`eth0`): DHCP by default, or a static address — from the provisioning file, or from the client (**gear menu → KVM settings → Ethernet**).
 
 ---
 

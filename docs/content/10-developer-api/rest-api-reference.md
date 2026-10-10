@@ -25,7 +25,7 @@ Every request **except** `GET /api/healthz`, `POST /api/auth/sync`, and `POST /a
 
 | Header | Value |
 | :--- | :--- |
-| `X-Auth-Timestamp` | Unix timestamp (seconds); rejected if more than 60s off from the appliance's clock. |
+| `X-Auth-Timestamp` | Unix timestamp (seconds); rejected if more than 60s off from the appliance's clock — except while that clock was never set (see below). |
 | `X-Auth-Signature` | `hex(HMAC_SHA256(SHA256(api_secret), METHOD + REQUEST_URI + TIMESTAMP + BODY))` |
 
 `api_secret` is the appliance's master key — generated on first boot and shown as the pairing QR code/token on the front panel (**Settings → Authentication → Show Master Key**; see [Initial Setup & Client Pairing](../1-getting-started/initial-setup.md)). `POST`/`PUT`/`PATCH` requests must declare `Content-Type: application/json` or `multipart/form-data`.
@@ -34,6 +34,8 @@ Every request **except** `GET /api/healthz`, `POST /api/auth/sync`, and `POST /a
 > **The MCP endpoint is the one exception.** `POST /api/mcp` skips signature verification entirely when the caller connects on `127.0.0.1` — meant for a local AI agent or an SSH-tunneled one. Reached over a LAN or Tailscale IP, it's signed exactly like every other endpoint. See [AI Agent Integration (MCP)](../3-bios-in-terminal/mcp-ai-agents.md#2-authentication-model) for the full breakdown.
 
 WebSocket endpoints (`/api/mouse/ws`, `/api/gamepad/ws`) are signed on the upgrade `GET` request itself, before the connection switches protocols.
+
+**Unset clock.** A board with no battery-backed clock and no network for NTP yet (typically one just set up [over the USB cable](../1-getting-started/initial-setup.md#a-no-screen-needed-over-the-usb-cable)) starts with a clock years in the past. While its clock reads earlier than the firmware's minimum valid date, a request whose signature is valid but whose timestamp is *ahead* of the clock is accepted, and the appliance sets its clock to that timestamp — forward only; NTP takes over once the board is online. A request with a wrong signature never touches the clock, and once the clock is set the normal 60-second window applies again. `POST /api/auth/sync` does the same once its payload decrypts with the master key.
 
 ---
 
@@ -149,7 +151,31 @@ Full builtin-function reference: [Starlark Scripting Reference](../3-bios-in-ter
 
 ---
 
-## 12. AI Agents (MCP)
+## 12. Network, Settings & Event Log
+
+What the front-panel menu's **Settings** and **Event Log** do, for boards without a screen (e.g. the [NanoKVM](../6-hardware-connectivity/nanokvm.md)) — the client's **gear menu → KVM settings** uses these. Changes that move the appliance's address are applied right after the reply is sent.
+
+| Method & Path | Body | Notes |
+| :--- | :--- | :--- |
+| `GET /api/network/status` | — | `ethernet` and `wifi`: `available`, interface, link/connected, IP, gateway, MAC, signal/SSID, and the saved address `config` (`mode`: `dhcp` or `static`, `ip`, `netmask`, `gateway`, `dns`). Wi-Fi also has `connecting` and `last_error`. |
+| `POST /api/network/ethernet` | `{"mode": "dhcp"}` or `{"mode": "static", "ip", "netmask", "gateway", "dns"}` | `netmask` also takes a prefix length (`24`); defaults to `255.255.255.0`. `404` when the board has no usable wired port. |
+| `POST /api/network/wifi/scan` | — | Turns the radio on if needed, scans (up to ~20 s), returns `[{"ssid", "signal", "security", "connected"}]`. `404` on a board without Wi-Fi. |
+| `POST /api/network/wifi/connect` | `{"ssid", "password"}` | Connects in the background; follow it in `GET /api/network/status`. |
+| `POST /api/network/wifi/disconnect` | `{"forget": bool}` | `forget` also drops the saved network. |
+| `POST /api/network/wifi/ip` | same as `/api/network/ethernet` | The Wi-Fi address (applied now when connected, else on the next connection). |
+| `GET /api/settings/power` | — | `{"available", "rows": [{"key", "label", "steps": [{"value", "label"}], "value", "default"}]}` — the board's frequency caps (CPU/NPU/encoder on Rockchip and Allwinner boards; none on the NanoKVM). `default` is the stock setting. |
+| `POST /api/settings/power` | `{"key", "value"}` | `value` must be one of that row's steps. Applied at once and kept across reboots. |
+| `GET /api/settings/update` | — | `{"version", "checking", "status", "message"}` — installed firmware and how the last check went. |
+| `POST /api/settings/update/check` | — | Asks the update client to look for an update now (it downloads, installs and reboots into one it finds). |
+| `POST /api/settings/update/commit` | — | Commits an installed update. |
+| `GET /api/settings/sdcard` | — | SD card presence, usage, file system, `format_allowed` / `format_blocked_by`, a running format's step, and the snapshot timings. |
+| `POST /api/settings/sdcard/format` | `{"confirm": "FORMAT"}` | Formats the SD card as backup storage (btrfs with snapshot subvolumes), in the background. **Refused (`403`)** unless the card holds no btrfs at all (disk and every partition), has no backups, isn't the boot device and isn't mounted elsewhere — and when any of that can't be verified. Checked again with the card unmounted right before anything is erased. |
+| `POST /api/settings/sdcard/snapshots` | `{"quiet_period_sec", "min_snapshot_gap_sec", "max_snapshot_interval_sec"}` | Snapshot timings (same limits as the menu). |
+| `GET /api/events?limit=N` | — | The event log, newest first (up to 500): `[{"timestamp", "type", "short_desc", "detail_desc", "extra_data"}]`. |
+
+---
+
+## 13. AI Agents (MCP)
 
 | Method & Path | Notes |
 | :--- | :--- |
@@ -157,7 +183,7 @@ Full builtin-function reference: [Starlark Scripting Reference](../3-bios-in-ter
 
 ---
 
-## 13. System
+## 14. System
 
 | Method & Path | Notes |
 | :--- | :--- |
