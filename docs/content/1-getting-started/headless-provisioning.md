@@ -1,6 +1,9 @@
 # Headless & Bulk Provisioning (`usbridge_provision.json`)
 
-For appliances with no attached display, or when you need to configure many units without pairing each one by hand through the client app, USBridge-KVM 2.0 supports fully unattended provisioning from a JSON file on a removable drive.
+For configuring many units without pairing each one by hand through the client app, USBridge-KVM 2.0 supports fully unattended provisioning from a JSON file on a removable drive.
+
+> [!TIP]
+> **Just one device without a screen?** You don't need a provisioning file for that: pair it [over its USB cable](./initial-setup.md#a-no-screen-needed-over-the-usb-cable) — plug it into your computer and click **Over USB** in the client.
 
 ---
 

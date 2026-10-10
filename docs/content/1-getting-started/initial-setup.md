@@ -3,9 +3,32 @@
 This guide covers the network configuration and secure client pairing required to establish encrypted out-of-band connectivity with your USBridge-KVM 2.0 appliance.
 Before starting the software configuration, ensure that the USBridge device is correctly wired to the target host according to the [Quick Start Guide](./quick-start.md).
 
+There are two ways to pair a new device: **over its USB cable** (§A — works on every device, screen or not, and is the easiest), or **from the front-panel screen** (§B, Steps 1–3).
+
 ---
 
-## Step 1: Retrieve Authentication Credentials
+## A. No Screen Needed: Over the USB Cable
+
+A device that hasn't been set up yet (fresh from the box, freshly flashed, or after a factory reset) makes itself reachable over the USB cable that goes from it to a computer:
+
+1. **Connect the KVM's USB cable to the computer you're setting it up from** (usually the target PC it's going to control anyway) and power the KVM on. Within a few seconds the computer gets a new **network adapter** with an address in `10.55.0.x` — no driver to install on Windows 10 (version 2004 or newer) / 11, macOS or Linux. Your computer's internet connection is not affected: this adapter has no gateway.
+2. In the [USBridge Client](https://github.com/USBridge-Technologies/USBridge-Remote/releases): **+ (Add Connection) → Over USB**. The client finds the KVM, receives its master key and address and fills in the fields by itself. Click **Save & Connect** (Tailscale registration works the same as in Step 3 below).
+3. **No client at hand?** Open **`http://10.55.0.1`** in a browser on that computer: the setup page shows the master key and the pairing QR code, to scan with the mobile app or to type into the client.
+
+Good to know:
+- The key is handed out **once**, to the first one asking, and only **within 30 minutes of the KVM powering on**. Too late? Power it off and on again.
+- If the client or the page says **"already set up"** with a date, someone took the key before you. If that wasn't you, reset the KVM to factory settings (front panel → Settings → Factory Reset; on a [NanoKVM](../6-hardware-connectivity/nanokvm.md), reflash the card).
+- If the KVM has no network yet (no Ethernet cable, no Wi-Fi), it stays reachable at `10.55.0.1` over USB until it has one — set its network up from the client, then connect over the LAN.
+- Once it's set up and on the network, the USB adapter disappears; a set-up device never offers this again until a factory reset.
+
+> [!TIP]
+> Setting up many devices the same way, or a device whose USB port isn't connected to anything you can use? Use a [provisioning file](./headless-provisioning.md) instead.
+
+---
+
+## B. With the Front-Panel Screen
+
+### Step 1: Retrieve Authentication Credentials
 
 To securely connect the client application to the physical KVM hardware, you must retrieve the authorization token from the device.
 
@@ -15,7 +38,7 @@ To securely connect the client application to the physical KVM hardware, you mus
 
 ---
 
-## Step 2: Client Connection Initialization
+### Step 2: Client Connection Initialization
 
 Before proceeding, ensure you have downloaded the latest version of the Client from the official releases [USBridge-Remote Releases](https://github.com/USBridge-Technologies/USBridge-Remote/releases) page.
 
@@ -27,7 +50,7 @@ Before proceeding, ensure you have downloaded the latest version of the Client f
 
 ---
 
-## Step 3: Secure Mesh Networking Onboarding (Tailscale)
+### Step 3: Secure Mesh Networking Onboarding (Tailscale)
 
 By default, the client configuration menu pre-selects the **Register Device in Tailscale** option. We highly recommend keeping this enabled to securely route out-of-band KVM traffic across untrusted networks without exposing open firewall ports.
 
@@ -53,4 +76,4 @@ The primary interactive workspace will transition immediately to the **Control**
 For how this pairing step, API access, and streaming sessions are secured end-to-end, see [Security & Authentication Model](../10-developer-api/security-model.md).
 
 > [!TIP]
-> **No display, or configuring many appliances at once?** Skip client pairing entirely and drop a `usbridge_provision.json` file on a MicroSD card or USB flash drive instead — see [Headless & Bulk Provisioning](./headless-provisioning.md).
+> **No display?** Pair [over the USB cable](#a-no-screen-needed-over-the-usb-cable). **Configuring many appliances at once?** Drop a `usbridge_provision.json` file on a MicroSD card or USB flash drive instead — see [Headless & Bulk Provisioning](./headless-provisioning.md).

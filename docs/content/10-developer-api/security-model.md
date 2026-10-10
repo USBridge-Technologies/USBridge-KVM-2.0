@@ -10,8 +10,12 @@ Every appliance generates its own high-entropy master secret the first time it b
 
 * **QR code** on the front-panel screen, scanned by the client's camera.
 * **Manual entry**, for setups where scanning isn't convenient.
+* **The USB cable**, on a device that hasn't been set up yet: it adds a USB network adapter to the computer it's plugged into and hands the secret, over that cable only, to the first one asking within 30 minutes of powering on (the client's **Over USB**, or `http://10.55.0.1`). See [Initial Setup §A](../1-getting-started/initial-setup.md#a-no-screen-needed-over-the-usb-cable).
+* **A provisioning file** (`master_key` in `usbridge_provision.json`) on a drive or card plugged into the device.
 
-Both require someone to be physically present at the device (or trusted with the code) — there's no way to remotely guess or intercept it off the network. See [Initial Setup & Client Pairing](../1-getting-started/initial-setup.md).
+All of them require someone to be physically present at the device (or trusted with the code) — there's no way to remotely guess or intercept it off the network.
+
+**Setup over USB, in detail.** The USB network exists only while the device is unclaimed (and until it has a LAN address); its DHCP gives the computer an address but no gateway and no DNS, so the computer's own network is untouched. The secret is handed out once: anyone asking later — another computer, or software on the target machine racing you to it — gets *"already set up"* with the date and time instead, which the client and the setup page show, so a claim you didn't make doesn't go unnoticed (reset to factory settings if that happens). After 30 minutes from power-on nothing is handed out at all until the next power cycle. It's closed for good once claimed, when a provisioning file sets the key, and on devices that were already in use before this feature existed. A factory reset opens it again. See [Initial Setup & Client Pairing](../1-getting-started/initial-setup.md).
 
 ## 2. Every API Request Is Individually Signed
 

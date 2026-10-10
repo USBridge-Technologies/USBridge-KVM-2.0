@@ -14,9 +14,9 @@ USBridge firmware also runs on the **Sipeed NanoKVM**, an off-the-shelf HDMI KVM
 | **Audio** | Yes — the target PC's sound through a USB audio (UAC1) device, plus the client's microphone and MIDI input into the target. |
 | **Virtual media** | Yes — ISO, `.qcow2`, `.vdi`/`.vmdk` and whole drives streamed from the client over NBD, local images from the onboard storage, and MTP. See [§4](#4-virtual-media-and-the-ram-cache) for the RAM cache. |
 | **Backup storage & snapshots** | Yes — btrfs on the rest of the microSD card, automatic read-only snapshots, same as [Snapshots & States](../4-snapshots-state-management/snapshots-overview.md). |
-| **Headless provisioning** | Yes — `usbridge_provision.json` on the card's **BOOT** partition, see [§3](#3-headless-setup-usbridge_provisionjson). |
+| **First-time setup** | Over the USB cable: plug the NanoKVM into your computer and click **Over USB** in the client (or open `http://10.55.0.1`) — see [Initial Setup §A](../1-getting-started/initial-setup.md#a-no-screen-needed-over-the-usb-cable). For many units: `usbridge_provision.json` on the card's **BOOT** partition, see [§3](#3-headless-setup-usbridge_provisionjson). |
 | **OTA updates** | Yes — A/B updates from the USBridge update server, with automatic rollback, same as the [Firmware Update Guide](../9-updates-changelog/firmware-update-guide.md). |
-| **Front-panel display & menu** | No — the NanoKVM's own small OLED isn't driven by this firmware; the device runs headless (network by DHCP, or set by provisioning). |
+| **Front-panel display & menu** | No — the NanoKVM's own small OLED isn't driven by this firmware; the device runs headless (network by DHCP, or set by provisioning; pairing over the USB cable). |
 | **BIOS-in-Terminal (SSH KVM)** | Not on this board. |
 | **ATX power control** | Not yet. |
 | **Install to eMMC** | No — the NanoKVM has no eMMC; it always runs from its microSD card. |
@@ -45,6 +45,8 @@ Any card of 2 GB or more works; 32 GB or more is a sensible size, since everythi
 ---
 
 ## 3. Headless Setup (`usbridge_provision.json`)
+
+For a single NanoKVM the easiest way in is **over its USB cable** — no file to prepare: see [Initial Setup §A](../1-getting-started/initial-setup.md#a-no-screen-needed-over-the-usb-cable). A provisioning file is for setting up many units, or setting the network before first boot.
 
 Everything in [Headless & Bulk Provisioning](../1-getting-started/headless-provisioning.md) applies, with one difference: the NanoKVM has no USB port for a separate flash drive, so the file goes **onto the NanoKVM's own microSD card, into the root of its BOOT partition** — see [the provisioning guide's NanoKVM section](../1-getting-started/headless-provisioning.md#sipeed-nanokvm-the-boot-partition-of-its-microsd-card) for the step-by-step, including what to do when Windows doesn't give the partition a drive letter.
 
