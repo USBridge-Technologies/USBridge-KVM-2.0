@@ -27,5 +27,4 @@ Every KVM also serves the web client on its own address — nothing to install, 
 Opened from the KVM, the client talks to that same KVM directly (API and WebRTC on the same address), so it also works on an isolated network. The version is the one that came with the KVM's firmware and updates with it. The in-browser AI-vision overlay isn't included in this copy.
 
 > [!NOTE]
-> On the **NanoKVM** the browser client connects and every setting works, but there's no video in the browser yet: its streamer has no WebRTC output. Use the desktop or mobile client for video there.
-
+> On the **NanoKVM** the browser gets 720p at up to 30 fps (its single CPU core encrypts the WebRTC stream in software); the desktop and mobile clients keep 1080p60 there.
