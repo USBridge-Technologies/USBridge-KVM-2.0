@@ -13,7 +13,7 @@ A device that hasn't been set up yet (fresh from the box, freshly flashed, or af
 
 1. **Connect the KVM's USB cable to the computer you're setting it up from** (usually the target PC it's going to control anyway) and power the KVM on. Within a few seconds the computer gets a new **network adapter** with an address in `10.55.0.x` — no driver to install on Windows 10 (version 2004 or newer) / 11, macOS or Linux. Your computer's internet connection is not affected: this adapter has no gateway.
 2. In the [USBridge Client](https://github.com/USBridge-Technologies/USBridge-Remote/releases): **+ (Add Connection) → Over USB**. The client finds the KVM, receives its master key and address and fills in the fields by itself. Click **Save & Connect** (Tailscale registration works the same as in Step 3 below).
-3. **No client at hand?** Open **`http://10.55.0.1`** in a browser on that computer: the setup page shows the master key and the pairing QR code, to scan with the mobile app or to type into the client.
+3. **No client at hand?** Open **`http://10.55.0.1`** in a browser on that computer and click **Open the web client**: the KVM serves the client itself and pairs it right away — nothing to install (see [Web Client](../7-software-access/web-client.md#served-by-the-kvm-itself-no-internet-needed)). The same page also shows the master key and the pairing QR code, to scan with the mobile app or to type into a client.
 
 Good to know:
 - The key is handed out **once**, to the first one asking, and only **within 30 minutes of the KVM powering on**. Too late? Power it off and on again.

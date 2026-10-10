@@ -15,3 +15,17 @@ The appliance needs **WebRTC enabled** to accept this kind of session — it's o
 Once connected, the web client provisions the same **Device**, **Control**, and **Snapshots** modules described in the [Desktop Client](./desktop-app.md) page.
 
 Browser sessions authenticate the same way as the REST API and are always encrypted in transit at the WebRTC layer — see [Security & Authentication Model](../10-developer-api/security-model.md).
+
+## Served by the KVM Itself (No Internet Needed)
+
+Every KVM also serves the web client on its own address — nothing to install, and no internet connection required:
+
+* **`https://<kvm-ip>:9443/`** — the full client. The KVM's certificate is self-signed, so the browser warns once; accept it to continue.
+* **`http://<kvm-ip>:8080/`** — same client without the certificate warning, but browsers keep some features to secure (`https`) pages only: gamepad, clipboard and microphone don't work there. Video, keyboard, mouse and every setting do.
+* **Over the USB cable**, on a KVM that isn't set up yet: open `http://10.55.0.1` and click **Open the web client** — it opens the client served by the KVM and pairs it with the key straight away (see [Initial Setup §A](../1-getting-started/initial-setup.md#a-no-screen-needed-over-the-usb-cable)).
+
+Opened from the KVM, the client talks to that same KVM directly (API and WebRTC on the same address), so it also works on an isolated network. The version is the one that came with the KVM's firmware and updates with it. The in-browser AI-vision overlay isn't included in this copy.
+
+> [!NOTE]
+> On the **NanoKVM** the browser client connects and every setting works, but there's no video in the browser yet: its streamer has no WebRTC output. Use the desktop or mobile client for video there.
+
