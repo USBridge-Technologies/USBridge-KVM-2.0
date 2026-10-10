@@ -20,6 +20,8 @@ Good to know:
 - If the client or the page says **"already set up"** with a date, someone took the key before you. If that wasn't you, reset the KVM to factory settings (front panel → Settings → Factory Reset; on a [NanoKVM](../6-hardware-connectivity/nanokvm.md), reflash the card).
 - If the KVM has no network yet (no Ethernet cable, no Wi-Fi), it stays reachable at `10.55.0.1` over USB until it has one — set its network up from the client, then connect over the LAN.
 - Once it's set up and on the network, the USB adapter disappears; a set-up device never offers this again until a factory reset.
+- Set up one new KVM at a time per computer: two unconfigured KVMs plugged into the same computer at once both answer at `10.55.0.1`, and the client would find just one of them.
+- **Over USB** is in the desktop clients (Windows, macOS, Linux). On a phone, open `http://10.55.0.1` on the computer the KVM is plugged into and scan the QR code shown there with the mobile app.
 
 > [!TIP]
 > Setting up many devices the same way, or a device whose USB port isn't connected to anything you can use? Use a [provisioning file](./headless-provisioning.md) instead.
