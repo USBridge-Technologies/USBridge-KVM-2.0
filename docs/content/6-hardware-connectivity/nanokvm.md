@@ -16,10 +16,10 @@ USBridge firmware also runs on the **Sipeed NanoKVM**, an off-the-shelf HDMI KVM
 | **Backup storage & snapshots** | Yes — btrfs on the rest of the microSD card, automatic read-only snapshots, same as [Snapshots & States](../4-snapshots-state-management/snapshots-overview.md). |
 | **First-time setup** | Over the USB cable: plug the NanoKVM into your computer and click **Over USB** in the client (or open `http://10.55.0.1`) — see [Initial Setup §A](../1-getting-started/initial-setup.md#a-no-screen-needed-over-the-usb-cable). For many units: `usbridge_provision.json` on the card's **BOOT** partition, see [§3](#3-headless-setup-usbridge_provisionjson). |
 | **OTA updates** | Yes — A/B updates from the USBridge update server, with automatic rollback, same as the [Firmware Update Guide](../9-updates-changelog/firmware-update-guide.md). |
-| **Front-panel display & menu** | No — the NanoKVM's own small OLED isn't driven by this firmware; the device runs headless (network by DHCP, or set by provisioning; pairing over the USB cable). The menu's settings — network, updates, event log — are in the client: **gear menu → KVM settings**. |
+| **Front-panel display** | Yes — the NanoKVM's small I2C OLED (128×64, SSD1306 or SH1106) shows the device status. The firmware looks for it on every bus and address the NanoKVM revisions use, so it needs no setting; with no display fitted it simply does nothing. Which pins the display is on depends on the board revision, see [§6](#6-board-revisions-alpha-beta-pcie). The settings — network, updates, event log — are also in the client: **gear menu → KVM settings**. |
 | **Power & performance** | No — the SG2002's kernel has no CPU frequency scaling, and the one clock control it has is unreliable, so the CPU always runs at its stock 850 MHz. |
 | **BIOS-in-Terminal (SSH KVM)** | Not on this board. |
-| **ATX power control** | Not yet. |
+| **ATX power control** | Yes — the power and reset buttons and the power/HDD LEDs of Sipeed's **ATX-B** board (power button, reset, power LED). The pins follow the board revision, see [§6](#6-board-revisions-alpha-beta-pcie). |
 | **Install to eMMC** | No — the NanoKVM has no eMMC; it always runs from its microSD card. |
 
 Networking is the NanoKVM's wired Ethernet (`eth0`): DHCP by default, or a static address — from the provisioning file, or from the client (**gear menu → KVM settings → Ethernet**).
@@ -66,3 +66,43 @@ The NanoKVM's USB port is USB 2.0 (High Speed), so virtual drives top out at USB
 ## 5. Memory at a Glance
 
 With a stream running, the system uses roughly 50–60 MB of the ~158 MB Linux has (streamer ~21 MB, USBridge service ~19 MB, update client ~23 MB); about 100 MB stays available, of which the virtual-media cache takes up to ~40 MB while a streamed drive is attached.
+
+---
+
+## 6. Board Revisions: alpha, beta, pcie
+
+Sipeed has built the NanoKVM in revisions that wire the OLED display and the ATX-B board's signals to different pins of the SG2002. The firmware needs to know which one it runs on to set the pins up. It reads the revision from `/etc/kvm/hw`, which holds one word: `alpha`, `beta` or `pcie`.
+
+| | **alpha** (NanoKVM Cube/A) | **beta** | **pcie** (NanoKVM-PCIe) |
+| :--- | :--- | :--- | :--- |
+| OLED | I2C1 (`/dev/i2c-1`), address `0x3d` | `i2c-gpio` on A15 (SCL) / A27 (SDA), `/dev/i2c-5`, address `0x3d` | same pins as beta, address `0x3c` |
+| ATX power button | GPIO 503 (A23) | GPIO 503 | GPIO 503 |
+| ATX power LED | GPIO 504 (A24) | GPIO 504 | GPIO 504 |
+| ATX reset button | GPIO 507 (A27) | GPIO 505 (A25) | GPIO 505 |
+| ATX HDD LED | GPIO 505 (A25) | — | — |
+
+### Automatic detection (the default)
+
+At boot the firmware probes the display: an OLED answering at `0x3d` on I2C1 means **alpha**; anything else (no display, or one on the A15/A27 pins) means **beta**, and a display at `0x3c` on `i2c-5` means **pcie**. The result is stored in `/etc/kvm/hw` and detection runs again after every system update. A unit with no display fitted is therefore treated as **beta**.
+
+### Setting the revision by hand
+
+If the detection picks the wrong revision — typically an alpha unit with no display fitted (it gets *beta*, so the reset button is on the wrong pin and the HDD LED is missing), or a display wired to unusual pins — force it with a file on the card's **BOOT** partition:
+
+1. Take the microSD card out and put it in a card reader. The **BOOT** partition (32 MB FAT32) is the one Windows and macOS can read.
+2. Create a file named `kvm.hw` in the root of BOOT. Its only content is the revision, in lowercase: `alpha`, `beta` or `pcie` (a trailing newline is fine).
+3. Put the card back and power the NanoKVM on. The file is applied at every boot, before the pins are set up, and overrides the automatic detection.
+
+To go back to automatic detection, delete `kvm.hw`. Boards that already have SSH access (development firmware) can do the same with `echo alpha > /uboot/kvm.hw` and a reboot.
+
+### Display flags
+
+Every file below is an empty file in the root of the BOOT partition; delete it to turn the flag off.
+
+| File | Effect |
+| :--- | :--- |
+| `oled.sh1106` | The display has an SH1106 controller (132 columns) instead of SSD1306. Use it when the picture is shifted or has a stripe at the edge. |
+| `oled.flip` | Rotate the picture by 180°. |
+| `oled.pcie` | The PCIe revision's small panel, laid out as Sipeed's own firmware does. |
+
+The display is looked for again every 3 seconds, so it can be plugged in while the unit runs; if it stays dark, check the wiring against the table above (an alpha display on the A15/A27 pins is not found, and the other way round when the revision is forced).
