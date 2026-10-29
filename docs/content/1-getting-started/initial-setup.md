@@ -40,18 +40,15 @@ Open **`http://10.55.0.1`** in a browser on the computer the KVM is plugged into
 3. **Moonlight pairing** — add the KVM in Moonlight (by its LAN address, or by `10.55.0.1` from this same computer). Moonlight shows a 4-digit PIN: type it into **PIN** and click **Send PIN**; Moonlight finishes pairing.
 4. **Network** — loads by itself: the Ethernet (and Wi-Fi, where the board has it) status. Ethernet: DHCP or a static address (IP, netmask, gateway, DNS), **Apply Ethernet**. Wi-Fi: **Scan for networks**, pick one (or type a hidden network's name), password, **Connect**; its address DHCP or static.
 
-There's nothing to log in to: the page has the key the KVM handed it, and signs the PIN and network changes with it, exactly as a client signs its requests. Where the key isn't handed out (another board, already set up), the page says so and offers a field to paste the key in instead.
+There's nothing to log in to: the page has the key the KVM handed it, and signs the PIN and network changes with it, exactly as a client signs its requests. If the KVM has no key to hand out (the network card turned off in the client, see below), the page says so and offers a field to paste the key in instead.
 
 ### When the Key Is Handed Out over USB
 
-| Device | Over the USB cable (A1, A2) |
-| :--- | :--- |
-| **Sipeed NanoKVM** | **Any time**, to anyone on the cable: it has no screen, the cable is its only local way in. Never over Ethernet or Wi-Fi. |
-| **Other boards** | **Once**, to the first one asking, and only **within 30 minutes of the KVM powering on**. Too late? Power it off and on again. Anyone asking later gets **"already set up"** with the date: if that wasn't you, reset the KVM to factory settings (front panel → Settings → Factory Reset). |
+On every board: **any time**, to anyone on the cable, also after a reboot and after the KVM is set up. The cable is the local way in, for a board without a screen the only one. Never over Ethernet or Wi-Fi.
 
 Good to know:
 - The setup page and the key are reachable **only over the cable**: the KVM serves them on its USB network interface alone, so nobody on the LAN can get to them, even by routing `10.55.0.0/24` to the KVM. See [Security Model §1](../10-developer-api/security-model.md#1-physical-pairing--the-root-of-trust-for-the-api).
-- **When the USB network is there:** on the **NanoKVM**, always. On other boards while the device hasn't been set up, and while it has no network address (no Ethernet cable, no Wi-Fi); once it's set up *and* on the network, the USB adapter disappears the next time the KVM rebuilds its USB devices, and from then on you reach it at its LAN address — the same settings are in the client under **gear menu → KVM settings**.
+- **When the USB network is there:** always, as the **Network Card**'s **USB setup** mode on the client's Devices screen. Another mode there (an RNDIS card of its own) or the card turned off removes it, to free its USB endpoints; picking **USB setup** brings it back. With no network address (no Ethernet cable, no Wi-Fi) it stays anyway. On the LAN the same settings are in the client under **gear menu → KVM settings**.
 - No network yet? Set it up from §A2 **Network** (or the client's **gear menu → KVM settings → Wi-Fi / Ethernet** while connected over USB), then connect over the LAN. Ethernet works by DHCP out of the box.
 - Set up one new KVM at a time per computer: two KVMs plugged into the same computer at once both answer at `10.55.0.1`, and only one of them is reached.
 
