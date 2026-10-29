@@ -63,7 +63,7 @@ Manage and run [Starlark automation scripts](../3-bios-in-terminal/scripting-aut
 
 ### KVM Settings (Gear Menu)
 
-**Gear menu → KVM settings** opens the connected KVM's own settings — what its front-panel menu has, for KVMs without a screen (a [NanoKVM](../6-hardware-connectivity/nanokvm.md), or any board added [over the USB cable](../1-getting-started/initial-setup.md#a-no-screen-needed-over-the-usb-cable)):
+**Gear menu → KVM settings** opens the connected KVM's own settings — what its front-panel menu has, for KVMs without a screen (a [NanoKVM](../6-hardware-connectivity/nanokvm.md), or any board added [over the USB cable](../1-getting-started/initial-setup.md#a-over-the-usb-cable)):
 
 * **Ethernet:** link, address, gateway and MAC; switch between DHCP and a static address.
 * **Wi-Fi:** scan, connect (with password), disconnect or forget a network, and DHCP or a static address for it.

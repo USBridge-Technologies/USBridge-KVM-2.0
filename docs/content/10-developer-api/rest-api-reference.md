@@ -35,7 +35,7 @@ Every request **except** `GET /api/healthz`, `POST /api/auth/sync`, and `POST /a
 
 WebSocket endpoints (`/api/mouse/ws`, `/api/gamepad/ws`) are signed on the upgrade `GET` request itself, before the connection switches protocols.
 
-**Unset clock.** A board with no battery-backed clock and no network for NTP yet (typically one just set up [over the USB cable](../1-getting-started/initial-setup.md#a-no-screen-needed-over-the-usb-cable)) starts with a clock years in the past. While its clock reads earlier than the firmware's minimum valid date, a request whose signature is valid but whose timestamp is *ahead* of the clock is accepted, and the appliance sets its clock to that timestamp — forward only; NTP takes over once the board is online. A request with a wrong signature never touches the clock, and once the clock is set the normal 60-second window applies again. `POST /api/auth/sync` does the same once its payload decrypts with the master key.
+**Unset clock.** A board with no battery-backed clock and no network for NTP yet (typically one just set up [over the USB cable](../1-getting-started/initial-setup.md#a-over-the-usb-cable)) starts with a clock years in the past. While its clock reads earlier than the firmware's minimum valid date, a request whose signature is valid but whose timestamp is *ahead* of the clock is accepted, and the appliance sets its clock to that timestamp — forward only; NTP takes over once the board is online. A request with a wrong signature never touches the clock, and once the clock is set the normal 60-second window applies again. `POST /api/auth/sync` does the same once its payload decrypts with the master key.
 
 ---
 

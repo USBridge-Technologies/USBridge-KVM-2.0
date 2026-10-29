@@ -22,9 +22,9 @@ Every KVM also serves the web client on its own address — nothing to install, 
 
 * **`https://<kvm-ip>:9443/`** — the full client. The KVM's certificate is self-signed, so the browser warns once; accept it to continue.
 * **`http://<kvm-ip>:8080/`** — same client without the certificate warning, but browsers keep some features to secure (`https`) pages only: gamepad, clipboard and microphone don't work there. Video, keyboard, mouse and every setting do.
-* **Over the USB cable**, on a KVM that isn't set up yet: open `http://10.55.0.1` and click **Open the web client** — it opens the client served by the KVM and pairs it with the key straight away (see [Initial Setup §A](../1-getting-started/initial-setup.md#a-no-screen-needed-over-the-usb-cable)).
+* **From the USB setup page:** on the computer the KVM's USB cable is plugged into, open `http://10.55.0.1` and click **Open the web client** — it opens the client served by the KVM and pairs it with the key straight away (see [Initial Setup §A2](../1-getting-started/initial-setup.md#a2-in-a-browser-the-setup-page-at-http105501)). `10.55.0.1` is the KVM's address on the USB cable only, not on your network.
 
 Opened from the KVM, the client talks to that same KVM directly (API and WebRTC on the same address), so it also works on an isolated network. The version is the one that came with the KVM's firmware and updates with it. The in-browser AI-vision overlay isn't included in this copy.
 
 > [!NOTE]
-> On the **NanoKVM** the browser gets 720p at up to 30 fps (its single CPU core encrypts the WebRTC stream in software); the desktop and mobile clients keep 1080p60 there.
+> On the **NanoKVM** the browser gets **1080p60** by default, over WebTransport — on the `https://<kvm-ip>:9443/` client in a Chromium-based browser (Chrome, Edge). Where WebTransport can't run — the plain `http://` client (`:8080`, also the one the USB setup page opens), Firefox, Safari, or with **WebRTC** picked in the client — the stream falls back to WebRTC at 720p and up to 30 fps: its single CPU core encrypts WebRTC in software. The desktop and mobile clients always get 1080p60.
