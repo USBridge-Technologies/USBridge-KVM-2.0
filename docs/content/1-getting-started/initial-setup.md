@@ -34,12 +34,13 @@ In the [USBridge Client](https://github.com/USBridge-Technologies/USBridge-Remot
 
 Open **`http://10.55.0.1`** in a browser on the computer the KVM is plugged into. The page has:
 
-1. **Open the web client** — the KVM serves the client itself and pairs it right away, nothing to install (see [Web Client](../7-software-access/web-client.md#served-by-the-kvm-itself-no-internet-needed)).
-2. **Show master key** — the key as text and as the pairing QR code: scan it with the mobile app, or type the key into any client.
-3. **Settings** — changes to the KVM made right from the page, with no client:
-   * **Master key** field: filled in by **Show master key**, or paste the key you already have. Every change below is signed with it, exactly as the client signs its requests — the page can't change anything without the key.
-   * **Moonlight pairing**: add the KVM in Moonlight (by its LAN address, or by `10.55.0.1` from this same computer). Moonlight shows a 4-digit PIN — type it into **PIN** and click **Send PIN**; Moonlight finishes pairing.
-   * **Network**: **Show network settings** shows the Ethernet (and Wi-Fi, where the board has it) status. Ethernet: DHCP or a static address (IP, netmask, gateway, DNS). Wi-Fi: **Scan for networks**, pick one (or type a hidden network's name), password, **Connect**; its address DHCP or static.
+1. **Connect a client** — **Open the web client** opens the client the KVM serves itself, over https (`:9443`), with the key handed over: nothing to install, and the browser gets 1080p60. The browser warns once about the KVM's own certificate (Advanced → Proceed). Or open `http://10.55.0.1:8080/`: that client finds the KVM on the cable by itself (see [Web Client](../7-software-access/web-client.md#served-by-the-kvm-itself-no-internet-needed)).
+2. **Connect a client** — shown as soon as the page opens: the QR code, the connect **link** (`usbridge://connect?internal_host=…&master_key=…`, the same one the Agent's QR code carries) with **Copy link**, the **key** (hidden, with show and copy) and the KVM's address — its Ethernet address when it has one. Scan the QR with the mobile app, or paste the link into a client (**Add Connection → Paste link**). On a first start, before the key exists, the page says it's waiting for it and reloads by itself.
+   **Get the client** offers the download for the system you're on, as usbridge.io does; the others are under **Other platforms**.
+3. **Moonlight pairing** — add the KVM in Moonlight (by its LAN address, or by `10.55.0.1` from this same computer). Moonlight shows a 4-digit PIN: type it into **PIN** and click **Send PIN**; Moonlight finishes pairing.
+4. **Network** — loads by itself: the Ethernet (and Wi-Fi, where the board has it) status. Ethernet: DHCP or a static address (IP, netmask, gateway, DNS), **Apply Ethernet**. Wi-Fi: **Scan for networks**, pick one (or type a hidden network's name), password, **Connect**; its address DHCP or static.
+
+There's nothing to log in to: the page has the key the KVM handed it, and signs the PIN and network changes with it, exactly as a client signs its requests. Where the key isn't handed out (another board, already set up), the page says so and offers a field to paste the key in instead.
 
 ### When the Key Is Handed Out over USB
 
@@ -50,7 +51,7 @@ Open **`http://10.55.0.1`** in a browser on the computer the KVM is plugged into
 
 Good to know:
 - The setup page and the key are reachable **only over the cable**: the KVM serves them on its USB network interface alone, so nobody on the LAN can get to them, even by routing `10.55.0.0/24` to the KVM. See [Security Model §1](../10-developer-api/security-model.md#1-physical-pairing--the-root-of-trust-for-the-api).
-- **When the USB network is there:** while the device hasn't been set up, and while it has no network address (no Ethernet cable, no Wi-Fi). Once it's set up *and* on the network, the USB adapter disappears the next time the KVM rebuilds its USB devices; from then on reach it at its LAN address — the same settings are in the client under **gear menu → KVM settings**.
+- **When the USB network is there:** on the **NanoKVM**, always. On other boards while the device hasn't been set up, and while it has no network address (no Ethernet cable, no Wi-Fi); once it's set up *and* on the network, the USB adapter disappears the next time the KVM rebuilds its USB devices, and from then on you reach it at its LAN address — the same settings are in the client under **gear menu → KVM settings**.
 - No network yet? Set it up from §A2 **Network** (or the client's **gear menu → KVM settings → Wi-Fi / Ethernet** while connected over USB), then connect over the LAN. Ethernet works by DHCP out of the box.
 - Set up one new KVM at a time per computer: two KVMs plugged into the same computer at once both answer at `10.55.0.1`, and only one of them is reached.
 

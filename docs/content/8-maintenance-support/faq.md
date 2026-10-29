@@ -20,6 +20,15 @@ Video quality is a real, not incidental, difference too. Browser-based KVMs are 
 
 ---
 
+#### What is the default IP address of a USBridge KVM (NanoKVM included)?
+
+There are two, and they're different things:
+
+* **`10.55.0.1` — over the USB cable.** Plug the KVM's USB cable into a computer: the computer gets a USB network adapter (address `10.55.0.x`, no gateway, its internet untouched) and the KVM is `10.55.0.1` on it. Open **`http://10.55.0.1`** for the setup page (key + QR code + link, Moonlight PIN, network settings) or **`http://10.55.0.1:8080`** for the web client. This address exists only on that cable, never on your network. On the **Sipeed NanoKVM** it's always there (unless the client's **Devices → Network Card** is switched away from its `usbsetup` mode); on other boards while the KVM isn't set up yet or has no network address. See [Initial Setup §A](../1-getting-started/initial-setup.md#a-over-the-usb-cable).
+* **On your network (Ethernet, Wi-Fi): by DHCP.** There's no fixed default address: the KVM takes one from your router. Find it on the setup page at `http://10.55.0.1` (shown at the top), on the front-panel screen, in your router's client list, or set a static one (setup page → **Network**, the client's **gear menu → KVM settings**, or a [provisioning file](../1-getting-started/headless-provisioning.md)).
+
+The web client on the network address: `https://<address>:9443/` (or `http://<address>:8080/`).
+
 ## Storage & Media Lifecycle
 
 #### Can standard consumer SD cards be used for snapshot storage?

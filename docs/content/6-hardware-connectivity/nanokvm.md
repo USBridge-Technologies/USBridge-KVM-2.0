@@ -22,6 +22,13 @@ USBridge firmware also runs on the **Sipeed NanoKVM**, an off-the-shelf HDMI KVM
 | **ATX power control** | Yes — the power and reset buttons and the power/HDD LEDs of Sipeed's **ATX-B** board (power button, reset, power LED). The pins follow the board revision, see [§6](#6-board-revisions-alpha-beta-pcie). |
 | **Install to eMMC** | No — the NanoKVM has no eMMC; it always runs from its microSD card. |
 
+### Default IP address
+
+* **Over the USB cable: `10.55.0.1`, always.** The NanoKVM's USB cable adds a network adapter to the computer it's plugged into; the NanoKVM is `10.55.0.1` there, with the setup page at **`http://10.55.0.1`** (master key, QR code and connect link, Moonlight PIN, network settings) and the web client at `http://10.55.0.1:8080`. Never reachable from your network.
+* **On Ethernet: by DHCP** (no fixed address). The setup page shows the address it got at the top.
+
+On the client's **Devices** screen this USB network is the **Network Card** in its **`usbsetup`** mode. It takes some of the NanoKVM's USB endpoints: turning the card off, or picking a mode with a network of its own (`auto`, `wifirouter`, `etherouter`, `etherbridge`), removes it — then reach the NanoKVM at its Ethernet address. Pick **`usbsetup`** again to bring `10.55.0.1` back. While the NanoKVM has no network address it stays regardless, so it can't lock you out.
+
 Networking is the NanoKVM's wired Ethernet (`eth0`): DHCP by default, or a static address — from the provisioning file, from the client (**gear menu → KVM settings → Ethernet**), or from the USB setup page (`http://10.55.0.1` → **Network**).
 
 ---
