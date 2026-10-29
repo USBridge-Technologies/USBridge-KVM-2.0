@@ -208,12 +208,29 @@ Either way:
 - The script refuses to target the host's own system disk, and refuses any disk the kernel doesn't report as removable (protects against picking the wrong `/dev/sdX` by mistake) — pass `--force` (manual) or set `USBRIDGE_SD_FORCE=1` (one-liner) only if you're certain about the target and it's being wrongly refused.
 - Once written, move the card to the appliance's SD slot and power on — no Maskrom step, no USB cable to the appliance needed.
 
-**On a board that also has a real eMMC**, the firmware detects whichever device it actually booted from at runtime (both the U-Boot env/bootcount and the `/uboot` + `/data` mounts follow the real boot device), so running from SD works correctly even with an eMMC present alongside it. Once booted from the card, the on-device **Settings** menu gains an **Install to eMMC** action — copies the running system onto the eMMC and powers the appliance off; remove the SD card and power back on to boot from eMMC, no computer needed for that step. The same thing can be triggered unattended via `install_to_emmc` in a [provisioning config](../1-getting-started/headless-provisioning.md#install-to-emmc-install_to_emmc).
+**On a board that also has an eMMC:** the RK3566 boot ROM tries the eMMC *before* the SD card. A card only boots when the eMMC holds no bootloader — a blank eMMC, or one wiped with [`factory-reset/`](../../flash-tool/rz3w/factory-reset/). If the eMMC carries anything bootable (an earlier USBridge firmware, Armbian, another OS), the board starts that instead, or that bootloader picks up the card on its own terms. Once the firmware runs from the card, everything follows the device it booted from: the U-Boot env/bootcount, the `/uboot`, `/data` and `/mnt/emmc` mounts, and where Mender writes updates. The eMMC sitting alongside is never touched, even though both media carry the same partition names.
+
+### Installing from the SD card onto the eMMC
+
+Once booted from the card, the system can install itself onto the eMMC — whatever the eMMC held before (blank, an older firmware, another OS) is replaced:
+
+- **With a display:** **Settings → Install to eMMC**. A progress bar shows each stage; when it finishes, the appliance powers off. Remove the SD card and power back on to boot from eMMC.
+- **Without a display** (over SSH or the serial console): `usbridge2 install_emmc --yes`. Add `--reboot` to restart straight into the eMMC instead of powering off. The card can stay in, since the eMMC boots first.
+- **Unattended:** `install_to_emmc` in a [provisioning config](../1-getting-started/headless-provisioning.md#install-to-emmc-install_to_emmc).
+
+What gets installed:
+
+- The bootloader, both system slots (A/B) and the `/data` partition, block for block. The mounted ones are copied with their filesystems frozen for that moment, so the copy is consistent. Every block written is read back from the eMMC and compared with the card. A mismatch stops the install with an error instead of leaving a half-good eMMC.
+- The partition table is rewritten for the eMMC's real size, so a card much bigger than the eMMC (e.g. 1 TB card, 16 GB eMMC) works.
+- `/mnt/emmc` on the eMMC gets a fresh filesystem filling the rest of the eMMC, with the card's scripts and `data`. **Not copied:** disk images (`iso`), snapshots (`backup`, they stay on the SD card) and `tmp`. These start empty on the eMMC. Anything that doesn't fit is skipped and logged.
+- The device keeps its settings, provisioning and Mender identity. The SD card itself is only read.
+
+It takes a few minutes; around 4–5 GB of system is copied. If something fails (eMMC too small, an eMMC partition held by LVM/RAID, a write that doesn't verify), the message is shown on the display or printed by the command, and the system keeps running from the card.
 
 A card larger than the firmware's build baseline isn't wasted, either — the extra capacity automatically becomes usable `/mnt/emmc` storage on first boot, no manual resizing needed; see [Storage Security & Immutability §4](../4-snapshots-state-management/security-storage.md#4-onboard-storage-mntemmc--automatic-capacity-growth).
 
 > [!WARNING]
-> **Planning to reuse this SD card as a backup/snapshot card after moving to eMMC?** Don't just reinsert it and format it from the front panel — Install to eMMC clones it byte for byte, so it still contains a full copy of the OS. See [Storage Security & Immutability §5](../4-snapshots-state-management/security-storage.md#5-reusing-a-boot-sd-card-as-a-backup-card) for the safe way to repurpose it.
+> **Planning to reuse this SD card as a backup/snapshot card after moving to eMMC?** Don't just reinsert it and format it from the front panel — Install to eMMC leaves the card as it was, so it still contains a full copy of the OS. See [Storage Security & Immutability §5](../4-snapshots-state-management/security-storage.md#5-reusing-a-boot-sd-card-as-a-backup-card) for the safe way to repurpose it.
 
 > [!NOTE]
 > Same as an eMMC reflash: a device started this way boots into the initial trial period and needs [network setup](../1-getting-started/initial-setup.md) again.
