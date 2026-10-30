@@ -8,12 +8,22 @@
 
 **The USBridge Ecosystem** is a professional-grade solution for system debugging and infrastructure management at the fundamental hardware level (Layer 0). It provides administrators with absolute control over hardware, bypassing the operating system while ensuring strict hardware isolation. 
 
-The solution is available in two deployment formats:
+## Choose Your Hardware
 
-| Deployment Format | Description | Quick Links |
-| :--- | :--- | :--- |
-| **1. USBridge Firmware** | Converts supported single-board computers (SBCs) into enterprise-grade IP-KVM appliances. | [Download for Radxa Zero 3W / 3E ➔](https://www.usbridge.io/hardware-agent)<br>[Download for Radxa Cubie A7Z ➔](https://www.usbridge.io/hardware-agent)<br>[Download for Sipeed NanoKVM ➔](https://flash.usbridge.io/)<br>*Raspberry Pi, Banana Pi — In Development* |
-| **2. USBridge KVM 2.0** | A turnkey, plug-and-play hardware appliance requiring no manual assembly. | [Buy USBridge KVM 2.0 ➔](https://www.usbridge.io/hardware-agent?utm_campaign=readme-kvm&utm_medium=readme&utm_source=github#buy-usbridge-kvm-2-0) |
+USBridge comes two ways: **ready-made** (USBridge KVM 2.0, nothing to assemble) or **as firmware** you flash onto a board you already have. Same client apps, same API, same OTA updates on every one.
+
+| | **USBridge KVM 2.0** | **Radxa Zero 3W / 3E** | **Radxa Cubie A7Z** | **Sipeed NanoKVM** |
+| :--- | :---: | :---: | :---: | :---: |
+| **What it is** | Turnkey appliance | DIY: SBC + USB capture card | DIY: SBC + USB capture card | Off-the-shelf KVM, reflashed |
+| **SoC** | Rockchip RK3566 | Rockchip RK3566, 4 cores | Allwinner A733, 8 cores | SOPHGO SG2002, 1 RISC-V core |
+| **Video capture** | USB 3.0 (bundled dongle) | USB (UVC) · MIPI coming | USB (UVC) · MIPI coming | **MIPI CSI** (built-in HDMI) |
+| **Latency** | Low | Low (USB: +10–15 ms vs MIPI) | Low (USB: +10–15 ms vs MIPI) | **Lowest** |
+| **BIOS-in-Terminal (OCR)** | ✅ NPU | ✅ NPU | ✅ CPU | — |
+| **Get it** | [**Buy ➔**](https://www.usbridge.io/hardware-agent?utm_campaign=readme-kvm&utm_medium=readme&utm_source=github#buy-usbridge-kvm-2-0) | [Download firmware ➔](https://www.usbridge.io/hardware-agent) | [Download firmware ➔](https://www.usbridge.io/hardware-agent) | [Flash in browser ➔](https://flash.usbridge.io/) |
+
+**Full side-by-side — latency, audio, codecs, storage, every feature: [NanoKVM vs Radxa Zero 3W vs Cubie A7Z ➔](./docs/content/6-hardware-connectivity/board-comparison.md)**
+
+*Raspberry Pi and Banana Pi support is in development.*
 
 ---
 
@@ -45,7 +55,7 @@ Provision a supported SBC, flash the firmware image, and connect a standard USB 
 
 | Component | Description |
 | :--- | :--- |
-| **Supported SBC** | Radxa Zero 3W / 3E, Radxa Cubie A7Z; also the off-the-shelf [Sipeed NanoKVM](./docs/content/6-hardware-connectivity/nanokvm.md) (HDMI capture built in). |
+| **Supported SBC** | Radxa Zero 3W / 3E, Radxa Cubie A7Z; also the off-the-shelf [Sipeed NanoKVM](./docs/content/6-hardware-connectivity/nanokvm.md) (HDMI capture built in). Which to pick: [board comparison](./docs/content/6-hardware-connectivity/board-comparison.md). |
 | **HDMI-to-USB Capture Card** | Generic MS2109 (7–12$), or standard UVC dongle. |
 | **MicroSD Card (2GB+)** | Standard 2GB+ capacity. Class 10 or higher recommended for fast boot times. |
 | **Optional: OLED Status Screen** | On-device IP dashboard. Fully optional—the system runs perfectly headless via a single config file. |

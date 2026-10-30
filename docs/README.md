@@ -70,6 +70,7 @@ Physical pinouts, schematic internals, power logic, and cooling.
 <li><a href="./content/6-hardware-connectivity/power-thermal.md">Power Limits & Thermal Behavior</a></li>
 <li><a href="./content/6-hardware-connectivity/architecture.md">SoC Platform Architecture</a></li>
 <li><a href="./content/6-hardware-connectivity/power-management-module-control.md">PMM Relay Controlling</a></li>
+<li><a href="./content/6-hardware-connectivity/board-comparison.md">Board Comparison: NanoKVM vs Zero 3W vs Cubie A7Z</a></li>
 <li><a href="./content/6-hardware-connectivity/nanokvm.md">Sipeed NanoKVM</a></li>
 </ul>
 </td>

@@ -5,3 +5,5 @@ USBridge runs on a **Radxa Zero 3W** single-board computer — a **Rockchip RK35
 That single SoC is doing real, simultaneous work: capturing and encoding video for [Moonlight streaming](../2-kvm-vkm/video-streaming-quality.md), running the [OCR pipeline behind BIOS-in-Terminal](../3-bios-in-terminal/technology-overview.md), emulating the USB HID/mass-storage gadget the target sees, and driving the [front-panel display](../2-kvm-vkm/display-mode.md) — all out-of-band, with zero footprint on the machine being managed.
 
 See [Ports & Connectors Reference](./ports-connectors-reference.md) for the physical interfaces, and [Power & Thermal Specifications](./power-thermal.md) for what it takes to run this reliably 24/7.
+
+Other boards: the Radxa Cubie A7Z (Allwinner A733, 8 cores) and the Sipeed NanoKVM (SOPHGO SG2002) run the same firmware. See the [board comparison](./board-comparison.md) for latency, audio and features side by side.
