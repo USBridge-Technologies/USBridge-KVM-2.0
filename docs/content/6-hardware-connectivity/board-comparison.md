@@ -28,7 +28,7 @@ USBridge firmware turns three different boards into the same IP-KVM: same [clien
 
 ### Front-panel display for the Radxa boards
 
-The Radxa boards drive a 1.3" 240×240 IPS LCD (ST7789, SPI) with a joystick and three buttons: IP address, status and the full settings menu on the device. Optional: the firmware runs headless just as well. Not supported on the **Zero 3E** yet.
+The **Radxa Zero 3W** and **Cubie A7Z** take the same display, either module below fits both: a 1.3" 240×240 IPS LCD (ST7789, SPI) with a joystick and three buttons: IP address, status and the full settings menu on the device. Optional: the firmware runs headless just as well. Not supported on the **Zero 3E** yet.
 
 | Display | Mounting | Where to get it |
 | :--- | :--- | :--- |
