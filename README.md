@@ -64,7 +64,7 @@ Provision a supported SBC, flash the firmware image, and connect a standard USB 
 | **Supported SBC** | Radxa Zero 3W / 3E, Radxa Cubie A7Z; also the off-the-shelf [Sipeed NanoKVM](./docs/content/6-hardware-connectivity/nanokvm.md) (HDMI capture built in). Which to pick: [board comparison](./docs/content/6-hardware-connectivity/board-comparison.md). |
 | **HDMI-to-USB Capture Card** | Generic MS2109 (7–12$), or standard UVC dongle. |
 | **MicroSD Card (2GB+)** | Standard 2GB+ capacity. Class 10 or higher recommended for fast boot times. |
-| **Optional: Status Screen** | 1.3" 240×240 LCD: the [USBridge Flip-HAT](https://www.usbridge.io/hardware-agent/#buy-screen-module) (mirrored pinout, SoC stays against the heatsink) or the standard [Waveshare 1.3" LCD HAT](https://www.waveshare.com/1.3inch-lcd-hat.htm). Fits both the Radxa Zero 3W and the Cubie A7Z; not supported on the Zero 3E yet. Fully optional: the system runs headless via a single config file. |
+| **Optional: Status Screen** | 1.3" 240×240 LCD: the [USBridge 1.3" Flip-HAT](https://www.usbridge.io/hardware-agent/#buy-screen-module) (mirrored pinout, SoC stays against the heatsink) or the standard [Waveshare 1.3" LCD HAT](https://www.waveshare.com/1.3inch-lcd-hat.htm). Fits both the Radxa Zero 3W and the Cubie A7Z; not supported on the Zero 3E yet. Fully optional: the system runs headless via a single config file. |
 
 ### 2. 3-Minute Flashing Guide (Video Tutorial)
 
