@@ -32,8 +32,8 @@ The **Radxa Zero 3W** and **Cubie A7Z** take the same display, either module bel
 
 | Display | Mounting | Where to get it |
 | :--- | :--- | :--- |
-| **[USBridge Flip-HAT](https://www.usbridge.io/hardware-agent/#buy-screen-module)** | Mirrored pinout: the display sits on the back, so the board's SoC faces out and lies flat against a heatsink instead of being covered by the module. [Open hardware](../../../USBridge-Flip-HAT-1.3-LCD/). | [usbridge.io](https://www.usbridge.io/hardware-agent/#buy-screen-module) |
-| **[Waveshare 1.3" LCD HAT](https://www.waveshare.com/1.3inch-lcd-hat.htm)** | Standard pinout: sits on top of the board, over the SoC. | [waveshare.com](https://www.waveshare.com/1.3inch-lcd-hat.htm) |
+| **[USBridge Flip-HAT](https://www.usbridge.io/hardware-agent/#buy-screen-module)** | Same screen and buttons as the Waveshare 1.3" LCD HAT, mirrored pinout: mounts on the back of the board, so the SoC faces out and lies against a heatsink. [Open hardware](../../../USBridge-Flip-HAT-1.3-LCD/). | [usbridge.io](https://www.usbridge.io/hardware-agent/#buy-screen-module) |
+| **[Waveshare 1.3" LCD HAT](https://www.waveshare.com/1.3inch-lcd-hat.htm)** | Same screen and buttons, standard pinout: mounts on top of the board, over the SoC. | [waveshare.com](https://www.waveshare.com/1.3inch-lcd-hat.htm) |
 
 ---
 

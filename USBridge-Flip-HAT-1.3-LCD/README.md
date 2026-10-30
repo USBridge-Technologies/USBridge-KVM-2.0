@@ -4,6 +4,8 @@
 
 The **USBridge Flip-HAT** is a professional rear-mount terminal designed specifically for the Raspberry Pi Zero family. This module offers a vibrant display interface while maintaining full system cooling and GPIO access.
 
+Screen and buttons are identical to the [Waveshare 1.3" LCD HAT](https://www.waveshare.com/1.3inch-lcd-hat.htm); only the pinout is mirrored. The Waveshare HAT sits on top of the board and covers the SoC; the Flip-HAT mounts on the back, so the SoC faces out and lies against a heatsink. Works with the USBridge firmware on the **Radxa Zero 3W** and **Radxa Cubie A7Z** (see the [board comparison](../docs/content/6-hardware-connectivity/board-comparison.md#front-panel-display-for-the-radxa-boards)). [Buy it on usbridge.io](https://www.usbridge.io/hardware-agent/#buy-screen-module).
+
 ## Technical Specifications
 - **Display:** 1.3-inch HD IPS (240x240 pixels)
 - **Interface:** 4-wire SPI (Driver IC: ST7789)
