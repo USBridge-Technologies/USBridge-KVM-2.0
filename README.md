@@ -12,16 +12,16 @@ In plain terms: **IP-KVM firmware with Moonlight streaming** for the **Sipeed Na
 
 ## Choose Your Hardware
 
-USBridge comes two ways: **ready-made** (USBridge KVM 2.0, nothing to assemble) or **as firmware** you flash onto a board you already have. Same client apps, same API, same OTA updates on every one.
+Flash USBridge onto a board you already have. Same client apps, same API, same OTA updates on every one.
 
-| | **USBridge KVM 2.0** | **Radxa Zero 3W / 3E** | **Radxa Cubie A7Z** | **Sipeed NanoKVM** |
-| :--- | :---: | :---: | :---: | :---: |
-| **What it is** | Turnkey appliance | DIY: SBC + USB capture card | DIY: SBC + USB capture card | Off-the-shelf KVM, reflashed |
-| **SoC** | Rockchip RK3566 | Rockchip RK3566, 4 cores | Allwinner A733, 8 cores | SOPHGO SG2002, 1 RISC-V core |
-| **Video capture** | USB 3.0 (bundled dongle) | USB (UVC) · MIPI coming | USB (UVC) · MIPI coming | **MIPI CSI** (built-in HDMI) |
-| **Latency** | Low | Low (USB: +10–15 ms vs MIPI) | Low (USB: +10–15 ms vs MIPI) | **Lowest** |
-| **BIOS-in-Terminal (OCR)** | ✅ NPU | ✅ NPU | ✅ CPU | — |
-| **Get it** | [**Buy ➔**](https://www.usbridge.io/hardware-agent/?utm_campaign=readme-kvm&utm_medium=readme&utm_source=github#buy-usbridge-kvm-2-0) | [Download firmware ➔](https://www.usbridge.io/hardware-agent/) | [Download firmware ➔](https://www.usbridge.io/hardware-agent/) | [Download firmware ➔](https://www.usbridge.io/hardware-agent/) |
+| | **Radxa Zero 3W / 3E** | **Radxa Cubie A7Z** | **Sipeed NanoKVM** |
+| :--- | :---: | :---: | :---: |
+| **What it is** | SBC + USB 3.0 capture card | SBC + USB 3.0 capture card | Off-the-shelf KVM, reflashed |
+| **SoC** | Rockchip RK3566, 4 cores | Allwinner A733, 8 cores | SOPHGO SG2002, 1 RISC-V core |
+| **Video capture** | USB 3.0 (UVC) · MIPI coming | USB 3.0 (UVC) · MIPI coming | **MIPI CSI** (built-in HDMI) |
+| **Latency** | Low (USB: +10–15 ms vs MIPI) | Low (USB: +10–15 ms vs MIPI) | **Lowest** |
+| **BIOS-in-Terminal (OCR)** | ✅ NPU | ✅ CPU | — |
+| **Get it** | [Download firmware ➔](https://www.usbridge.io/hardware-agent/) | [Download firmware ➔](https://www.usbridge.io/hardware-agent/) | [Download firmware ➔](https://www.usbridge.io/hardware-agent/) |
 
 **Full side-by-side — latency, audio, codecs, storage, every feature: [NanoKVM vs Radxa Zero 3W vs Cubie A7Z ➔](./docs/content/6-hardware-connectivity/board-comparison.md)**
 
