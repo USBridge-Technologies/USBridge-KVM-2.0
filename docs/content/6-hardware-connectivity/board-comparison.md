@@ -16,10 +16,10 @@ USBridge firmware turns three different boards into the same IP-KVM: same [clien
 | :--- | :--- | :--- | :--- |
 | **SoC** | SOPHGO SG2002 | Rockchip RK3566 | Allwinner A733 |
 | **CPU** | 1 × RISC-V C906, 1 GHz (runs at 850 MHz) | 4 × ARM Cortex-A55 | 8 cores (2 × Cortex-A76 + 6 × Cortex-A55) |
-| **RAM** | 256 MB (~158 MB for Linux, the rest is reserved for video) | 1–2 GB LPDDR4X | 1–16 GB LPDDR4/4X (1, 2, 4, 8 or 16 GB) |
+| **RAM** | 256 MB (~158 MB for Linux, the rest is reserved for video) | 1–8 GB LPDDR4X (1, 2, 4 or 8 GB) | 1–16 GB LPDDR4/4X (1, 2, 4, 8 or 16 GB) |
 | **AI accelerator used by USBridge** | — | NPU (RKNN) for OCR | — (OCR on the CPU) |
 | **HDMI capture** | Built in: HDMI → MIPI CSI (LT6911) | External USB 3.0 (UVC) capture card · MIPI planned | External USB 3.0 (UVC) capture card · MIPI planned |
-| **Network** | 100 Mbit Ethernet | 3W: Wi-Fi · 3E: Ethernet | Wi-Fi 6 |
+| **Network** | 100 Mbit Ethernet | 3W: Wi-Fi 6 · 3E: Ethernet | Wi-Fi 6 |
 | **Boot / storage** | microSD only | microSD or onboard eMMC (Install to eMMC) | microSD only (eMMC not enabled yet) |
 | **Front-panel display** | ✅ NanoKVM's I2C OLED | 3W: ✅ 240×240 LCD, see [below](#front-panel-display-for-the-radxa-boards) · **3E: not supported yet** | ✅ 240×240 LCD, see [below](#front-panel-display-for-the-radxa-boards) |
 | **ATX power control** | ✅ Sipeed ATX-B board | ✅ [Power management module](./power-management-module-control.md) | ✅ [Power management module](./power-management-module-control.md) |
