@@ -43,15 +43,15 @@ Latency is where the boards differ the most, and it comes down to how the pictur
 
 | | **Sipeed NanoKVM** | **Radxa Zero 3W / 3E** | **Radxa Cubie A7Z** |
 | :--- | :--- | :--- | :--- |
-| **Capture path** | MIPI CSI → hardware scaler → encoder, no CPU copy | USB 3.0 capture card → encoder | USB 3.0 capture card → CPU colour conversion → encoder |
-| **Capture → encoded frame** | **~20 ms** (measured, 1080p60) | MIPI + **10–15 ms** | MIPI + **10–15 ms** |
-| **Latency rank** | 🥇 **Lowest** | 🥈 Low | 🥈 Low |
+| **Capture path** | MIPI CSI → encoder, no CPU copy | Today: USB 3.0 capture card → encoder · coming: MIPI CSI | Today: USB 3.0 capture card → encoder · coming: MIPI CSI |
+| **Capture → encoded frame** | **~20 ms** (MIPI, measured at 1080p60) | USB: **~20 ms + 10–15 ms** · MIPI: ~20 ms, same as the NanoKVM | USB: **~20 ms + 10–15 ms** · MIPI: ~20 ms, same as the NanoKVM |
+| **Latency rank** | 🥇 **Lowest** | 🥈 Low over USB · 🥇 on MIPI | 🥈 Low over USB · 🥇 on MIPI |
 | **Max mode** | 1080p60 | 1080p60 | 1080p60 · **up to 4K30 on MIPI** (coming) |
 | **Hardware encoder** | H.264, HEVC | H.264, HEVC | H.264, HEVC |
 | **Moonlight** | ✅ | ✅ | ✅ |
 | **Web client (WebRTC)** | ✅ | ✅ | ✅ |
 
-**Why MIPI wins:** a USB capture card has to compress or pack each frame, push it over USB and hand it to the SoC, which then decodes or converts it before encoding. On the NanoKVM the HDMI bridge feeds the SoC's camera interface directly and the frame goes to the hardware encoder without the CPU touching a pixel. MIPI capture for the Radxa boards is in development and will remove those extra 10–15 ms.
+**Why MIPI wins:** a USB capture card has to compress or pack each frame, push it over USB and hand it to the SoC, which then decodes or converts it before encoding. On the NanoKVM the HDMI bridge feeds the SoC's camera interface directly and the frame goes to the hardware encoder without the CPU touching a pixel. MIPI capture for the Radxa boards is in development: it removes those extra 10–15 ms and puts them on par with the NanoKVM.
 
 On top of the capture figures comes the network: on wired LAN or Wi-Fi 6 the whole glass-to-glass path is typically **under 50 ms** on every board (see [Video Streaming & Quality §4](../2-kvm-vkm/video-streaming-quality.md#4-latency)).
 

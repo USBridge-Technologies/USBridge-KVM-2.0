@@ -22,7 +22,7 @@ Flash USBridge onto a board you already have. Same client apps, same API, same O
 | **Video capture** | USB 3.0 (UVC) · MIPI coming | USB 3.0 (UVC) · MIPI coming | **MIPI CSI** (built-in HDMI) |
 | **Video** | 1080p60 | 1080p60 · up to 4K30 on MIPI (coming) | 1080p60 |
 | **Codecs** | H.264, HEVC | H.264, HEVC | H.264, HEVC |
-| **Latency** | Low (USB: +10–15 ms vs MIPI) | Low (USB: +10–15 ms vs MIPI) | **Lowest** |
+| **Latency** | USB: +10–15 ms vs MIPI · MIPI: lowest | USB: +10–15 ms vs MIPI · MIPI: lowest | **Lowest** (MIPI) |
 | **BIOS-in-Terminal (OCR)** | ✅ NPU | ✅ CPU | — |
 | **Status display** | 3W: ✅ 240×240 LCD · 3E: not yet | ✅ 240×240 LCD | ✅ built-in OLED |
 | **Get it** | [Download firmware ➔](https://www.usbridge.io/hardware-agent/) | [Download firmware ➔](https://www.usbridge.io/hardware-agent/) | [Download firmware ➔](https://www.usbridge.io/hardware-agent/) |
