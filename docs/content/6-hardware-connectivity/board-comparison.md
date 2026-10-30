@@ -4,7 +4,7 @@ USBridge firmware turns three different boards into the same IP-KVM: same [clien
 
 **In short:**
 
-* **Lowest latency, smallest budget:** [Sipeed NanoKVM](./nanokvm.md). HDMI capture over MIPI, hardware H.264 at 1080p60. No BIOS-in-Terminal, sound over USB only.
+* **Lowest latency, smallest budget:** [Sipeed NanoKVM](./nanokvm.md). HDMI capture over MIPI, hardware H.264 / HEVC at 1080p60. No BIOS-in-Terminal, sound over USB only.
 * **Full feature set, best value:** **Radxa Zero 3W / 3E**. 4 cores, an NPU for OCR, eMMC. Capture over a USB 3.0 card (+10–15 ms), MIPI capture is coming.
 * **Most CPU headroom:** **Radxa Cubie A7Z**. 8 cores; OCR runs on the CPU. Capture over a USB 3.0 card (+10–15 ms), MIPI capture is coming.
 
@@ -47,7 +47,7 @@ Latency is where the boards differ the most, and it comes down to how the pictur
 | **Capture → encoded frame** | **~20 ms** (measured, 1080p60) | MIPI + **10–15 ms** | MIPI + **10–15 ms** |
 | **Latency rank** | 🥇 **Lowest** | 🥈 Low | 🥈 Low |
 | **Max mode** | 1080p60 | 1080p60 | 1080p60 · **up to 4K30 on MIPI** (coming) |
-| **Hardware encoder** | H.264 | H.264, HEVC | H.264 |
+| **Hardware encoder** | H.264, HEVC | H.264, HEVC | H.264, HEVC |
 | **Moonlight** | ✅ | ✅ | ✅ |
 | **Web client (WebRTC)** | ✅ | ✅ | ✅ |
 

@@ -8,7 +8,7 @@ USBridge firmware also runs on the **Sipeed NanoKVM**, an off-the-shelf HDMI KVM
 
 | Feature | On the NanoKVM |
 | :--- | :--- |
-| **Moonlight streaming** | Yes — the SG2002's hardware H.264 encoder, up to 1080p60 from the NanoKVM's HDMI input. The client's Net Graph shows the encoder as *NanoKVM (SG2002)*. |
+| **Moonlight streaming** | Yes — the SG2002's hardware H.264 and HEVC (H.265) encoder, up to 1080p60 from the NanoKVM's HDMI input. The client's Net Graph shows the encoder as *NanoKVM (SG2002)*. |
 | **Keyboard, mouse, absolute pointer, touch/pen** | Yes (USB HID gadget). |
 | **Gamepad** | Yes (XInput, see [Gamepad Emulation](../2-kvm-vkm/gamepad.md)). |
 | **Audio** | Yes — the target PC's sound through a USB audio (UAC1) device, plus the client's microphone and MIDI input into the target. |
