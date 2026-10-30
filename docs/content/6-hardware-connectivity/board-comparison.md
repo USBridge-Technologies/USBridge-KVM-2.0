@@ -21,9 +21,19 @@ USBridge firmware turns three different boards into the same IP-KVM: same [clien
 | **HDMI capture** | Built in: HDMI → MIPI CSI (LT6911) | External USB 3.0 (UVC) capture card · MIPI planned | External USB 3.0 (UVC) capture card · MIPI planned |
 | **Network** | 100 Mbit Ethernet | 3W: Wi-Fi · 3E: Ethernet | Wi-Fi 6 |
 | **Boot / storage** | microSD only | microSD or onboard eMMC (Install to eMMC) | microSD only (eMMC not enabled yet) |
-| **Front-panel display** | ✅ NanoKVM's I2C OLED | 3W: ✅ · 3E: not supported yet | ✅ |
+| **Front-panel display** | ✅ NanoKVM's I2C OLED | 3W: ✅ 240×240 LCD, see [below](#front-panel-display-for-the-radxa-boards) · **3E: not supported yet** | ✅ 240×240 LCD, see [below](#front-panel-display-for-the-radxa-boards) |
 | **ATX power control** | ✅ Sipeed ATX-B board | ✅ [Power management module](./power-management-module-control.md) | ✅ [Power management module](./power-management-module-control.md) |
 | **Firmware download** | [usbridge.io/hardware-agent](https://www.usbridge.io/hardware-agent/) | [usbridge.io/hardware-agent](https://www.usbridge.io/hardware-agent/) | [usbridge.io/hardware-agent](https://www.usbridge.io/hardware-agent/) |
+
+
+### Front-panel display for the Radxa boards
+
+The Radxa boards drive a 1.3" 240×240 IPS LCD (ST7789, SPI) with a joystick and three buttons: IP address, status and the full settings menu on the device. Optional: the firmware runs headless just as well. Not supported on the **Zero 3E** yet.
+
+| Display | Mounting | Where to get it |
+| :--- | :--- | :--- |
+| **[USBridge Flip-HAT](https://www.usbridge.io/hardware-agent/#buy-screen-module)** | Mirrored pinout: the display sits on the back, so the board's SoC faces out and lies flat against a heatsink instead of being covered by the module. [Open hardware](../../../USBridge-Flip-HAT-1.3-LCD/). | [usbridge.io](https://www.usbridge.io/hardware-agent/#buy-screen-module) |
+| **[Waveshare 1.3" LCD HAT](https://www.waveshare.com/1.3inch-lcd-hat.htm)** | Standard pinout: sits on top of the board, over the SoC. | [waveshare.com](https://www.waveshare.com/1.3inch-lcd-hat.htm) |
 
 ---
 

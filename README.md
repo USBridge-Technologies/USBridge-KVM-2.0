@@ -21,6 +21,7 @@ Flash USBridge onto a board you already have. Same client apps, same API, same O
 | **Video capture** | USB 3.0 (UVC) · MIPI coming | USB 3.0 (UVC) · MIPI coming | **MIPI CSI** (built-in HDMI) |
 | **Latency** | Low (USB: +10–15 ms vs MIPI) | Low (USB: +10–15 ms vs MIPI) | **Lowest** |
 | **BIOS-in-Terminal (OCR)** | ✅ NPU | ✅ CPU | — |
+| **Status display** | 3W: ✅ 240×240 LCD · 3E: not yet | ✅ 240×240 LCD | ✅ built-in OLED |
 | **Get it** | [Download firmware ➔](https://www.usbridge.io/hardware-agent/) | [Download firmware ➔](https://www.usbridge.io/hardware-agent/) | [Download firmware ➔](https://www.usbridge.io/hardware-agent/) |
 
 **Full side-by-side — latency, audio, codecs, storage, every feature: [NanoKVM vs Radxa Zero 3W vs Cubie A7Z ➔](./docs/content/6-hardware-connectivity/board-comparison.md)**
@@ -60,7 +61,7 @@ Provision a supported SBC, flash the firmware image, and connect a standard USB 
 | **Supported SBC** | Radxa Zero 3W / 3E, Radxa Cubie A7Z; also the off-the-shelf [Sipeed NanoKVM](./docs/content/6-hardware-connectivity/nanokvm.md) (HDMI capture built in). Which to pick: [board comparison](./docs/content/6-hardware-connectivity/board-comparison.md). |
 | **HDMI-to-USB Capture Card** | Generic MS2109 (7–12$), or standard UVC dongle. |
 | **MicroSD Card (2GB+)** | Standard 2GB+ capacity. Class 10 or higher recommended for fast boot times. |
-| **Optional: OLED Status Screen** | On-device IP dashboard. Fully optional—the system runs perfectly headless via a single config file. |
+| **Optional: Status Screen** | 1.3" 240×240 LCD: the [USBridge Flip-HAT](https://www.usbridge.io/hardware-agent/#buy-screen-module) (mirrored pinout, SoC stays against the heatsink) or the standard [Waveshare 1.3" LCD HAT](https://www.waveshare.com/1.3inch-lcd-hat.htm). Radxa Zero 3W and Cubie A7Z; not supported on the Zero 3E yet. Fully optional: the system runs headless via a single config file. |
 
 ### 2. 3-Minute Flashing Guide (Video Tutorial)
 
