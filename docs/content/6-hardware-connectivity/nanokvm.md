@@ -2,6 +2,11 @@
 
 USBridge firmware also runs on the **Sipeed NanoKVM**, an off-the-shelf HDMI KVM built on the **SOPHGO SG2002** (one RISC-V C906 core at 1 GHz, 256 MB of RAM, of which Linux gets about 158 MB — the rest is reserved for video capture and encoding). It replaces Sipeed's own software on the NanoKVM's microSD card and turns the device into a USBridge appliance: same client apps, same API, same OTA updates as the Radxa-based units.
 
+
+**Video (2 min): NanoKVM with USBridge firmware, 60 FPS instead of lag.** A laggy stock NanoKVM becomes a 60 FPS KVM over IP with almost no input lag, fast enough to play with a gamepad. More on [usbridge.io/nanokvm-firmware](https://www.usbridge.io/nanokvm-firmware/).
+
+[![NanoKVM with USBridge firmware: 60 FPS instead of lag](https://img.youtube.com/vi/q8rX7o-Svqs/maxresdefault.jpg)](https://youtu.be/q8rX7o-Svqs)
+
 ---
 
 ## 1. What Works

@@ -8,6 +8,9 @@ USBridge firmware turns three different boards into the same IP-KVM: same [clien
 * **Full feature set, best value:** **Radxa Zero 3W / 3E**. 4 cores, an NPU for OCR, eMMC. Capture over a USB 3.0 card (+10–15 ms), MIPI capture is coming.
 * **Most CPU headroom:** **Radxa Cubie A7Z**. 8 cores; OCR runs on the CPU. Capture over a USB 3.0 card (+10–15 ms), MIPI capture is coming.
 
+
+▶️ **See the NanoKVM on USBridge firmware in action:** [60 FPS instead of lag (2-min video)](https://youtu.be/q8rX7o-Svqs).
+
 ---
 
 ## 1. Hardware
