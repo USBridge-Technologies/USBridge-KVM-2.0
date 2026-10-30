@@ -2,7 +2,7 @@
 <div align="center">
 <img src="asset/hero.svg" width="1400" alt="USBridge IP-KVM firmware for Sipeed NanoKVM, Radxa Zero 3W and Radxa Cubie A7Z">
 
-[![Website](https://img.shields.io/badge/USBridge-WEBSITE-black)](https://www.usbridge.io/hardware-agent)
+[![Website](https://img.shields.io/badge/USBridge-WEBSITE-black)](https://www.usbridge.io/hardware-agent/)
 [![Docs](https://img.shields.io/badge/USBridge-DOCUMENTATION-orange)](./docs/README.md)
 </div>
 
@@ -21,7 +21,7 @@ USBridge comes two ways: **ready-made** (USBridge KVM 2.0, nothing to assemble) 
 | **Video capture** | USB 3.0 (bundled dongle) | USB (UVC) · MIPI coming | USB (UVC) · MIPI coming | **MIPI CSI** (built-in HDMI) |
 | **Latency** | Low | Low (USB: +10–15 ms vs MIPI) | Low (USB: +10–15 ms vs MIPI) | **Lowest** |
 | **BIOS-in-Terminal (OCR)** | ✅ NPU | ✅ NPU | ✅ CPU | — |
-| **Get it** | [**Buy ➔**](https://www.usbridge.io/hardware-agent?utm_campaign=readme-kvm&utm_medium=readme&utm_source=github#buy-usbridge-kvm-2-0) | [Download firmware ➔](https://www.usbridge.io/hardware-agent) | [Download firmware ➔](https://www.usbridge.io/hardware-agent) | [Flash in browser ➔](https://flash.usbridge.io/) |
+| **Get it** | [**Buy ➔**](https://www.usbridge.io/hardware-agent/?utm_campaign=readme-kvm&utm_medium=readme&utm_source=github#buy-usbridge-kvm-2-0) | [Download firmware ➔](https://www.usbridge.io/hardware-agent/) | [Download firmware ➔](https://www.usbridge.io/hardware-agent/) | [Download firmware ➔](https://www.usbridge.io/hardware-agent/) |
 
 **Full side-by-side — latency, audio, codecs, storage, every feature: [NanoKVM vs Radxa Zero 3W vs Cubie A7Z ➔](./docs/content/6-hardware-connectivity/board-comparison.md)**
 
