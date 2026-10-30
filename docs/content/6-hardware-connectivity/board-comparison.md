@@ -21,14 +21,14 @@ USBridge firmware turns three different boards into the same IP-KVM: same [clien
 | **HDMI capture** | Built in: HDMI → MIPI CSI (LT6911) | External USB 3.0 (UVC) capture card · MIPI planned | External USB 3.0 (UVC) capture card · MIPI planned |
 | **Network** | 100 Mbit Ethernet | 3W: Wi-Fi 6 · 3E: Ethernet | Wi-Fi 6 |
 | **Boot / storage** | microSD only | microSD or onboard eMMC (Install to eMMC) | microSD only (eMMC not enabled yet) |
-| **Front-panel display** | ✅ NanoKVM's I2C OLED | 3W: ✅ 240×240 LCD, see [below](#front-panel-display-for-the-radxa-boards) · **3E: not supported yet** | ✅ 240×240 LCD, see [below](#front-panel-display-for-the-radxa-boards) |
+| **Front-panel display** | ✅ NanoKVM's built-in 128×64 monochrome OLED: status only, no monitor mode | 3W: ✅ 240×240 color LCD with monitor mode, see [below](#front-panel-display-for-the-radxa-boards) · **3E: not supported yet** | ✅ 240×240 color LCD with monitor mode, see [below](#front-panel-display-for-the-radxa-boards) |
 | **ATX power control** | ✅ Sipeed ATX-B board | ✅ [Power management module](./power-management-module-control.md) | ✅ [Power management module](./power-management-module-control.md) |
 | **Firmware download** | [usbridge.io/hardware-agent](https://www.usbridge.io/hardware-agent/) | [usbridge.io/hardware-agent](https://www.usbridge.io/hardware-agent/) | [usbridge.io/hardware-agent](https://www.usbridge.io/hardware-agent/) |
 
 
 ### Front-panel display for the Radxa boards
 
-The **Radxa Zero 3W** and **Cubie A7Z** take the same display, either module below fits both: a 1.3" 240×240 IPS LCD (ST7789, SPI) with a joystick and three buttons: IP address, status and the full settings menu on the device. Optional: the firmware runs headless just as well. Not supported on the **Zero 3E** yet.
+The **Radxa Zero 3W** and **Cubie A7Z** take the same display, either module below fits both: a 1.3" 240×240 full-color IPS LCD (ST7789, SPI) with a joystick and three buttons: IP address, status, the full settings menu, and [monitor mode](../2-kvm-vkm/display-mode.md), which shows the target's live video right on the screen. Optional: the firmware runs headless just as well. Not supported on the **Zero 3E** yet.
 
 | Display | Mounting | Where to get it |
 | :--- | :--- | :--- |

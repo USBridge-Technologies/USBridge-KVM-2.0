@@ -24,7 +24,7 @@ Flash USBridge onto a board you already have. Same client apps, same API, same O
 | **Codecs** | H.264, HEVC | H.264, HEVC | H.264, HEVC |
 | **Latency** | USB: +10–15 ms vs MIPI · MIPI: lowest | USB: +10–15 ms vs MIPI · MIPI: lowest | **Lowest** (MIPI) |
 | **BIOS-in-Terminal (OCR)** | ✅ NPU | ✅ CPU | — |
-| **Status display** | 3W: ✅ 240×240 LCD · 3E: not yet | ✅ 240×240 LCD | ✅ built-in OLED |
+| **Status display** | 3W: ✅ 240×240 color LCD + [monitor mode](./docs/content/2-kvm-vkm/display-mode.md) · 3E: not yet | ✅ 240×240 color LCD + [monitor mode](./docs/content/2-kvm-vkm/display-mode.md) | ✅ built-in 128×64 mono OLED, status only |
 | **Get it** | [Download firmware ➔](https://www.usbridge.io/hardware-agent/) | [Download firmware ➔](https://www.usbridge.io/hardware-agent/) | [Download firmware ➔](https://www.usbridge.io/hardware-agent/) |
 
 **Full side-by-side — latency, audio, codecs, storage, every feature: [NanoKVM vs Radxa Zero 3W vs Cubie A7Z ➔](./docs/content/6-hardware-connectivity/board-comparison.md)**
