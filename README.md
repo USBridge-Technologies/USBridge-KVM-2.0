@@ -129,10 +129,18 @@ During any modification, the system never overwrites the source files; instead, 
 
 The Client is the control interface installed on your workstation, laptop, or mobile device. It manages active hardware connections, live remote desktop streaming, virtual device passthrough, and your snapshot registry.
 
-| Architecture | Windows | macOS | Linux | Android | iOS | Web Browser |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **x86_64** | [Download](https://github.com/USBridge-Technologies/USBridge-Remote/releases/latest/download/USBridgeClient-Windows-x86_64.zip) | — | [Download](https://github.com/USBridge-Technologies/USBridge-Remote/releases/latest/download/USBridgeClient-Linux-x86_64.AppImage) | — | — | [Open App](https://web.usbridge.io) |
-| **ARM64** | — | [Download](https://github.com/USBridge-Technologies/USBridge-Remote/releases/latest/download/USBridgeClient-macOS-arm64.dmg) | — | [Google Play](https://play.google.com/store/apps/details?id=io.usbridge.client) | [App Store](https://apps.apple.com/us/app/usbridge-client/id6787665935) | [Open App](https://web.usbridge.io) |
+**All-in-one installer (Client + Agent, pick either or both during setup):** [Windows Setup (.exe)](https://github.com/USBridge-Technologies/USBridge-Remote/releases/latest/download/USBridge-Windows-x86_64-Setup.exe) · [macOS disk image (.dmg)](https://github.com/USBridge-Technologies/USBridge-Remote/releases/latest/download/USBridge-macOS-arm64.dmg)
+
+| Platform | Installer | Portable | Packages / Store |
+| :--- | :--- | :--- | :--- |
+| **Windows** x86_64 | [Setup (.exe)](https://github.com/USBridge-Technologies/USBridge-Remote/releases/latest/download/USBridge-Windows-x86_64-Setup.exe) | [Portable (.zip)](https://github.com/USBridge-Technologies/USBridge-Remote/releases/latest/download/USBridgeClient-Windows-x86_64.zip) | — |
+| **macOS** Apple Silicon | [Disk image (.dmg)](https://github.com/USBridge-Technologies/USBridge-Remote/releases/latest/download/USBridgeClient-macOS-arm64.dmg) | — | — |
+| **Linux** x86_64 | [Debian / Ubuntu (.deb)](https://github.com/USBridge-Technologies/USBridge-Remote/releases/latest/download/USBridgeClient-Linux-x86_64.deb) · [Fedora / RHEL (.rpm)](https://github.com/USBridge-Technologies/USBridge-Remote/releases/latest/download/USBridgeClient-Linux-x86_64.rpm) · [Arch (.pkg.tar.zst)](https://github.com/USBridge-Technologies/USBridge-Remote/releases/latest/download/USBridgeClient-Linux-x86_64.pkg.tar.zst) | [AppImage](https://github.com/USBridge-Technologies/USBridge-Remote/releases/latest/download/USBridgeClient-Linux-x86_64.AppImage) | [APT · DNF · pacman repository](https://github.com/USBridge-Technologies/USBridge-Remote#install-from-the-terminal) · [Snap Store](https://snapcraft.io/usbridge-client) |
+| **Android** ARM64 | [APK (self-updating)](https://github.com/USBridge-Technologies/USBridge-Remote/releases/latest/download/USBridgeClient-Android-arm64-selfupdate.apk) | — | [Google Play](https://play.google.com/store/apps/details?id=io.usbridge.client) |
+| **iOS / iPadOS** | — | — | [App Store](https://apps.apple.com/us/app/usbridge-client/id6787665935) |
+| **Web browser** | — | [Open web.usbridge.io](https://web.usbridge.io) | — |
+
+All files and release notes: [latest release](https://github.com/USBridge-Technologies/USBridge-Remote/releases/latest). One-line install from the terminal (Linux, macOS, Windows) and the APT / DNF / pacman repository: [Install from the terminal](https://github.com/USBridge-Technologies/USBridge-Remote#install-from-the-terminal).
 
 ---
 
@@ -153,31 +161,31 @@ The agent runs as a background service on your target OS (servers, remote workst
     <td valign="middle">
       <table>
         <tr>
-          <th>Architecture</th>
-          <th>Windows</th>
-          <th>macOS</th>
-          <th>Linux</th>
+          <th>Platform</th>
+          <th>Downloads</th>
         </tr>
         <tr>
-          <td><b>x86_64</b></td>
-          <td><a href="https://github.com/USBridge-Technologies/USBridge-Remote/releases/latest/download/USBridgeAgent-Windows-x86_64.zip">Download</a></td>
-          <td>—</td>
-          <td><a href="https://github.com/USBridge-Technologies/USBridge-Remote/releases/latest/download/USBridgeAgent-Linux-x86_64.AppImage">Download</a></td>
+          <td><b>Windows</b><br>x86_64</td>
+          <td><a href="https://github.com/USBridge-Technologies/USBridge-Remote/releases/latest/download/USBridgeAgent-Windows-x86_64-Setup.exe">Setup (.exe)</a><br><a href="https://github.com/USBridge-Technologies/USBridge-Remote/releases/latest/download/USBridgeAgent-Windows-x86_64.zip">Portable (.zip)</a></td>
         </tr>
         <tr>
-          <td><b>ARM64</b></td>
-          <td>—</td>
-          <td><a href="https://github.com/USBridge-Technologies/USBridge-Remote/releases/latest/download/USBridgeAgent-macOS-arm64.dmg">Download</a></td>
-          <td>—</td>
+          <td><b>macOS</b><br>Apple Silicon</td>
+          <td><a href="https://github.com/USBridge-Technologies/USBridge-Remote/releases/latest/download/USBridgeAgent-macOS-arm64.dmg">Disk image (.dmg)</a></td>
+        </tr>
+        <tr>
+          <td><b>Linux</b><br>x86_64</td>
+          <td><a href="https://github.com/USBridge-Technologies/USBridge-Remote/releases/latest/download/USBridgeAgent-Linux-x86_64.deb">Debian / Ubuntu (.deb)</a><br><a href="https://github.com/USBridge-Technologies/USBridge-Remote/releases/latest/download/USBridgeAgent-Linux-x86_64.rpm">Fedora / RHEL (.rpm)</a><br><a href="https://github.com/USBridge-Technologies/USBridge-Remote/releases/latest/download/USBridgeAgent-Linux-x86_64.pkg.tar.zst">Arch (.pkg.tar.zst)</a><br><a href="https://github.com/USBridge-Technologies/USBridge-Remote/releases/latest/download/USBridgeAgent-Linux-x86_64.AppImage">AppImage (portable)</a></td>
         </tr>
       </table>
     </td>
     <!-- Right Column: Image -->
     <td valign="middle" width="450">
-      <img src="asset/agent.svg" alt="USBridge Agent Interface" width="100%">
+      <img src="asset/agent.svg" alt="USBridge Agent window: connection token, Tailscale address and stream status" width="100%">
     </td>
   </tr>
 </table>
+
+More on the Agent: [USBridge-Remote](https://github.com/USBridge-Technologies/USBridge-Remote#agent).
 
 ---
 
