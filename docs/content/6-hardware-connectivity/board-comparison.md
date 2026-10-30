@@ -75,7 +75,7 @@ On the NanoKVM, sound before the target's OS loads its USB audio driver (BIOS be
 | :--- | :---: | :---: | :---: |
 | Keyboard, mouse, absolute pointer, touch/pen | ✅ | ✅ | ✅ |
 | [Gamepad (XInput)](../2-kvm-vkm/gamepad.md) | ✅ | ✅ | ✅ |
-| [Virtual media](../5-remote-disk-image-mounting/mounting-iso-images.md) (ISO, qcow2, VDI/VMDK, whole drives) | ✅ USB 2.0, ~26 MB RAM cache | ✅ up to 1 GB RAM cache | ✅ up to 1 GB RAM cache |
+| [Virtual media](../5-remote-disk-image-mounting/mounting-iso-images.md) (ISO, qcow2, VDI/VMDK, whole drives) | ✅ USB 2.0, ~26 MB RAM cache | ✅ RAM cache from 1 GB up to all free RAM (~7 GB on an 8 GB board) | ✅ RAM cache from 1 GB up to all free RAM (~15 GB on a 16 GB board) |
 | [Immutable Btrfs snapshots](../4-snapshots-state-management/snapshots-overview.md) | ✅ | ✅ | ✅ |
 | [BIOS-in-Terminal (SSH + OCR)](../3-bios-in-terminal/technology-overview.md) | — | ✅ NPU-accelerated | ✅ on the CPU |
 | AI Vision / [MCP screen reading](../3-bios-in-terminal/mcp-ai-agents.md) | — | ✅ | ✅ |

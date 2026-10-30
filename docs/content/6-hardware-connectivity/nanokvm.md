@@ -64,7 +64,7 @@ Fields that don't apply on the NanoKVM: `wlan0` interfaces (wired Ethernet only)
 
 ## 4. Virtual Media and the RAM Cache
 
-Drives streamed from the client sit behind the same [RAM cache](../5-remote-disk-image-mounting/mounting-iso-images.md#2-ram-cache-on-streamed-sources) as on the other boards, scaled to the NanoKVM's memory: the first **8 MB** of the image (boot sectors, El Torito, boot loaders) are held in RAM from the moment the drive is attached, and a **hot-block cache of about 26 MB** (a sixth of the RAM, instead of 1 GB on boards with 1 GB or more) keeps the most re-read blocks local. That's what keeps installers (Windows Setup included) from stalling on network round-trips while they boot; bulk reads of a large image still run at the speed of the network link.
+Drives streamed from the client sit behind the same [RAM cache](../5-remote-disk-image-mounting/mounting-iso-images.md#2-ram-cache-on-streamed-sources) as on the other boards, scaled to the NanoKVM's memory: the first **8 MB** of the image (boot sectors, El Torito, boot loaders) are held in RAM from the moment the drive is attached, and a **hot-block cache of about 26 MB** (a sixth of the RAM; on the Radxa boards it starts at 1 GB and can grow to all free RAM) keeps the most re-read blocks local. That's what keeps installers (Windows Setup included) from stalling on network round-trips while they boot; bulk reads of a large image still run at the speed of the network link.
 
 The NanoKVM's USB port is USB 2.0 (High Speed), so virtual drives top out at USB 2.0 speeds regardless of the source.
 
