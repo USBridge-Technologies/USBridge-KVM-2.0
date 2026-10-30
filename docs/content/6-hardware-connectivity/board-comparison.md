@@ -16,7 +16,7 @@ USBridge firmware turns three different boards into the same IP-KVM: same [clien
 | :--- | :--- | :--- | :--- |
 | **SoC** | SOPHGO SG2002 | Rockchip RK3566 | Allwinner A733 |
 | **CPU** | 1 × RISC-V C906, 1 GHz (runs at 850 MHz) | 4 × ARM Cortex-A55 | 8 cores (2 × Cortex-A76 + 6 × Cortex-A55) |
-| **RAM** | 256 MB (~158 MB for Linux, the rest is reserved for video) | 1–2 GB LPDDR4X | Several RAM options |
+| **RAM** | 256 MB (~158 MB for Linux, the rest is reserved for video) | 1–2 GB LPDDR4X | 1–16 GB LPDDR4/4X (1, 2, 4, 8 or 16 GB) |
 | **AI accelerator used by USBridge** | — | NPU (RKNN) for OCR | — (OCR on the CPU) |
 | **HDMI capture** | Built in: HDMI → MIPI CSI (LT6911) | External USB 3.0 (UVC) capture card · MIPI planned | External USB 3.0 (UVC) capture card · MIPI planned |
 | **Network** | 100 Mbit Ethernet | 3W: Wi-Fi · 3E: Ethernet | Wi-Fi 6 |
@@ -46,7 +46,7 @@ Latency is where the boards differ the most, and it comes down to how the pictur
 | **Capture path** | MIPI CSI → hardware scaler → encoder, no CPU copy | USB 3.0 capture card → encoder | USB 3.0 capture card → CPU colour conversion → encoder |
 | **Capture → encoded frame** | **~20 ms** (measured, 1080p60) | MIPI + **10–15 ms** | MIPI + **10–15 ms** |
 | **Latency rank** | 🥇 **Lowest** | 🥈 Low | 🥈 Low |
-| **Max mode** | 1080p60 | Set by the capture card (e.g. 1080p60 on an MS2130) | Set by the capture card |
+| **Max mode** | 1080p60 | 1080p60 | 1080p60 · **up to 4K30 on MIPI** (coming) |
 | **Hardware encoder** | H.264 | H.264, HEVC | H.264 |
 | **Moonlight** | ✅ | ✅ | ✅ |
 | **Web client (WebRTC)** | ✅ | ✅ | ✅ |

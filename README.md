@@ -18,7 +18,9 @@ Flash USBridge onto a board you already have. Same client apps, same API, same O
 | :--- | :---: | :---: | :---: |
 | **What it is** | SBC + USB 3.0 capture card | SBC + USB 3.0 capture card | Off-the-shelf KVM, reflashed |
 | **SoC** | Rockchip RK3566, 4 cores | Allwinner A733, 8 cores | SOPHGO SG2002, 1 RISC-V core |
+| **RAM** | 1–2 GB | 1–16 GB | 256 MB |
 | **Video capture** | USB 3.0 (UVC) · MIPI coming | USB 3.0 (UVC) · MIPI coming | **MIPI CSI** (built-in HDMI) |
+| **Video** | 1080p60 | 1080p60 · up to 4K30 on MIPI (coming) | 1080p60 |
 | **Latency** | Low (USB: +10–15 ms vs MIPI) | Low (USB: +10–15 ms vs MIPI) | **Lowest** |
 | **BIOS-in-Terminal (OCR)** | ✅ NPU | ✅ CPU | — |
 | **Status display** | 3W: ✅ 240×240 LCD · 3E: not yet | ✅ 240×240 LCD | ✅ built-in OLED |
