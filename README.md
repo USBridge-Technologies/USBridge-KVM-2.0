@@ -1,12 +1,14 @@
 # USBridge: Ultra-Low Latency IP-KVM Firmware & KVM 2.0
 <div align="center">
-<img src="asset/hero.svg" width="1400" alt="USBridge Firmware">
+<img src="asset/hero.svg" width="1400" alt="USBridge IP-KVM firmware for Sipeed NanoKVM, Radxa Zero 3W and Radxa Cubie A7Z">
 
-[![WEebsite](https://img.shields.io/badge/USBridge-WEBSITE-black)](https://www.usbridge.io/hardware-agent)
+[![Website](https://img.shields.io/badge/USBridge-WEBSITE-black)](https://www.usbridge.io/hardware-agent)
 [![Docs](https://img.shields.io/badge/USBridge-DOCUMENTATION-orange)](./docs/README.md)
 </div>
 
-**The USBridge Ecosystem** is a professional-grade solution for system debugging and infrastructure management at the fundamental hardware level (Layer 0). It provides administrators with absolute control over hardware, bypassing the operating system while ensuring strict hardware isolation. 
+**The USBridge Ecosystem** is a professional-grade solution for system debugging and infrastructure management at the fundamental hardware level (Layer 0). It provides administrators with absolute control over hardware, bypassing the operating system while ensuring strict hardware isolation.
+
+In plain terms: **IP-KVM firmware with Moonlight streaming** for the **Sipeed NanoKVM**, **Radxa Zero 3W / 3E** and **Radxa Cubie A7Z**, plus a ready-made KVM. Remote BIOS access, virtual ISO mounting, ATX power control and Tailscale access with no port forwarding: a self-hosted alternative to iDRAC/iLO and other IP-KVMs.
 
 ## Choose Your Hardware
 
@@ -29,19 +31,19 @@ USBridge comes two ways: **ready-made** (USBridge KVM 2.0, nothing to assemble) 
 
 ## Key Features
 
-<img src="asset/t1.svg" width="1400" alt="USBridge Firmware">
+<img src="asset/t1.svg" width="1400" alt="USBridge client ecosystem and BIOS-in-Terminal OCR engine">
 
 | | |
 | :--- | :--- |
 | **Client Ecosystem**<br>Seamlessly integrate into the USBridge Client ecosystem as a unified point of control. Manage hardware KVMs, software agents, and remote desktops over an encrypted, peer-to-peer Tailscale mesh with zero port forwarding. | **BIOS-in-Terminal OCR Engine**<br>Real-time local OCR converts raw video into an interactive terminal stream directly on the device, bypassing cloud dependencies. Copy boot logs, search POST error codes, and administer machines over lightweight SSH. |
 
-<img src="asset/t2.svg" width="1400" alt="USBridge Firmware">
+<img src="asset/t2.svg" width="1400" alt="Immutable Btrfs snapshots and virtual ISO media">
 
 | | |
 | :--- | :--- |
 | **Immutable Snapshots**<br>Built on a hardware-isolated Btrfs architecture. Deltas are recorded and instantly frozen as read-only states, providing unbreakable rollbacks against ransomware, corrupted updates, and failed boots. | **Virtual Storage ISO Media**<br>Hardware mass storage emulation enables remote mounting of ISO, IMG, VDI, or VMDK images in read-only or read-write modes. Install operating systems and execute bootable rescue utilities out-of-band utilizing high-speed RAM caching. |
 
-<img src="asset/t3.svg" width="1400" alt="USBridge Firmware">
+<img src="asset/t3.svg" width="1400" alt="MCP AI-agent automation and the turnkey USBridge KVM 2.0">
 
 | | |
 | :--- | :--- |
@@ -89,7 +91,7 @@ The USBridge-KVM 2.0 goes beyond standard video streaming by analyzing the signa
 *   **Interactive Text-Based BIOS via SSH:** Configure the BIOS directly through a standard SSH session. The interface is rendered as plain text, allowing for immediate copying of error codes, BIOS versions, and serial numbers straight from the console.
 *   **In-Client Scripting (Starlark):** Create and execute Starlark (Python syntax) scripts directly from the client interface. Automation relies on recognized text and objects: scripts can reliably wait for a specific target string (e.g., `"Aptio Setup Utility"`) to appear and then send the exact scan-code for navigation.
 
-<img src="asset/AI.svg" width="1400" alt="USBridge Firmware">
+<img src="asset/AI.svg" width="1400" alt="AI Vision: on-device OCR of BIOS and UEFI screens">
 
 ## Drive Emulation & Immutable Snapshots
 
@@ -119,7 +121,7 @@ During any modification, the system never overwrites the source files; instead, 
 ## Client Download Matrix
 
 
-<img src="asset/client.svg" width="1400" alt="USBridge Firmware">
+<img src="asset/client.svg" width="1400" alt="USBridge client for Windows, macOS, Linux, Android, iOS and web">
 
 The Client is the control interface installed on your workstation, laptop, or mobile device. It manages active hardware connections, live remote desktop streaming, virtual device passthrough, and your snapshot registry.
 
@@ -267,7 +269,8 @@ If your USBridge-KVM 2.0 device is not connected to a display, or you want to au
 2. Set up a username and password for authorization.
 3. Open your favorite terminal emulator and run:
    ```bash
-   ssh user@<kvm_ip_address> 
+   ssh user@<kvm_ip_address>
+   ```
 4. When prompted, enter the password you created in Step 2.
 
 **Ready for Action!**
@@ -282,7 +285,7 @@ Once authorized, your terminal will instantly clear and start rendering the BIOS
 
 To enable direct hardware-level power management (power on, power off, hard reset), use the included expansion board:
 
-<img src="asset/Power Management Module.svg" width="1400" alt="Hardware Connection">
+<img src="asset/Power Management Module.svg" width="1400" alt="Power Management Module wiring to motherboard front-panel headers">
 
 
 * **Input:** A pre-wired ribbon cable is already connected to the expansion module. Plug its other end into the **8-pin GPIO header** on the USBridge-KVM chassis.
@@ -299,7 +302,7 @@ To enable direct hardware-level power management (power on, power off, hard rese
 
 ## What's in the Box (Package Contents)
 
-<img width="1800" height="964" alt="3" src="https://github.com/user-attachments/assets/db8e946e-7e39-486a-8058-10f6d511dedd" />
+<img width="1800" height="964" alt="USBridge KVM 2.0 package contents" src="https://github.com/user-attachments/assets/db8e946e-7e39-486a-8058-10f6d511dedd" />
 
 Every USBridge-KVM 2.0 kit comes with all the essential hardware and cables required for an out-of-the-box deployment:
 
