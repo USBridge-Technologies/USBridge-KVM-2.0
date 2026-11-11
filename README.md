@@ -155,17 +155,17 @@ Manage your hardware KVMs and software agents from a single unified application.
 
 ## Comparison: USBridge KVM 2.0 vs Other IP KVM Solutions
 
-| Feature | **USBridge KVM 2.0** | **JetKVM Mini** | **PiKVM V4 Mini** | **TinyPilot Voyager 3** |
+| Feature | **JetKVM Mini** | **USBridge KVM 2.0** | **PiKVM V4 Mini** | **TinyPilot Voyager 3** |
 | :--- | :---: | :---: | :---: | :---: |
-| **Price** | **from $99** | $39 | from $252 | $399 |
-| **Video Resolution & Rate** | **1080p @ 60 FPS** | 1080p @ 30 / 720p @ 60 | 1920 × 1200 @ 60 FPS | 1920 × 1200 @ 60 FPS |
-| **Video Latency** | **~45 ms (Moonlight)** | Not stated | Not stated | 80–100 ms |
-| **Network Interfaces** | **Wi-Fi 6**, Ethernet via USB | 100 Mbps Ethernet / Wi-Fi | Gigabit Ethernet | Gigabit Ethernet |
-| **ATX Power Control** | ✅ **Included in Full** (Isolated) | ❌ | ✅ | ❌ |
-| **Virtual Media (ISO/IMG)** | ✅ **Fast RAM cache + Overlay** | ✅ | ✅ | ✅ |
-| **On-Device Status Screen** | ✅ **240×240 IPS Color** | ✅ | ✅ | ✅ |
-| **Immutable Storage Snapshots** | ✅ **Btrfs Read-Only Snapshots** | ❌ | ❌ | ❌ |
-| **BIOS-in-Terminal & AI (OCR, MCP)** | ✅ **Local OCR + MCP Server** | ❌ | ❌ | Paid license |
+| **Price** | $39 | **from $99** | from $252 | $399 |
+| **Video Resolution & Rate** | 1080p @ 30 / 720p @ 60 | **1080p @ 60 FPS** | 1920 × 1200 @ 60 FPS | 1920 × 1200 @ 60 FPS |
+| **Video Latency** | Not stated | **~45 ms (Moonlight)** | Not stated | 80–100 ms |
+| **Network Interfaces** | 100 Mbps Ethernet / Wi-Fi | **Wi-Fi 6**, Ethernet via USB | Gigabit Ethernet | Gigabit Ethernet |
+| **ATX Power Control** | ❌ | ✅ **Included in Full** (Isolated) | ✅ | ❌ |
+| **Virtual Media (ISO/IMG)** | ✅ | ✅ **Fast RAM cache + Overlay** | ✅ | ✅ |
+| **On-Device Status Screen** | ✅ | ✅ **240×240 IPS Color** | ✅ | ✅ |
+| **Immutable Storage Snapshots** | ❌ | ✅ **Btrfs Read-Only Snapshots** | ❌ | ❌ |
+| **BIOS-in-Terminal & AI (OCR, MCP)** | ❌ | ✅ **Local OCR + MCP Server** | ❌ | Paid license |
 
 > [!NOTE]
 > **What about the USBridge Nano?**
@@ -173,36 +173,144 @@ Manage your hardware KVMs and software agents from a single unified application.
 
 ---
 
-## Quick Start: 3-Step Hardware Connection
+## Technical Specifications & Quick Start Guides
 
-<img src="asset/Hardware Connection.svg" width="1400" alt="Hardware Connection Diagram">
+<details open>
+<summary><b>1. USBridge Nano — Setup & Specifications (Ultra-Compact Pocket KVM)</b></summary>
+<br>
 
-Connecting USBridge KVM 2.0 to your target computer takes less than 2 minutes:
+<div align="center">
+<img src="asset/spec-nano.jpg" width="1200" alt="USBridge Nano Technical Specifications and 3-Step Setup">
+</div>
 
-1. **Port 1 (OTG USB-C):** Connect to a USB port on the target machine. This single cable powers the KVM, emulates keyboard & mouse, and provides virtual drive mass storage.
-2. **Port 2 (Host USB-C) + Dongle:** Plug the external HDMI capture dongle into Port 2 using the provided USB-C cable. Connect the dongle to your target computer's GPU / motherboard HDMI output.
-3. **Network Connection:** Connect to your local network via Wi-Fi 6 or plug into Ethernet (using a USB-to-Ethernet adapter or via direct USB gadget IP `10.55.0.1`).
+### Technical Specifications
+| Specification | Details |
+| :--- | :--- |
+| **Board** | Sipeed NanoKVM (SG2002) |
+| **Processor** | RISC-V C906, 1 core, 1 GHz |
+| **Memory** | 256 MB DDR3 |
+| **Video** | HDMI capture, 1080p 60 FPS |
+| **Control** | USB HID keyboard and mouse, virtual ISO drive, gamepads |
+| **Audio** | Audio output and microphone in both directions |
+| **Network** | 100 Mbit Ethernet port |
+| **Remote Access** | USBridge Client, web interface, Tailscale P2P, Moonlight |
+| **Power** | USB-C |
+| **Screen** | 128×64 Mono OLED |
+| **Dimensions with Case** | 49 × 41 × 41 mm |
+| **System** | USBridge OS on the included MicroSD card |
 
-> [!IMPORTANT]
-> **Capture Dongle Mode: `[5G]` vs `[480M]`**
-> The USB-C video capture dongle operates in two modes depending on cable orientation:
-> * **`[5G]` Mode (USB 3.0):** High-speed mode delivering full 5 Gbps bandwidth, uncompressed color, and lowest latency. **Always verify this mode in the app.**
-> * **`[480M]` Mode (USB 2.0):** Fallback mode (480 Mbps). May introduce noticeable compression artifacts or delay.
-> 
-> *Fix:* If the client displays `[480M]`, simply unplug the Type-C cable from the KVM, flip the connector 180°, and reconnect it to lock into `[5G]`.
+### Set Up in 3 Steps
+1. **HDMI:** Connect HDMI cable from target computer video out directly to the Nano HDMI port.
+2. **USB-C:** Connect USB-C cable from Nano to the computer. It powers the Nano and emulates keyboard, mouse, and virtual media.
+3. **Ethernet:** Plug network cable from your router/switch into the 100 Mbit Ethernet port.
+</details>
 
-### Optional: ATX Power Control Board Wiring
+<br>
 
-<img src="asset/Power Management Module.svg" width="1400" alt="ATX Power Management Module Wiring">
+<details>
+<summary><b>2. USBridge KVM 2.0 Low — Setup & Specifications (Minimalist Board for Server Racks)</b></summary>
+<br>
 
-Connect the 8-pin ribbon cable from the KVM to the ATX board, then connect the DuPont jumper wires to your motherboard's Front Panel header:
+<div align="center">
+<img src="asset/spec-low.jpg" width="1200" alt="USBridge KVM 2.0 Low Technical Specifications and Setup">
+</div>
 
-| ATX Board Pin | Motherboard Front Panel Header | Purpose |
-| :--- | :--- | :--- |
-| **`|PWR|`** | **Power Switch** (`PWR_SW`) | Remote power on and shutdown |
-| **`|RST|`** | **Reset Switch** (`RESET`) | Remote hard reboot |
-| **`|LED1|`** | **Power LED** (`P_LED`) | Real-time power state feedback |
-| **`|LED2|`** | **HDD LED** (`H_LED`) | Drive activity monitoring |
+### Technical Specifications
+| Specification | Details |
+| :--- | :--- |
+| **Board** | Radxa Zero 3W |
+| **Processor** | Rockchip RK3566, 4 Cortex-A55 cores up to 1.6 GHz |
+| **Memory** | 1 GB LPDDR4 |
+| **Video** | HDMI capture, 1080p 60 FPS, about 45 ms latency |
+| **Control** | USB HID keyboard and mouse, gamepads, virtual drive for ISO, IMG, VDI, VMDK |
+| **Audio** | Audio from the computer |
+| **Network** | Onboard Wi-Fi 6 and Bluetooth. Ethernet through a USB hub with a network port (hub not included) |
+| **Remote Access** | USBridge Client, web interface, Tailscale P2P |
+| **Power** | USB-C |
+| **Ports** | USB-C 2.0 (to the computer), USB-C 3.0 (capture dongle), Micro HDMI |
+| **Case** | No case, bare board with heatsink |
+| **Cooling** | Passive, aluminum heatsink |
+| **MicroSD Card** | Not included, +$5 optional |
+| **System** | USBridge KVM OS, Btrfs snapshots, over-the-air updates |
+
+### Set Up in 3 Steps
+1. **HDMI:** HDMI cable from the computer to the video capture dongle on the KVM.
+2. **USB-C (OTG):** Connect USB-C cable to the target computer for power and peripheral emulation.
+3. **Network:** Connect via Wi-Fi 6, USB Ethernet adapter, or USB gadget mode (`10.55.0.1`).
+</details>
+
+<br>
+
+<details>
+<summary><b>3. USBridge KVM 2.0 Standard — Setup & Specifications (Complete Desktop Kit)</b></summary>
+<br>
+
+<div align="center">
+<img src="asset/spec-standard.jpg" width="1200" alt="USBridge KVM 2.0 Standard Technical Specifications and Setup">
+</div>
+
+### Technical Specifications
+| Specification | Details |
+| :--- | :--- |
+| **Board** | Radxa Zero 3W |
+| **Processor** | Rockchip RK3566, 4 Cortex-A55 cores up to 1.6 GHz |
+| **Memory** | 1 GB LPDDR4 |
+| **Video** | HDMI capture, 1080p 60 FPS, about 45 ms latency |
+| **Control** | USB HID keyboard and mouse, gamepads, virtual drive for ISO, IMG, VDI, VMDK |
+| **Audio** | Audio from the computer |
+| **Network** | Onboard Wi-Fi 6 and Bluetooth. Ethernet through a USB hub with a network port (hub not included) |
+| **Remote Access** | USBridge Client, web interface, Tailscale P2P |
+| **Power** | USB-C |
+| **Ports** | USB-C 2.0 (to the computer), USB-C 3.0 (capture dongle), Micro HDMI, 8-pin header for the ATX board |
+| **Case** | Custom case |
+| **Screen** | 1.3" full-color IPS, 240×240 (ST7789, SPI), 3 buttons and a 5-way joystick |
+| **Dimensions with Case** | 69 × 36 × 34 mm |
+| **MicroSD Card** | With USBridge KVM OS, included |
+| **System** | USBridge KVM OS, Btrfs snapshots, over-the-air updates |
+
+### Set Up in 3 Steps
+1. **HDMI:** Connect HDMI cable from computer GPU output to the included capture dongle.
+2. **USB-C (Port 1):** Link Port 1 to the host computer for power, keyboard, mouse, and virtual drives.
+3. **Network:** Pair via onboard Wi-Fi 6 using the interactive status screen or connect over USB (`10.55.0.1`).
+</details>
+
+<br>
+
+<details>
+<summary><b>4. USBridge KVM 2.0 Full — Setup & Specifications (Ultimate Pro Kit + ATX)</b></summary>
+<br>
+
+<div align="center">
+<img src="asset/spec-full.png" width="1200" alt="USBridge KVM 2.0 Full Technical Specifications, ATX Wiring, and Setup">
+</div>
+
+### Technical Specifications
+| Specification | Details |
+| :--- | :--- |
+| **Board** | Radxa Zero 3W |
+| **Processor** | Rockchip RK3566, 4 Cortex-A55 cores up to 1.6 GHz |
+| **Memory** | 1 GB LPDDR4 |
+| **Video** | HDMI capture, 1080p 60 FPS, about 45 ms latency |
+| **Control** | USB HID keyboard and mouse, gamepads, virtual drive for ISO, IMG, VDI, VMDK |
+| **Audio** | Audio from the computer |
+| **Network** | Onboard Wi-Fi 6 and Bluetooth. Ethernet through a USB hub with a network port (hub not included) |
+| **Remote Access** | USBridge Client, web interface, Tailscale P2P |
+| **Power** | USB-C |
+| **Ports** | USB-C 2.0 (to the computer), USB-C 3.0 (capture dongle), Micro HDMI, 8-pin header for the ATX board |
+| **Case** | Custom case |
+| **Screen** | 1.3" full-color IPS, 240×240 (ST7789, SPI), 3 buttons and a 5-way joystick |
+| **ATX Power** | Power on, power off (normal and forced), reset. Optocoupler (galvanic isolation). ATX, Micro-ATX, Mini-ITX |
+| **Dimensions with Case** | 69 × 36 × 34 mm |
+| **Cooling** | Passive, aluminum heatsink |
+| **MicroSD Card** | With USBridge KVM OS, included |
+| **System** | USBridge KVM OS, Btrfs snapshots, over-the-air updates |
+
+### Set Up in 4 Steps
+1. **HDMI:** Connect HDMI cable from target computer GPU/motherboard to the capture dongle.
+2. **USB-C (Port 1):** Connect Port 1 to computer USB port for power, input emulation, and virtual storage.
+3. **ATX Control Board:** Plug the ribbon cable into KVM 8-pin GPIO, then bridge jumper wires to motherboard Front Panel (`PWR_SW`, `RESET`, `P_LED`, `H_LED`).
+4. **Network:** Configure Wi-Fi 6 via the on-device display/joystick or connect directly over USB gadget mode.
+</details>
 
 ---
 
