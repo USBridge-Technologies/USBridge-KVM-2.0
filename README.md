@@ -31,11 +31,11 @@ Engineered with the **Moonlight streaming protocol**, it delivers smooth **1080p
 
 ## Choose Your KVM: Four Devices, One KVM OS
 
-<div align="center">
-<img src="asset/2.png" width="1400" alt="USBridge KVM Lineup: Nano, Low, Standard, and Full">
-</div>
-
 Every edition runs the same unified USBridge KVM OS with regular OTA updates, REST API, Moonlight engine, and client compatibility.
+
+<div align="center">
+<img src="asset/kvm-lineup-devices.png" width="1400" alt="USBridge KVM Lineup: Nano, Low, Standard, and Full">
+</div>
 
 | Feature | **USBridge Nano** | **USBridge KVM 2.0 Low** | **USBridge KVM 2.0 Standard** | **USBridge KVM 2.0 Full** |
 | :--- | :---: | :---: | :---: | :---: |
