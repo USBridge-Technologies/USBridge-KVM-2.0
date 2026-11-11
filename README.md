@@ -64,45 +64,68 @@ Every edition runs the same unified USBridge KVM OS with regular OTA updates, RE
 
 ---
 
-## Key Capabilities (Hardware Autonomy at Level 0)
+## Key Features
 
-<img src="asset/t1.svg" width="1400" alt="USBridge client ecosystem and BIOS-in-Terminal OCR engine">
+### Zero Latency Streaming
+* **45 ms latency**: Sub-frame hardware encoding guarantees an imperceptible delay between physical input and visual response.
+* **60 FPS stream**: High-refresh-rate remote rendering for precise cursor control and fluid UI navigation.
+* **Zero dropped frames**: Hardware-level network optimization ensures continuous frame delivery even under high bandwidth loads.
 
-### ⚡ Zero Latency Streaming (Moonlight Engine)
-* **~45 ms latency**: Sub-frame hardware encoding guarantees imperceptible input lag between mouse/keyboard and display response.
-* **1080p @ 60 FPS**: Smooth high-refresh rendering suitable for fast desktop work, terminal scrolling, and even dynamic gaming.
-* **Zero dropped frames**: Hardware network optimization ensures consistent frame delivery even over variable connections.
+### Access From Anywhere
+One client on every device: a computer, a phone or just a browser.
 
-### 💻 BIOS as Text Over SSH (BIOS-in-Terminal)
-* **On-device local OCR**: The KVM analyses the video stream locally without cloud connections.
-* **Native terminal connection**: Connect with standard `ssh user@<kvm-ip>` — no browser, no heavy video stream required.
-* **Copy & paste**: Easily copy serial numbers, MAC addresses, and POST error codes as plain text.
-* Navigate with arrow keys, Enter, and Esc just like a physical console.
+* **Cross-platform native apps** for Windows, macOS, Linux, iOS, and Android.
+* **Browser access**: via [web.usbridge.io](https://web.usbridge.io), or directly from the web client hosted on the KVM itself — fully operational offline.
+* **Built-in Tailscale**: reach your machine from anywhere across encrypted peer-to-peer mesh with **no port forwarding** or public IP required.
+* **Unified control**: the same client also runs USBridge software agents for computers without dedicated KVM hardware.
 
-<img src="asset/t3.svg" width="1400" alt="MCP AI-agent automation and the turnkey USBridge KVM 2.0">
+### Virtual Media
+No more USB sticks: an image connects to the computer as a real USB drive.
 
-### 🤖 Scripts & AI Agents (Automation & MCP Server)
-* **Starlark scripting (Python syntax)**: Write scripts that inspect on-screen text and trigger keypresses predictably.
-* **Built-in MCP Server**: Integrate AI agents (e.g., Claude, LLMs) via the Model Context Protocol to read screens, adjust BIOS settings, and mount ISOs autonomously.
-* **End-to-end OS installations**: Automate complete unattended deployments from BIOS setup through GRUB to final boot.
+* **ISO mounting as CD/DVD drive**: install any operating system straight from BIOS/UEFI.
+* **Direct disk booting**: mount **IMG, VDI, VMDK** images and entire host drives as physical bootable storage.
+* **Zero pre-upload delay**: streams directly from your computer with high-speed RAM caching for instant boot times.
+* **Write protection**: **Overlay mode** redirects every write operation to a separate temporary layer, keeping your source image pristine and untouched.
 
-<img src="asset/t2.svg" width="1400" alt="Immutable Btrfs snapshots and virtual ISO media">
+### Peripheral Emulation
+The computer sees ordinary USB devices, with no drivers or setup.
 
-### 💾 Virtual Media & Immutable Snapshots
-* **No more physical USB sticks**: Mount ISOs as CD/DVD drives to install OSes directly from BIOS.
-* **Drive emulation**: Mount IMG, VDI, VMDK images or physical host disks as USB hard drives.
-* **RAM caching & Overlay**: Streams directly from your computer with high-speed memory caching. Read-Write Overlay writes deltas to a separate layer, leaving golden source images untouched.
-* **Ransomware & corruption protection**: 30 seconds after file changes cease, KVM automatically snapshots storage as read-only Btrfs. Even with host `root` privileges, compromised machines cannot alter or erase completed snapshots.
+* **Immediate keyboard response**: works from the first second in BIOS, UEFI, and bootloader environments.
+* **Precise mouse control**: absolute 1:1 pointer tracking, relative mode for legacy systems, plus multi-touch and stylus support.
+* **Gamepad passthrough**: emulates standard Xbox 360 controller (**XInput**) or generic DirectInput.
+* **Audio & Network**: host sound forwarded to your side, microphone passthrough to the host, and USB gadget Ethernet when an OS installer lacks native NIC drivers.
 
-### 🔌 Hardware Power Control (ATX Module)
-* **Hard reset & power cycling**: Power on, gracefully power down, or force reset even when the operating system is completely frozen.
-* **Galvanic isolation**: Certified up to 3.75 kV isolation protects the KVM against electrical noise, surges, and ground loops from the host computer.
-* **Safety interlock**: Button triggers require holding to confirm in the UI, eliminating accidental server reboots.
-* **Live LED monitoring**: Front-panel Power and HDD activity LEDs are reported directly in the client app.
+### Storage with Snapshots
+Images and files on the microSD inside the KVM are safe from deletion and ransomware.
 
-### 🌐 Access From Anywhere
-* **Built-in Tailscale P2P Mesh**: Access your KVM remotely with end-to-end encryption without configuring public IPs or opening router ports.
-* **Zero setup local connection**: Direct USB gadget networking (`10.55.0.1`) provides instant local out-of-the-box configuration.
+* **Automated snapshots**: 30 seconds after file write activity stops, the KVM takes a read-only snapshot autonomously.
+* **Hardware-isolated immutability**: even with host `root` privileges, compromised systems cannot alter or erase completed snapshots.
+* **Instant rollback**: need an older file? Mount any snapshot directly to copy data; the integrated log shows exact change history.
+* **Standard Btrfs filesystem**: any Linux workstation can read the microSD card directly.
+
+### BIOS as Text Over SSH
+The KVM reads the screen on the device itself and shows the BIOS in a normal terminal.
+
+* **Direct SSH access**: connect via `ssh user@<kvm-ip>` — no browser, no heavy video stream required.
+* **Plain text clipboard**: copy POST codes, hardware serial numbers, and MAC addresses straight from the console.
+* **Keyboard navigation**: browse menus using standard arrow keys, Enter, and Esc just like a physical serial console.
+* **100% on-device OCR**: optical character recognition executes entirely on local KVM hardware without cloud dependencies.
+
+### Scripts & AI Agents
+Scripts and AI see the screen as text, so BIOS chores can be automated.
+
+* **Starlark scripting (Python syntax)**: write straightforward automation scripts that wait for target screen text and trigger deterministic keystrokes.
+* **Flexible execution**: trigger scripts directly from the client interface, on-device display, or over the REST API.
+* **Built-in MCP server**: integrate external AI models (such as Claude) via the Model Context Protocol to visually inspect screens, navigate BIOS menus, and mount rescue ISOs autonomously.
+* **Unattended end-to-end workflows**: automated OS deployments from initial boot-override selection through partition setup to final reboot without human intervention.
+
+### Power Control
+Power on, power off and hard reset, even when the computer is completely frozen.
+
+* **Direct motherboard integration**: dedicated ATX board bridges directly into motherboard Front Panel Power and Reset headers.
+* **Status telemetry**: real-time Power LED and HDD activity LED feedback inside the client UI.
+* **Galvanic isolation**: rated up to **3.75 kV isolation** to shield the KVM from ground loops, electrical surges, and motherboard noise.
+* **Accidental trigger safety**: actions require hold-to-confirm in the UI, ensuring production servers never reboot by accident.
 
 ---
 
