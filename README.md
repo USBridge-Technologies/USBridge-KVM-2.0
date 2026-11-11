@@ -131,7 +131,9 @@ Power on, power off and hard reset, even when the computer is completely frozen.
 
 ## Client Downloads
 
-<img src="asset/client.svg" width="1400" alt="USBridge client for Windows, macOS, Linux, Android, iOS and web">
+<div align="center">
+<img src="asset/feature-client.webp" width="1400" alt="USBridge Client Ecosystem for Windows, macOS, Linux, Android, iOS and Web">
+</div>
 
 Manage your hardware KVMs and software agents from a single unified application.
 
