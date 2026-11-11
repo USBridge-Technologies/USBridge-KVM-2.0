@@ -23,6 +23,10 @@
 
 **System frozen or won't boot? The KVM is still there.**
 
+<div align="center">
+<img src="asset/overview-system-status.png" width="1400" alt="System frozen or won't boot? The KVM is still there">
+</div>
+
 The **USBridge KVM 2.0** is an out-of-band remote management appliance operating at hardware Level 0. Whether you need BIOS/UEFI setup, boot-loader rescue, an OS reinstallation, or remote reboot of an unresponsive bare-metal server, USBridge KVM bypasses the host operating system entirely.
 
 <div align="center">
@@ -43,8 +47,8 @@ Every edition runs the same unified USBridge KVM OS with regular OTA updates, RE
 
 | Feature | **USBridge Nano** | **USBridge KVM 2.0 Low** | **USBridge KVM 2.0 Standard** | **USBridge KVM 2.0 Full** |
 | :--- | :---: | :---: | :---: | :---: |
-| **Target Use** | Ultra-compact pocket KVM | Minimalist board for server racks | Complete ready-to-run desktop kit | Ultimate Pro kit with ATX & screen |
 | **Price** | **$89** | **$99** | **$117** | **$139** |
+| **Target Use** | Ultra-compact pocket KVM | Minimalist board for server racks | Complete ready-to-run desktop kit | Ultimate Pro kit with ATX & screen |
 | **Base Board** | Sipeed NanoKVM (SG2002) | Radxa Zero 3W | Radxa Zero 3W | Radxa Zero 3W |
 | **Processor** | 1 RISC-V core @ 1.0 GHz | 4 Cortex-A55 cores @ 1.6 GHz | 4 Cortex-A55 cores @ 1.6 GHz | 4 Cortex-A55 cores @ 1.6 GHz |
 | **RAM** | 256 MB DDR3 | 1 GB LPDDR4 | 1 GB LPDDR4 | 1 GB LPDDR4 |
@@ -52,7 +56,7 @@ Every edition runs the same unified USBridge KVM OS with regular OTA updates, RE
 | **Video Stream** | 1080p @ 60 FPS | 1080p @ 60 FPS | 1080p @ 60 FPS | 1080p @ 60 FPS |
 | **Network** | Ethernet port (RJ45) | Wi-Fi 6 (Ethernet via USB hub) | Wi-Fi 6 (Ethernet via USB hub) | Wi-Fi 6 (Ethernet via USB hub) |
 | **Status Screen** | 128×64 Mono OLED | — | 240×240 IPS Color Display | 240×240 IPS Color Display |
-| **Enclosure** | Custom compact case | Bare board + Heatsink | Custom SLS PA12 case | Custom SLS PA12 case |
+| **Enclosure** | Custom compact case | Bare board + Heatsink | Custom case | Custom case |
 | **Dimensions** | 49 × 41 × 41 mm | Minimal footprint | 69 × 36 × 34 mm | 69 × 36 × 34 mm |
 | **ATX Power Control** | — | Optional expansion | Optional expansion | **Included** (ATX board + wires) |
 | **MicroSD with OS** | Included | Optional | Included | Included |
