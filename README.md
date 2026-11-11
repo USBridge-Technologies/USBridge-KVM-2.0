@@ -1,7 +1,7 @@
-# USBridge KVM 2.0 | Ultra-Low Latency IP KVM & KVM-over-IP
+# USBridge KVM 2.0 | Ultra-Low Latency IP KVM
 
 <div align="center">
-<img src="asset/hero.svg" width="1400" alt="USBridge IP KVM 2.0 - Remote Access at Level 0">
+<img src="asset/1.png" width="1400" alt="USBridge IP KVM 2.0 - Remote Access at Level 0">
 
 <p align="center">
   <b>Remote access at Level 0. Zero latency. Absolute hardware autonomy.</b><br>
@@ -11,6 +11,8 @@
 [![Website](https://img.shields.io/badge/USBridge-WEBSITE-black)](https://www.usbridge.io/hardware-agent/)
 [![Web Client](https://img.shields.io/badge/Web_Client-web.usbridge.io-blue)](https://web.usbridge.io)
 [![Documentation](https://img.shields.io/badge/Docs-README-orange)](./docs/README.md)
+[![YouTube](https://img.shields.io/badge/YouTube-@KVMUSBridge-FF0000?logo=youtube&logoColor=white)](https://www.youtube.com/@KVMUSBridge)
+[![X / Twitter](https://img.shields.io/badge/X-@USBridgeKVM-black?logo=x&logoColor=white)](https://x.com/USBridgeKVM)
 [![Discord](https://img.shields.io/badge/Discord-Community-7289DA?logo=discord&logoColor=white)](https://discord.gg/XwNpCrGfsB)
 [![Reddit](https://img.shields.io/badge/Reddit-r%2FUSBridge-FF4500?logo=reddit&logoColor=white)](https://www.reddit.com/r/USBridge/)
 </div>
