@@ -16,8 +16,11 @@ Turn your existing off-the-shelf **Sipeed NanoKVM** into an enterprise-grade out
 
 * **Ultra-Low Latency Streaming**: Hardware-accelerated sub-frame encoding with Moonlight protocol and WebRTC.
 * **Unified Ecosystem**: Connect from native desktop clients (Windows, macOS Apple Silicon, Linux), mobile apps (iOS, Android), or any web browser.
-* **Full Out-of-Band Control**: BIOS/UEFI control, virtual ISO mounting, USB HID keyboard/mouse emulation, and seamless pairing.
-* **Enterprise Security**: TLS encryption, master key authentication, and over-the-air (OTA) updates.
+* **Zero-Config Remote Access (Tailscale)**: Built-in native Tailscale mesh VPN integration to securely access your KVM from anywhere in the world without port forwarding or static public IPs.
+* **Gamepad & Peripheral Emulation**: USB HID keyboard, precision mouse, and virtual gamepad/controller passthrough for remote gaming, simulation, or specialized control.
+* **Bi-Directional Stereo Audio & Mic**: Real-time audio streaming from the target machine and microphone passthrough in both directions.
+* **Full Out-of-Band Control**: Direct BIOS/UEFI control, virtual ISO drive mounting for bare-metal OS installs, and seamless pairing.
+* **Enterprise Security**: End-to-end TLS encryption, device master key authentication, physical presence verification for SSH, and over-the-air (OTA) updates.
 
 **Firmware & Flashing Guides:**
 * [Download USBridge NanoKVM Firmware ➔](https://www.usbridge.io/hardware-agent/#firmware)
