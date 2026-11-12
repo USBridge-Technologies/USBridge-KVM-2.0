@@ -8,7 +8,7 @@ The minimalist bare-board KVM kit engineered for dense server rack integration, 
 
 * 👉 **[Buy USBridge KVM 2.0 Low on usbridge.io ($99)](https://www.usbridge.io/hardware-agent/#buy-usbridge-kvm-2-0-low)**
 
-**Quick Jump:** [Specifications](#technical-specifications) • [In the Box](#in-the-box-package-contents) • [Features](#key-capabilities--features) • [DIY KVM & Firmware](#diy-kvm-setup-turn-your-sbc-into-an-ip-kvm) • [Hardware Setup](#3-step-hardware-setup) • [Connect & Setup](#connect--initial-setup) • [SSH Access](#enabling-secure-ssh-access) • [Cooling Heatsink](#cnc-aluminum-heatsinks-cad-files)
+**Quick Jump:** [Specifications](#technical-specifications) • [In the Box](#in-the-box-package-contents) • [Features](#key-capabilities--features) • [Hardware Setup](#3-step-hardware-setup) • [Firmware Flashing](#firmware-flashing--recovery-guide) • [Headless Provisioning](#headless--bulk-provisioning-usbridge_provisionjson) • [Cooling Heatsink](#cnc-aluminum-heatsinks-cad-files)
 
 ---
 
@@ -56,7 +56,7 @@ Whether you deploy the pre-assembled **USBridge KVM 2.0 Low** kit or provision y
 
 ### DIY KVM Setup: Turn Your SBC into an IP-KVM
 
-Already own a supported single-board computer? Flash **USBridge OS** and connect a standard USB capture dongle to turn it into an enterprise-grade IP-KVM.
+Already own a supported single-board computer (Radxa Zero 3W / 3E, Radxa Cubie A7Z)? Flash **USBridge OS** and connect a standard USB capture dongle to build your own IP-KVM:
 
 #### 3-Minute Flashing Guide (Video Tutorial)
 
@@ -64,10 +64,7 @@ Watch the complete guide on how to flash the firmware and perform the first boot
 
 [![DIY IP-KVM Flashing Guide](https://img.youtube.com/vi/9FyPjEfH5Wg/maxresdefault.jpg)](https://youtu.be/9FyPjEfH5Wg)
 
-#### Firmware & Setup Links
 * [Download USBridge Firmware ➔](https://www.usbridge.io/hardware-agent/#firmware)
-* [Step-by-step Flashing Guide ➔](../../../docs/content/9-updates-changelog/recovery-flashing-guide.md)
-* [Headless Provisioning Guide ➔](../../../docs/content/1-getting-started/headless-provisioning.md)
 * [Hardware Board Comparison ➔](../../../docs/content/6-hardware-connectivity/board-comparison.md)
 
 ---
@@ -84,46 +81,57 @@ Watch the complete guide on how to flash the firmware and perform the first boot
 
 ---
 
-## Connect & Initial Setup
+## Firmware Flashing & Recovery Guide
 
-Once your USBridge KVM is powered and cabled up, connect to it using one of the quick pairing methods below.
+For blank boards, fresh installations, or full recovery of the **Radxa Zero 3W (RK3566)**:
 
-### Default IP Address (`10.55.0.1` over USB)
+### 1. Download Firmware
+Grab the latest raw compressed disk image (`usbridge-rz3w-<version>.gptimg.zst`) from the official repository or direct file mirror:
+* **[usbridge.io Firmware Portal](https://www.usbridge.io/hardware-agent/#firmware)**
+* **[flash.usbridge.io Mirror](https://flash.usbridge.io/)**
 
-Plug the board's OTG USB cable into your computer: your computer immediately receives a virtual USB network adapter (its own internet connection remains completely untouched), and the KVM is reachable at **`10.55.0.1`**.
+Decompress the image using `zstd -d` (Linux/macOS) or [7-Zip](https://www.7-zip.org/) (Windows) to get the raw `.gptimg`.
 
-Open **`http://10.55.0.1`** in any web browser to access the setup page:
-* Displays the QR code for fast pairing
-* Direct connection link and device master key
-* Moonlight PIN authorization
-* Network configuration settings
+### 2. Flash to Onboard eMMC or MicroSD
+* **Windows (eMMC Maskrom Mode)**: Install Rockchip **DriverAssistant** and run **RKDevTool**. Hold the Maskrom button on the Radxa Zero 3W while plugging the USB-C cable into your PC, select the `.gptimg`, and click **Upgrade**.
+* **Linux / macOS (CLI)**: Install `rkdeveloptool` and use our automated helper script `flash-tool/rz3w/flash-device-fast.sh` which flashes and decompresses on the fly.
+* **MicroSD Card Flashing**: Flash the decompressed image directly onto a MicroSD card (Class 10, 2GB+) using [BalenaEtcher](https://etcher.balena.io/) or `dd`.
 
-### On Your Local Network (Wi-Fi 6 / Ethernet)
-
-When connected to your local network, your router assigns the KVM an IP address automatically via DHCP (there is no fixed default). The setup page displays the assigned address at the top.
-
----
-
-### Ways to Connect (Pick One)
-
-1. **Recommended — [Desktop Client App](../../../README.md#client-downloads)**: Click **`+`** ➔ **Over USB**. The app automatically detects the KVM over the cable and pairs by itself.
-2. **Phone or Tablet**: Open `http://10.55.0.1` on the computer the KVM is plugged into and scan the displayed pairing QR code with the USBridge mobile app.
-3. **Headless Provisioning (Automated Deployment)**: Place a `usbridge_provision.json` file onto the MicroSD card boot partition before first boot to pre-configure Wi-Fi, static IP, or authorization keys without needing a QR code. See [Headless Provisioning Guide](../../../docs/content/1-getting-started/headless-provisioning.md).
-4. **[Web Client in Browser](https://web.usbridge.io/)**: No desktop app installed? Connect instantly in any browser via **[web.usbridge.io](https://web.usbridge.io/)** or click the Web Client link directly inside the `http://10.55.0.1` setup page. *(The [native desktop app](../../../README.md#client-downloads) is recommended for best video performance and hardware acceleration).*
-
-For complete step-by-step setup details, see the [Full Initial Setup Documentation](../../../docs/content/1-getting-started/initial-setup.md).
+For comprehensive instructions covering driver installation, eMMC Maskrom pinouts, and troubleshooting, read the **[Step-by-Step Recovery Flashing Guide ➔](../../../docs/content/9-updates-changelog/recovery-flashing-guide.md)**.
 
 ---
 
-## Enabling Secure SSH Access
+## Headless & Bulk Provisioning (`usbridge_provision.json`)
 
-For strict security, **SSH access is disabled by default** in USBridge OS to protect headless appliances against unauthorized network access.
+Because the **Low Kit** operates without a physical status screen, unattended configuration via a provisioning file is the fastest way to configure Wi-Fi, static networking, and security credentials.
 
-On headless units like the **Low Kit**, SSH can be securely enabled:
-1. **Via the Web Setup Page**: Enable SSH inside the authenticated web interface (`http://10.55.0.1` or device settings) after verifying ownership with the device master key.
-2. **Via Headless Provisioning**: Pre-authorize SSH access by declaring `"ssh": true` in `usbridge_provision.json` on the MicroSD card boot partition before initial boot.
+### How It Works
+1. Create a plain text file named `usbridge_provision.json`.
+2. Copy it to the root of a FAT32/exFAT MicroSD card or USB flash drive.
+3. Insert the card/drive into the appliance and power it on.
+4. On boot, USBridge OS automatically detects the file, applies all network and authorization settings without any user interaction, and renames the file to `usbridge_provision.applied.json`.
 
-Once enabled, the SSH service runs securely on standard port `22`.
+### Example `usbridge_provision.json`
+```json
+{
+  "master_key": "your-secure-secret-key-12345",
+  "wifi": {
+    "ssid": "Your-Office-WiFi",
+    "password": "WiFiPassword123"
+  },
+  "interfaces": {
+    "wlan0": {
+      "mode": "dhcp"
+    }
+  },
+  "ssh": true
+}
+```
+
+> [!TIP]
+> **Prefer GUI Setup?** You can also plug the board's USB cable into your computer: your computer immediately gets a virtual network adapter (`10.55.0.1`). Open `http://10.55.0.1` in your browser or click **`+` ➔ Over USB** in the [Desktop Client App](../../../README.md#client-downloads) to pair instantly.
+
+For all supported JSON schema options (static IP, VLANs, custom ports, and multi-node batch deployments), see the **[Headless Provisioning Guide ➔](../../../docs/content/1-getting-started/headless-provisioning.md)**.
 
 ---
 
