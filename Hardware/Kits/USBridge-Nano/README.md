@@ -8,7 +8,7 @@ The most compact out-of-band KVM appliance powered by USBridge OS. Based on the 
 
 * 👉 **[Buy USBridge Nano on usbridge.io ($89)](https://www.usbridge.io/hardware-agent/#buy-nano-kvm)**
 
-**Quick Jump:** [Specifications](#technical-specifications) • [In the Box](#in-the-box-package-contents) • [Features](#key-capabilities--features) • [NanoKVM Upgrade](#already-own-a-sipeed-nanokvm-upgrade-it) • [Hardware Setup](#3-step-hardware-setup) • [Connect & Setup](#connect--initial-setup) • [SSH Access](#enabling-secure-ssh-access) • [3D Case](#3d-printable-enclosure-cad-files)
+**Quick Jump:** [Specifications](#technical-specifications) • [In the Box](#in-the-box-package-contents) • [Features](#key-capabilities--features) • [Snapshots & Storage](#immutable-data-snapshots--storage) • [NanoKVM Upgrade](#already-own-a-sipeed-nanokvm-upgrade-it) • [Hardware Setup](#3-step-hardware-setup) • [Connect & Setup](#connect--initial-setup) • [SSH Access](#enabling-secure-ssh-access) • [3D Case](#3d-printable-enclosure-cad-files)
 
 ---
 
@@ -39,6 +39,12 @@ The most compact out-of-band KVM appliance powered by USBridge OS. Based on the 
 1. **USBridge Nano KVM Appliance**: Fully assembled unit in custom protective housing.
 2. **Pre-flashed MicroSD Card**: With latest USBridge OS and lifetime license.
 
+### Software License & Billing Management
+
+* **Lifetime OS License**: Included on the pre-flashed card and bound to your unit's unique hardware serial number. USBridge OS licenses provide **100% lifetime ownership** — no recurring subscriptions, renewal fees, or hidden costs.
+* **License Management Portal ([billing.usbridge.io](https://billing.usbridge.io/))**: Sign in to the billing portal using the email address specified during purchase to view your active licenses, devices, and purchase history.
+* **Upgrading MicroSD Card Size**: You can swap in a larger capacity MicroSD card at any time without losing your license. Simply flash the USBridge OS firmware onto the new card following our guide — once the KVM boots and connects to the internet, it automatically validates its lifetime license from the billing server based on its hardware serial number.
+
 ---
 
 ## Key Capabilities & Features
@@ -53,6 +59,21 @@ Whether you deploy the pre-built **USBridge Nano** or install our firmware on yo
 * **Full Out-of-Band Control**: Direct BIOS/UEFI control, virtual ISO drive mounting for bare-metal OS installs, and seamless pairing.
 * **Enterprise Security**: Cryptographic per-request API signing, encrypted DTLS-SRTP media transport, physical OLED presence verification for SSH, and seamless OTA updates.
 
+---
+
+## Immutable Data Snapshots & Storage
+
+USBridge OS features an enterprise-grade **Btrfs storage architecture** with Copy-on-Write (CoW) design and immutable, read-only data snapshots:
+
+* **Instantaneous System Snapshots**: Capture point-in-time snapshots of system configurations, installed software, and virtual drive states. If an update or configuration ever fails, instant rollback restores the exact working state.
+* **Ransomware & Crash Isolation**: Sealed snapshots are mounted as strictly read-only Btrfs subvolumes. Even if the target managed server is compromised by ransomware or malicious scripts, it has no network route or credentials to modify, mutate, or erase historical snapshot archives on the KVM.
+* **Automatic Storage Capacity Growth**: Swapping in a larger MicroSD card (e.g. 32 GB, 64 GB, 128 GB+) is completely seamless. On first boot with a newly flashed card, USBridge OS automatically resizes the partition to use 100% of the card capacity for snapshot archives and virtual ISO images.
+
+**Detailed Storage & Snapshot Guides:**
+* [Snapshots Architecture Overview ➔](../../../docs/content/4-snapshots-state-management/snapshots-overview.md)
+* [Creating & Managing Snapshots ➔](../../../docs/content/4-snapshots-state-management/creating-managing-snapshots.md)
+* [Storage Security & Immutability Rules ➔](../../../docs/content/4-snapshots-state-management/security-storage.md)
+
 ### Already Own a Sipeed NanoKVM? Upgrade It!
 
 Turn your existing off-the-shelf **Sipeed NanoKVM** into a high-performance management appliance. Flashing **USBridge OS** replaces the stock firmware with our optimized operating system.
@@ -65,6 +86,7 @@ Watch the side-by-side comparison demonstrating latency, responsiveness, and fea
 
 #### Firmware & Flashing Guides
 * [Download USBridge NanoKVM Firmware ➔](https://www.usbridge.io/hardware-agent/#firmware)
+* [Manage Licenses on billing.usbridge.io ➔](https://billing.usbridge.io/)
 * [NanoKVM Reflashing Guide ➔](../../../docs/content/6-hardware-connectivity/nanokvm.md)
 * [Step-by-Step Recovery & Flashing Guide ➔](../../../docs/content/9-updates-changelog/recovery-flashing-guide.md)
 

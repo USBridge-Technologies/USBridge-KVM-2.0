@@ -8,7 +8,7 @@ The flagship, all-in-one IP-KVM appliance. Includes the complete KVM 2.0 desktop
 
 * 👉 **[Buy USBridge KVM 2.0 Full on usbridge.io ($139)](https://www.usbridge.io/hardware-agent/#buy-usbridge-kvm-2-0)**
 
-**Quick Jump:** [Specifications](#technical-specifications) • [In the Box](#in-the-box-package-contents) • [Features](#key-capabilities--features) • [DIY KVM & Firmware](#diy-kvm-setup-turn-your-sbc-into-an-ip-kvm) • [Hardware Setup](#4-step-hardware-setup) • [Dongle Orientation](#critical-capture-dongle-cable-orientation-5g-vs-480m) • [ATX Wiring](#atx-power-control-wiring) • [On-Screen Setup](#connect--initial-setup-via-front-panel-screen) • [3D Case & Parts](#production-cad-files-3d-models--heatsinks)
+**Quick Jump:** [Specifications](#technical-specifications) • [In the Box](#in-the-box-package-contents) • [Features](#key-capabilities--features) • [Snapshots & Storage](#immutable-data-snapshots--storage) • [DIY KVM & Firmware](#diy-kvm-setup-turn-your-sbc-into-an-ip-kvm) • [Hardware Setup](#4-step-hardware-setup) • [Dongle Orientation](#critical-capture-dongle-cable-orientation-5g-vs-480m) • [ATX Wiring](#atx-power-control-wiring) • [On-Screen Setup](#connect--initial-setup-via-front-panel-screen) • [3D Case & Parts](#production-cad-files-3d-models--heatsinks)
 
 ---
 
@@ -45,9 +45,11 @@ The flagship, all-in-one IP-KVM appliance. Includes the complete KVM 2.0 desktop
 4. **USB 3.0 HDMI Video Capture Dongle**: High-throughput 1080p @ 60 FPS UVC capture stick.
 5. **Pre-flashed MicroSD Card**: Pre-installed with USBridge OS and Lifetime License.
 
-### Software License & OS Delivery
+### Software License & Billing Management
 
-* **Lifetime OS License**: Included on the pre-flashed card and registered to your unit. USBridge OS licenses offer **100% lifetime ownership** — no subscriptions, renewal fees, or recurring charges.
+* **Lifetime OS License**: Included on the pre-flashed card and bound to your unit's unique hardware serial number. USBridge OS licenses provide **100% lifetime ownership** — no subscriptions, renewal fees, or recurring charges.
+* **License Management Portal ([billing.usbridge.io](https://billing.usbridge.io/))**: Sign in to the billing portal using the email address specified during purchase to view and manage your active licenses, devices, and purchase history.
+* **Upgrading MicroSD Card Size**: You can swap in a larger capacity MicroSD card at any time without losing your license. Simply download and flash the OS image following our guide — once the KVM boots and connects to the internet, it automatically validates its lifetime license from the billing server based on the device's hardware serial number.
 
 ---
 
@@ -64,6 +66,21 @@ Whether you deploy the pre-assembled **USBridge KVM 2.0 Full** kit or provision 
 * **Front-Panel Interactive Display**: Built-in settings menu, network status, master key QR code, and Live Monitor Mode.
 * **Enterprise Security**: Cryptographic per-request API signing, encrypted DTLS-SRTP media transport, and seamless OTA updates.
 
+---
+
+## Immutable Data Snapshots & Storage
+
+USBridge OS features an enterprise-grade **Btrfs storage architecture** with Copy-on-Write (CoW) design and immutable, read-only data snapshots:
+
+* **Instantaneous System Snapshots**: Capture point-in-time snapshots of system configurations, installed software, and virtual drive states. If an update or configuration ever fails, instant rollback restores the exact working state.
+* **Ransomware & Crash Isolation**: Sealed snapshots are mounted as strictly read-only Btrfs subvolumes. Even if the target managed server is compromised by ransomware or malicious scripts, it has no network route or credentials to modify, mutate, or erase historical snapshot archives on the KVM.
+* **Automatic Storage Capacity Growth**: Swapping in a larger MicroSD card (e.g. 32 GB, 64 GB, 128 GB+) is completely seamless. On first boot with a newly flashed card, USBridge OS automatically resizes the partition to use 100% of the card capacity for snapshot archives and virtual ISO images.
+
+**Detailed Storage & Snapshot Guides:**
+* [Snapshots Architecture Overview ➔](../../../docs/content/4-snapshots-state-management/snapshots-overview.md)
+* [Creating & Managing Snapshots ➔](../../../docs/content/4-snapshots-state-management/creating-managing-snapshots.md)
+* [Storage Security & Immutability Rules ➔](../../../docs/content/4-snapshots-state-management/security-storage.md)
+
 ### DIY KVM Setup: Turn Your SBC into an IP-KVM
 
 Already own a supported single-board computer (Radxa Zero 3W / 3E, Radxa Cubie A7Z)? Flash **USBridge OS** and connect a standard USB capture dongle to build your own IP-KVM:
@@ -75,6 +92,7 @@ Watch the complete guide on how to flash the firmware and perform the first boot
 [![DIY IP-KVM Flashing Guide](https://img.youtube.com/vi/9FyPjEfH5Wg/maxresdefault.jpg)](https://youtu.be/9FyPjEfH5Wg)
 
 * [Download USBridge Firmware ➔](https://www.usbridge.io/hardware-agent/#firmware)
+* [Manage Licenses on billing.usbridge.io ➔](https://billing.usbridge.io/)
 * [Step-by-step Flashing Guide ➔](../../../docs/content/9-updates-changelog/recovery-flashing-guide.md)
 * [Hardware Board Comparison ➔](../../../docs/content/6-hardware-connectivity/board-comparison.md)
 

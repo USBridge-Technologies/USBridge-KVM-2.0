@@ -8,7 +8,7 @@ The minimalist bare-board KVM kit engineered for dense server rack integration, 
 
 * 👉 **[Buy USBridge KVM 2.0 Low on usbridge.io ($99)](https://www.usbridge.io/hardware-agent/#buy-usbridge-kvm-2-0-low)**
 
-**Quick Jump:** [Specifications](#technical-specifications) • [In the Box](#in-the-box-package-contents) • [Features](#key-capabilities--features) • [Hardware Setup](#3-step-hardware-setup) • [Firmware Flashing](#firmware-flashing--recovery-guide) • [Setup & Provisioning](#initial-connection--provisioning-2-flexible-ways) • [Cooling Heatsink](#cnc-aluminum-heatsinks-cad-files)
+**Quick Jump:** [Specifications](#technical-specifications) • [In the Box](#in-the-box-package-contents) • [Features](#key-capabilities--features) • [Snapshots & Storage](#immutable-data-snapshots--storage) • [DIY KVM & Firmware](#diy-kvm-setup-turn-your-sbc-into-an-ip-kvm) • [Hardware Setup](#3-step-hardware-setup) • [Firmware Flashing](#firmware-flashing--recovery-guide) • [Setup & Provisioning](#initial-connection--provisioning-2-flexible-ways) • [Cooling Heatsink](#cnc-aluminum-heatsinks-cad-files)
 
 ---
 
@@ -41,10 +41,12 @@ The minimalist bare-board KVM kit engineered for dense server rack integration, 
 2. **Aluminum Cooling Heatsink**: Custom high-efficiency passive cooling block.
 3. **USB 3.0 HDMI Video Capture Dongle**: High-throughput 1080p @ 60 FPS UVC capture stick.
 
-### Software License & OS Delivery
+### Software License & Billing Management
 
-* **Lifetime OS License**: Delivered digitally via email upon purchase. USBridge OS licenses offer **100% lifetime ownership** — no recurring subscriptions, maintenance fees, or hidden costs.
-* **Optional MicroSD Card**: You can optionally add a pre-flashed, high-endurance MicroSD card with USBridge OS installed and ready for immediate boot.
+* **Lifetime OS License**: Delivered digitally via email upon purchase and bound to your board's unique hardware serial number. USBridge OS licenses offer **100% lifetime ownership** — no recurring subscriptions, renewal fees, or hidden costs.
+* **License Management Portal ([billing.usbridge.io](https://billing.usbridge.io/))**: Sign in to the billing portal using the email address specified during purchase to view and manage your active licenses, devices, and purchase history.
+* **Upgrading MicroSD Card Size**: You can swap in a larger capacity MicroSD card at any time without losing your license. Simply download and flash the OS image following our guide — once the KVM boots and connects to the internet, it automatically validates its lifetime license from the billing server based on the device's hardware serial number.
+* **Optional MicroSD Card**: You can optionally purchase a pre-flashed, high-endurance MicroSD card with USBridge OS installed and ready for immediate boot.
 
 ---
 
@@ -60,6 +62,21 @@ Whether you deploy the pre-assembled **USBridge KVM 2.0 Low** kit or provision y
 * **Full Out-of-Band Control**: Direct BIOS/UEFI control, virtual ISO drive mounting for bare-metal OS installs, and seamless pairing.
 * **Enterprise Security**: Cryptographic per-request API signing, encrypted DTLS-SRTP media transport, and seamless OTA updates.
 
+---
+
+## Immutable Data Snapshots & Storage
+
+USBridge OS features an enterprise-grade **Btrfs storage architecture** with Copy-on-Write (CoW) design and immutable, read-only data snapshots:
+
+* **Instantaneous System Snapshots**: Capture point-in-time snapshots of system configurations, installed software, and virtual drive states. If an update or configuration ever fails, instant rollback restores the exact working state.
+* **Ransomware & Crash Isolation**: Sealed snapshots are mounted as strictly read-only Btrfs subvolumes. Even if the target managed server is compromised by ransomware or malicious scripts, it has no network route or credentials to modify, mutate, or erase historical snapshot archives on the KVM.
+* **Automatic Storage Capacity Growth**: Swapping in a larger MicroSD card (e.g. 32 GB, 64 GB, 128 GB+) is completely seamless. On first boot with a newly flashed card, USBridge OS automatically resizes the partition to use 100% of the card capacity for snapshot archives and virtual ISO images.
+
+**Detailed Storage & Snapshot Guides:**
+* [Snapshots Architecture Overview ➔](../../../docs/content/4-snapshots-state-management/snapshots-overview.md)
+* [Creating & Managing Snapshots ➔](../../../docs/content/4-snapshots-state-management/creating-managing-snapshots.md)
+* [Storage Security & Immutability Rules ➔](../../../docs/content/4-snapshots-state-management/security-storage.md)
+
 ### DIY KVM Setup: Turn Your SBC into an IP-KVM
 
 Already own a supported single-board computer (Radxa Zero 3W / 3E, Radxa Cubie A7Z)? Flash **USBridge OS** and connect a standard USB capture dongle to build your own IP-KVM:
@@ -71,6 +88,7 @@ Watch the complete guide on how to flash the firmware and perform the first boot
 [![DIY IP-KVM Flashing Guide](https://img.youtube.com/vi/9FyPjEfH5Wg/maxresdefault.jpg)](https://youtu.be/9FyPjEfH5Wg)
 
 * [Download USBridge Firmware ➔](https://www.usbridge.io/hardware-agent/#firmware)
+* [Manage Licenses on billing.usbridge.io ➔](https://billing.usbridge.io/)
 * [Hardware Board Comparison ➔](../../../docs/content/6-hardware-connectivity/board-comparison.md)
 
 ---
