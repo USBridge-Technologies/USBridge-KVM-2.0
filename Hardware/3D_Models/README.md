@@ -20,11 +20,14 @@ Designed specifically for the **Radxa Zero 3W** with the **1.3" IPS LCD Flip-HAT
 | [**Joystick_Cap.step**](./USBridge-KVM-2.0/Joystick_Cap.step) | 5-way joystick knob | Press-fit knob for 5-position navigation switch |
 
 ### Recommended 3D Printing Settings:
-* **Manufacturing Technology**: **SLS Nylon PA12** (identical to factory retail kits) or **FDM / SLA**.
-* **FDM Materials**: PETG or ABS/ASA (PLA is not recommended due to continuous heat dissipation from the SBC).
-* **Layer Height**: 0.16 mm – 0.20 mm.
-* **Infill**: 30% – 50% (Gyroid or Grid).
-* **Walls / Perimeters**: 3–4 outlines for durable thread mounting.
+* **Primary Manufacturing Technology**: **High-Precision Resin (SLA / MSLA / DLP)** or **SLS Nylon (PA12 / MJF)**.
+  * *Resin (SLA/MSLA)*: Recommended for production quality. Provides smooth surface finish, tight tolerances for port cutouts, and crisp button snap-fit. Tough or ABS-like engineering resins are recommended for daily durability.
+  * *SLS Nylon PA12*: Fully supported for impact resistance and high thermal stability.
+* **FDM Alternative**:
+  * **Materials**: PETG or ABS/ASA (standard PLA is not recommended due to continuous heat dissipation from the SBC).
+  * **Layer Height**: 0.16 mm – 0.20 mm.
+  * **Infill**: 30% – 50% (Gyroid or Grid).
+  * **Walls / Perimeters**: 3–4 outlines for durable thread mounting.
 
 ---
 
@@ -61,7 +64,7 @@ Ultra-compact protective housing custom-engineered for the **Sipeed NanoKVM** (S
 | [**USBridge_Nano_Case.step**](./USBridge-Nano/USBridge_Nano_Case.step) | Complete NanoKVM case | Sipeed NanoKVM (SG2002) |
 
 ### Recommended 3D Printing Settings:
-* **Technology**: SLS (PA12 / MJF) or SLA / Resin for fine detail around tight port openings.
+* **Primary Manufacturing Technology**: **Resin (SLA / MSLA)** or **SLS Nylon (PA12 / MJF)** for ultra-sharp edge detail around tight port openings. Tough/ABS-like resin recommended.
 * **FDM Alternative**: PETG with 0.12 mm – 0.16 mm layer height.
 * **Infill**: 40% – 100%.
 
