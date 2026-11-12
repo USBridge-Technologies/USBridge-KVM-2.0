@@ -1,7 +1,7 @@
 # USBridge KVM 2.0 Full Kit (Ultimate Pro Kit + ATX)
 
 <div align="center">
-<img src="specs-full.webp" width="700" alt="USBridge KVM 2.0 Full Hardware Overview">
+<img src="images/specs-full.webp" width="700" alt="USBridge KVM 2.0 Full Hardware Overview">
 </div>
 
 The flagship, all-in-one IP-KVM appliance. Includes the complete KVM 2.0 unit with an interactive color IPS display, active/passive cooling, and a dedicated galvanically isolated ATX Power Management board with DuPont jumpers for complete bare-metal hardware control.
@@ -40,7 +40,7 @@ The flagship, all-in-one IP-KVM appliance. Includes the complete KVM 2.0 unit wi
 ## 4-Step Hardware Setup
 
 <div align="center">
-<img src="setup-full.png" width="900" alt="USBridge KVM 2.0 Full 4-Step Setup Diagram">
+<img src="images/setup-full.png" width="900" alt="USBridge KVM 2.0 Full 4-Step Setup Diagram">
 </div>
 
 1. **HDMI**: Connect an HDMI cable from the computer's GPU / motherboard to the capture dongle.
@@ -53,8 +53,8 @@ The flagship, all-in-one IP-KVM appliance. Includes the complete KVM 2.0 unit wi
 ## Production CAD Files (3D Models & Heatsinks)
 
 <div align="center">
-<img src="kvm20-case.png" width="480" alt="Case Render">
-<img src="kvm20-heatsink.png" width="480" alt="Heatsink Render">
+<img src="images/kvm20-case.png" width="480" alt="Case Render">
+<img src="images/kvm20-heatsink.png" width="480" alt="Heatsink Render">
 </div>
 
 * 📦 [**USBridge_KVM_2.0_Case_V6.step**](./USBridge_KVM_2.0_Case_V6.step) — Enclosure body.

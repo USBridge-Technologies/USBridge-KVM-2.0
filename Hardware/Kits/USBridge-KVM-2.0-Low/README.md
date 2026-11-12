@@ -1,7 +1,7 @@
 # USBridge KVM 2.0 Low Kit (Minimalist Board Edition)
 
 <div align="center">
-<img src="specs-low.webp" width="700" alt="USBridge KVM 2.0 Low Hardware Overview">
+<img src="images/specs-low.webp" width="700" alt="USBridge KVM 2.0 Low Hardware Overview">
 </div>
 
 The minimalist bare-board KVM kit engineered for custom rack integration, homelabs, and dense server deployments where custom mounting and compact footprint are required.
@@ -39,7 +39,7 @@ The minimalist bare-board KVM kit engineered for custom rack integration, homela
 ## 3-Step Hardware Setup
 
 <div align="center">
-<img src="setup-low.png" width="900" alt="USBridge KVM 2.0 Low 3-Step Setup Diagram">
+<img src="images/setup-low.png" width="900" alt="USBridge KVM 2.0 Low 3-Step Setup Diagram">
 </div>
 
 1. **HDMI**: Connect an HDMI cable from the computer's GPU / motherboard to the included video capture dongle on the KVM.
@@ -51,7 +51,7 @@ The minimalist bare-board KVM kit engineered for custom rack integration, homela
 ## CNC Aluminum Heatsinks (CAD Files)
 
 <div align="center">
-<img src="kvm20-heatsink.png" width="700" alt="Aluminum Heatsink 3D Render">
+<img src="images/kvm20-heatsink.png" width="700" alt="Aluminum Heatsink 3D Render">
 </div>
 
 * 📦 [**Radiator_V5.step**](./Radiator_V5.step) — Longitudinal fin profile.

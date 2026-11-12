@@ -1,7 +1,7 @@
 # USBridge KVM 2.0 Standard Kit (Complete Desktop Kit)
 
 <div align="center">
-<img src="specs-standard.webp" width="700" alt="USBridge KVM 2.0 Standard Hardware Overview">
+<img src="images/specs-standard.webp" width="700" alt="USBridge KVM 2.0 Standard Hardware Overview">
 </div>
 
 The complete ready-to-use desktop IP-KVM appliance in a stylish custom enclosure, featuring an interactive 1.3" IPS color status display and full peripheral emulation out of the box.
@@ -38,7 +38,7 @@ The complete ready-to-use desktop IP-KVM appliance in a stylish custom enclosure
 ## 3-Step Hardware Setup
 
 <div align="center">
-<img src="setup-standard.png" width="900" alt="USBridge KVM 2.0 Standard 3-Step Setup Diagram">
+<img src="images/setup-standard.png" width="900" alt="USBridge KVM 2.0 Standard 3-Step Setup Diagram">
 </div>
 
 1. **HDMI**: Connect an HDMI cable from the computer's GPU / motherboard to the included capture dongle.
@@ -50,7 +50,7 @@ The complete ready-to-use desktop IP-KVM appliance in a stylish custom enclosure
 ## 3D Printable Enclosure (CAD Files)
 
 <div align="center">
-<img src="kvm20-case.png" width="700" alt="USBridge KVM 2.0 Case 3D Render">
+<img src="images/kvm20-case.png" width="700" alt="USBridge KVM 2.0 Case 3D Render">
 </div>
 
 * 📦 [**USBridge_KVM_2.0_Case_V6.step**](./USBridge_KVM_2.0_Case_V6.step) — Main body enclosure.
