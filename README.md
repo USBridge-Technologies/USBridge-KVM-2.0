@@ -362,6 +362,32 @@ Manage your hardware KVMs and software agents from a single unified application.
 
 ---
 
+## DIY KVM Setup: Full BIOS Control in 3 Minutes
+
+Provision a supported SBC, flash the firmware image, and connect a standard USB capture interface to deploy your own IP-KVM.
+
+### 1. Hardware Checklist (Bill of Materials)
+
+| Component | Description |
+| :--- | :--- |
+| **Supported SBC** | Radxa Zero 3W / 3E, Radxa Cubie A7Z; also the off-the-shelf [Sipeed NanoKVM](./docs/content/6-hardware-connectivity/nanokvm.md) (HDMI capture built in). Which to pick: [board comparison](./docs/content/6-hardware-connectivity/board-comparison.md). |
+| **HDMI-to-USB Capture Card** | Generic MS2109 (7–12$), or standard UVC dongle. |
+| **MicroSD Card (2GB+)** | Standard 2GB+ capacity. Class 10 or higher recommended for fast boot times. |
+| **Optional: Status Screen** | 1.3" 240×240 LCD: the [USBridge 1.3" LCD Flip-HAT](https://www.usbridge.io/hardware-agent/#buy-screen-module) (mirrored pinout, SoC stays against the heatsink) or the standard [Waveshare 1.3" LCD HAT](https://www.waveshare.com/1.3inch-lcd-hat.htm). Fits both the Radxa Zero 3W and the Cubie A7Z; not supported on the Zero 3E yet. Fully optional: the system runs headless via a single config file. |
+
+### 2. 3-Minute Flashing Guide (Video Tutorial)
+
+Watch the complete guide on how to flash the firmware and perform the first boot.
+
+[![DIY IP-KVM Flashing Guide](https://img.youtube.com/vi/9FyPjEfH5Wg/maxresdefault.jpg)](https://youtu.be/9FyPjEfH5Wg)
+
+**Quick Links for Setup:**
+* [Step-by-step Flashing Guide](./docs/content/9-updates-changelog/recovery-flashing-guide.md)
+* [Headless Provisioning Guide](./docs/content/1-getting-started/headless-provisioning.md)
+* [Full Documentation](./docs/README.md)
+
+---
+
 ## Accessories
 
 | Accessory | Description | Details |
