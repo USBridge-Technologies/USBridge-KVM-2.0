@@ -10,22 +10,33 @@ Featuring an innovative inverted rear-mounting design through a mirrored 40-pin 
 
 * 👉 **[Buy USBridge Screen Module on usbridge.io ($11.99)](https://www.usbridge.io/hardware-agent/#buy-screen-module)**
 
-**Quick Jump:** [Specifications](#technical-specifications) • [Key Capabilities](#key-capabilities--features) • [DIY KVM & Low Upgrade](#diy-ip-kvm--upgrade-your-kvm-20-low) • [ATX Power Integration](#direct-atx-power-control-integration) • [Pinout Mapping](#pinout-mapping) • [Fabrication Files](#production-manufacturing-files) • [Related Products](#explore-the-usbridge-ecosystem)
+**Quick Jump:** [Specifications & Layout](#technical-specifications--hardware-layout) • [Key Capabilities](#key-capabilities--features) • [DIY KVM & Low Upgrade](#diy-ip-kvm--upgrade-your-kvm-20-low) • [ATX Power Integration](#direct-atx-power-control-integration) • [Pinout Mapping](#pinout-mapping) • [Fabrication Files](#production-manufacturing-files) • [Related Products](#explore-the-usbridge-ecosystem)
 
 ---
 
-## Technical Specifications
+## Technical Specifications & Hardware Layout
 
 <div align="center">
 <img src="images/Technical_Specifications.png" width="900" alt="Screen Module Technical Specifications and Controls">
 </div>
 
+### Onboard Hardware Callouts
+
+| # | Component | Description & Function |
+| :---: | :--- | :--- |
+| **`1`** | **Tactile User Buttons (`K1`, `K2`, `K3`)** | 3 programmable physical buttons used for fast on-screen alphanumeric input (digits, uppercase, lowercase) and direct device actions. |
+| **`2`** | **5-Way Navigation Joystick** | Directional control (Up, Down, Left, Right, Center Click) for seamless menu navigation, parameter adjustment, and confirmation. |
+| **`3`** | **1.3" IPS Color Display** | High-resolution 240 × 240 pixel IPS screen (RGB, 65K colors, ST7789 driver) for live status telemetry, Wi-Fi configuration, pairing QR codes, and video monitoring. |
+| **`4`** | **40-Pin GPIO Mirrored Header** | Female header mounted on the reverse side to connect directly to Radxa Zero 3W / 3E / Cubie A7Z without blocking processor heatsink cooling. |
+| **`5`** | **8-Pin ATX Interface Port** | Dedicated low-profile header connecting directly to the [USBridge ATX Power Control Board](../ATX-Board/) via ribbon cable. |
+
+### Technical Specifications
+
 | Specification | Details |
 | :--- | :--- |
-| **Display Panel** | 1.3-inch Full-Color HD IPS LCD |
-| **Resolution** | 240 × 240 pixels (RGB, 65K colors, wide 178° viewing angle) |
-| **Interface** | 4-wire high-speed SPI (Driver IC: ST7789) |
-| **Physical Controls** | 5-way directional joystick (Up, Down, Left, Right, Center Click) + 3 tactile user buttons (KEY1, KEY2, KEY3) |
+| **Display Panel** | 1.3-inch Full-Color HD IPS LCD (240 × 240 pixels, 65K colors, wide 178° viewing angle) |
+| **Display Interface** | 4-wire high-speed SPI (Driver IC: ST7789) |
+| **Physical Controls** | 5-way directional joystick (Up/Down/Left/Right/Press) + 3 tactile user buttons (`K1`, `K2`, `K3`) |
 | **Expansion Header** | Dedicated 8-pin port for direct connection to the [USBridge ATX Power Control Board](../ATX-Board/) |
 | **Mounting Architecture** | Mirrored rear-mount (leaves SoC open for passive heatsinks and active airflow) |
 | **Connector** | 40-pin female GPIO header |
@@ -63,10 +74,10 @@ If you started with the headless **[USBridge KVM 2.0 Low](../../Kits/USBridge-KV
 The Screen Module is designed to work seamlessly with the **[USBridge ATX Power Control Board](../ATX-Board/)**:
 
 <div align="center">
-<img src="images/Flip-HAT_1.3.png" width="700" alt="USBridge Screen Module Inverted Architecture">
+<img src="images/atx-board-modal.webp" width="750" alt="ATX Power Control Board Connected to Screen Module">
 </div>
 
-* **Dedicated 8-Pin ATX Header**: The module features an onboard 8-pin ATX expansion port.
+* **Dedicated 8-Pin ATX Header (#5)**: The module features an onboard 8-pin low-profile ATX expansion port.
 * **Clean Ribbon Cable Connection**: Instead of running loose DuPont wires directly to the SBC's GPIO header, plug the ATX board's ribbon cable straight into the Screen Module.
 * **Hardware-Level Motherboard Control**: Routes remote Power Button, Reset Button, Power LED, and HDD LED telemetry through the screen HAT into USBridge OS.
 * **3.75 kV Galvanic Isolation**: All signals remain physically isolated via the ATX board's onboard optocouplers, protecting both the KVM and the display circuitry against ground loops and electrical transients.
@@ -78,13 +89,13 @@ The Screen Module is designed to work seamlessly with the **[USBridge ATX Power 
 
 ## Pinout Mapping
 
-| Component | Function | BCM Pin / Connection | Description |
-| :--- | :--- | :--- | :--- |
-| **LCD** | SPI Interface | MOSI, SCLK, CS, DC, RST, BL | 4-wire SPI connection (ST7789 driver) |
-| **Joystick** | 5-Way Switch | Up, Down, Left, Right, Center Press | UI navigation and menu confirmation |
-| **Buttons** | User Keys | KEY1, KEY2, KEY3 | Quick actions and on-screen alphanumeric text entry |
-| **ATX Header** | 8-Pin Interface | PWR_SW, RESET, PWR_LED, HDD_LED, GND | Interconnect port for ATX Power Control Board |
-| **Header** | 40-Pin GPIO | Mirrored female header | Mounts on the reverse side of Zero-factor SBCs |
+| # | Component | Function | BCM Pin / Connection | Description |
+| :---: | :--- | :--- | :--- | :--- |
+| **`3`** | **LCD** | SPI Interface | MOSI, SCLK, CS, DC, RST, BL | 4-wire high-speed SPI connection (ST7789 driver) |
+| **`2`** | **Joystick** | 5-Way Switch | Up, Down, Left, Right, Center Press | UI navigation and menu confirmation |
+| **`1`** | **Buttons** | User Keys | KEY1, KEY2, KEY3 (`K1`, `K2`, `K3`) | Quick actions and on-screen alphanumeric text entry |
+| **`5`** | **ATX Header** | 8-Pin Interface | PWR_SW, RESET, PWR_LED, HDD_LED, GND | Direct interconnect port for ATX Power Control Board |
+| **`4`** | **Header** | 40-Pin GPIO | Mirrored female header | Mounts on the reverse side of Zero-factor SBCs |
 
 ---
 
