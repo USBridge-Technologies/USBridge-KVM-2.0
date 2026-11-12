@@ -75,6 +75,8 @@ USBridge protects your deployment files, virtual disk images, and backups stored
 * **Pure User Data Snapshots**: Snapshots strictly preserve files, directory trees, disk images (ISOs), and backups placed on the storage volume. They do not alter or touch the appliance OS or running processes.
 * **Immutable Read-Only Protection**: Every captured state is a frozen, read-only Btrfs subvolume. Even if the managed target server suffers a malware attack or ransomware infection, it has no bus-level or network path to alter, overwrite, or delete historical backup data on the KVM.
 * **Point-in-Time File Extraction**: Recovery is performed by mounting any historical snapshot and extracting the exact files or disk images you need without in-place overwrites.
+* **Universal Linux Access (No KVM Required)**: The storage volume uses the standard open-source Btrfs filesystem. In an emergency, you do not even need the KVM hardware — insert the MicroSD card into any computer running Linux to immediately mount, inspect, and copy out your files and snapshot subvolumes.
+* **Physical-Only Data Wipe Protection**: Stored snapshots and data cannot be erased or wiped remotely over the network by malware or compromised credentials. Purging the storage volume requires physical presence — either by confirming through the on-device display menu using physical hardware buttons, or by removing the MicroSD card to format it externally.
 * **Automatic Storage Capacity Growth**: Upgrading to a larger MicroSD card (e.g., 32 GB, 64 GB, 128 GB+) automatically expands the Btrfs data partition on first boot, giving you maximum space for ISO images and backup archives without losing your license.
 
 **Detailed Storage & Snapshot Guides:**
