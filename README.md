@@ -66,14 +66,23 @@ Every edition runs the same unified USBridge KVM OS with regular OTA updates, RE
 
 ## Already Have a Board? Install USBridge Firmware
 
-Turn standard off-the-shelf single-board computers into an enterprise-grade out-of-band management appliance.
+Turn standard off-the-shelf single-board computers into an enterprise-grade out-of-band management appliance. Flash USBridge onto a board you already have — same client apps, same API, and same OTA updates on every one.
 
-### Supported Boards:
-* **Sipeed NanoKVM** (SOPHGO SG2002 RISC-V) — on-board MIPI capture, Ethernet.
-* **Radxa Zero 3W / 3E** (Rockchip RK3566 quad-core) — Wi-Fi 6 / Ethernet, USB 3.0 capture.
-* **Radxa Cubie A7Z** (Allwinner A733 8-core) — high-performance processing, USB 3.0 capture.
+| | **Radxa Zero 3W / 3E** | **Radxa Cubie A7Z** | **Sipeed NanoKVM** |
+| :--- | :---: | :---: | :---: |
+| **What it is** | SBC + USB 3.0 capture card | SBC + USB 3.0 capture card | Off-the-shelf KVM, reflashed |
+| **SoC** | Rockchip RK3566, 4 cores | Allwinner A733, 8 cores | SOPHGO SG2002, 1 RISC-V core |
+| **Video capture** | USB 3.0 (UVC) · MIPI coming | USB 3.0 (UVC) · MIPI coming | **MIPI CSI** (built-in HDMI) |
+| **Video** | 1080p60 | 1080p60 · up to 4K30 on MIPI (coming) | 1080p60 |
+| **Codecs** | H.264, HEVC | H.264, HEVC | H.264, HEVC |
+| **Latency** | USB: +10–15 ms vs MIPI · MIPI: lowest | USB: +10–15 ms vs MIPI · MIPI: lowest | **Lowest** (MIPI) |
+| **BIOS-in-Terminal (OCR)** | ✅ NPU | ✅ CPU | — |
+| **Status display** | 3W: ✅ 240×240 color LCD + [monitor mode](./docs/content/2-kvm-vkm/display-mode.md) · 3E: not yet | ✅ 240×240 color LCD + [monitor mode](./docs/content/2-kvm-vkm/display-mode.md) | ✅ built-in 128×64 mono OLED, status only |
+| **Get it** | [Download firmware ➔](https://www.usbridge.io/hardware-agent/#firmware) | [Download firmware ➔](https://www.usbridge.io/hardware-agent/#firmware) | [Download firmware ➔](https://www.usbridge.io/hardware-agent/#firmware) |
 
-👉 **Download firmware images:** [USBridge Hardware Downloads](https://www.usbridge.io/hardware-agent/#firmware)  
+**Full side-by-side — latency, audio, codecs, storage, every feature: [NanoKVM vs Radxa Zero 3W vs Cubie A7Z ➔](./docs/content/6-hardware-connectivity/board-comparison.md)**  
+*Raspberry Pi and Banana Pi support is in development.*
+
 👉 **Flashing guides:** [Flashing & Recovery Guide](./docs/content/9-updates-changelog/recovery-flashing-guide.md) · [Flash-Tool Directory](./flash-tool/)
 
 ### Connecting After Flashing:
