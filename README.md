@@ -392,9 +392,9 @@ Watch the complete guide on how to flash the firmware and perform the first boot
 
 | Accessory | Description | Details |
 | :--- | :--- | :--- |
-| [**Screen Module (Flip-HAT 1.3" LCD)**](https://www.usbridge.io/hardware-agent/#buy-screen-module) | 240×240 IPS status screen designed specifically for Zero-factor boards. Mounts on the back of the PCB so the CPU remains open for large heatsinks and active cooling. | [LCD Flip-HAT Specs](./USBridge-Flip-HAT-1.3-LCD/) |
-| [**Power Control Board (ATX)**](https://www.usbridge.io/hardware-agent/#buy-power-board) | Galvanically isolated (up to 3.75 kV) front-panel adapter board for Power, Reset, Power LED, and HDD LED headers. | [ATX Board Guide](./docs/content/6-hardware-connectivity/power-management-module-control.md) |
-| [**HDMI Capture Dongle (1080p @ 60 FPS)**](https://www.usbridge.io/hardware-agent/#buy-capture-card) | High-throughput UVC video capture card optimized for USB 3.0 `[5G]` mode and sub-frame hardware encoding. | Included with Standard & Full kits |
+| [**Screen Module (Flip-HAT 1.3" LCD)**](https://www.usbridge.io/hardware-agent/#buy-screen-module) | 240×240 IPS status screen designed specifically for Zero-factor boards. Mounts on the back of the PCB so the CPU remains open for large heatsinks and active cooling. | [LCD Flip-HAT Specs](./Hardware/Accessories/Screen-Module/) |
+| [**Power Control Board (ATX)**](https://www.usbridge.io/hardware-agent/#buy-power-board) | Galvanically isolated (up to 3.75 kV) front-panel adapter board for Power, Reset, Power LED, and HDD LED headers. | [ATX Board Guide](./Hardware/Accessories/ATX-Board/) |
+| [**HDMI Capture Dongle (1080p @ 60 FPS)**](https://www.usbridge.io/hardware-agent/#buy-capture-card) | High-throughput UVC video capture card optimized for USB 3.0 `[5G]` mode and sub-frame hardware encoding. | [Capture Dongle Specs](./Hardware/Accessories/Capture-Dongle/) |
 
 ---
 
