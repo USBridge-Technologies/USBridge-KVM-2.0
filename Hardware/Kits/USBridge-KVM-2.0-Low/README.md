@@ -8,7 +8,7 @@ The minimalist bare-board KVM kit engineered for dense server rack integration, 
 
 * 👉 **[Buy USBridge KVM 2.0 Low on usbridge.io ($99)](https://www.usbridge.io/hardware-agent/#buy-usbridge-kvm-2-0-low)**
 
-**Quick Jump:** [Specifications](#technical-specifications) • [In the Box](#in-the-box-package-contents) • [Features](#key-capabilities--features) • [Hardware Setup](#3-step-hardware-setup) • [Firmware Flashing](#firmware-flashing--recovery-guide) • [Headless Provisioning](#headless--bulk-provisioning-usbridge_provisionjson) • [Cooling Heatsink](#cnc-aluminum-heatsinks-cad-files)
+**Quick Jump:** [Specifications](#technical-specifications) • [In the Box](#in-the-box-package-contents) • [Features](#key-capabilities--features) • [Hardware Setup](#3-step-hardware-setup) • [Firmware Flashing](#firmware-flashing--recovery-guide) • [Setup & Provisioning](#initial-connection--provisioning-2-flexible-ways) • [Cooling Heatsink](#cnc-aluminum-heatsinks-cad-files)
 
 ---
 
@@ -24,11 +24,14 @@ The minimalist bare-board KVM kit engineered for dense server rack integration, 
 | **Streaming Protocol** | Moonlight protocol, sub-frame low latency & WebRTC |
 | **Peripheral Control** | USB HID keyboard and mouse emulation, virtual ISO drive, gamepads |
 | **Audio** | Audio output and microphone in both directions |
-| **Network Interfaces** | Onboard Wi-Fi 6 & Bluetooth 5.4; Ethernet via USB hub + USB virtual Ethernet (`10.55.0.1`) |
-| **Status Screen** | None (Headless operation via web panel, mobile app, and SSH) |
+| **Network Interfaces** | Onboard Wi-Fi 6 & Bluetooth 5.4 *(see note below)* |
+| **Status Screen** | None (Headless operation via web panel and mobile app) — [Optional: 1.3" IPS Screen Module](../../Accessories/Screen-Module/) |
 | **Cooling** | Passive solid extruded aluminum heatsink |
 | **Ports** | USB-C 2.0 (OTG to target PC), USB-C 3.0 (Host for capture card), Micro HDMI |
 | **Operating System** | USBridge OS with Btrfs immutable snapshots & OTA updates |
+
+> [!NOTE]
+> **Wired Ethernet Support:** If wired network connectivity is required, an external USB-to-Ethernet adapter or USB hub with an RJ45 port can be connected to the host port (not included in the standard kit).
 
 ---
 
@@ -37,8 +40,11 @@ The minimalist bare-board KVM kit engineered for dense server rack integration, 
 1. **Radxa Zero 3W Board**: Pre-configured single-board computer with USBridge firmware.
 2. **Aluminum Cooling Heatsink**: Custom high-efficiency passive cooling block.
 3. **USB 3.0 HDMI Video Capture Dongle**: High-throughput 1080p @ 60 FPS UVC capture stick.
-4. **USB-C Interconnect Cable**: Linking the KVM Host port to the capture dongle.
-5. *Optional*: Pre-flashed MicroSD card with USBridge OS (Lifetime License included).
+
+### Software License & OS Delivery
+
+* **Lifetime OS License**: Delivered digitally via email upon purchase. USBridge OS licenses offer **100% lifetime ownership** — no recurring subscriptions, maintenance fees, or hidden costs.
+* **Optional MicroSD Card**: You can optionally add a pre-flashed, high-endurance MicroSD card with USBridge OS installed and ready for immediate boot.
 
 ---
 
@@ -101,17 +107,31 @@ For comprehensive instructions covering driver installation, eMMC Maskrom pinout
 
 ---
 
-## Headless & Bulk Provisioning (`usbridge_provision.json`)
+## Initial Connection & Provisioning (2 Flexible Ways)
 
-Because the **Low Kit** operates without a physical status screen, unattended configuration via a provisioning file is the fastest way to configure Wi-Fi, static networking, and security credentials.
+Because the **Low Kit** operates without a physical status screen, USBridge OS gives you two convenient ways to perform the initial setup:
 
-### How It Works
+### Method 1: Instant Plug-and-Play USB Setup (`10.55.0.1`)
+
+The fastest way for individual setup without configuring any configuration files beforehand:
+
+1. Connect the KVM's USB-C OTG cable directly into your computer.
+2. Your computer immediately recognizes a virtual USB network adapter (`10.55.0.1`) — its own regular internet connection remains completely untouched.
+3. **Desktop App**: Open the [Desktop Client App](../../../README.md#client-downloads) and click **`+` ➔ Over USB**. The app detects the KVM over the cable and pairs with a single click.
+4. **Web Browser**: Alternatively, open **`http://10.55.0.1`** in any web browser to configure Wi-Fi, view network settings, or connect via the [Web Client](https://web.usbridge.io/).
+
+---
+
+### Method 2: Unattended & Bulk Provisioning (`usbridge_provision.json`)
+
+Ideal for server racks, homelabs, or deploying multiple headless nodes where you want the appliance to connect to your network automatically upon first boot.
+
 1. Create a plain text file named `usbridge_provision.json`.
 2. Copy it to the root of a FAT32/exFAT MicroSD card or USB flash drive.
 3. Insert the card/drive into the appliance and power it on.
-4. On boot, USBridge OS automatically detects the file, applies all network and authorization settings without any user interaction, and renames the file to `usbridge_provision.applied.json`.
+4. On boot, USBridge OS automatically detects the file, applies all network, Wi-Fi, and authorization settings without any user interaction, and renames the file to `usbridge_provision.applied.json`.
 
-### Example `usbridge_provision.json`
+#### Example `usbridge_provision.json`
 ```json
 {
   "master_key": "your-secure-secret-key-12345",
@@ -127,9 +147,6 @@ Because the **Low Kit** operates without a physical status screen, unattended co
   "ssh": true
 }
 ```
-
-> [!TIP]
-> **Prefer GUI Setup?** You can also plug the board's USB cable into your computer: your computer immediately gets a virtual network adapter (`10.55.0.1`). Open `http://10.55.0.1` in your browser or click **`+` ➔ Over USB** in the [Desktop Client App](../../../README.md#client-downloads) to pair instantly.
 
 For all supported JSON schema options (static IP, VLANs, custom ports, and multi-node batch deployments), see the **[Headless Provisioning Guide ➔](../../../docs/content/1-getting-started/headless-provisioning.md)**.
 
