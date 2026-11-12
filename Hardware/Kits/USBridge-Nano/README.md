@@ -6,7 +6,9 @@
 
 The most compact out-of-band KVM appliance powered by USBridge OS. Based on the SOPHGO SG2002 RISC-V SoC, it features native MIPI CSI HDMI capture, an on-device 128×64 status OLED display, and a 100 Mbit RJ45 Ethernet port.
 
-* 👉 [Buy USBridge Nano on usbridge.io ($89)](https://www.usbridge.io/hardware-agent/#buy-nano-kvm)
+* 👉 **[Buy USBridge Nano on usbridge.io ($89)](https://www.usbridge.io/hardware-agent/#buy-nano-kvm)**
+
+**Quick Jump:** [Specifications](#technical-specifications) • [In the Box](#in-the-box-package-contents) • [Features](#key-capabilities--features) • [NanoKVM Upgrade](#already-own-a-sipeed-nanokvm-upgrade-it) • [Hardware Setup](#3-step-hardware-setup) • [Connect & Setup](#connect--initial-setup) • [SSH Access](#enabling-secure-ssh-access) • [3D Case](#3d-printable-enclosure-cad-files)
 
 ---
 
@@ -144,3 +146,21 @@ We provide the complete production STEP model for 3D printing replacement or cus
 * 📦 **Model File**: [**USBridge_Nano_Case.step**](./USBridge_Nano_Case.step)
 * **Recommended Technology**: High-Precision Resin (SLA / MSLA / DLP) with Tough / ABS-like resin or SLS Nylon (PA12).
 * **FDM Alternative**: PETG, 0.12–0.16 mm layer height, 40–100% infill.
+
+---
+
+## Ready to Deploy?
+
+Get your pre-assembled appliance or explore other models in the USBridge ecosystem:
+
+* 🛒 **[Order USBridge Nano ($89) on usbridge.io ➔](https://www.usbridge.io/hardware-agent/#buy-nano-kvm)**
+
+### Explore Other USBridge KVM Kits
+
+| Model | Form Factor | Capture Mode | Price | Details |
+| :--- | :--- | :--- | :---: | :--- |
+| **USBridge KVM 2.0 Low** | Bare board + Extruded Heatsink | USB 3.0 Dongle (1080p60) | **$99** | [View Low Kit Guide ➔](../USBridge-KVM-2.0-Low/) |
+| **USBridge KVM 2.0 Standard** | Desktop Unit + 1.3" Color IPS Screen | USB 3.0 Dongle (1080p60) | **$117** | [View Standard Kit Guide ➔](../USBridge-KVM-2.0-Standard/) |
+| **USBridge KVM 2.0 Full** | Desktop Unit + Screen + ATX Power Board | USB 3.0 Dongle (1080p60) | **$139** | [View Full Kit Guide ➔](../USBridge-KVM-2.0-Full/) |
+
+Explore all kits, expansion PCBs, and accessories in the **[Hardware Catalog ➔](../../README.md)**.
