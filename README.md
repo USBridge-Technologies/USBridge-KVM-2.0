@@ -64,6 +64,25 @@ Every edition runs the same unified USBridge KVM OS with regular OTA updates, RE
 
 ---
 
+## Already Have a Board? Install USBridge Firmware
+
+Turn standard off-the-shelf single-board computers into an enterprise-grade out-of-band management appliance.
+
+### Supported Boards:
+* **Sipeed NanoKVM** (SOPHGO SG2002 RISC-V) — on-board MIPI capture, Ethernet.
+* **Radxa Zero 3W / 3E** (Rockchip RK3566 quad-core) — Wi-Fi 6 / Ethernet, USB 3.0 capture.
+* **Radxa Cubie A7Z** (Allwinner A733 8-core) — high-performance processing, USB 3.0 capture.
+
+👉 **Download firmware images:** [USBridge Hardware Downloads](https://www.usbridge.io/hardware-agent/#firmware)  
+👉 **Flashing guides:** [Flashing & Recovery Guide](./docs/content/9-updates-changelog/recovery-flashing-guide.md) · [Flash-Tool Directory](./flash-tool/)
+
+### Connecting After Flashing:
+* **Default USB Gadget IP:** `10.55.0.1`  
+  Connect the board to your PC via USB. Open `http://10.55.0.1` in any browser for immediate pairing, setup QR code, Moonlight PIN, and Wi-Fi configuration.
+* **Auto-Discovery:** In the desktop USBridge Client, click **`+` ➔ Over USB** to pair with the board automatically.
+
+---
+
 ## Key Features
 
 ### Zero Latency Streaming
@@ -331,25 +350,6 @@ Manage your hardware KVMs and software agents from a single unified application.
 3. **ATX Control Board:** Plug the ribbon cable into KVM 8-pin GPIO, then bridge jumper wires to motherboard Front Panel (`PWR_SW`, `RESET`, `P_LED`, `H_LED`).
 4. **Network:** Configure Wi-Fi 6 via the on-device display/joystick or connect directly over USB gadget mode.
 </details>
-
----
-
-## Already Have a Board? Install USBridge Firmware
-
-Turn standard off-the-shelf single-board computers into an enterprise-grade out-of-band management appliance.
-
-### Supported Boards:
-* **Sipeed NanoKVM** (SOPHGO SG2002 RISC-V) — on-board MIPI capture, Ethernet.
-* **Radxa Zero 3W / 3E** (Rockchip RK3566 quad-core) — Wi-Fi 6 / Ethernet, USB 3.0 capture.
-* **Radxa Cubie A7Z** (Allwinner A733 8-core) — high-performance processing, USB 3.0 capture.
-
-👉 **Download firmware images:** [USBridge Hardware Downloads](https://www.usbridge.io/hardware-agent/#firmware)  
-👉 **Flashing guides:** [Flashing & Recovery Guide](./docs/content/9-updates-changelog/recovery-flashing-guide.md) · [Flash-Tool Directory](./flash-tool/)
-
-### Connecting After Flashing:
-* **Default USB Gadget IP:** `10.55.0.1`  
-  Connect the board to your PC via USB. Open `http://10.55.0.1` in any browser for immediate pairing, setup QR code, Moonlight PIN, and Wi-Fi configuration.
-* **Auto-Discovery:** In the desktop USBridge Client, click **`+` ➔ Over USB** to pair with the board automatically.
 
 ---
 
