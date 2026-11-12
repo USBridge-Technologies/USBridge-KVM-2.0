@@ -85,6 +85,17 @@ Watch the complete guide on how to flash the firmware and perform the first boot
 2. **USB-C Cable (OTG Port)**: Connect a USB-C cable from Port 1 (OTG) to a USB port on the target computer for power delivery, peripheral emulation, and virtual storage mounting.
 3. **Network Connection**: Connect via onboard Wi-Fi 6, plug in a USB Ethernet adapter, or pair instantly over the USB cable (`10.55.0.1`) using the desktop app.
 
+### Critical: Capture Dongle Cable Orientation (`[5G]` vs `[480M]`)
+
+The USB 3.0 HDMI capture dongle can negotiate in either of two hardware modes depending on the physical orientation of the USB-C plug:
+
+* **`[5G]` Mode (SuperSpeed USB 3.0 — Target Mode)**: Full 5 Gbps bus bandwidth, uncompressed YUY2/NV12 video, zero JPEG compression artifacts, and minimal input latency (~45 ms).
+* **`[480M]` Mode (High-Speed USB 2.0 — Fallback Mode)**: Compatibility fallback running at 480 Mbps. The stream falls back to lossy MJPEG compression with visible artifacts, color banding, and increased latency.
+
+> [!IMPORTANT]
+> **How to ensure `[5G]` Mode:**  
+> Check the connection badge in the USBridge client interface. If you see **`[480M]`**, simply **unplug the USB-C cable from the KVM Host port, rotate the plug 180°, and plug it back in**. The dongle will immediately renegotiate into high-speed **`[5G]`** mode.
+
 ---
 
 ## Firmware Flashing & Recovery Guide
