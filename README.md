@@ -179,10 +179,6 @@ Manage your hardware KVMs and software agents from a single unified application.
 <summary><b>1. USBridge Nano — Setup & Specifications (Ultra-Compact Pocket KVM)</b></summary>
 <br>
 
-<div align="center">
-<img src="asset/spec-nano.jpg" width="1200" alt="USBridge Nano Technical Specifications and 3-Step Setup">
-</div>
-
 ### Technical Specifications
 | Specification | Details |
 | :--- | :--- |
@@ -210,10 +206,6 @@ Manage your hardware KVMs and software agents from a single unified application.
 <details>
 <summary><b>2. USBridge KVM 2.0 Low — Setup & Specifications (Minimalist Board for Server Racks)</b></summary>
 <br>
-
-<div align="center">
-<img src="asset/spec-low.jpg" width="1200" alt="USBridge KVM 2.0 Low Technical Specifications and Setup">
-</div>
 
 ### Technical Specifications
 | Specification | Details |
@@ -244,10 +236,6 @@ Manage your hardware KVMs and software agents from a single unified application.
 <details>
 <summary><b>3. USBridge KVM 2.0 Standard — Setup & Specifications (Complete Desktop Kit)</b></summary>
 <br>
-
-<div align="center">
-<img src="asset/spec-standard.jpg" width="1200" alt="USBridge KVM 2.0 Standard Technical Specifications and Setup">
-</div>
 
 ### Technical Specifications
 | Specification | Details |
@@ -280,8 +268,19 @@ Manage your hardware KVMs and software agents from a single unified application.
 <summary><b>4. USBridge KVM 2.0 Full — Setup & Specifications (Ultimate Pro Kit + ATX)</b></summary>
 <br>
 
+### Set Up in 4 Steps
+
 <div align="center">
-<img src="asset/spec-full.png" width="1200" alt="USBridge KVM 2.0 Full Technical Specifications, ATX Wiring, and Setup">
+<img src="asset/setup-full.png" width="1200" alt="USBridge KVM 2.0 Full 4-Step Setup Diagram">
+</div>
+
+1. **HDMI:** Connect HDMI cable from target computer GPU/motherboard to the capture dongle.
+2. **USB-C (Port 1):** Connect Port 1 to computer USB port for power, input emulation, and virtual storage.
+3. **ATX Control Board:** Plug the ribbon cable into KVM 8-pin GPIO, then bridge jumper wires to motherboard Front Panel (`PWR_SW`, `RESET`, `P_LED`, `H_LED`).
+4. **Network:** Configure Wi-Fi 6 via the on-device display/joystick or connect directly over USB gadget mode.
+
+<div align="center">
+<img src="asset/specs-full.webp" width="1200" alt="USBridge KVM 2.0 Full Hardware Overview">
 </div>
 
 ### Technical Specifications
@@ -304,12 +303,6 @@ Manage your hardware KVMs and software agents from a single unified application.
 | **Cooling** | Passive, aluminum heatsink |
 | **MicroSD Card** | With USBridge KVM OS, included |
 | **System** | USBridge KVM OS, Btrfs snapshots, over-the-air updates |
-
-### Set Up in 4 Steps
-1. **HDMI:** Connect HDMI cable from target computer GPU/motherboard to the capture dongle.
-2. **USB-C (Port 1):** Connect Port 1 to computer USB port for power, input emulation, and virtual storage.
-3. **ATX Control Board:** Plug the ribbon cable into KVM 8-pin GPIO, then bridge jumper wires to motherboard Front Panel (`PWR_SW`, `RESET`, `P_LED`, `H_LED`).
-4. **Network:** Configure Wi-Fi 6 via the on-device display/joystick or connect directly over USB gadget mode.
 </details>
 
 ---
