@@ -123,21 +123,26 @@ For complete schematics and pinout diagrams, see the **[ATX Board Guide ➔](../
 
 ## Connect & Initial Setup via Front-Panel Screen
 
-Because the **Full Kit** comes fully assembled with the pre-flashed MicroSD card and an interactive 1.3" IPS color screen, initial pairing is executed directly on the device:
+Because the **Full Kit** comes fully assembled with the pre-flashed MicroSD card and an interactive 1.3" IPS color screen, initial network setup and pairing are executed directly on the device:
 
-### 1. First Boot & Network Status
-Power on the unit. USBridge OS boots within seconds, initializes the front-panel display, and automatically connects to your local network via Wi-Fi 6 or wired Ethernet. The screen displays:
-* Current IP address assigned by your router (DHCP)
-* Host link status and stream health
-* Live video resolution and FPS
+### 1. Wi-Fi Configuration
+1. Power on the unit.
+2. Navigate to **`Settings` ➔ `Internet` ➔ `Wi-Fi`**.
+3. Select **`Enable Wi-Fi`**. After a few seconds, the **`Available Networks`** option becomes active.
+4. Select **`Available Networks`** to scan for surrounding wireless networks.
+5. Choose your Wi-Fi network to enter the password using the 3 front-panel physical buttons:
+   * **Button 1**: Digits (`0–9`)
+   * **Button 2**: Uppercase letters (`A–Z`)
+   * **Button 3**: Lowercase letters (`a–z`)
+6. Once the password is typed, **press and hold Button 3** to confirm and connect.
+7. The assigned IP address is immediately displayed under **`Wi-Fi Status`** and on the main status dashboard.
 
 ### 2. Fast Screen Pairing
-1. Use the 5-way joystick to open the on-device menu.
-2. Navigate to **`Settings` ➔ `Authentication` ➔ `Show Master Key`**.
-3. A pairing QR code appears on the 1.3" color screen.
-4. **Mobile App**: Scan the QR code with the USBridge mobile app to pair instantly.
-5. **Desktop Client**: Open the [Desktop Client App](../../../README.md#client-downloads), click **`+` ➔ Manual**, and enter the device IP and master key (or click the pairing link shown on screen).
-6. **Web Client**: Connect directly in any browser via **[web.usbridge.io](https://web.usbridge.io/)**.
+1. Navigate to **`Settings` ➔ `Authentication` ➔ `Show Master Key`**.
+2. A pairing QR code appears on the 1.3" color screen.
+3. **Mobile App**: Scan the QR code with the USBridge mobile app to pair instantly.
+4. **Desktop Client**: Open the [Desktop Client App](../../../README.md#client-downloads), click **`+` ➔ Manual**, and enter the device IP and master key (or click the pairing link shown on screen).
+5. **Web Client**: Connect directly in any browser via **[web.usbridge.io](https://web.usbridge.io/)**.
 
 ### 3. Live Monitor Mode
 The front-panel 1.3" color screen isn't just for status — it features a dedicated **Monitor Mode**. Press the physical button to toggle the display into a miniature local monitor showing the target computer's live video output in real time.
