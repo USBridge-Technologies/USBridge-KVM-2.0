@@ -70,15 +70,16 @@ Whether you deploy the pre-assembled **USBridge KVM 2.0 Full** kit or provision 
 
 ## Immutable Data Snapshots & Storage
 
-USBridge OS features an enterprise-grade **Btrfs storage architecture** with Copy-on-Write (CoW) design and immutable, read-only data snapshots:
+USBridge protects your deployment files, virtual disk images, and backups stored on its **Backup Flash** volume using an immutable **Btrfs storage architecture**:
 
-* **Instantaneous System Snapshots**: Capture point-in-time snapshots of system configurations, installed software, and virtual drive states. If an update or configuration ever fails, instant rollback restores the exact working state.
-* **Ransomware & Crash Isolation**: Sealed snapshots are mounted as strictly read-only Btrfs subvolumes. Even if the target managed server is compromised by ransomware or malicious scripts, it has no network route or credentials to modify, mutate, or erase historical snapshot archives on the KVM.
-* **Automatic Storage Capacity Growth**: Swapping in a larger MicroSD card (e.g. 32 GB, 64 GB, 128 GB+) is completely seamless. On first boot with a newly flashed card, USBridge OS automatically resizes the partition to use 100% of the card capacity for snapshot archives and virtual ISO images.
+* **Pure User Data Snapshots**: Snapshots strictly preserve files, directory trees, disk images (ISOs), and backups placed on the storage volume. They do not alter or touch the appliance OS or running processes.
+* **Immutable Read-Only Protection**: Every captured state is a frozen, read-only Btrfs subvolume. Even if the managed target server suffers a malware attack or ransomware infection, it has no bus-level or network path to alter, overwrite, or delete historical backup data on the KVM.
+* **Point-in-Time File Extraction**: Recovery is performed by mounting any historical snapshot and extracting the exact files or disk images you need without in-place overwrites.
+* **Automatic Storage Capacity Growth**: Upgrading to a larger MicroSD card (e.g., 32 GB, 64 GB, 128 GB+) automatically expands the Btrfs data partition on first boot, giving you maximum space for ISO images and backup archives without losing your license.
 
 **Detailed Storage & Snapshot Guides:**
-* [Snapshots Architecture Overview ➔](../../../docs/content/4-snapshots-state-management/snapshots-overview.md)
-* [Creating & Managing Snapshots ➔](../../../docs/content/4-snapshots-state-management/creating-managing-snapshots.md)
+* [Storage & Media Snapshots Overview ➔](../../../docs/content/4-snapshots-state-management/snapshots-overview.md)
+* [Creating & Managing Data Snapshots ➔](../../../docs/content/4-snapshots-state-management/creating-managing-snapshots.md)
 * [Storage Security & Immutability Rules ➔](../../../docs/content/4-snapshots-state-management/security-storage.md)
 
 ### DIY KVM Setup: Turn Your SBC into an IP-KVM
