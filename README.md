@@ -94,44 +94,44 @@ Turn standard off-the-shelf single-board computers into an enterprise-grade out-
 
 ## Key Features
 
-### Zero Latency Streaming
+### [Zero Latency Streaming](./docs/content/2-kvm-vkm/video-streaming-quality.md)
 * **45 ms latency**: Sub-frame hardware encoding guarantees an imperceptible delay between physical input and visual response.
 * **60 FPS stream**: High-refresh-rate remote rendering for precise cursor control and fluid UI navigation.
 * **Zero dropped frames**: Hardware-level network optimization ensures continuous frame delivery even under high bandwidth loads.
 
-### Access From Anywhere
+### [Access From Anywhere](./docs/content/7-software-access/)
 One client on every device: a computer, a phone or just a browser.
 
 * **Cross-platform native apps** for Windows, macOS, Linux, iOS, and Android.
-* **Browser access**: via [web.usbridge.io](https://web.usbridge.io), or directly from the web client hosted on the KVM itself — fully operational offline.
+* **Browser access**: via [web.usbridge.io](https://web.usbridge.io), or directly from the [web client](./docs/content/7-software-access/web-client.md) hosted on the KVM itself — fully operational offline.
 * **Built-in Tailscale**: reach your machine from anywhere across encrypted peer-to-peer mesh with **no port forwarding** or public IP required.
 * **Unified control**: the same client also runs USBridge software agents for computers without dedicated KVM hardware.
 
-### Virtual Media
+### [Virtual Media](./docs/content/5-remote-disk-image-mounting/mounting-iso-images.md)
 No more USB sticks: an image connects to the computer as a real USB drive.
 
 * **ISO mounting as CD/DVD drive**: install any operating system straight from BIOS/UEFI.
-* **Direct disk booting**: mount **IMG, VDI, VMDK** images and entire host drives as physical bootable storage.
+* **Direct disk booting**: mount **IMG, VDI, VMDK** images and entire host drives as [bootable physical storage](./docs/content/5-remote-disk-image-mounting/booting-from-virtual-disks.md).
 * **Zero pre-upload delay**: streams directly from your computer with high-speed RAM caching for instant boot times.
 * **Write protection**: **Overlay mode** redirects every write operation to a separate temporary layer, keeping your source image pristine and untouched.
 
-### Peripheral Emulation
+### [Peripheral Emulation](./docs/content/2-kvm-vkm/keyboard-mouse-control.md)
 The computer sees ordinary USB devices, with no drivers or setup.
 
 * **Immediate keyboard response**: works from the first second in BIOS, UEFI, and bootloader environments.
 * **Precise mouse control**: absolute 1:1 pointer tracking, relative mode for legacy systems, plus multi-touch and stylus support.
-* **Gamepad passthrough**: emulates standard Xbox 360 controller (**XInput**) or generic DirectInput.
-* **Audio & Network**: host sound forwarded to your side, microphone passthrough to the host, and USB gadget Ethernet when an OS installer lacks native NIC drivers.
+* **Gamepad passthrough**: emulates standard [Xbox 360 controller (XInput)](./docs/content/2-kvm-vkm/gamepad.md) or generic DirectInput.
+* **Audio & Network**: host sound forwarded to your side ([audio redirection](./docs/content/2-kvm-vkm/audio-redirection.md)), microphone passthrough to the host, and USB gadget Ethernet when an OS installer lacks native NIC drivers.
 
-### Storage with Snapshots
+### [Storage with Snapshots](./docs/content/4-snapshots-state-management/snapshots-overview.md)
 Images and files on the microSD inside the KVM are safe from deletion and ransomware.
 
 * **Automated snapshots**: 30 seconds after file write activity stops, the KVM takes a read-only snapshot autonomously.
-* **Hardware-isolated immutability**: even with host `root` privileges, compromised systems cannot alter or erase completed snapshots.
+* **Hardware-isolated immutability**: even with host `root` privileges, compromised systems cannot alter or erase completed snapshots ([security reference](./docs/content/4-snapshots-state-management/security-storage.md)).
 * **Instant rollback**: need an older file? Mount any snapshot directly to copy data; the integrated log shows exact change history.
 * **Standard Btrfs filesystem**: any Linux workstation can read the microSD card directly.
 
-### BIOS as Text Over SSH
+### [BIOS as Text Over SSH](./docs/content/3-bios-in-terminal/technology-overview.md)
 The KVM reads the screen on the device itself and shows the BIOS in a normal terminal.
 
 * **Direct SSH access**: connect via `ssh user@<kvm-ip>` — no browser, no heavy video stream required.
@@ -139,15 +139,15 @@ The KVM reads the screen on the device itself and shows the BIOS in a normal ter
 * **Keyboard navigation**: browse menus using standard arrow keys, Enter, and Esc just like a physical serial console.
 * **100% on-device OCR**: optical character recognition executes entirely on local KVM hardware without cloud dependencies.
 
-### Scripts & AI Agents
+### [Scripts & AI Agents](./docs/content/3-bios-in-terminal/scripting-automation.md)
 Scripts and AI see the screen as text, so BIOS chores can be automated.
 
 * **Starlark scripting (Python syntax)**: write straightforward automation scripts that wait for target screen text and trigger deterministic keystrokes.
-* **Flexible execution**: trigger scripts directly from the client interface, on-device display, or over the REST API.
-* **Built-in MCP server**: integrate external AI models (such as Claude) via the Model Context Protocol to visually inspect screens, navigate BIOS menus, and mount rescue ISOs autonomously.
+* **Flexible execution**: trigger scripts directly from the client interface, on-device display, or over the [REST API](./docs/content/10-developer-api/rest-api-reference.md).
+* **Built-in MCP server**: integrate external AI models (such as Claude) via the [Model Context Protocol (MCP)](./docs/content/3-bios-in-terminal/mcp-ai-agents.md) to visually inspect screens, navigate BIOS menus, and mount rescue ISOs autonomously.
 * **Unattended end-to-end workflows**: automated OS deployments from initial boot-override selection through partition setup to final reboot without human intervention.
 
-### Power Control
+### [Power Control](./docs/content/6-hardware-connectivity/power-management-module-control.md)
 Power on, power off and hard reset, even when the computer is completely frozen.
 
 * **Direct motherboard integration**: dedicated ATX board bridges directly into motherboard Front Panel Power and Reset headers.
