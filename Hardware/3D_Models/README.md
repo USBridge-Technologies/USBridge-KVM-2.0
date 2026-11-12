@@ -7,7 +7,7 @@ This directory contains production STEP CAD files for 3D printing and CNC millin
 ## 1. USBridge KVM 2.0 Enclosure (Standard & Full)
 
 <div align="center">
-<img src="images/kvm20-case.png" width="600" alt="USBridge KVM 2.0 Enclosure 3D Render">
+<img src="images/kvm20-case.png" width="900" alt="USBridge KVM 2.0 Enclosure 3D Render">
 </div>
 
 Designed specifically for the **Radxa Zero 3W** with the **1.3" IPS LCD Flip-HAT status screen** and front-panel controls. The enclosure keeps the SBC processor accessible on the rear side for direct heatsink thermal transfer.
@@ -34,7 +34,7 @@ Designed specifically for the **Radxa Zero 3W** with the **1.3" IPS LCD Flip-HAT
 ## 2. USBridge KVM 2.0 Aluminum Heatsinks (CNC / Milling)
 
 <div align="center">
-<img src="images/kvm20-heatsink.png" width="500" alt="USBridge KVM 2.0 Aluminum Radiator 3D Render">
+<img src="images/kvm20-heatsink.png" width="900" alt="USBridge KVM 2.0 Aluminum Radiator 3D Render">
 </div>
 
 Precision cooling blocks designed for CNC aluminum machining to keep the Rockchip RK3566 SoC thermally stable under heavy 1080p 60 FPS video capture and hardware encoding loads.
@@ -53,7 +53,7 @@ Precision cooling blocks designed for CNC aluminum machining to keep the Rockchi
 ## 3. USBridge Nano Enclosure
 
 <div align="center">
-<img src="images/nanokvm-case.png" width="500" alt="USBridge Nano Enclosure 3D Render">
+<img src="images/nanokvm-case.png" width="900" alt="USBridge Nano Enclosure 3D Render">
 </div>
 
 Ultra-compact protective housing custom-engineered for the **Sipeed NanoKVM** (SOPHGO SG2002 RISC-V board). Provides precision cutouts for the integrated HDMI capture port, 100 Mbit RJ45 Ethernet, and USB-C gadget interface.
