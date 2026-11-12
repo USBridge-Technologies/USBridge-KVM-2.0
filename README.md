@@ -368,7 +368,7 @@ Manage your hardware KVMs and software agents from a single unified application.
 | :--- | :--- | :--- |
 | **Screen Module (Flip-HAT 1.3" LCD)** | 240×240 IPS status screen designed specifically for Zero-factor boards. Mounts on the back of the PCB so the CPU remains open for large heatsinks and active cooling. | [LCD Flip-HAT Specs](./USBridge-Flip-HAT-1.3-LCD/) |
 | **ATX Power Control Board** | Galvanically isolated (up to 3.75 kV) front-panel adapter board for Power, Reset, Power LED, and HDD LED headers. | [ATX Board Guide](./docs/content/6-hardware-connectivity/power-management-module-control.md) |
-| **HDMI Capture Dongle (1080p @ 60 FPS)** | High-throughput UVC video capture card optimized for USB 3.0 `[5G]` mode and sub-frame hardware encoding. | Included with Standard & Full kits |
+| **HDMI Capture Dongle (1080p @ 60 FPS)** | High-throughput UVC video capture card optimized for USB 3.0 `[5G]` mode and sub-frame hardware encoding. | [Buy Dongle ➔](https://www.usbridge.io/hardware-agent/#buy-capture-card) · Included with Standard & Full kits |
 
 ---
 
