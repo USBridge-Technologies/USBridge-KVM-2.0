@@ -49,7 +49,7 @@ Whether you deploy the pre-built **USBridge Nano** or install our firmware on yo
 * **Gamepad & Peripheral Emulation**: USB HID keyboard, precision mouse, and virtual gamepad/controller passthrough for remote gaming, simulation, or specialized control.
 * **Bi-Directional Stereo Audio & Mic**: Real-time audio streaming from the target machine and microphone passthrough in both directions.
 * **Full Out-of-Band Control**: Direct BIOS/UEFI control, virtual ISO drive mounting for bare-metal OS installs, and seamless pairing.
-* **Enterprise Security**: End-to-end TLS encryption, device master key authentication, physical presence verification for SSH, and over-the-air (OTA) updates.
+* **Enterprise Security**: Cryptographic per-request API signing, encrypted DTLS-SRTP media transport, physical OLED presence verification for SSH, and seamless OTA updates.
 
 ### Already Own a Sipeed NanoKVM? Upgrade It!
 
