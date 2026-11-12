@@ -398,6 +398,38 @@ Watch the complete guide on how to flash the firmware and perform the first boot
 
 ---
 
+## Unified Ecosystem: [USBridge-Remote](https://github.com/USBridge-Technologies/USBridge-Remote)
+
+Control your entire infrastructure from a single point using **[USBridge-Remote](https://github.com/USBridge-Technologies/USBridge-Remote)** — our dedicated cross-platform agent application. It enables a hybrid access approach within a single interface, combining hardware and software-level management:
+
+* **Hardware Level (Layer 0):** Add USBridge-KVM devices for direct BIOS access, virtual media mounting, and bare-metal recovery of unresponsive machines.
+* **Software Level (OS-level):** Deploy this lightweight software agent inside an already booted operating system for high-performance desktop management without KVM hardware dependency.
+
+<div align="center">
+<img src="asset/agent-streamers.png" width="1200" alt="USBridge Agent with multiple streaming backends: USBridge Streamer, Sunshine, Punktfunk, and Vibepollo">
+</div>
+
+### Multi-Protocol & Streamer Engine Support
+The USBridge Agent features a modular streaming architecture allowing you to switch between streaming engines on the fly based on your latency, hardware encoder, and workflow requirements:
+* **USBridge Streamer (Free & Pro)**: Our proprietary ultra-low latency engine optimized for NVENC/VAAPI/Apple Silicon hardware encoding, virtual displays, seamless USB device passthrough, and WebRTC browser streaming.
+* **Sunshine**: Native support for the popular open-source GameStream host implementation.
+* **Punktfunk**: High-speed, lightweight open-source remote access protocol.
+* **Vibepollo**: Optimized protocol for specialized streaming pipelines and low-overhead control.
+
+### Agent Download Matrix
+
+The agent runs as a background service on your target OS (servers, remote workstations, or headless nodes) to stream the desktop and execute system-level commands.
+
+| Platform | Downloads | Store / Package Manager |
+| :--- | :--- | :--- |
+| **Windows** (x86_64) | [Setup (.exe)](https://github.com/USBridge-Technologies/USBridge-Remote/releases/latest/download/USBridgeAgent-Windows-x86_64-Setup.exe)<br>[Portable (.zip)](https://github.com/USBridge-Technologies/USBridge-Remote/releases/latest/download/USBridgeAgent-Windows-x86_64.zip) | Windows Service background autostart |
+| **macOS** (Apple Silicon) | [Disk image (.dmg)](https://github.com/USBridge-Technologies/USBridge-Remote/releases/latest/download/USBridgeAgent-macOS-arm64.dmg) | macOS background daemon |
+| **Linux** (x86_64) | [Debian / Ubuntu (.deb)](https://github.com/USBridge-Technologies/USBridge-Remote/releases/latest/download/USBridgeAgent-Linux-x86_64.deb)<br>[Fedora / RHEL (.rpm)](https://github.com/USBridge-Technologies/USBridge-Remote/releases/latest/download/USBridgeAgent-Linux-x86_64.rpm)<br>[Arch (.pkg.tar.zst)](https://github.com/USBridge-Technologies/USBridge-Remote/releases/latest/download/USBridgeAgent-Linux-x86_64.pkg.tar.zst)<br>[AppImage (portable)](https://github.com/USBridge-Technologies/USBridge-Remote/releases/latest/download/USBridgeAgent-Linux-x86_64.AppImage) | Systemd service |
+
+More on the Agent: [USBridge-Remote Repository](https://github.com/USBridge-Technologies/USBridge-Remote#agent).
+
+---
+
 ## Documentation & Hardware Reference
 
 Complete technical guides are located in the [`docs/`](./docs/README.md) directory:
