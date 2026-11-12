@@ -43,7 +43,9 @@ The flagship, all-in-one IP-KVM appliance. Includes the complete KVM 2.0 desktop
 2. **ATX Power Control Board**: Dedicated adapter board with 8-pin ribbon cable.
 3. **DuPont Jumper Wire Set**: Female-to-female jumper wires to bridge to motherboard Front Panel headers.
 4. **USB 3.0 HDMI Video Capture Dongle**: High-throughput 1080p @ 60 FPS UVC capture stick.
-5. **Pre-flashed MicroSD Card**: Pre-installed with USBridge OS and Lifetime License.
+5. **USB-C Data & Power Cables**: High-speed USB-C cables for KVM Host data/HID transmission and dedicated unit power.
+6. **USB-C to USB-A Adapter**: Allows connecting host data and capture dongles to standard USB-A ports on target servers.
+7. **Pre-flashed MicroSD Card**: Pre-installed with USBridge OS and Lifetime License.
 
 ### Software License & Billing Management
 
@@ -130,6 +132,10 @@ The USB 3.0 HDMI capture dongle can negotiate in either of two hardware modes de
 ## ATX Power Control Wiring
 
 The included **ATX Power Control Board** provides physical isolation up to 3.75 kV between the KVM and the target motherboard. Connect the DuPont wires to your motherboard's front-panel header pins:
+
+<div align="center">
+<img src="images/atx-power-wiring-diagram.png" width="750" alt="ATX Power Control Wiring Scheme">
+</div>
 
 | Signal | Description | Behavior |
 | :--- | :--- | :--- |
