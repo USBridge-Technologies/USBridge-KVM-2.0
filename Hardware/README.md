@@ -85,8 +85,8 @@ Modular components and interface boards to expand your existing USBridge setup.
       <a href="./Accessories/Screen-Module/">
         <img src="./images/screen-module-1x1.jpg" width="100%" alt="Screen Module">
       </a>
-      <h3><a href="./Accessories/Screen-Module/">Screen Module (Flip-HAT 1.3" LCD)</a></h3>
-      <p><strong>$22</strong> &nbsp;·&nbsp; <a href="https://www.usbridge.io/hardware-agent/#buy-screen-module"><strong>Buy Now ➔</strong></a></p>
+      <h3><a href="./Accessories/Screen-Module/">USBridge Screen Module (1.3" IPS LCD)</a></h3>
+      <p><strong>$11.99</strong> &nbsp;·&nbsp; <a href="https://www.usbridge.io/hardware-agent/#buy-screen-module"><strong>Buy Now ➔</strong></a></p>
       <p>240×240 IPS color display with 5-way navigation joystick. Mirrored rear-mount design keeping the SBC processor exposed for massive heatsink cooling.</p>
       <ul>
         <li><strong>Compatibility:</strong> Radxa Zero 3W, Radxa Cubie A7Z</li>
