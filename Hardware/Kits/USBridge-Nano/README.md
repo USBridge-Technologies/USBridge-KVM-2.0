@@ -24,6 +24,12 @@ Turn your existing off-the-shelf **Sipeed NanoKVM** into an enterprise-grade out
 * [NanoKVM Reflashing Guide ➔](../../../docs/content/6-hardware-connectivity/nanokvm.md)
 * [Step-by-Step Recovery & Flashing Guide ➔](../../../docs/content/9-updates-changelog/recovery-flashing-guide.md)
 
+### Video Guide: Upgrading Sipeed NanoKVM to USBridge OS
+
+Watch the step-by-step tutorial on flashing USBridge firmware and performing the initial setup:
+
+[![Upgrade Sipeed NanoKVM with USBridge Firmware](https://img.youtube.com/vi/q8rX7o-Svqs/maxresdefault.jpg)](https://youtu.be/q8rX7o-Svqs)
+
 ---
 
 ## After Flashing: Connect & Initial Setup
@@ -55,13 +61,27 @@ The assigned IP address is displayed:
 
 ### Ways to Connect (Pick One)
 
-1. **Recommended — Desktop App**: Click **`+`** ➔ **Over USB**. The app automatically detects the KVM over the cable and pairs by itself.
-2. **Phone or Tablet**: Open `http://10.55.0.1` on the computer the KVM is plugged into and scan the displayed QR code with the USBridge mobile app.
-3. **Front-Panel OLED Screen**: Navigate to `Settings` ➔ `Authentication` ➔ `Show Master Key`, and scan the QR code.
-4. **Headless Provisioning (Automated Deployment)**: Place a `usbridge_provision.json` file onto the MicroSD card boot partition before first boot. You choose the key and write it into the file; no QR code scanning required. See [Headless Provisioning Guide](../../../docs/content/1-getting-started/headless-provisioning.md).
-5. **In-Browser Web Client**: No client app installed? The setup page also opens the web client directly in your browser. *(The native desktop app is recommended for best video performance and hardware acceleration).*
+1. **Recommended — [Desktop Client App](../../../README.md#client-downloads)**: Click **`+`** ➔ **Over USB**. The app automatically detects the KVM over the cable and pairs by itself.
+2. **Phone or Tablet**: Open `http://10.55.0.1` on the computer the KVM is plugged into and scan the displayed pairing QR code with the USBridge mobile app.
+3. **Headless Provisioning (Automated Deployment)**: Place a `usbridge_provision.json` file onto the MicroSD card boot partition before first boot. You choose the key and write it into the file; no QR code scanning required. See [Headless Provisioning Guide](../../../docs/content/1-getting-started/headless-provisioning.md).
+4. **[Web Client in Browser](https://web.usbridge.io/)**: No desktop app installed? Connect instantly in any browser via **[web.usbridge.io](https://web.usbridge.io/)** or click the Web Client link directly inside the `http://10.55.0.1` setup page. *(The [native desktop app](../../../README.md#client-downloads) is recommended for best video performance and hardware acceleration).*
 
 For complete step-by-step setup details, see the [Full Initial Setup Documentation](../../../docs/content/1-getting-started/initial-setup.md).
+
+---
+
+## Enabling Secure SSH Access
+
+For strict security, **SSH access is disabled by default** in USBridge OS to protect the appliance against unauthorized network access.
+
+To enable SSH, a **Physical Presence Verification Code** is required:
+
+1. When you request to enable SSH in the web management interface (`http://10.55.0.1` or settings), a **one-time numeric security code** is generated and displayed on the Nano's built-in 128×64 OLED screen.
+2. Enter this code into the web interface prompt to verify physical ownership.
+3. Once verified, the SSH service starts securely on standard port `22`.
+
+> [!IMPORTANT]
+> This physical confirmation ensures that remote network attackers cannot enable root/shell access without physical possession of the device.
 
 ---
 
@@ -80,6 +100,7 @@ For complete step-by-step setup details, see the [Full Initial Setup Documentati
 | **Audio** | Audio output and microphone in both directions |
 | **Network** | 100 Mbit Ethernet port (RJ45) + USB virtual Ethernet (`10.55.0.1`) |
 | **Status Screen** | Built-in 128×64 monochrome OLED |
+| **Security** | Physical OLED verification code for SSH enablement |
 | **Power Input** | USB-C |
 | **Enclosure Dimensions** | 49 × 41 × 41 mm |
 | **Operating System** | USBridge OS on pre-flashed MicroSD card (Lifetime License included) |
