@@ -99,8 +99,8 @@ Modular components and interface boards to expand your existing USBridge setup.
         <img src="./images/power-control-board-1x1.jpg" width="100%" alt="Power Control Board">
       </a>
       <h3><a href="./Accessories/ATX-Board/">Power Control Board (ATX)</a></h3>
-      <p><strong>$18</strong> &nbsp;·&nbsp; <a href="https://www.usbridge.io/hardware-agent/#buy-power-board"><strong>Buy Now ➔</strong></a></p>
-      <p>Galvanically isolated (up to 3.75 kV) motherboard front-panel adapter board for hardware-level Power, Reset, and LED telemetry.</p>
+      <p><strong>$14.50</strong> &nbsp;·&nbsp; <a href="https://www.usbridge.io/hardware-agent/#buy-power-board"><strong>Buy Now ➔</strong></a></p>
+      <p>Galvanically isolated (up to 3.75 kV) motherboard front-panel adapter board for hardware-level Power, Reset, and LED telemetry. Shipped in a custom protective case.</p>
       <ul>
         <li><strong>Safety:</strong> Optical galvanic isolation up to 3.75 kV</li>
         <li><strong>Headers:</strong> PWR SW, RESET SW, PWR LED, HDD LED</li>
@@ -112,7 +112,7 @@ Modular components and interface boards to expand your existing USBridge setup.
         <img src="./images/capture-dongle-1x1.jpg" width="100%" alt="HDMI Capture Dongle">
       </a>
       <h3><a href="./Accessories/Capture-Dongle/">HDMI Capture Dongle</a></h3>
-      <p><strong>$15</strong> &nbsp;·&nbsp; <a href="https://www.usbridge.io/hardware-agent/#buy-capture-card"><strong>Buy Now ➔</strong></a></p>
+      <p><strong>$9</strong> &nbsp;·&nbsp; <a href="https://www.usbridge.io/hardware-agent/#buy-capture-card"><strong>Buy Now ➔</strong></a></p>
       <p>High-throughput 1080p @ 60 FPS UVC video capture adapter optimized for USB 3.0 5 Gbps bus operation and real-time sub-frame hardware encoding.</p>
       <ul>
         <li><strong>Resolution:</strong> 1080p @ 60 FPS</li>

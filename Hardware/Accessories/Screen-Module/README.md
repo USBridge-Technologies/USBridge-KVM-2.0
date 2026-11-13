@@ -83,7 +83,7 @@ The Screen Module is designed to work seamlessly with the **[USBridge ATX Power 
 * **3.75 kV Galvanic Isolation**: All signals remain physically isolated via the ATX board's onboard optocouplers, protecting both the KVM and the display circuitry against ground loops and electrical transients.
 
 > [!TIP]
-> Need bare-metal server power control? Pair this module with the **[ATX Power Control Board ($18) ➔](../ATX-Board/)**.
+> Need bare-metal server power control? Pair this module with the **[ATX Power Control Board ($14.50) ➔](../ATX-Board/)**.
 
 ---
 
@@ -120,8 +120,8 @@ The hardware design is completely open for fabrication, modification, and custom
 | **USBridge KVM 2.0 Low** | SBC-based | Budget-friendly, headless 1080p @ 60 FPS | **$79** | [View Guide ➔](../../Kits/USBridge-KVM-2.0-Low/) |
 | **USBridge KVM 2.0 Standard** | Desktop Unit | 1.3" IPS screen, joystick, 3 buttons, case | **$109** | [View Guide ➔](../../Kits/USBridge-KVM-2.0-Standard/) |
 | **USBridge KVM 2.0 Full** | Flagship Unit | Standard Kit + included ATX Power Control | **$139** | [View Guide ➔](../../Kits/USBridge-KVM-2.0-Full/) |
-| **ATX Power Control Board** | Add-on Module | 3.75 kV isolation, Power/Reset & telemetry | **$18** | [View Guide ➔](../ATX-Board/) |
-| **USB 3.0 Capture Dongle** | Add-on Dongle | 1080p @ 60 FPS, SuperSpeed `[5G]` mode | **$15** | [View Guide ➔](../Capture-Dongle/) |
+| **ATX Power Control Board** | Add-on Module | 3.75 kV isolation, Power/Reset & telemetry | **$14.50** | [View Guide ➔](../ATX-Board/) |
+| **USB 3.0 Capture Dongle** | Add-on Dongle | 1080p @ 60 FPS, SuperSpeed `[5G]` mode | **$9** | [View Guide ➔](../Capture-Dongle/) |
 
 <br>
 
