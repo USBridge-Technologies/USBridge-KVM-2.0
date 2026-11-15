@@ -3,11 +3,12 @@
 **USBridge** is a hardware & firmware ecosystem for out-of-band server management — delivering **1080p 60 FPS** Moonlight streaming, BIOS-in-Terminal (SSH + OCR), virtual media mounting, and immutable Btrfs snapshots with zero software agents on the target machine.
 
 [![Website](https://img.shields.io/badge/Website-usbridge.io-c8f36e?style=flat-square&labelColor=111916)](https://usbridge.io)
+[![Hardware](https://img.shields.io/badge/Hardware-Hardware--Agent-c8f36e?style=flat-square&labelColor=111916)](https://www.usbridge.io/hardware-agent/)
 [![Firmware Hub](https://img.shields.io/badge/Firmware-Download_%26_Flash-c8f36e?style=flat-square&labelColor=111916)](https://usbridge.io/firmware)
 [![Discord](https://img.shields.io/badge/Community-Discord-5865F2?style=flat-square&labelColor=111916)](https://discord.gg/XwNpCrGfsB)
 
 > **Supported Hardware:**
-> * **Ready-to-use Appliances:** [USBridge KVM 2.0](../Hardware/) ([Low](../Hardware/Kits/USBridge-KVM-2.0-Low/) / [Standard](../Hardware/Kits/USBridge-KVM-2.0-Standard/) / [Full](../Hardware/Kits/USBridge-KVM-2.0-Full/)), [USBridge Nano](../Hardware/Kits/USBridge-Nano/)
+> * **Ready-to-use Appliances:** [USBridge KVM 2.0](../Hardware/) ([Low](../Hardware/Kits/USBridge-KVM-2.0-Low/) / [Standard](../Hardware/Kits/USBridge-KVM-2.0-Standard/) / [Full](../Hardware/Kits/USBridge-KVM-2.0-Full/)), [USBridge Nano](../Hardware/Kits/USBridge-Nano/) • [Buy Hardware ➔](https://www.usbridge.io/hardware-agent/)
 > * **DIY Boards (USBridge Firmware):** [Sipeed NanoKVM (SG2002)](./content/6-hardware-connectivity/nanokvm.md), [Radxa Zero 3W / Cubie A7Z](./content/1-getting-started/quick-start-radxa.md)
 
 Use the categorized hub below to jump to hardware setup, streaming engine configuration, automation scripting, or REST API docs.
@@ -91,6 +92,7 @@ High-speed bare-metal OS provisioning and diskless booting via virtual block dev
 Physical pinouts, schematic internals, power logic, and cooling.
 <ul>
 <li><a href="../Hardware/">Hardware Catalog & Models Overview</a></li>
+<li><a href="https://www.usbridge.io/hardware-agent/">Official Hardware Store ➔</a></li>
 <li><a href="./content/6-hardware-connectivity/board-comparison.md">Board Comparison: NanoKVM vs Zero 3W vs Cubie A7Z</a></li>
 <li><a href="./content/6-hardware-connectivity/nanokvm.md">Sipeed NanoKVM Reference</a></li>
 <li><a href="./content/6-hardware-connectivity/ports-connectors-reference.md">Ports & Connectors Reference</a></li>
