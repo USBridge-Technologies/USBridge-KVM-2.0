@@ -45,7 +45,7 @@ Every edition runs the same unified USBridge KVM OS with regular OTA updates, RE
 <img src="asset/kvm-lineup-v2.png" width="1400" alt="USBridge KVM Lineup: Nano, Low, Standard, and Full">
 </div>
 
-| Feature | **USBridge Nano** | **USBridge KVM 2.0 Low** | **USBridge KVM 2.0 Standard** | **USBridge KVM 2.0 Full** |
+| Feature | [**USBridge Nano**](./Hardware/Kits/USBridge-Nano/) | [**USBridge KVM 2.0 Low**](./Hardware/Kits/USBridge-KVM-2.0-Low/) | [**USBridge KVM 2.0 Standard**](./Hardware/Kits/USBridge-KVM-2.0-Standard/) | [**USBridge KVM 2.0 Full**](./Hardware/Kits/USBridge-KVM-2.0-Full/) |
 | :--- | :---: | :---: | :---: | :---: |
 | **Price** | **$89** | **$99** | **$117** | **$139** |
 | **Target Use** | Ultra-compact pocket KVM | Minimalist board for server racks | Complete ready-to-run desktop kit | Ultimate Pro kit with ATX & screen |
