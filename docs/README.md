@@ -95,7 +95,7 @@ General troubleshooting routines and emergency system recoveries.
 </td>
 </tr>
 <tr>
-<td valign="top">
+<td valign="top" width="50%">
 <div align="center"><img src="./assets/api.png" width="80" alt="Developer & API Reference" /><br><strong>Developer & API Reference</strong></div><br>
 Direct HTTP access for custom integrations, scripts, and AI agents.
 <ul>
@@ -105,13 +105,15 @@ Direct HTTP access for custom integrations, scripts, and AI agents.
 <li><a href="./content/3-bios-in-terminal/mcp-ai-agents.md">AI Agent Integration (MCP)</a></li>
 </ul>
 </td>
+<td valign="top" width="50%">
+<div align="center"><img src="./assets/updates-changelog.png" width="80" alt="Updates, Blueprints & Changelogs" /><br><strong>Updates, Blueprints & Changelogs</strong></div><br>
+Firmware releases, recovery flashing guides, and hardware CAD files.
+<ul>
+<li><a href="./content/9-updates-changelog/firmware-update-guide.md">Firmware Update Guide</a></li>
+<li><a href="./content/9-updates-changelog/recovery-flashing-guide.md">USB Recovery Flashing Guide</a></li>
+<li><a href="./content/9-updates-changelog/3d-models-pcb-files.md">3D Models & PCB Files</a></li>
+</ul>
+</td>
 </tr>
 </tbody>
 </table>
-
----
-
-### 🔄 Updates, Blueprints & Changelogs
-* 📦 [Firmware Update Guide](./content/9-updates-changelog/firmware-update-guide.md) — How to check for, install, and commit routine network OTA updates.
-* 🔌 [USB Recovery Flashing Guide](./content/9-updates-changelog/recovery-flashing-guide.md) — Step-by-step recovery flashing for every supported board (Radxa Zero 3W, Radxa Cubie A7Z, Sipeed NanoKVM) (using our custom [flash-tool](../flash-tool/)).
-* 📐 [3D Models & PCB Files](./content/9-updates-changelog/3d-models-pcb-files.md) — CAD drawings, casing files, and schematic print layouts.
