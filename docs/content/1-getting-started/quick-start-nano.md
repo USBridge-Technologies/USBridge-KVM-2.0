@@ -41,7 +41,7 @@ The device boots automatically from the pre-flashed MicroSD card. Within seconds
 
 ## 4. Connect & Initial Setup
 
-Once your USBridge Nano is powered and cabled up, connect to it using one of the quick pairing methods below:
+Once your USBridge Nano is powered and cabled up, connect to it using one of the quick pairing methods below. For comprehensive pairing details, master key mechanics, and client walkthroughs, refer to the **[Initial Client Setup Guide](./initial-setup.md)**.
 
 ### Method A: On Your Local Network (Ethernet)
 
@@ -62,6 +62,9 @@ Open **`http://10.55.0.1`** in any web browser to access the onboard setup page:
 * Direct connection link and device master key
 * Moonlight PIN authorization
 * Network configuration settings
+
+> [!TIP]
+> For the complete walkthrough on pairing, browser configuration, and Moonlight setup, see the **[Initial Setup & Client Pairing Guide](./initial-setup.md)**.
 
 ---
 
