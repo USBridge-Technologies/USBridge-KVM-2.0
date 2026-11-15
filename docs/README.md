@@ -1,14 +1,14 @@
 # USBridge Technical Documentation
 
-**USBridge** is an open hardware & firmware ecosystem for out-of-band server management — delivering **1080p 60 FPS** Moonlight streaming, BIOS-in-Terminal (SSH + OCR), virtual media mounting, and immutable Btrfs snapshots with zero software agents on the target machine.
+**USBridge** is a hardware & firmware ecosystem for out-of-band server management — delivering **1080p 60 FPS** Moonlight streaming, BIOS-in-Terminal (SSH + OCR), virtual media mounting, and immutable Btrfs snapshots with zero software agents on the target machine.
 
 [![Website](https://img.shields.io/badge/Website-usbridge.io-c8f36e?style=flat-square&labelColor=111916)](https://usbridge.io)
 [![Firmware Hub](https://img.shields.io/badge/Firmware-Download_%26_Flash-c8f36e?style=flat-square&labelColor=111916)](https://usbridge.io/firmware)
 [![Discord](https://img.shields.io/badge/Community-Discord-5865F2?style=flat-square&labelColor=111916)](https://discord.gg/XwNpCrGfsB)
 
 > **Supported Hardware:**
-> * **Ready-to-use Appliances:** USBridge KVM 2.0 (Low / Standard / Full), USBridge Nano
-> * **DIY Boards (USBridge Firmware):** Sipeed NanoKVM (SG2002), Radxa Zero 3W / Cubie A7Z
+> * **Ready-to-use Appliances:** [USBridge KVM 2.0](../Hardware/) ([Low](../Hardware/Kits/USBridge-KVM-2.0-Low/) / [Standard](../Hardware/Kits/USBridge-KVM-2.0-Standard/) / [Full](../Hardware/Kits/USBridge-KVM-2.0-Full/)), [USBridge Nano](../Hardware/Kits/USBridge-Nano/)
+> * **DIY Boards (USBridge Firmware):** [Sipeed NanoKVM (SG2002)](../Hardware/Kits/USBridge-Nano/#already-own-a-sipeed-nanokvm-upgrade-it), [Radxa Zero 3W / Cubie A7Z](../Hardware/Kits/USBridge-KVM-2.0-Low/#diy-kvm-setup-turn-your-sbc-into-an-ip-kvm)
 
 Use the categorized hub below to jump to hardware setup, streaming engine configuration, automation scripting, or REST API docs.
 
