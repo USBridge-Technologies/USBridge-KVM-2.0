@@ -1,39 +1,49 @@
-# Quick Start Guide: USBridge Nano & Sipeed NanoKVM
+# Quick Start: USBridge Nano
 
-> [!NOTE]
-> This guide covers the ultra-compact **USBridge Nano** and reflashed **Sipeed NanoKVM** (SG2002).  
-> * Using **USBridge KVM 2.0** (Low / Standard / Full)? See the [KVM 2.0 Quick Start Guide](./quick-start.md).  
-> * Using DIY single-board computers (**Radxa Zero 3W / Cubie A7Z**)? See the [Radxa DIY Quick Start Guide](./quick-start-radxa.md).
+<div align="center">
+<img src="../../assets/specs-nano.webp" width="700" alt="USBridge Nano Appliance Overview">
+</div>
 
-Get started with your **USBridge Nano** or reflash an off-the-shelf **Sipeed NanoKVM** with USBridge OS.
-
----
-
-## 1. Physical Connections & Setup
-
-* **HDMI IN**: Connect to the HDMI output of the target server or host machine.
-* **USB-C (Power / Auxiliary)**: Connect to a 5V/2A power supply or secondary USB port.
-* **USB-C (Host HID)**: Connect to a USB port on the target server for keyboard, mouse, and virtual media block emulation.
-* **Ethernet (RJ45)**: Connect to your local network router or switch (DHCP enabled).
-* **OLED Screen**: Displays real-time device IP, streaming FPS/state, and SSH authorization codes.
+This guide covers the hardware setup and initial connection for the **USBridge Nano** appliance.
 
 ---
 
-## 2. Firmware Flashing (If using Sipeed NanoKVM)
+## 1. What's in the Box
 
-If you purchased an off-the-shelf Sipeed NanoKVM, install **USBridge OS** onto a MicroSD card:
-
-1. Download the latest USBridge Nano OS image from the [Firmware Hub](https://usbridge.io/firmware).
-2. Flash the image using [BalenaEtcher](https://etcher.balena.io/) or our [USB Recovery Flashing Guide](../9-updates-changelog/recovery-flashing-guide.md).
-3. Insert the MicroSD card into the Nano slot and power on the unit.
-4. The onboard OLED screen will initialize and display the assigned DHCP IP address within seconds.
+* **USBridge Nano unit**: Fully assembled in a custom protective metal enclosure with an integrated OLED status screen and physical control buttons.
+* **Pre-installed MicroSD card**: High-endurance card pre-flashed with USBridge OS.
+* **Full lifetime USBridge OS license**: Included with the device (no subscriptions, recurring fees, or renewal charges).
 
 ---
 
-## 3. Initial Client Pairing
+## 2. Physical Ports & Connectors
+
+* **HDMI IN**: Connects to the HDMI video output of the target server or host machine.
+* **USB-C (Host HID & Power)**: Single multi-function USB-C port that connects to an available USB port on the target server. It simultaneously powers the Nano and provides hardware-level keyboard, mouse, and virtual media block emulation.
+* **Ethernet (RJ45)**: 100 Mbit Ethernet interface connecting to your local network router or switch (DHCP enabled).
+* **OLED Screen (128×64)**: Real-time display showing the assigned device IP address, network connection state, streaming FPS, and one-time physical presence codes for secure SSH access.
+
+---
+
+## 3. Hardware Setup & First Connection
+
+<div align="center">
+<img src="../../assets/nano-connection-scheme.png" width="750" alt="USBridge Nano Hardware Setup and Connection Scheme">
+</div>
+
+1. **Connect HDMI**: Run an HDMI cable from the target server into the Nano's **HDMI IN** port.
+2. **Connect HID & Power**: Plug the USB-C cable from the Nano's USB-C port into a USB port on the target server (provides power and keyboard/mouse emulation). Alternatively, you can use an external 5V/2A power supply on this port.
+3. **Connect Network**: Plug an Ethernet cable into the **RJ45** port connected to your local network.
+4. **Boot Up**: The device boots automatically from the pre-flashed MicroSD card. Within seconds, the onboard OLED screen will display the assigned DHCP IP address.
+
+---
+
+## 4. Initial Client Pairing
 
 1. Open the [Desktop Client App](../7-software-access/desktop-app.md) or [Web Client](https://web.usbridge.io).
-2. Discover the Nano device automatically on your local network or enter the IP displayed on the OLED screen.
+2. Discover the Nano device automatically on your local network, or manually enter the IP address displayed on the OLED screen.
 3. Verify your secure session using the physical presence code shown on the OLED display.
 
-* 👉 For full hardware details, enclosure CAD, and specs, see the **[USBridge Nano Hardware Guide](../../Hardware/Kits/USBridge-Nano/)**.
+---
+
+* 👉 For full hardware specifications, technical pinouts, and 3D enclosure CAD files, see the **[USBridge Nano Hardware Guide](../../Hardware/Kits/USBridge-Nano/)**.
