@@ -1,6 +1,16 @@
-# USBridge-KVM 2.0 Technical Documentation
+# USBridge Technical Documentation
 
-USBridge-KVM 2.0 is a hardware **IP-KVM** for out-of-band server access — BIOS-level remote control, ultra-low-latency Moonlight video streaming, virtual media mounting, and ransomware-resistant immutable Btrfs snapshots, all with no agent on the managed machine. This is the full technical documentation: setup, the KVM/video pipeline, [BIOS-in-Terminal](./content/3-bios-in-terminal/technology-overview.md) (SSH + OCR access to real BIOS/UEFI screens), [Starlark scripting and MCP AI-agent integration](./content/3-bios-in-terminal/mcp-ai-agents.md), snapshot/backup storage, hardware reference, and the [REST API](./content/10-developer-api/rest-api-reference.md). Use the categorized hub below to get to any of it.
+**USBridge** is an open hardware & firmware ecosystem for out-of-band server management — delivering **1080p 60 FPS** Moonlight streaming, BIOS-in-Terminal (SSH + OCR), virtual media mounting, and immutable Btrfs snapshots with zero software agents on the target machine.
+
+[![Website](https://img.shields.io/badge/Website-usbridge.io-c8f36e?style=flat-square&labelColor=111916)](https://usbridge.io)
+[![Firmware Hub](https://img.shields.io/badge/Firmware-Download_%26_Flash-c8f36e?style=flat-square&labelColor=111916)](https://usbridge.io/firmware)
+[![Discord](https://img.shields.io/badge/Community-Discord-5865F2?style=flat-square&labelColor=111916)](https://discord.gg/XwNpCrGfsB)
+
+> **Supported Hardware:**
+> * **Ready-to-use Appliances:** USBridge KVM 2.0 (Low / Standard / Full), USBridge Nano
+> * **DIY Boards (USBridge Firmware):** Sipeed NanoKVM (SG2002), Radxa Zero 3W / Cubie A7Z
+
+Use the categorized hub below to jump to hardware setup, streaming engine configuration, automation scripting, or REST API docs.
 
 ---
 
@@ -11,7 +21,13 @@ USBridge-KVM 2.0 is a hardware **IP-KVM** for out-of-band server access — BIOS
 <div align="center"><img src="./assets/getting-started.png" width="80" alt="Getting Started" /><br><strong>Getting Started</strong></div><br>
 Unbox, wire up, and initialize your physical KVM appliance.
 <ul>
-<li><a href="./content/1-getting-started/quick-start.md">Quick Start Guide</a></li>
+<li><strong>Quick Start Guides:</strong>
+  <ul>
+    <li><a href="./content/1-getting-started/quick-start.md">USBridge KVM 2.0</a></li>
+    <li><a href="./content/1-getting-started/quick-start-nano.md">USBridge Nano & Sipeed NanoKVM</a></li>
+    <li><a href="./content/1-getting-started/quick-start-radxa.md">Radxa Boards (DIY)</a></li>
+  </ul>
+</li>
 <li><a href="./content/1-getting-started/whats-in-the-box.md">What’s in the Box</a></li>
 <li><a href="./content/1-getting-started/initial-setup.md">Initial Client Setup</a></li>
 <li><a href="./content/1-getting-started/headless-provisioning.md">Headless & Bulk Provisioning (JSON)</a></li>
@@ -66,12 +82,13 @@ High-speed bare-metal OS provisioning and diskless booting via virtual block dev
 <div align="center"><img src="./assets/hardware.png" width="80" alt="Hardware & Power" /><br><strong>Hardware & Power</strong></div><br>
 Physical pinouts, schematic internals, power logic, and cooling.
 <ul>
+<li><a href="../Hardware/">Hardware Catalog & Models Overview</a></li>
+<li><a href="./content/6-hardware-connectivity/board-comparison.md">Board Comparison: NanoKVM vs Zero 3W vs Cubie A7Z</a></li>
+<li><a href="./content/6-hardware-connectivity/nanokvm.md">Sipeed NanoKVM Reference</a></li>
 <li><a href="./content/6-hardware-connectivity/ports-connectors-reference.md">Ports & Connectors Reference</a></li>
 <li><a href="./content/6-hardware-connectivity/power-thermal.md">Power Limits & Thermal Behavior</a></li>
 <li><a href="./content/6-hardware-connectivity/architecture.md">SoC Platform Architecture</a></li>
 <li><a href="./content/6-hardware-connectivity/power-management-module-control.md">PMM Relay Controlling</a></li>
-<li><a href="./content/6-hardware-connectivity/board-comparison.md">Board Comparison: NanoKVM vs Zero 3W vs Cubie A7Z</a></li>
-<li><a href="./content/6-hardware-connectivity/nanokvm.md">Sipeed NanoKVM</a></li>
 </ul>
 </td>
 </tr>

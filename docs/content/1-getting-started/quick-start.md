@@ -1,4 +1,9 @@
-# Quick Start Guide
+# Quick Start Guide: USBridge KVM 2.0
+
+> [!NOTE]
+> This guide covers **USBridge KVM 2.0** (Low, Standard, and Full).  
+> * Using **USBridge Nano** or **Sipeed NanoKVM**? See the [Nano Quick Start Guide](./quick-start-nano.md).  
+> * Using DIY single-board computers (**Radxa Zero 3W / Cubie A7Z**)? See the [Radxa DIY Quick Start Guide](./quick-start-radxa.md).
 
 This guide covers the physical connections, initial network setup, onboard interface navigation, and client authorization required to establish your first out-of-band remote session.
 
