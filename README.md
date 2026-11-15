@@ -1,11 +1,11 @@
 # USBridge KVM | Ultra-Low Latency IP KVM
 
 <div align="center">
-<img src="asset/hero-banner-v2.png" width="1400" alt="USBridge IP KVM 2.0 - Remote Access at Level 0">
+<img src="asset/hero-banner-v2.png" width="1400" alt="USBridge IP KVM - Remote Access at Level 0">
 
 <p align="center">
   <b>Remote access at Level 0. Zero latency. Absolute hardware autonomy.</b><br>
-  The Software Agent works while the system is alive. KVM 2.0 goes below it — all in one unified USBridge Client.
+  The Software Agent works while the system is alive. KVM goes below it — all in one unified USBridge Client.
 </p>
 
 [![Website](https://img.shields.io/badge/USBridge-WEBSITE-black)](https://www.usbridge.io/hardware-agent/)
@@ -27,7 +27,7 @@
 <img src="asset/overview-system-status.png" width="1400" alt="System frozen or won't boot? The KVM is still there">
 </div>
 
-The **USBridge KVM 2.0** is an out-of-band remote management appliance operating at hardware Level 0. Whether you need BIOS/UEFI setup, boot-loader rescue, an OS reinstallation, or remote reboot of an unresponsive bare-metal server, USBridge KVM bypasses the host operating system entirely.
+The **USBridge KVM** is an out-of-band remote management appliance operating at hardware Level 0. Whether you need BIOS/UEFI setup, boot-loader rescue, an OS reinstallation, or remote reboot of an unresponsive bare-metal server, USBridge KVM bypasses the host operating system entirely.
 
 <div align="center">
 <img src="asset/overview-scenarios.png" width="1400" alt="USBridge KVM Level 0 Scenarios">
