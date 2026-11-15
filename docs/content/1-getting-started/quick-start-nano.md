@@ -10,7 +10,7 @@ This guide covers the hardware setup and initial connection for the **USBridge N
 
 ## 1. What's in the Box
 
-* **USBridge Nano unit**: Fully assembled in a custom protective metal enclosure with an integrated OLED status screen and physical control buttons.
+* **USBridge Nano unit**: Fully assembled in a custom protective enclosure with an integrated OLED status screen and physical control buttons.
 * **Pre-installed MicroSD card**: High-endurance card pre-flashed with USBridge OS.
 * **Full lifetime USBridge OS license**: Included with the device (no subscriptions, recurring fees, or renewal charges).
 

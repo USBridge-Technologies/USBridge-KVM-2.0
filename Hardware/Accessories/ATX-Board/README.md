@@ -79,7 +79,7 @@ The hardware design is open for fabrication and customization:
 
 | Product | Form Factor | Key Highlights | Price | Guide |
 | :--- | :--- | :--- | :--- | :--- |
-| **USBridge Nano** | Ultra-compact | Integrated capture, OLED screen, metal body | **$45** | [View Guide ➔](../../Kits/USBridge-Nano/) |
+| **USBridge Nano** | Ultra-compact | Integrated capture, OLED screen, custom enclosure | **$45** | [View Guide ➔](../../Kits/USBridge-Nano/) |
 | **USBridge KVM 2.0 Low** | SBC-based | Budget-friendly, headless 1080p @ 60 FPS | **$79** | [View Guide ➔](../../Kits/USBridge-KVM-2.0-Low/) |
 | **USBridge KVM 2.0 Standard** | Desktop Unit | 1.3" IPS screen, joystick, 3 buttons, case | **$109** | [View Guide ➔](../../Kits/USBridge-KVM-2.0-Standard/) |
 | **USBridge KVM 2.0 Full** | Flagship Unit | Standard Kit + included ATX Power Control | **$139** | [View Guide ➔](../../Kits/USBridge-KVM-2.0-Full/) |
