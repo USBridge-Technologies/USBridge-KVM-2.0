@@ -42,7 +42,7 @@ For automated deployments or pre-configuring Wi-Fi before first boot:
 ## 3. Upgrading Your Unit
 
 The Low edition is fully modular:
-* **Add Screen & Joystick**: Plug the **[USBridge Screen Module](../../Hardware/Accessories/Screen-Module/)** onto the 40-pin GPIO header at any time to upgrade your unit to a Standard edition with on-device telemetry and physical buttons.
-* **Add Hardware Power Control**: Connect the **[ATX Power Control Board](../../Hardware/Accessories/ATX-Board/)** to the Screen Module for remote server power, reset, and LED telemetry.
+* **Add Screen & Joystick**: Plug the **[USBridge Screen Module](../../../Hardware/Accessories/Screen-Module/)** onto the 40-pin GPIO header at any time to upgrade your unit to a Standard edition with on-device telemetry and physical buttons.
+* **Add Hardware Power Control**: Connect the **[ATX Power Control Board](../../../Hardware/Accessories/ATX-Board/)** to the Screen Module for remote server power, reset, and LED telemetry.
 
-* 👉 For full hardware specs and 3D printable CAD models, see the **[USBridge KVM 2.0 Low Hardware Guide](../../Hardware/Kits/USBridge-KVM-2.0-Low/)**.
+* 👉 For full hardware specs and 3D printable CAD models, see the **[USBridge KVM 2.0 Low Hardware Guide](../../../Hardware/Kits/USBridge-KVM-2.0-Low/)**.

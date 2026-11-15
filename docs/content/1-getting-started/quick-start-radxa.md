@@ -12,12 +12,12 @@ Turn standard off-the-shelf single-board computers (SBCs) into an enterprise-gra
 ## 1. Hardware Requirements
 
 * **Supported SBC**: Radxa Zero 3W, Radxa Zero 3E, or Radxa Cubie A7Z.
-* **USB 3.0 Video Capture Dongle**: 1080p @ 60 FPS UVC capture card (e.g., [USBridge Capture Dongle](../../Hardware/Accessories/Capture-Dongle/)).
+* **USB 3.0 Video Capture Dongle**: 1080p @ 60 FPS UVC capture card (e.g., [USBridge Capture Dongle](../../../Hardware/Accessories/Capture-Dongle/)).
 * **MicroSD Card**: High-speed MicroSD card (Class 10 / U3, 16 GB or larger).
 * **Power Supply**: 5V / 2A+ USB-C power source.
 * **Optional Add-ons**:
-  * [USBridge Screen Module](../../Hardware/Accessories/Screen-Module/) (1.3" IPS LCD + joystick + buttons).
-  * [USBridge ATX Power Control Board](../../Hardware/Accessories/ATX-Board/) (galvanically isolated power & reset control).
+  * [USBridge Screen Module](../../../Hardware/Accessories/Screen-Module/) (1.3" IPS LCD + joystick + buttons).
+  * [USBridge ATX Power Control Board](../../../Hardware/Accessories/ATX-Board/) (galvanically isolated power & reset control).
 
 ---
 
@@ -43,4 +43,4 @@ Turn standard off-the-shelf single-board computers (SBCs) into an enterprise-gra
 * **Headless Provisioning**: You can pre-configure Wi-Fi by placing a `usbridge_provision.json` file in the boot partition of the MicroSD card (see [Headless Provisioning](./headless-provisioning.md)).
 * **Front-Panel Screen** (if Screen Module installed): Configure Wi-Fi directly on the device using the 3 hardware buttons.
 
-* 👉 For full hardware details and custom 3D printed cases, see the **[USBridge KVM 2.0 Low Hardware Guide](../../Hardware/Kits/USBridge-KVM-2.0-Low/)**.
+* 👉 For full hardware details and custom 3D printed cases, see the **[USBridge KVM 2.0 Low Hardware Guide](../../../Hardware/Kits/USBridge-KVM-2.0-Low/)**.

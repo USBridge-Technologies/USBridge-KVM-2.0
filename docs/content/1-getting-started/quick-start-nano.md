@@ -68,4 +68,4 @@ Open **`http://10.55.0.1`** in any web browser to access the onboard setup page:
 
 ---
 
-* 👉 For full hardware specifications, technical pinouts, and 3D enclosure CAD files, see the **[USBridge Nano Hardware Guide](../../Hardware/Kits/USBridge-Nano/)**.
+* 👉 For full hardware specifications, technical pinouts, and 3D enclosure CAD files, see the **[USBridge Nano Hardware Guide](../../../Hardware/Kits/USBridge-Nano/)**.

@@ -32,7 +32,7 @@ The listing shows every retained version as `usbridge-rz3w-<version>.gptimg.zst`
 You'll also need, from the same listing:
 
 * **`usbridge-rz3w-<version>.gptimg.bmap`** — same version as the image, downloaded as-is (not compressed). A small XML block map listing which parts of the `.gptimg` actually contain data — lets the fast Linux flashing path skip the image's mostly-empty regions instead of writing the whole multi-GB file byte for byte. Not needed for the Windows/RKDevTool or the plain `rkdeveloptool wl` path.
-* **[rk356x_spl_loader_v1.23.114.bin](https://flash.usbridge.io/rk356x_spl_loader_v1.23.114.bin)** (481 KB, not compressed) — the RK3566 boot loader binary. Not the firmware itself, just a small program `rkdeveloptool` pushes into the chip's RAM first to initialize DDR before it can accept the actual image write. Required for the Linux CLI flow; RKDevTool on Windows handles the equivalent step internally with its own bundled loader. Also ships pre-included in the [`flash-tool/`](../../flash-tool/) directory of this repo.
+* **[rk356x_spl_loader_v1.23.114.bin](https://flash.usbridge.io/rk356x_spl_loader_v1.23.114.bin)** (481 KB, not compressed) — the RK3566 boot loader binary. Not the firmware itself, just a small program `rkdeveloptool` pushes into the chip's RAM first to initialize DDR before it can accept the actual image write. Required for the Linux CLI flow; RKDevTool on Windows handles the equivalent step internally with its own bundled loader. Also ships pre-included in the [`flash-tool/`](../../../flash-tool/) directory of this repo.
 
 ---
 
@@ -102,7 +102,7 @@ curl -fsSL -O https://flash.usbridge.io/usbridge-rz3w-${VERSION}.gptimg.bmap
 # 4. Flash the device
 sudo ./flash-device-fast.sh usbridge-rz3w-${VERSION}.gptimg.zst
 ```
-Writing only the blocks that actually contain data (confirmed live: a 14.4 GiB image drops to writing 828.5 MiB actually used). Full details: [`flash-tool/README.md`](../../flash-tool/).
+Writing only the blocks that actually contain data (confirmed live: a 14.4 GiB image drops to writing 828.5 MiB actually used). Full details: [`flash-tool/README.md`](../../../flash-tool/).
 
 > [!NOTE]
 > **Running this from Windows?** See [5. Flashing from Windows via WSL](#5-flashing-from-windows-via-wsl) below — you can use these exact steps inside WSL, no separate Linux machine needed.
@@ -117,7 +117,7 @@ cd USBridge-KVM-2.0/flash-tool
 # no need to decompress the .zst yourself, the script does it on the fly
 ./flash-device-fast.sh
 ```
-Same underlying script the installer above uses. See [`flash-tool/README.md`](../../flash-tool/) for details.
+Same underlying script the installer above uses. See [`flash-tool/README.md`](../../../flash-tool/) for details.
 
 **Linux — manual, plain `rkdeveloptool`** (no `.bmap` needed, but slower — writes the entire image including its empty space):
 ```bash
@@ -208,7 +208,7 @@ Either way:
 - The script refuses to target the host's own system disk, and refuses any disk the kernel doesn't report as removable (protects against picking the wrong `/dev/sdX` by mistake) — pass `--force` (manual) or set `USBRIDGE_SD_FORCE=1` (one-liner) only if you're certain about the target and it's being wrongly refused.
 - Once written, move the card to the appliance's SD slot and power on — no Maskrom step, no USB cable to the appliance needed.
 
-**On a board that also has an eMMC:** the RK3566 boot ROM tries the eMMC *before* the SD card. A card only boots when the eMMC holds no bootloader — a blank eMMC, or one wiped with [`factory-reset/`](../../flash-tool/rz3w/factory-reset/). If the eMMC carries anything bootable (an earlier USBridge firmware, Armbian, another OS), the board starts that instead, or that bootloader picks up the card on its own terms. Once the firmware runs from the card, everything follows the device it booted from: the U-Boot env/bootcount, the `/uboot`, `/data` and `/mnt/emmc` mounts, and where Mender writes updates. The eMMC sitting alongside is never touched, even though both media carry the same partition names.
+**On a board that also has an eMMC:** the RK3566 boot ROM tries the eMMC *before* the SD card. A card only boots when the eMMC holds no bootloader — a blank eMMC, or one wiped with [`factory-reset/`](../../../flash-tool/rz3w/factory-reset/). If the eMMC carries anything bootable (an earlier USBridge firmware, Armbian, another OS), the board starts that instead, or that bootloader picks up the card on its own terms. Once the firmware runs from the card, everything follows the device it booted from: the U-Boot env/bootcount, the `/uboot`, `/data` and `/mnt/emmc` mounts, and where Mender writes updates. The eMMC sitting alongside is never touched, even though both media carry the same partition names.
 
 ### Installing from the SD card onto the eMMC
 
@@ -239,7 +239,7 @@ A card larger than the firmware's build baseline isn't wasted, either — the ex
 
 ## 7. Radxa Cubie A7Z (Allwinner A733)
 
-This board is a different SoC family from the rest of this guide (Allwinner A733, not Rockchip RK3566) and currently only boots from an SD card — it ships with its eMMC controller disabled, so there's no Maskrom/`rkdeveloptool`-equivalent onboard-eMMC recovery path yet. Recovery is always the SD-card route, same underlying idea as [§6](#6-writing-to-an-sd-card-instead) above but its own tool (different board, different image naming) — see [`flash-tool/a7z/`](../../flash-tool/a7z/).
+This board is a different SoC family from the rest of this guide (Allwinner A733, not Rockchip RK3566) and currently only boots from an SD card — it ships with its eMMC controller disabled, so there's no Maskrom/`rkdeveloptool`-equivalent onboard-eMMC recovery path yet. Recovery is always the SD-card route, same underlying idea as [§6](#6-writing-to-an-sd-card-instead) above but its own tool (different board, different image naming) — see [`flash-tool/a7z/`](../../../flash-tool/a7z/).
 
 **One command:**
 ```bash
@@ -272,7 +272,7 @@ A card larger than the firmware's build baseline isn't wasted either — same au
 
 ## 8. Sipeed NanoKVM (SOPHGO SG2002)
 
-The [NanoKVM](../6-hardware-connectivity/nanokvm.md) boots only from its microSD card — no eMMC, no USB recovery mode. Flashing (first install over Sipeed's software, or recovery) is always: take the card out, write the image from a card reader on your computer, put it back. The boot loader is in the image's FAT **BOOT** partition, where the SG2002 boot ROM loads it from, so the raw image carries the whole boot chain. Tool: [`flash-tool/nanokvm/`](../../flash-tool/nanokvm/).
+The [NanoKVM](../6-hardware-connectivity/nanokvm.md) boots only from its microSD card — no eMMC, no USB recovery mode. Flashing (first install over Sipeed's software, or recovery) is always: take the card out, write the image from a card reader on your computer, put it back. The boot loader is in the image's FAT **BOOT** partition, where the SG2002 boot ROM loads it from, so the raw image carries the whole boot chain. Tool: [`flash-tool/nanokvm/`](../../../flash-tool/nanokvm/).
 
 **One command (Linux, or WSL):**
 ```bash
