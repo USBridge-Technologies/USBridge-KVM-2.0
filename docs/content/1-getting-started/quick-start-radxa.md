@@ -14,7 +14,28 @@ Watch the complete walkthrough on how to flash USBridge OS and complete the init
 
 ---
 
-## 1. Supported Hardware & Requirements
+## 1. What Works on Radxa Boards
+
+| Feature | On Radxa Boards (Zero 3W / 3E / Cubie A7Z) |
+| :--- | :--- |
+| **Moonlight streaming** | Yes — Hardware-accelerated H.264 & HEVC (H.265) encoding up to 1080p @ 60 FPS via USB 3.0 UVC capture dongle (~45 ms total glass-to-glass latency). |
+| **Keyboard, mouse, absolute pointer, touch/pen** | Yes — Standard USB HID gadget emulation for pre-OS, BIOS/UEFI, and operating system navigation. |
+| **Gamepad** | Yes — Virtual XInput controller emulation (see [Gamepad Emulation](../2-kvm-vkm/gamepad.md)). |
+| **Audio** | Yes — Target host audio captured through the HDMI capture dongle, plus client microphone and MIDI input passthrough to the target host. |
+| **Virtual media** | Yes — ISO, `.qcow2`, `.vdi`/`.vmdk` and raw block devices streamed over NBD from the client with dynamic multi-gigabyte RAM caching, plus local images from Btrfs storage. |
+| **Backup storage & snapshots** | Yes — Btrfs filesystem on MicroSD / eMMC (`/mnt/emmc`), immutable read-only subvolumes, instant point-in-time extraction, and automatic partition expansion on first boot (see [Snapshots Overview](../4-snapshots-state-management/snapshots-overview.md)). |
+| **BIOS-in-Terminal (SSH KVM)** | **Yes** — Optical Character Recognition (OCR) converts graphical BIOS/UEFI screens into an interactive, real-time text console exposed over SSH (`ssh user@ip`). On RK3566 (Zero 3W/3E), OCR is accelerated on the onboard 0.8 TOPS NPU (RKNN); on Cubie A7Z, it runs across the 8-core CPU (see [BIOS-in-Terminal](../3-bios-in-terminal/technology-overview.md)). |
+| **Automation & Starlark Scripting** | **Yes** — Embedded sandboxed Python/Starlark engine running directly on the appliance. Scripts read OCR text on the server screen and drive automated keyboard/mouse inputs for automated OS installation, BIOS navigation, and boot recovery (see [Starlark Scripting](../3-bios-in-terminal/scripting-automation.md)). |
+| **AI Agents & MCP** | **Yes** — Built-in Model Context Protocol (MCP) server integration allowing autonomous AI agents (Claude, Cursor, Antigravity) to inspect the console, issue commands, and power cycle machines (see [MCP AI Agents](../3-bios-in-terminal/mcp-ai-agents.md)). |
+| **First-time setup** | Over the USB cable: plug the Radxa board into your PC and access `http://10.55.0.1` (or click **Over USB** in the desktop client). For unattended/bulk setup: place `usbridge_provision.json` in the card's `BOOT` partition. |
+| **OTA updates** | Yes — Seamless dual-slot (A/B) rootfs updates with cryptographic verification and automatic rollback. |
+| **Front-panel display** | Supported on Radxa Zero 3W and Cubie A7Z using the optional 1.3" IPS LCD Flip-HAT (240×240 color screen, 3 buttons, 5-way joystick, and Live Monitor Mode). Radxa Zero 3E operates headlessly. |
+| **ATX power control** | Yes — Optional [ATX Power Control Board](../../../Hardware/Accessories/ATX-Board/) (Power SW, Reset SW, Power LED, HDD LED) with 3.75 kV galvanic isolation. |
+| **Install to eMMC** | Yes — On Radxa Zero 3W / 3E equipped with onboard eMMC; flashable directly via Maskrom mode and `rkdeveloptool` / RKDevTool (see [Recovery Flashing Guide](../9-updates-changelog/recovery-flashing-guide.md)). |
+
+---
+
+## 2. Supported Hardware & Requirements
 
 USBridge OS officially supports the following Radxa SBC platforms:
 
@@ -37,7 +58,7 @@ USBridge OS officially supports the following Radxa SBC platforms:
 
 ---
 
-## 2. Firmware Flashing & Card Layout
+## 3. Firmware Flashing & Card Layout
 
 USBridge OS boots from the MicroSD card (or onboard eMMC on Radxa Zero 3W/3E).
 
@@ -72,7 +93,7 @@ USBridge OS partitions your storage into an enterprise A/B update structure with
 
 ---
 
-## 3. Hardware Connections & Setup
+## 4. Hardware Connections & Setup
 
 <div align="center">
 <img src="../../assets/setup-low.png" width="850" alt="Radxa DIY IP-KVM Setup Diagram">
@@ -95,7 +116,7 @@ The USB 3.0 HDMI capture dongle negotiates in either of two hardware modes depen
 
 ---
 
-## 4. Connect & Initial Setup (2 Methods)
+## 5. Connect & Initial Setup (2 Methods)
 
 Once your board is powered on, connect to it using one of two quick methods. For comprehensive pairing details, master key mechanics, and client walkthroughs, refer to the **[Initial Client Setup Guide](./initial-setup.md)**.
 
