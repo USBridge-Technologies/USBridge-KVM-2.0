@@ -1,7 +1,8 @@
-# Quick Start Guide: USBridge KVM 2.0
+# Quick Start Guide: USBridge KVM 2.0 Standard & Full
 
 > [!NOTE]
-> This guide covers **USBridge KVM 2.0** (Low, Standard, and Full).  
+> This guide covers **USBridge KVM 2.0 Standard and Full** editions (with front-panel display, 3 buttons, and ATX power control).  
+> * Using the headless **USBridge KVM 2.0 Low**? See the [KVM 2.0 Low Quick Start Guide](./quick-start-low.md).  
 > * Using **USBridge Nano** or **Sipeed NanoKVM**? See the [Nano Quick Start Guide](./quick-start-nano.md).  
 > * Using DIY single-board computers (**Radxa Zero 3W / Cubie A7Z**)? See the [Radxa DIY Quick Start Guide](./quick-start-radxa.md).
 

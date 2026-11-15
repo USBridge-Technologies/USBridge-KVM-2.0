@@ -19,19 +19,27 @@ Use the categorized hub below to jump to hardware setup, streaming engine config
 <tr>
 <td valign="top" width="50%">
 <div align="center"><img src="./assets/getting-started.png" width="80" alt="Getting Started" /><br><strong>Getting Started</strong></div><br>
-Unbox, wire up, and initialize your physical KVM appliance.
+Unbox, wire up, or flash your hardware, then connect it to the USBridge Client.
 <ul>
-<li><strong>Quick Start Guides:</strong>
+<li><strong>Hardware Quick Start (Ready-to-Use):</strong>
   <ul>
-    <li><a href="./content/1-getting-started/quick-start.md">USBridge KVM 2.0</a></li>
-    <li><a href="./content/1-getting-started/quick-start-nano.md">USBridge Nano & Sipeed NanoKVM</a></li>
-    <li><a href="./content/1-getting-started/quick-start-radxa.md">Radxa Boards (DIY)</a></li>
+    <li><a href="./content/1-getting-started/quick-start.md">USBridge KVM 2.0 Standard & Full</a> <em>(with screen & ATX)</em></li>
+    <li><a href="./content/1-getting-started/quick-start-low.md">USBridge KVM 2.0 Low</a> <em>(headless / no screen)</em></li>
+    <li><a href="./content/1-getting-started/quick-start-nano.md">USBridge Nano</a></li>
   </ul>
 </li>
-<li><a href="./content/1-getting-started/whats-in-the-box.md">What’s in the Box</a></li>
-<li><a href="./content/1-getting-started/initial-setup.md">Initial Client Setup</a></li>
-<li><a href="./content/1-getting-started/headless-provisioning.md">Headless & Bulk Provisioning (JSON)</a></li>
-<li><a href="./content/1-getting-started/device-status-menu.md">Onboard Status & Menu Layout</a></li>
+<li><strong>DIY Firmware Installation:</strong>
+  <ul>
+    <li><a href="./content/6-hardware-connectivity/nanokvm.md">Sipeed NanoKVM (SG2002)</a></li>
+    <li><a href="./content/1-getting-started/quick-start-radxa.md">Radxa Boards (Zero 3W / Cubie A7Z)</a></li>
+  </ul>
+</li>
+<li><strong>Software & Provisioning:</strong>
+  <ul>
+    <li><a href="./content/1-getting-started/initial-setup.md">Initial Client Setup</a></li>
+    <li><a href="./content/1-getting-started/headless-provisioning.md">Headless & Bulk Provisioning (JSON)</a></li>
+  </ul>
+</li>
 </ul>
 </td>
 <td valign="top" width="50%">
