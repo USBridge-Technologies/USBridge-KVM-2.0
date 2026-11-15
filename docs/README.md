@@ -8,7 +8,7 @@ USBridge-KVM 2.0 is a hardware **IP-KVM** for out-of-band server access — BIOS
 <tbody>
 <tr>
 <td valign="top" width="50%">
-<div align="center"><img src="https://raw.githubusercontent.com/USBridge-Technologies/USBridge-KVM-2.0/main/docs/assets/path_to_getting_started_icon.png" width="80" height="80" style="background: transparent !important; border: none !important;" /><br><strong>Getting Started</strong></div><br>
+<div align="center"><img src="./assets/getting-started.png" width="80" alt="Getting Started" /><br><strong>Getting Started</strong></div><br>
 Unbox, wire up, and initialize your physical KVM appliance.
 <ul>
 <li><a href="./content/1-getting-started/quick-start.md">Quick Start Guide</a></li>
@@ -19,7 +19,7 @@ Unbox, wire up, and initialize your physical KVM appliance.
 </ul>
 </td>
 <td valign="top" width="50%">
-<div align="center"><img src="https://raw.githubusercontent.com/USBridge-Technologies/USBridge-KVM-2.0/main/docs/assets/path_to_kvm_icon.png" width="80" height="80" style="background: transparent !important; border: none !important;" /><br><strong>KVM Engine</strong></div><br>
+<div align="center"><img src="./assets/kvm-engine.png" width="80" alt="KVM Engine" /><br><strong>KVM Engine</strong></div><br>
 Configure streaming parameters, peripheral overlays, and inputs.
 <ul>
 <li><a href="./content/2-kvm-vkm/video-streaming-quality.md">Video Streaming & Quality (Moonlight)</a></li>
@@ -33,7 +33,7 @@ Configure streaming parameters, peripheral overlays, and inputs.
 </tr>
 <tr>
 <td valign="top">
-<div align="center"><img src="https://raw.githubusercontent.com/USBridge-Technologies/USBridge-KVM-2.0/main/docs/assets/path_to_bios_icon.png" width="80" height="80" style="background: transparent !important; border: none !important;" /><br><strong>BIOS-in-Terminal</strong></div><br>
+<div align="center"><img src="./assets/bios-terminal.png" width="80" alt="BIOS-in-Terminal" /><br><strong>BIOS-in-Terminal</strong></div><br>
 Low-level raw terminal redirection and headless control text streams.
 <ul>
 <li><a href="./content/3-bios-in-terminal/technology-overview.md">Technology Overview</a></li>
@@ -44,7 +44,7 @@ Low-level raw terminal redirection and headless control text streams.
 </ul>
 </td>
 <td valign="top">
-<div align="center"><img src="https://raw.githubusercontent.com/USBridge-Technologies/USBridge-KVM-2.0/main/docs/assets/path_to_snapshots_icon.png" width="80" height="80" style="background: transparent !important; border: none !important;" /><br><strong>Snapshots & States</strong></div><br>
+<div align="center"><img src="./assets/snapshots-states.png" width="80" alt="Snapshots & States" /><br><strong>Snapshots & States</strong></div><br>
 Btrfs-driven immutable file storage and read-only data snapshots.
 <ul>
 <li><a href="./content/4-snapshots-state-management/snapshots-overview.md">Snapshots Architecture Overview</a></li>
@@ -55,7 +55,7 @@ Btrfs-driven immutable file storage and read-only data snapshots.
 </tr>
 <tr>
 <td valign="top">
-<div align="center"><img src="https://raw.githubusercontent.com/USBridge-Technologies/USBridge-KVM-2.0/main/docs/assets/path_to_media_icon.png" width="80" height="80" style="background: transparent !important; border: none !important;" /><br><strong>Virtual Media & Drive Emulation</strong></div><br>
+<div align="center"><img src="./assets/virtual-media.png" width="80" alt="Virtual Media & Drive Emulation" /><br><strong>Virtual Media & Drive Emulation</strong></div><br>
 High-speed bare-metal OS provisioning and diskless booting via virtual block devices.
 <ul>
 <li><a href="./content/5-remote-disk-image-mounting/mounting-iso-images.md">Mounting ISO Images</a></li>
@@ -63,7 +63,7 @@ High-speed bare-metal OS provisioning and diskless booting via virtual block dev
 </ul>
 </td>
 <td valign="top">
-<div align="center"><img src="https://raw.githubusercontent.com/USBridge-Technologies/USBridge-KVM-2.0/main/docs/assets/path_to_hardware_icon.png" width="80" height="80" style="background: transparent !important; border: none !important;" /><br><strong>Hardware & Power</strong></div><br>
+<div align="center"><img src="./assets/hardware.png" width="80" alt="Hardware & Power" /><br><strong>Hardware & Power</strong></div><br>
 Physical pinouts, schematic internals, power logic, and cooling.
 <ul>
 <li><a href="./content/6-hardware-connectivity/ports-connectors-reference.md">Ports & Connectors Reference</a></li>
@@ -77,7 +77,7 @@ Physical pinouts, schematic internals, power logic, and cooling.
 </tr>
 <tr>
 <td valign="top">
-<div align="center"><img src="https://raw.githubusercontent.com/USBridge-Technologies/USBridge-KVM-2.0/main/docs/assets/path_to_software_icon.png" width="80" height="80" style="background: transparent !important; border: none !important;" /><br><strong>Software Apps</strong></div><br>
+<div align="center"><img src="./assets/software-apps.png" width="80" alt="Software Apps" /><br><strong>Software Apps</strong></div><br>
 Cross-platform management clients and mobile application runtimes.
 <ul>
 <li><a href="./content/7-software-access/desktop-app.md">Desktop Client (Win / Mac / Linux)</a></li>
@@ -86,7 +86,7 @@ Cross-platform management clients and mobile application runtimes.
 </ul>
 </td>
 <td valign="top">
-<div align="center"><img src="https://raw.githubusercontent.com/USBridge-Technologies/USBridge-KVM-2.0/main/docs/assets/path_to_support_icon.png" width="80" height="80" style="background: transparent !important; border: none !important;" /><br><strong>Maintenance</strong></div><br>
+<div align="center"><img src="./assets/maintenance.png" width="80" alt="Maintenance" /><br><strong>Maintenance</strong></div><br>
 General troubleshooting routines and emergency system recoveries.
 <ul>
 <li><a href="./content/8-maintenance-support/faq.md">Frequently Asked Questions</a></li>
@@ -96,7 +96,7 @@ General troubleshooting routines and emergency system recoveries.
 </tr>
 <tr>
 <td valign="top">
-<div align="center"><strong>Developer & API Reference</strong></div><br>
+<div align="center"><img src="./assets/api.png" width="80" alt="Developer & API Reference" /><br><strong>Developer & API Reference</strong></div><br>
 Direct HTTP access for custom integrations, scripts, and AI agents.
 <ul>
 <li><a href="./content/10-developer-api/rest-api-reference.md">REST API Reference</a></li>
