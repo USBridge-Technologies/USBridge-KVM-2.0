@@ -8,7 +8,7 @@
 
 > **Supported Hardware:**
 > * **Ready-to-use Appliances:** [USBridge KVM 2.0](../Hardware/) ([Low](../Hardware/Kits/USBridge-KVM-2.0-Low/) / [Standard](../Hardware/Kits/USBridge-KVM-2.0-Standard/) / [Full](../Hardware/Kits/USBridge-KVM-2.0-Full/)), [USBridge Nano](../Hardware/Kits/USBridge-Nano/)
-> * **DIY Boards (USBridge Firmware):** [Sipeed NanoKVM (SG2002)](../Hardware/Kits/USBridge-Nano/#already-own-a-sipeed-nanokvm-upgrade-it), [Radxa Zero 3W / Cubie A7Z](../Hardware/Kits/USBridge-KVM-2.0-Low/#diy-kvm-setup-turn-your-sbc-into-an-ip-kvm)
+> * **DIY Boards (USBridge Firmware):** [Sipeed NanoKVM (SG2002)](./content/6-hardware-connectivity/nanokvm.md), [Radxa Zero 3W / Cubie A7Z](./content/1-getting-started/quick-start-radxa.md)
 
 Use the categorized hub below to jump to hardware setup, streaming engine configuration, automation scripting, or REST API docs.
 
