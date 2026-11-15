@@ -19,30 +19,49 @@ This guide covers the hardware setup and initial connection for the **USBridge N
 ## 2. Physical Ports & Connectors
 
 * **HDMI IN**: Connects to the HDMI video output of the target server or host machine.
-* **USB-C (Host HID & Power)**: Single multi-function USB-C port that connects to an available USB port on the target server. It simultaneously powers the Nano and provides hardware-level keyboard, mouse, and virtual media block emulation.
+* **USB-C (Host HID & Power)**: Single multi-function USB-C port connecting to an available USB port on the target server. It simultaneously powers the Nano and provides hardware-level keyboard, mouse, and virtual media block emulation.
 * **Ethernet (RJ45)**: 100 Mbit Ethernet interface connecting to your local network router or switch (DHCP enabled).
 * **OLED Screen (128×64)**: Real-time display showing the assigned device IP address, network connection state, streaming FPS, and one-time physical presence codes for secure SSH access.
 
 ---
 
-## 3. Hardware Setup & First Connection
+## 3. 3-Step Hardware Setup
 
 <div align="center">
-<img src="../../assets/nano-connection-scheme.png" width="750" alt="USBridge Nano Hardware Setup and Connection Scheme">
+<img src="../../assets/nano-connection-scheme.png" width="750" alt="USBridge Nano 3-Step Setup Diagram">
 </div>
 
-1. **Connect HDMI**: Run an HDMI cable from the target server into the Nano's **HDMI IN** port.
-2. **Connect HID & Power**: Plug the USB-C cable from the Nano's USB-C port into a USB port on the target server (provides power and keyboard/mouse emulation). Alternatively, you can use an external 5V/2A power supply on this port.
-3. **Connect Network**: Plug an Ethernet cable into the **RJ45** port connected to your local network.
-4. **Boot Up**: The device boots automatically from the pre-flashed MicroSD card. Within seconds, the onboard OLED screen will display the assigned DHCP IP address.
+1. **HDMI Cable**: Connect from the target computer's GPU / motherboard video output directly into the Nano's **HDMI IN** port.
+2. **USB-C Cable**: Connect from the Nano to a USB port on the target computer. This single cable delivers power, keyboard/mouse emulation, and virtual storage mounting.
+3. **Ethernet Cable**: Plug a network cable from your local router or switch into the 100 Mbit Ethernet port.
+
+The device boots automatically from the pre-flashed MicroSD card. Within seconds, the onboard OLED screen will initialize and display the assigned DHCP IP address.
 
 ---
 
-## 4. Initial Client Pairing
+## 4. Connect & Initial Setup
+
+Once your USBridge Nano is powered and cabled up, connect to it using one of the quick pairing methods below:
+
+### Method A: On Your Local Network (Ethernet)
+
+When connected via an RJ45 Ethernet cable, your local router assigns the KVM an IP address automatically via DHCP (there is no fixed default).
+
+The assigned IP address is displayed directly on the Nano's built-in 128×64 OLED screen upon boot.
 
 1. Open the [Desktop Client App](../7-software-access/desktop-app.md) or [Web Client](https://web.usbridge.io).
 2. Discover the Nano device automatically on your local network, or manually enter the IP address displayed on the OLED screen.
 3. Verify your secure session using the physical presence code shown on the OLED display.
+
+### Method B: Default IP Address (`10.55.0.1` over USB)
+
+Plug the Nano's USB cable directly into your workstation or laptop: your computer immediately gets a virtual USB network adapter (its own internet connection remains completely untouched), and the KVM is reachable at **`10.55.0.1`**.
+
+Open **`http://10.55.0.1`** in any web browser to access the onboard setup page:
+* Displays the QR code for fast pairing
+* Direct connection link and device master key
+* Moonlight PIN authorization
+* Network configuration settings
 
 ---
 
