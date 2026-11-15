@@ -1,4 +1,4 @@
-# USBridge KVM 2.0 | Ultra-Low Latency IP KVM
+# USBridge KVM | Ultra-Low Latency IP KVM
 
 <div align="center">
 <img src="asset/hero-banner-v2.png" width="1400" alt="USBridge IP KVM 2.0 - Remote Access at Level 0">
