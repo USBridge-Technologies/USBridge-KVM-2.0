@@ -37,9 +37,17 @@ The budget-friendly, ready-to-use desktop IP-KVM appliance in a custom protectiv
 > * **ATX Remote Power Management:** Front-panel motherboard power control (Power SW, Reset SW, Power LED, HDD LED) can be added optionally with the galvanically isolated [ATX Power Control Board](../../Accessories/ATX-Board/).
 > * **Wired Ethernet Support:** If wired network connectivity is required, an external USB-to-Ethernet adapter or USB hub with an RJ45 port can be connected to the host port (not included in the standard kit).
 
+<div align="center">
+<img src="images/kvm-lite-overview.png" width="850" alt="USBridge KVM 2.0 Lite Technical Overview">
+</div>
+
 ---
 
 ## In the Box (Package Contents)
+
+<div align="center">
+<img src="images/kvm-lite-modal.webp" width="700" alt="USBridge KVM 2.0 Lite Package Contents">
+</div>
 
 1. **USBridge KVM 2.0 Lite Appliance**: Fully assembled desktop unit in a custom protective enclosure with integrated 1.3" IPS color screen, 5-way joystick, and physical buttons.
 2. **USB 2.0 HDMI Video Capture Dongle**: 1080p UVC video capture adapter.
@@ -144,9 +152,7 @@ For complete details on settings, see the [Full Initial Setup Documentation](../
 The USBridge KVM 2.0 Lite utilizes the same modular form factor and production enclosure design as the Standard model:
 
 <div align="center">
-<img src="images/kvm20-case.png" width="700" alt="USBridge KVM 2.0 Case 3D Render"><br><br>
-<img src="images/kvm-lite-case-ports-1.webp" width="420" alt="USBridge KVM 2.0 Lite Ports Side View"> &nbsp;
-<img src="images/kvm-lite-case-ports-2.webp" width="420" alt="USBridge KVM 2.0 Lite Ports Top View">
+<img src="images/kvm20-case.png" width="700" alt="USBridge KVM 2.0 Case 3D Render">
 </div>
 
 We provide the complete production STEP models for 3D printing the desktop enclosure and tactile controls:
