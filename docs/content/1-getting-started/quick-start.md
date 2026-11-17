@@ -1,14 +1,21 @@
-# Quick Start: USBridge KVM 2.0 Standard & Full
+# Quick Start: USBridge KVM 2.0 Standard, Full & Lite
 
 <div align="center">
 <img src="../../assets/specs-standard.webp" width="700" alt="USBridge KVM 2.0 Standard Appliance Overview">
 </div>
 
-This guide covers the hardware setup, onboard front-panel display navigation, and initial connection for the **USBridge KVM 2.0 Standard** and **USBridge KVM 2.0 Full** appliances.
+This guide covers the hardware setup, onboard front-panel display navigation, and initial connection for the **USBridge KVM 2.0 Standard**, **USBridge KVM 2.0 Full**, and **USBridge KVM 2.0 Lite** appliances.
 
 ---
 
 ## 1. What's in the Box
+
+### USBridge KVM 2.0 Lite Kit
+* **USBridge KVM 2.0 Lite Appliance**: Fully assembled desktop unit in a custom protective enclosure with an integrated 1.3" IPS color screen, 5-way joystick, and physical control buttons. Powered by the Walnut Pi ZeroW SoC.
+* **USB 2.0 HDMI Video Capture Dongle**: 1080p UVC video capture stick.
+* **Pre-installed MicroSD card**: High-endurance card pre-flashed with USBridge OS.
+* **Full lifetime USBridge OS license**: Included with the device (no subscriptions, recurring fees, or renewal charges).
+* **ATX Board Header Ready**: Supports the optional USBridge ATX Power Control Board via the 8-pin port.
 
 ### USBridge KVM 2.0 Standard Kit
 * **USBridge KVM 2.0 Standard Appliance**: Fully assembled desktop unit in a custom protective enclosure with an integrated 1.3" IPS color screen, 5-way joystick, and physical control buttons.
@@ -79,7 +86,7 @@ The included ATX board provides complete galvanic isolation up to 3.75 kV betwee
 
 ### Capture Dongle Cable Orientation (`[5G]` vs `[480M]`)
 
-The USB 3.0 HDMI capture dongle negotiates in either of two hardware modes depending on the physical orientation of the USB-C plug:
+The USB 3.0 HDMI capture dongle (included with Standard & Full editions) negotiates in either of two hardware modes depending on the physical orientation of the USB-C plug (USBridge KVM 2.0 Lite utilizes a USB 2.0 capture dongle, which operates automatically without orientation-specific SuperSpeed checks):
 
 * **`[5G]` Mode (SuperSpeed USB 3.0 — Target Mode)**: Full 5 Gbps bus bandwidth, uncompressed YUY2/NV12 video, zero JPEG compression artifacts, and minimal input latency (~45 ms).
 * **`[480M]` Mode (High-Speed USB 2.0 — Fallback Mode)**: Compatibility fallback running at 480 Mbps. The stream falls back to lossy MJPEG compression with visible artifacts, color banding, and increased latency.
@@ -94,7 +101,7 @@ The USB 3.0 HDMI capture dongle negotiates in either of two hardware modes depen
 
 ## 4. Connect & Initial Setup
 
-Because **Standard** and **Full** editions come fully assembled with the pre-flashed MicroSD card and an interactive 1.3" IPS color screen, initial network setup and pairing can be executed directly on the device. For comprehensive pairing details, master key mechanics, and client walkthroughs, refer to the **[Initial Client Setup Guide](./initial-setup.md)**.
+Because **Standard**, **Full**, and **Lite** editions come fully assembled with the pre-flashed MicroSD card and an interactive 1.3" IPS color screen, initial network setup and pairing can be executed directly on the device. For comprehensive pairing details, master key mechanics, and client walkthroughs, refer to the **[Initial Client Setup Guide](./initial-setup.md)**.
 
 ### Method A: Front-Panel Screen & Wi-Fi Setup
 
@@ -132,4 +139,4 @@ You can preview the target host's video feed directly on the unit's onboard 1.3"
 
 ---
 
-* 👉 For full technical specifications, Btrfs storage details, and 3D-printable enclosure CAD files, see the **[USBridge KVM 2.0 Standard Hardware Reference](../../../Hardware/Kits/USBridge-KVM-2.0-Standard/)** and the **[USBridge KVM 2.0 Full Hardware Reference](../../../Hardware/Kits/USBridge-KVM-2.0-Full/)**.
+* 👉 For full technical specifications, Btrfs storage details, and 3D-printable enclosure CAD files, see the **[USBridge KVM 2.0 Lite Hardware Reference](../../../Hardware/Kits/USBridge-KVM-2.0-Lite/)**, the **[USBridge KVM 2.0 Standard Hardware Reference](../../../Hardware/Kits/USBridge-KVM-2.0-Standard/)**, and the **[USBridge KVM 2.0 Full Hardware Reference](../../../Hardware/Kits/USBridge-KVM-2.0-Full/)**.

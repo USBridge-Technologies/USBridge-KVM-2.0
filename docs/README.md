@@ -24,7 +24,7 @@ Unbox, wire up, or flash your hardware, then connect it to the USBridge Client.
 <ul>
 <li><strong>Hardware Quick Start (Ready-to-Use):</strong>
   <ul>
-    <li><a href="./content/1-getting-started/quick-start.md">USBridge KVM 2.0 Standard & Full</a> <em>(with screen & ATX)</em></li>
+    <li><a href="./content/1-getting-started/quick-start.md">USBridge KVM 2.0 Standard, Full & Lite</a> <em>(with screen & ATX)</em></li>
     <li><a href="./content/1-getting-started/quick-start-low.md">USBridge KVM 2.0 Low</a> <em>(headless / no screen)</em></li>
     <li><a href="./content/1-getting-started/quick-start-nano.md">USBridge Nano</a></li>
   </ul>
