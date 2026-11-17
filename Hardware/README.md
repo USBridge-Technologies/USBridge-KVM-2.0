@@ -17,12 +17,6 @@ Ready-to-use IP-KVM appliances designed for standalone administration, server ra
       <h3>USBridge KVM Pro 4K</h3>
       <p><strong>TBA</strong> &nbsp;·&nbsp; <strong>Coming Soon ➔</strong><br><em>Enterprise 4K Ultra-HD KVM</em></p>
       <p>Next-generation flagship appliance engineered for ultra-high-resolution 4K capture, high-bandwidth datacenter management, and mission-critical enterprise infrastructure.</p>
-      <ul>
-        <li><strong>Resolution:</strong> 4K Ultra-HD Capture (30/60 FPS)</li>
-        <li><strong>Network:</strong> Gigabit Ethernet (RJ45) + Wi-Fi 6</li>
-        <li><strong>Chassis:</strong> CNC Anodized Aluminum chassis</li>
-      </ul>
-      <p><em>In active engineering · Release details soon</em></p>
     </td>
     <td width="50%" valign="top">
       <a href="./Kits/USBridge-KVM-2.0-Full/">
@@ -55,10 +49,10 @@ Ready-to-use IP-KVM appliances designed for standalone administration, server ra
       <p><a href="./Kits/USBridge-KVM-2.0-Standard/"><strong>View Kit Details ➔</strong></a></p>
     </td>
     <td width="50%" valign="top">
-      <a href="https://www.usbridge.io/hardware-agent/usbridge-kvm-2-lite/">
+      <a href="./Kits/USBridge-KVM-2.0-Lite/">
         <img src="./images/kvm-2-0-lite-1x1.jpg" width="100%" alt="USBridge KVM 2.0 Lite">
       </a>
-      <h3><a href="https://www.usbridge.io/hardware-agent/usbridge-kvm-2-lite/">USBridge KVM 2.0 Lite</a></h3>
+      <h3><a href="./Kits/USBridge-KVM-2.0-Lite/">USBridge KVM 2.0 Lite</a></h3>
       <p><strong>$69</strong> &nbsp;·&nbsp; <a href="https://www.usbridge.io/hardware-agent/usbridge-kvm-2-lite/"><strong>Buy Now ➔</strong></a><br><em>Budget-Friendly Desktop KVM</em></p>
       <p>Affordable, ready-to-use IP-KVM appliance in a protective black enclosure with an integrated 1.3" IPS color screen. Optimized for basic administration, server setup, and BIOS navigation over USB 2.0.</p>
       <ul>
@@ -66,7 +60,7 @@ Ready-to-use IP-KVM appliances designed for standalone administration, server ra
         <li><strong>Network:</strong> Dual-Band Wi-Fi (2.4 GHz & 6) + Bluetooth</li>
         <li><strong>Display & OS:</strong> 1.3" IPS display, lifetime license & MicroSD included</li>
       </ul>
-      <p><a href="https://www.usbridge.io/hardware-agent/usbridge-kvm-2-lite/"><strong>View on usbridge.io ➔</strong></a></p>
+      <p><a href="./Kits/USBridge-KVM-2.0-Lite/"><strong>View Kit Details ➔</strong></a></p>
     </td>
   </tr>
   <tr>

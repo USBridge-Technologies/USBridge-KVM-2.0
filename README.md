@@ -74,7 +74,7 @@ Entry-level and ultra-compact appliances designed for budget-conscious administr
 <img src="asset/29.png" width="1400" alt="USBridge KVM Budget & Compact Lineup">
 </div>
 
-| Feature | [**USBridge KVM 2.0 Lite**](https://www.usbridge.io/hardware-agent/usbridge-kvm-2-lite/) | [**USBridge Nano**](./Hardware/Kits/USBridge-Nano/) | [**USBridge KVM 2.0 Low**](./Hardware/Kits/USBridge-KVM-2.0-Low/) |
+| Feature | [**USBridge KVM 2.0 Lite**](./Hardware/Kits/USBridge-KVM-2.0-Lite/) | [**USBridge Nano**](./Hardware/Kits/USBridge-Nano/) | [**USBridge KVM 2.0 Low**](./Hardware/Kits/USBridge-KVM-2.0-Low/) |
 | :--- | :---: | :---: | :---: |
 | **Price** | **$69** | **$89** | **$99** |
 | **Target Use** | Budget administration & basic BIOS access | Ultra-compact pocket KVM with Ethernet | Minimalist bare board for dense server racks |
