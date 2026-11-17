@@ -206,8 +206,10 @@ Get your pre-assembled appliance or explore other models in the USBridge ecosyst
 
 | Model | Form Factor | Capture Mode | Price | Details |
 | :--- | :--- | :--- | :---: | :--- |
+| **USBridge KVM Pro 4K** | Pro Chassis | 4K Ultra-HD Capture | **TBA** *(Coming Soon)* | Release details soon |
+| **USBridge KVM 2.0 Standard** | Desktop Unit + 1.3" Color IPS Screen | USB 3.0 Dongle (1080p60) | **$117** | [View Standard Kit Guide ➔](../USBridge-KVM-2.0-Standard/) |
+| **USBridge KVM 2.0 Lite** | Budget Desktop Unit + 1.3" IPS Screen | USB 2.0 Dongle (1080p) | **$69** | [View Lite Kit Guide ➔](../USBridge-KVM-2.0-Lite/) |
 | **USBridge Nano** | Pocket Appliance + OLED | Built-in MIPI CSI (1080p60) | **$89** | [View Nano Kit Guide ➔](../USBridge-Nano/) |
 | **USBridge KVM 2.0 Low** | Bare board + Extruded Heatsink | USB 3.0 Dongle (1080p60) | **$99** | [View Low Kit Guide ➔](../USBridge-KVM-2.0-Low/) |
-| **USBridge KVM 2.0 Standard** | Desktop Unit + 1.3" Color IPS Screen | USB 3.0 Dongle (1080p60) | **$117** | [View Standard Kit Guide ➔](../USBridge-KVM-2.0-Standard/) |
 
 Explore all kits, expansion PCBs, and accessories in the **[Hardware Catalog ➔](../../README.md)**.
