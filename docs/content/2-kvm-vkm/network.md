@@ -2,6 +2,9 @@
 
 USBridge can present itself to the target host as a **USB-to-LAN network adapter**, sharing its own uplink (Wi-Fi or a wired USB-Ethernet adapter) with the target over the same USB line used for keyboard/mouse/drives. Driver-wise it's a standard USB Ethernet interface — CDC-ECM on Linux/macOS, RNDIS on Windows — so there's nothing to install on the target.
 
+> [!NOTE]
+> This guide covers exposing a virtual USB-Ethernet network adapter to the target host. For secure remote mesh access to the USBridge KVM itself without open firewall ports, see **[Tailscale Mesh Onboarding](../1-getting-started/initial-setup.md#step-3-secure-mesh-networking-onboarding-tailscale)** and **[Security Model: Tailscale Access](../10-developer-api/security-model.md#5-tailscale--an-additional-layer-but-not-for-every-path)**.
+
 ---
 
 ## 1. Core Use Cases

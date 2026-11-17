@@ -83,7 +83,7 @@ On the NanoKVM, sound before the target's OS loads its USB audio driver (BIOS be
 | [BIOS-in-Terminal (SSH + OCR)](../3-bios-in-terminal/technology-overview.md) | — | ✅ NPU-accelerated | ✅ on the CPU |
 | AI Vision / [MCP screen reading](../3-bios-in-terminal/mcp-ai-agents.md) | — | ✅ | ✅ |
 | [Starlark scripting on screen text](../3-bios-in-terminal/scripting-automation.md) | — | ✅ | ✅ |
-| [Tailscale, zero port forwarding](../2-kvm-vkm/network.md) | ✅ | ✅ | ✅ |
+| [Tailscale, zero port forwarding](../1-getting-started/initial-setup.md#step-3-secure-mesh-networking-onboarding-tailscale) | ✅ | ✅ | ✅ |
 | Setup over the USB cable (`10.55.0.1`) | ✅ | ✅ | ✅ |
 | A/B OTA updates with rollback | ✅ | ✅ | ✅ |
 | Power & performance settings (CPU/NPU/encoder caps) | — | ✅ | ✅ |
