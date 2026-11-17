@@ -41,34 +41,12 @@ Engineered with the **Moonlight streaming protocol**, it delivers smooth **1080p
 
 Every edition runs the same unified USBridge KVM OS with regular OTA updates, REST API, Moonlight engine, and client compatibility.
 
-<div align="center">
-<img src="asset/kvm-lineup-v2.png" width="1400" alt="USBridge KVM Lineup">
-</div>
-
-### 1. Budget & Compact Lineup (Under $100)
-Entry-level and ultra-compact appliances designed for budget-conscious administration, dense server racks, and essential BIOS maintenance:
-
-| Feature | [**USBridge KVM 2.0 Lite**](https://www.usbridge.io/hardware-agent/usbridge-kvm-2-lite/) | [**USBridge Nano**](./Hardware/Kits/USBridge-Nano/) | [**USBridge KVM 2.0 Low**](./Hardware/Kits/USBridge-KVM-2.0-Low/) |
-| :--- | :---: | :---: | :---: |
-| **Price** | **$69** | **$89** | **$99** |
-| **Target Use** | Budget administration & basic BIOS access | Ultra-compact pocket KVM with Ethernet | Minimalist bare board for dense server racks |
-| **Base Board** | Walnut Pi ZeroW | Sipeed NanoKVM (SG2002) | Radxa Zero 3W |
-| **Processor** | Allwinner H618 (4 × Cortex-A53) | SOPHGO SG2002 (1 × RISC-V @ 1.0 GHz) | Rockchip RK3566 (4 × Cortex-A55 @ 1.6 GHz) |
-| **RAM** | 1 GB LPDDR4 | 256 MB DDR3 | 1 GB LPDDR4 |
-| **Video Capture** | USB 2.0 Dongle (1080p @ 30/60 FPS) | Built-in HDMI (MIPI CSI, 1080p @ 60 FPS) | USB 3.0 Dongle (1080p @ 60 FPS) |
-| **Stream Latency** | Standard (~65 ms, USB 2.0 MJPEG) | Lowest (~20 ms MIPI + network) | Low (~45 ms, USB 3.0 NV12/YUY2) |
-| **Network** | Wi-Fi (2.4/5 GHz) + Bluetooth | 100 Mbit Ethernet port (RJ45) | Onboard Wi-Fi 6 (Ethernet via USB hub) |
-| **Status Screen** | 1.3" IPS Color Display (240×240) + buttons | 128×64 Monochrome OLED | — (Headless operation) |
-| **Enclosure** | Custom black protective case | Custom ultra-compact case | Bare board with aluminum heatsink |
-| **Dimensions** | 69 × 36 × 34 mm | 49 × 41 × 41 mm | Minimal SBC footprint |
-| **ATX Power Control** | — | — | Optional expansion |
-| **MicroSD with OS** | Included (Pre-flashed) | Included (Pre-flashed) | Optional (+$5) |
-| **Lifetime OS License** | Included | Included | Included |
-
----
-
-### 2. Flagship & Pro Lineup
+### 1. Flagship & Pro Lineup
 Top-tier high-performance hardware engineered for mission-critical infrastructure, 24/7 reliability, and full bare-metal control:
+
+<div align="center">
+<img src="asset/30.png" width="1400" alt="USBridge KVM Flagship & Pro Lineup">
+</div>
 
 | Feature | [**USBridge KVM 2.0 Standard**](./Hardware/Kits/USBridge-KVM-2.0-Standard/) | [**USBridge KVM 2.0 Full**](./Hardware/Kits/USBridge-KVM-2.0-Full/) | **USBridge KVM Pro 4K** *(СКОРО)* |
 | :--- | :---: | :---: | :---: |
@@ -85,6 +63,32 @@ Top-tier high-performance hardware engineered for mission-critical infrastructur
 | **Dimensions** | 69 × 36 × 34 mm | 69 × 36 × 34 mm | Pro desktop / 1U rack-mount |
 | **ATX Power Control** | Optional expansion | **Included** (ATX board + DuPont wires) | **Included** (Galvanically isolated ATX) |
 | **MicroSD with OS** | Included (Pre-flashed) | Included (Pre-flashed) | High-speed eMMC / NVMe Storage |
+| **Lifetime OS License** | Included | Included | Included |
+
+---
+
+### 2. Budget & Compact Lineup (Under $100)
+Entry-level and ultra-compact appliances designed for budget-conscious administration, dense server racks, and essential BIOS maintenance:
+
+<div align="center">
+<img src="asset/29.png" width="1400" alt="USBridge KVM Budget & Compact Lineup">
+</div>
+
+| Feature | [**USBridge KVM 2.0 Lite**](https://www.usbridge.io/hardware-agent/usbridge-kvm-2-lite/) | [**USBridge Nano**](./Hardware/Kits/USBridge-Nano/) | [**USBridge KVM 2.0 Low**](./Hardware/Kits/USBridge-KVM-2.0-Low/) |
+| :--- | :---: | :---: | :---: |
+| **Price** | **$69** | **$89** | **$99** |
+| **Target Use** | Budget administration & basic BIOS access | Ultra-compact pocket KVM with Ethernet | Minimalist bare board for dense server racks |
+| **Base Board** | Walnut Pi ZeroW | Sipeed NanoKVM (SG2002) | Radxa Zero 3W |
+| **Processor** | Allwinner H618 (4 × Cortex-A53) | SOPHGO SG2002 (1 × RISC-V @ 1.0 GHz) | Rockchip RK3566 (4 × Cortex-A55 @ 1.6 GHz) |
+| **RAM** | 1 GB LPDDR4 | 256 MB DDR3 | 1 GB LPDDR4 |
+| **Video Capture** | USB 2.0 Dongle (1080p @ 30/60 FPS) | Built-in HDMI (MIPI CSI, 1080p @ 60 FPS) | USB 3.0 Dongle (1080p @ 60 FPS) |
+| **Stream Latency** | Standard (~65 ms, USB 2.0 MJPEG) | Lowest (~20 ms MIPI + network) | Low (~45 ms, USB 3.0 NV12/YUY2) |
+| **Network** | Wi-Fi (2.4/5 GHz) + Bluetooth | 100 Mbit Ethernet port (RJ45) | Onboard Wi-Fi 6 (Ethernet via USB hub) |
+| **Status Screen** | 1.3" IPS Color Display (240×240) + buttons | 128×64 Monochrome OLED | — (Headless operation) |
+| **Enclosure** | Custom black protective case | Custom ultra-compact case | Bare board with aluminum heatsink |
+| **Dimensions** | 69 × 36 × 34 mm | 49 × 41 × 41 mm | Minimal SBC footprint |
+| **ATX Power Control** | — | — | Optional expansion |
+| **MicroSD with OS** | Included (Pre-flashed) | Included (Pre-flashed) | Optional (+$5) |
 | **Lifetime OS License** | Included | Included | Included |
 
 ---
