@@ -13,6 +13,64 @@ Ready-to-use IP-KVM appliances designed for standalone administration, server ra
 <table>
   <tr>
     <td width="50%" valign="top">
+      <img src="./images/kvm-pro-4k-1x1.png" width="100%" alt="USBridge KVM Pro 4K">
+      <h3>USBridge KVM Pro 4K</h3>
+      <p><strong>TBA</strong> &nbsp;·&nbsp; <strong>Coming Soon ➔</strong><br><em>Enterprise 4K Ultra-HD KVM</em></p>
+      <p>Next-generation flagship appliance engineered for ultra-high-resolution 4K capture, high-bandwidth datacenter management, and mission-critical enterprise infrastructure.</p>
+      <ul>
+        <li><strong>Resolution:</strong> 4K Ultra-HD Capture (30/60 FPS)</li>
+        <li><strong>Network:</strong> Gigabit Ethernet (RJ45) + Wi-Fi 6</li>
+        <li><strong>Chassis:</strong> CNC Anodized Aluminum chassis</li>
+      </ul>
+      <p><em>In active engineering · Release details soon</em></p>
+    </td>
+    <td width="50%" valign="top">
+      <a href="./Kits/USBridge-KVM-2.0-Full/">
+        <img src="./images/kvm-2-0-full-1x1.jpg" width="100%" alt="USBridge KVM 2.0 Full">
+      </a>
+      <h3><a href="./Kits/USBridge-KVM-2.0-Full/">USBridge KVM 2.0 Full</a></h3>
+      <p><strong>$139</strong> &nbsp;·&nbsp; <a href="https://www.usbridge.io/hardware-agent/#buy-usbridge-kvm-2-0"><strong>Buy Now ➔</strong></a><br><em>Flagship Appliance with ATX Control</em></p>
+      <p>The complete flagship management solution: desktop appliance with color IPS screen, active cooling heatsink, plus the ATX Power Control Board for remote hard reset and power cycling.</p>
+      <ul>
+        <li><strong>Resolution:</strong> 1080p @ 60 FPS (USB 3.0 UVC Dongle)</li>
+        <li><strong>Power Control:</strong> ATX Board with optical isolation included</li>
+        <li><strong>Display & Cooling:</strong> 1.3" IPS LCD + extruded heatsink</li>
+      </ul>
+      <p><a href="./Kits/USBridge-KVM-2.0-Full/"><strong>View Kit Details ➔</strong></a></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <a href="./Kits/USBridge-KVM-2.0-Standard/">
+        <img src="./images/kvm-2-0-standard-1x1.jpg" width="100%" alt="USBridge KVM 2.0 Standard">
+      </a>
+      <h3><a href="./Kits/USBridge-KVM-2.0-Standard/">USBridge KVM 2.0 Standard</a></h3>
+      <p><strong>$117</strong> &nbsp;·&nbsp; <a href="https://www.usbridge.io/hardware-agent/#buy-usbridge-kvm-2-0-standard"><strong>Buy Now ➔</strong></a><br><em>Complete Desktop Appliance</em></p>
+      <p>Complete desktop out-of-band management appliance featuring a 1.3" 240×240 IPS color display with 5-way joystick and custom engineered enclosure.</p>
+      <ul>
+        <li><strong>Resolution:</strong> 1080p @ 60 FPS (USB 3.0 UVC Dongle)</li>
+        <li><strong>Display:</strong> 1.3" IPS color screen with Live Monitor Mode</li>
+        <li><strong>Form Factor:</strong> 69 × 36 × 34 mm desktop enclosure</li>
+      </ul>
+      <p><a href="./Kits/USBridge-KVM-2.0-Standard/"><strong>View Kit Details ➔</strong></a></p>
+    </td>
+    <td width="50%" valign="top">
+      <a href="https://www.usbridge.io/hardware-agent/usbridge-kvm-2-lite/">
+        <img src="./images/kvm-2-0-lite-1x1.jpg" width="100%" alt="USBridge KVM 2.0 Lite">
+      </a>
+      <h3><a href="https://www.usbridge.io/hardware-agent/usbridge-kvm-2-lite/">USBridge KVM 2.0 Lite</a></h3>
+      <p><strong>$69</strong> &nbsp;·&nbsp; <a href="https://www.usbridge.io/hardware-agent/usbridge-kvm-2-lite/"><strong>Buy Now ➔</strong></a><br><em>Budget-Friendly Desktop KVM</em></p>
+      <p>Affordable, ready-to-use IP-KVM appliance in a protective black enclosure with an integrated 1.3" IPS color screen. Optimized for basic administration, server setup, and BIOS navigation over USB 2.0.</p>
+      <ul>
+        <li><strong>Resolution:</strong> 1080p @ 30/60 FPS (USB 2.0 Capture)</li>
+        <li><strong>Network:</strong> Dual-Band Wi-Fi (2.4 GHz & 6) + Bluetooth</li>
+        <li><strong>Display & OS:</strong> 1.3" IPS display, lifetime license & MicroSD included</li>
+      </ul>
+      <p><a href="https://www.usbridge.io/hardware-agent/usbridge-kvm-2-lite/"><strong>View on usbridge.io ➔</strong></a></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
       <a href="./Kits/USBridge-Nano/">
         <img src="./images/nano-kvm-1x1.jpg" width="100%" alt="USBridge Nano">
       </a>
@@ -39,36 +97,6 @@ Ready-to-use IP-KVM appliances designed for standalone administration, server ra
         <li><strong>Cooling:</strong> Solid extruded aluminum heatsink</li>
       </ul>
       <p><a href="./Kits/USBridge-KVM-2.0-Low/"><strong>View Kit Details ➔</strong></a></p>
-    </td>
-  </tr>
-  <tr>
-    <td width="50%" valign="top">
-      <a href="./Kits/USBridge-KVM-2.0-Standard/">
-        <img src="./images/kvm-2-0-standard-1x1.jpg" width="100%" alt="USBridge KVM 2.0 Standard">
-      </a>
-      <h3><a href="./Kits/USBridge-KVM-2.0-Standard/">USBridge KVM 2.0 Standard</a></h3>
-      <p><strong>$117</strong> &nbsp;·&nbsp; <a href="https://www.usbridge.io/hardware-agent/#buy-usbridge-kvm-2-0-standard"><strong>Buy Now ➔</strong></a><br><em>Complete Desktop Appliance</em></p>
-      <p>Complete desktop out-of-band management appliance featuring a 1.3" 240×240 IPS color display with 5-way joystick and custom engineered enclosure.</p>
-      <ul>
-        <li><strong>Resolution:</strong> 1080p @ 60 FPS (USB 3.0 UVC Dongle)</li>
-        <li><strong>Display:</strong> 1.3" IPS color screen with Live Monitor Mode</li>
-        <li><strong>Form Factor:</strong> 69 × 36 × 34 mm desktop enclosure</li>
-      </ul>
-      <p><a href="./Kits/USBridge-KVM-2.0-Standard/"><strong>View Kit Details ➔</strong></a></p>
-    </td>
-    <td width="50%" valign="top">
-      <a href="./Kits/USBridge-KVM-2.0-Full/">
-        <img src="./images/kvm-2-0-full-1x1.jpg" width="100%" alt="USBridge KVM 2.0 Full">
-      </a>
-      <h3><a href="./Kits/USBridge-KVM-2.0-Full/">USBridge KVM 2.0 Full</a></h3>
-      <p><strong>$139</strong> &nbsp;·&nbsp; <a href="https://www.usbridge.io/hardware-agent/#buy-usbridge-kvm-2-0"><strong>Buy Now ➔</strong></a><br><em>Flagship Appliance with ATX Control</em></p>
-      <p>The complete flagship management solution: desktop appliance with color IPS screen, active cooling heatsink, plus the ATX Power Control Board for remote hard reset and power cycling.</p>
-      <ul>
-        <li><strong>Resolution:</strong> 1080p @ 60 FPS (USB 3.0 UVC Dongle)</li>
-        <li><strong>Power Control:</strong> ATX Board with optical isolation included</li>
-        <li><strong>Display & Cooling:</strong> 1.3" IPS LCD + extruded heatsink</li>
-      </ul>
-      <p><a href="./Kits/USBridge-KVM-2.0-Full/"><strong>View Kit Details ➔</strong></a></p>
     </td>
   </tr>
 </table>

@@ -79,12 +79,12 @@ The hardware design is open for fabrication and customization:
 
 | Product | Form Factor | Key Highlights | Price | Guide |
 | :--- | :--- | :--- | :--- | :--- |
-| **USBridge Nano** | Ultra-compact | Integrated capture, OLED screen, custom enclosure | **$45** | [View Guide ➔](../../Kits/USBridge-Nano/) |
-| **USBridge KVM 2.0 Low** | SBC-based | Budget-friendly, headless 1080p @ 60 FPS | **$79** | [View Guide ➔](../../Kits/USBridge-KVM-2.0-Low/) |
-| **USBridge KVM 2.0 Standard** | Desktop Unit | 1.3" IPS screen, joystick, 3 buttons, case | **$109** | [View Guide ➔](../../Kits/USBridge-KVM-2.0-Standard/) |
+| **USBridge KVM Pro 4K** | Pro Chassis | Enterprise 4K Ultra-HD capture, dual network | **TBA** *(Coming Soon)* | — |
 | **USBridge KVM 2.0 Full** | Flagship Unit | Standard Kit + included ATX Power Control | **$139** | [View Guide ➔](../../Kits/USBridge-KVM-2.0-Full/) |
-| **USBridge Screen Module** | Add-on HAT | 1.3" IPS LCD, joystick, 3 buttons, ATX port | **$11.99** | [View Guide ➔](../Screen-Module/) |
-| **USB 3.0 Capture Dongle** | Add-on Dongle | 1080p @ 60 FPS, SuperSpeed `[5G]` mode | **$9** | [View Guide ➔](../Capture-Dongle/) |
+| **USBridge KVM 2.0 Standard** | Desktop Unit | 1.3" IPS screen, joystick, 3 buttons, case | **$117** | [View Guide ➔](../../Kits/USBridge-KVM-2.0-Standard/) |
+| **USBridge KVM 2.0 Lite** | Desktop Unit | Budget-friendly USB 2.0 capture, 1.3" IPS screen, case | **$69** | [View on usbridge.io ➔](https://www.usbridge.io/hardware-agent/usbridge-kvm-2-lite/) |
+| **USBridge Nano** | Ultra-compact | Integrated MIPI capture, OLED screen, custom enclosure | **$89** | [View Guide ➔](../../Kits/USBridge-Nano/) |
+| **USBridge KVM 2.0 Low** | SBC-based | Minimalist bare-board, headless 1080p @ 60 FPS | **$99** | [View Guide ➔](../../Kits/USBridge-KVM-2.0-Low/) |
 
 <br>
 
