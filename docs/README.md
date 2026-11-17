@@ -8,7 +8,7 @@
 [![Discord](https://img.shields.io/badge/Community-Discord-5865F2?style=flat-square&labelColor=111916)](https://discord.gg/XwNpCrGfsB)
 
 > **Supported Hardware:**
-> * **Ready-to-use Appliances:** [USBridge KVM 2.0](../Hardware/) ([Low](../Hardware/Kits/USBridge-KVM-2.0-Low/) / [Standard](../Hardware/Kits/USBridge-KVM-2.0-Standard/) / [Full](../Hardware/Kits/USBridge-KVM-2.0-Full/)), [USBridge Nano](../Hardware/Kits/USBridge-Nano/) • [Buy Hardware ➔](https://www.usbridge.io/hardware-agent/)
+> * **Ready-to-use Appliances:** [USBridge KVM 2.0](../Hardware/) ([Lite](https://www.usbridge.io/hardware-agent/usbridge-kvm-2-lite/) / [Low](../Hardware/Kits/USBridge-KVM-2.0-Low/) / [Standard](../Hardware/Kits/USBridge-KVM-2.0-Standard/) / [Full](../Hardware/Kits/USBridge-KVM-2.0-Full/)), [USBridge Nano](../Hardware/Kits/USBridge-Nano/) • [Buy Hardware ➔](https://www.usbridge.io/hardware-agent/)
 > * **DIY Boards (USBridge Firmware):** [Sipeed NanoKVM (SG2002)](./content/6-hardware-connectivity/nanokvm.md), [Radxa Zero 3W / Cubie A7Z](./content/1-getting-started/quick-start-radxa.md)
 
 Use the categorized hub below to jump to hardware setup, streaming engine configuration, automation scripting, or REST API docs.
