@@ -48,21 +48,21 @@ Top-tier high-performance hardware engineered for mission-critical infrastructur
 <img src="asset/30.png" width="1400" alt="USBridge KVM Flagship & Pro Lineup">
 </div>
 
-| Feature | [**USBridge KVM 2.0 Standard**](./Hardware/Kits/USBridge-KVM-2.0-Standard/) | [**USBridge KVM 2.0 Full**](./Hardware/Kits/USBridge-KVM-2.0-Full/) | **USBridge KVM Pro 4K** *(СКОРО)* |
+| Feature | [**USBridge KVM 2.0 Standard**](./Hardware/Kits/USBridge-KVM-2.0-Standard/) | [**USBridge KVM 2.0 Full**](./Hardware/Kits/USBridge-KVM-2.0-Full/) | **USBridge KVM Pro 4K** *(Coming Soon)* |
 | :--- | :---: | :---: | :---: |
-| **Price** | **$117** | **$139** | **TBA** *(Coming Soon)* |
-| **Target Use** | Complete ready-to-run desktop kit | Ultimate Pro kit with ATX & screen | Enterprise 4K ultra-high resolution capture |
-| **Base Board** | Radxa Zero 3W | Radxa Zero 3W | High-performance Pro SBC |
-| **Processor** | Rockchip RK3566 (4 × Cortex-A55 @ 1.6 GHz) | Rockchip RK3566 (4 × Cortex-A55 @ 1.6 GHz) | Multi-core 4K-capable SoC with NPU |
-| **RAM** | 1 GB LPDDR4 | 1 GB LPDDR4 | 4 GB+ High-speed RAM |
-| **Video Capture** | USB 3.0 Dongle (1080p @ 60 FPS) | USB 3.0 Dongle (1080p @ 60 FPS) | Native 4K @ 30/60 FPS Ultra-HD Capture |
-| **Stream Latency** | Low (~45 ms, Moonlight pipeline) | Low (~45 ms, Moonlight pipeline) | Ultra-low sub-frame latency |
-| **Network** | Onboard Wi-Fi 6 (Ethernet via USB hub) | Onboard Wi-Fi 6 (Ethernet via USB hub) | Gigabit Ethernet (RJ45) + Wi-Fi 6 |
-| **Status Screen** | 1.3" IPS Color Display + 5-way joystick | 1.3" IPS Color Display + 5-way joystick | High-res status OLED/IPS telemetry |
-| **Enclosure** | Custom desktop case | Custom desktop case | CNC Anodized Aluminum chassis |
-| **Dimensions** | 69 × 36 × 34 mm | 69 × 36 × 34 mm | Pro desktop / 1U rack-mount |
-| **ATX Power Control** | Optional expansion | **Included** (ATX board + DuPont wires) | **Included** (Galvanically isolated ATX) |
-| **MicroSD with OS** | Included (Pre-flashed) | Included (Pre-flashed) | High-speed eMMC / NVMe Storage |
+| **Price** | **$117** | **$139** | — |
+| **Target Use** | Complete ready-to-run desktop kit | Ultimate Pro kit with ATX & screen | — |
+| **Base Board** | Radxa Zero 3W | Radxa Zero 3W | — |
+| **Processor** | Rockchip RK3566 (4 × Cortex-A55 @ 1.6 GHz) | Rockchip RK3566 (4 × Cortex-A55 @ 1.6 GHz) | — |
+| **RAM** | 1 GB LPDDR4 | 1 GB LPDDR4 | — |
+| **Video Capture** | USB 3.0 Dongle (1080p @ 60 FPS) | USB 3.0 Dongle (1080p @ 60 FPS) | — |
+| **Stream Latency** | Low (~45 ms, Moonlight pipeline) | Low (~45 ms, Moonlight pipeline) | — |
+| **Network** | Onboard Wi-Fi 6 (Ethernet via USB hub) | Onboard Wi-Fi 6 (Ethernet via USB hub) | — |
+| **Status Screen** | 1.3" IPS Color Display + 5-way joystick | 1.3" IPS Color Display + 5-way joystick | — |
+| **Enclosure** | Custom desktop case | Custom desktop case | — |
+| **Dimensions** | 69 × 36 × 34 mm | 69 × 36 × 34 mm | — |
+| **ATX Power Control** | Optional expansion | **Included** (ATX board + DuPont wires) | — |
+| **MicroSD with OS** | Included (Pre-flashed) | Included (Pre-flashed) | — |
 | **Lifetime OS License** | Included | Included | Included |
 
 ---
